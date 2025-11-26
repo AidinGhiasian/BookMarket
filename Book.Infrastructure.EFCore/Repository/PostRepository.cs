@@ -46,7 +46,7 @@ namespace Blog.Infrastructure.EFCore.Repository
 
         public Posts? GetById(int id)
         {
-            throw new NotImplementedException();
+            return _blogdbcontext.Posts.FirstOrDefault(x => x.Id == id);    
         }
 
         public void Updateby(Posts posts)
