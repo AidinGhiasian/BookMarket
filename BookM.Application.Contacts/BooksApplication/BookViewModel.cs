@@ -1,0 +1,45 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
+using System.ComponentModel.DataAnnotations;
+
+namespace BookM.Application.Contacts.BooksApplication
+{
+    public class BookViewModel
+    {
+        [Display(Name = "شناسه یکتا")]
+        public int Id { get; set; }
+
+
+        [Display(Name = "فایل تصویری")]
+        public string PictureFile { get; set; }
+        public IFormFile? FileName { get; set; }
+
+        [Required(ErrorMessage = "لطفا عنوان کتاب را وارد کنید...")]
+        [Display(Name = "عنوان کتاب")]
+        public string BookTitle { get; set; }
+
+        [Required(ErrorMessage = "لطفا نویسنده کتاب را وارد کنید...")]
+        [Display(Name = "نویسنده")]
+        public string Writer { get; set; }
+
+        [Required(ErrorMessage = "لطفا ناشر کتاب را وارد کنید...")]
+        [Display(Name = "ناشر")]
+        public string publisher { get; set; }
+
+        [Required(ErrorMessage = "لطفا شماره دسته بندی کتاب را وارد کنید...")]
+        [Display(Name = "شماره دسته بندی")]
+        public int CategoryId { get; set; }
+
+
+        public DateTime CreateDateTime { get; set; }
+
+        [Required(ErrorMessage = "لطفا مقدار فعال/غیرفعال کتاب را وارد کنید...")]
+        [Display(Name = "فعال/غیرفعال")]
+        public bool IsAvailable { get; set; }
+
+    }
+}
