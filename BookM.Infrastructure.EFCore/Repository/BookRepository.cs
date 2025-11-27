@@ -29,10 +29,10 @@ namespace BookM.Infrastructure.EFCore.Repository
 
         public void Delete(int id)
         {
-            var a = _bookdbcontext.Books.Find(id);
-            if (a != null)
+            var DB = _bookdbcontext.Books.Find(id);
+            if (DB != null)
             {
-                _bookdbcontext.Books.Remove(a);
+                _bookdbcontext.Books.Remove(DB);
             }
         }
 

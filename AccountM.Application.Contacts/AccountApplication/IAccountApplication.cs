@@ -4,6 +4,8 @@
     {
         public void Create(CreateViewModel model);
         public void Edit(EditViewModel model);
-        public AccountViewModel GetDetails(int id);
+        public AccountViewModel GetBy(int id);
+        List<AccountViewModel> GetAccounts();
+        public void Delete(int id);
     }
 }

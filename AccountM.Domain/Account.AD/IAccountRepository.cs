@@ -9,10 +9,11 @@ namespace AM.Domain.Account.AD
     public interface IAccountRepository
     {
        public void Craete(Account account);
-        public Account? Getby(int id);
-        public void Updateby(Account account);
-        public List<Account> GetAccounts();
-        public Account Getby(string phone);
+        public Account? GetbyId(int id);
+        Task Updateby(Account account);
+        public List<Account> GetAccounts(string Name);
+        public Account Getby(string phonenumber);
+        public void Delete(int id);
 
 
     }

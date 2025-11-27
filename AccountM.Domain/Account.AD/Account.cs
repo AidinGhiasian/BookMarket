@@ -16,9 +16,9 @@ namespace AM.Domain.Account.AD
         public string PhoneNumber { get; private set; }
         public string Email { get;private set; }
         public DateTime BirthDate { get; private set; }
-        public DateTime CreatetionDate{ get;private set; }
+        public DateTime CreationDate { get; private set; } = DateTime.Now;
         public string Addres { get;private set; }
-        public string scuritycode { get; private set; }
+        public string Scuritycode { get; private set; }
         public string Password { get; private set; }
         public string RePassword { get; private set; }
 
@@ -31,9 +31,9 @@ namespace AM.Domain.Account.AD
             PhoneNumber = phoneNumber;
             Email = email;
             BirthDate = birthDate;
-            CreatetionDate = DateTime.Now;
+            CreationDate = DateTime.Now;
             Addres = addres;
-            scuritycode = random.Next(100000,999999).ToString();
+            Scuritycode = random.Next(100000,999999).ToString();
             Password = password;
             RePassword = repassword;
         }
@@ -44,7 +44,7 @@ namespace AM.Domain.Account.AD
             PhoneNumber = phoneNumber;
             Email = email;
             BirthDate = birthDate;
-            CreatetionDate = DateTime.Now;
+            CreationDate = DateTime.Now;
             Addres = addres;
             Password=password;
             RePassword=repassword;

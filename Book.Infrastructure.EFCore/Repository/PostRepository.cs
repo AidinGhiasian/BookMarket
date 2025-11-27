@@ -6,14 +6,15 @@ using System.Threading.Tasks;
 using Blog.Domain.BlogAD;
 using Book.Infrastructure.EFCore;
 using Services;
+using Services.Model;
 
 namespace Blog.Infrastructure.EFCore.Repository
 {
-    public class PostRepository : IBlogRepository
+    public class BlogRepository : IBlogRepository
     {
         private readonly BlogDbContext _blogdbcontext;
-        private readonly IFileUploader _fileuploader;
-        public PostRepository(BlogDbContext blogdbcontext,IFileUploader fileUploader)
+        private readonly FileUploader _fileuploader;
+        public BlogRepository(BlogDbContext blogdbcontext,FileUploader fileUploader)
         {
             _blogdbcontext = blogdbcontext;
             _fileuploader = fileUploader;
@@ -41,7 +42,7 @@ namespace Blog.Infrastructure.EFCore.Repository
 
         public Posts Getby(string Title)
         {
-            throw new NotImplementedException();
+            return _blogdbcontext.Posts.FirstOrDefault(x => x.BookTitle == Title);
         }
 
         public Posts? GetById(int id)
@@ -49,9 +50,16 @@ namespace Blog.Infrastructure.EFCore.Repository
             return _blogdbcontext.Posts.FirstOrDefault(x => x.Id == id);    
         }
 
-        public void Updateby(Posts posts)
+
+        void IBlogRepository.Updateby(Posts posts)
         {
-            throw new NotImplementedException();
+            var EB = _blogdbcontext.Posts.FirstOrDefault(x => x.Id == posts.Id);
+            if (EB != null)
+            {
+                EB.Edit(posts.Picture, posts.BookTitle, posts.Writer, posts.Publisher
+                    , posts.Description, posts.CategoryId, posts.IsAvailable);
+                _blogdbcontext.SaveChanges();
+            }
         }
     }
 }
