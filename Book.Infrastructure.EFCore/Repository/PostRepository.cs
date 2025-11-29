@@ -10,18 +10,18 @@ using Services.Model;
 
 namespace Blog.Infrastructure.EFCore.Repository
 {
-    public class BlogRepository : IBlogRepository
+    public class BlogRepository : RepositoryBase<Posts>, IBlogRepository
     {
         private readonly BlogDbContext _blogdbcontext;
         private readonly FileUploader _fileuploader;
-        public BlogRepository(BlogDbContext blogdbcontext,FileUploader fileUploader)
+        public BlogRepository(BlogDbContext blogdbcontext,FileUploader fileUploader):base(blogdbcontext)
         {
             _blogdbcontext = blogdbcontext;
             _fileuploader = fileUploader;
         }
         public void Create(Posts posts)
         {
-            var CB = _blogdbcontext.Posts.Add(posts);
+            _blogdbcontext.Posts.Add(posts);
             _blogdbcontext.SaveChanges();
         }
 
@@ -37,12 +37,11 @@ namespace Blog.Infrastructure.EFCore.Repository
         public List<Posts> GetAll()
         {
             return _blogdbcontext.Posts.ToList();
-
         }
 
         public Posts Getby(string Title)
         {
-            return _blogdbcontext.Posts.FirstOrDefault(x => x.BookTitle == Title);
+           return _blogdbcontext.Posts.FirstOrDefault(x => x.BookTitle == Title);
         }
 
         public Posts? GetById(int id)

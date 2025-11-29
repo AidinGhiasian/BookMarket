@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Services;
 
 namespace AM.Domain.Account.AD
 {
-    public interface IAccountRepository
+    public interface IAccountRepository: IRepositoryBase<Account>
     {
        public void Craete(Account account);
         public Account? GetbyId(int id);

@@ -4,13 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AM.Domain.Account.AD;
+using Services;
 
 namespace AccountM.Infrastructure.EFCore.Repository
 {
-    public class AccountRepository : IAccountRepository
+    public class AccountRepository :RepositoryBase<Account>, IAccountRepository
     {
         private readonly AccountDbContext _accountdbcontext;
-        public AccountRepository(AccountDbContext accountdbcontext)
+        public AccountRepository(AccountDbContext accountdbcontext):base(accountdbcontext) 
         {
             _accountdbcontext = accountdbcontext;
         }
@@ -33,13 +34,12 @@ namespace AccountM.Infrastructure.EFCore.Repository
         {
             return _accountdbcontext.Account.Where(x => x.Name == name).ToList();
  
-        }
+        } 
 
 
         public Account? GetbyId(int id)
         {
-          return  _accountdbcontext.Account.FirstOrDefault(x=>x.Id == id);
-                
+          return  _accountdbcontext.Account.FirstOrDefault(x=>x.Id == id);     
         }
 
         public Account Getby(string phonenumber)
