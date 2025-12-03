@@ -34,19 +34,19 @@ namespace Blog.Infrastructure.EFCore.Repository
             }
         }
 
-        public List<Posts> GetAll()
+        public List<Posts> GetAll(string BookTitle)
         {
-            return _blogdbcontext.Posts.ToList();
+            return _blogdbcontext.Posts.Where(x=>x.BookTitle==BookTitle).ToList();
         }
 
         public Posts Getby(string Title)
         {
-           return _blogdbcontext.Posts.FirstOrDefault(x => x.BookTitle == Title);
+            return _blogdbcontext.Posts.FirstOrDefault(x => x.BookTitle == Title);
         }
 
         public Posts? GetById(int id)
         {
-            return _blogdbcontext.Posts.FirstOrDefault(x => x.Id == id);    
+            return _blogdbcontext.Posts.FirstOrDefault(x => x.Id == id);
         }
 
 

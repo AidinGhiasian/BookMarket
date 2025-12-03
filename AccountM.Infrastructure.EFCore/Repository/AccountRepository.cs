@@ -36,7 +36,6 @@ namespace AccountM.Infrastructure.EFCore.Repository
  
         } 
 
-
         public Account? GetbyId(int id)
         {
           return  _accountdbcontext.Account.FirstOrDefault(x=>x.Id == id);     
