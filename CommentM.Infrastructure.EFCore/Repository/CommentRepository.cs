@@ -37,10 +37,14 @@ namespace CommentM.Infrastructure.EFCore.Repository
             return _commentDbContext.Comments.Where(x => x.FullName == name).ToList();
         }
 
-        public Task UpdateBy(Comments update)
+        public void UpdateBy(Comments update)
         {
-            _commentDbContext.Update(update);
-            _commentDbContext.SaveChanges();
+            var EC = _commentDbContext.Comments.FirstOrDefault(x => x.FullName == update.FullName);
+            if (EC != null)
+            {
+                EC.Edit(update.FullName,update.Message);
+                _commentDbContext.SaveChanges();
+            }
         }
     }
 }

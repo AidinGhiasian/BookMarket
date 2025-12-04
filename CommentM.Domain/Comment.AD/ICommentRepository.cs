@@ -11,7 +11,7 @@ namespace CommentM.Domain.Comment.AD
         public void Create(Comments create);
         public List<Comments> GetAll(string name);
         public Comments GetById(long id);
-        Task UpdateBy(Comments update);
+        public void UpdateBy(Comments update);
         void Delete(long id);
     }
 }
