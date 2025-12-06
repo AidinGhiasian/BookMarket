@@ -9,10 +9,11 @@ namespace AccountM.Application.Contacts.AccountApplication
 {
     public class AccountViewModel
     {
+        
         [Display(Name = "شناسه یکتا")]
         public int Id { get; set; }
 
-
+        
 
         [Display(Name = "نام")]
         [Required(ErrorMessage = "لطفا نام خود را وارد کنید...")]

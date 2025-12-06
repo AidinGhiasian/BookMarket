@@ -9,8 +9,8 @@ namespace CommentM.Domain.Comment.AD
     public class Comments
     {
         public long Id { get; private set; }
-        public string FullName { get; private set; }
-        public string Message { get; private set; }
+        public string FullName { get; private set; }//کاربر
+        public string Message { get; private set; }//کاربر
         public long OwnerId { get; private set; }// پست یا کتابی که قراره براش نظر ثبت بشهID
         public int Type { get; private set; }//تایپ آن چیزی که قراره براش نظر ثبت بشه =>Book=1,Blog=>2
         public DateTime CommentDatetime { get; private set; }
