@@ -22,16 +22,12 @@ namespace CommentM.Domain.Comment.AD
         public void Cancel() => IsCanceled = true;//در حالت عادی true باشد
 
 
-        public Comments(string name, string message, long owner, int type, bool isconfirmed, bool iscanceled)
+        public Comments(string name, string message)
 
         {
             FullName = name;
             Message = message;
-            OwnerId = owner;
-            Type = type;
-            CommentDatetime = DateTime.Now;
-            IsConfirmed = true;
-            IsCanceled = true;
+
         }
         public void Edit(string name, string message)
         {

@@ -3,15 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CommentM.Domain.Comment.AD;
 
 namespace CommentM.Application.Contacts
 {
     public interface ICommentApplication
     {
         public void create(CreateViewModel create);
-        public void Edit(EditViewModel edit);
-        public CommentViewModel GetBy(long id);
-        public List<CommentViewModel> GetAll();
-        public void Delete(long id);
+        void Edit(EditViewModel edit);
+        Comments GetById(long id);
+        List<CommentViewModel> GetComment();
+        void Delete(long id);
     }
 }

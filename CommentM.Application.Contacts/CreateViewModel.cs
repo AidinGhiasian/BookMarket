@@ -10,5 +10,6 @@ namespace CommentM.Application.Contacts
     {
         public string FullName { get; set; }
         public string Message { get; set; }
+        public DateTime CommentDatetime { get; set; }
     }
 } 

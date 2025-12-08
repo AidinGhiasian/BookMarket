@@ -32,7 +32,7 @@ namespace AccountM.Application
 
         public void Delete(int id)
         {
-            throw new NotImplementedException();
+            _accountRepository.Delete(id);
         }
 
         public void Edit(EditViewModel model)

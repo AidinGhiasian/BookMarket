@@ -38,7 +38,8 @@ namespace BlogM.Application
             var list=new List<PostViewModel>();
             foreach (var post in posts) 
             {
-                list.Append(map(post));            }
+                list.Append(map(post));
+            }
             return list;
 
         }

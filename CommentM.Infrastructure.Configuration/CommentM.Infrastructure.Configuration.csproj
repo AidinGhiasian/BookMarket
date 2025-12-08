@@ -20,6 +20,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\CommentM.Application.Contacts\CommentM.Application.Contacts.csproj" />
+    <ProjectReference Include="..\CommentM.Application\CommentM.Application.csproj" />
     <ProjectReference Include="..\CommentM.Infrastructure.EFCore\CommentM.Infrastructure.EFCore.csproj" />
   </ItemGroup>
 

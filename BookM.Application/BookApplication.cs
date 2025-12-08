@@ -14,11 +14,11 @@ using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace BookM.Application
 {
-    public class BookAplication : IBookApplication
+    public class BookApplication : IBookApplication
     {
         private readonly IBookRepository _bookRepository;
         private readonly IFileUploader _fileUploader;
-        public BookAplication(IBookRepository bookRepository, IFileUploader fileUploader)
+        public BookApplication(IBookRepository bookRepository, IFileUploader fileUploader)
         {
             _bookRepository = bookRepository;
             _fileUploader = fileUploader;

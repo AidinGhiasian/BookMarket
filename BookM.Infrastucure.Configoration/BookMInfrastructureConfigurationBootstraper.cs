@@ -17,7 +17,7 @@ namespace BookM.Infrastucure.Configoration
     {
         public static void Configure(IServiceCollection services, string connectionString)
         {
-            services.AddScoped<IBookApplication,BookAplication>();
+            services.AddScoped<IBookApplication,BookApplication>();
             services.AddScoped<IBookRepository,BookRepository>();
 
 
