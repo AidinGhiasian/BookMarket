@@ -14,9 +14,9 @@ namespace BookM.Infrastructure.EFCore.Repository
     public class BookRepository : RepositoryBase<Books>, IBookRepository
     {
         private readonly BookDbContext _bookdbcontext;
-        private readonly FileUploader _fileUploader;
+        private readonly IFileUploader _fileUploader;
 
-        public BookRepository(BookDbContext bookDbContext, FileUploader fileUploader) : base(bookDbContext)
+        public BookRepository(BookDbContext bookDbContext, IFileUploader fileUploader) : base(bookDbContext)
         {
             _fileUploader = fileUploader;
             _bookdbcontext = bookDbContext;

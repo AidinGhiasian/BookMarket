@@ -8,13 +8,13 @@ using Book.Infrastructure.EFCore;
 using Services;
 using Services.Model;
 
-namespace Blog.Infrastructure.EFCore.Repository
+namespace BlogM.Infrastructure.EFCore.Repository
 {
     public class BlogRepository : RepositoryBase<Posts>, IBlogRepository
     {
         private readonly BlogDbContext _blogdbcontext;
-        private readonly FileUploader _fileuploader;
-        public BlogRepository(BlogDbContext blogdbcontext,FileUploader fileUploader):base(blogdbcontext)
+        private readonly IFileUploader _fileuploader;
+        public BlogRepository(BlogDbContext blogdbcontext,IFileUploader fileUploader):base(blogdbcontext)
         {
             _blogdbcontext = blogdbcontext;
             _fileuploader = fileUploader;

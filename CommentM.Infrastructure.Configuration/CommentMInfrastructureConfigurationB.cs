@@ -13,7 +13,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace CommentMInfrastructureConfiguration
 {
-    public class CommentMInfrastructureConfiguration
+    public class CommentMInfrastructureConfigurationB
     {
         public static void Configure(IServiceCollection services, string connectionString)
         {

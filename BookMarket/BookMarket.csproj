@@ -7,11 +7,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+   
     <ProjectReference Include="..\AccountM.Infrastructure.Configuration\AccountMInfrastructureConfiguration.csproj" />
-    <ProjectReference Include="..\AM.Infrastructure.Configoration\AM.Infrastructure.Configoration.csproj" />
+   
     <ProjectReference Include="..\BlogM.Infrastructure.Configuration\BlogMInfrastructureConfiguration.csproj" />
+   
     <ProjectReference Include="..\BookM.Infrastucure.Configoration\BookMInfrastucureConfiguration.csproj" />
+   
     <ProjectReference Include="..\CommentM.Infrastructure.Configuration\CommentMInfrastructureConfiguration.csproj" />
+   
     <ProjectReference Include="..\Services\Services.csproj" />
   </ItemGroup>
 

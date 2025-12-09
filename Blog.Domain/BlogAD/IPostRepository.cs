@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Blog.Domain.BlogAD
 {
-    public interface IBlogRepository
+    public interface IBlogRepository:IRepositoryBase<Posts>
     {
         public void Create(Posts posts);
         public Posts? GetById(int id);
