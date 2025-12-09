@@ -55,13 +55,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookM.Infrastructure.EFCore
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlogM.Infrastructure.EFCore", "Book.Infrastructure.EFCore\BlogM.Infrastructure.EFCore.csproj", "{41DC24E3-7E79-45C2-B20B-2A2CC59EEC09}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookM.Infrastucure.Configuration", "BookM.Infrastucure.Configoration\BookM.Infrastucure.Configuration.csproj", "{F47A2624-465B-4AF9-A40E-D3DF3F103B23}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookMInfrastucureConfiguration", "BookM.Infrastucure.Configoration\BookMInfrastucureConfiguration.csproj", "{F47A2624-465B-4AF9-A40E-D3DF3F103B23}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlogM.Infrastructure.Configuration", "BlogM.Infrastructure.Configuration\BlogM.Infrastructure.Configuration.csproj", "{884C2FDF-FA65-4E05-9AFA-BDDE7E7224DD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlogMInfrastructureConfiguration", "BlogM.Infrastructure.Configuration\BlogMInfrastructureConfiguration.csproj", "{884C2FDF-FA65-4E05-9AFA-BDDE7E7224DD}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AccountM.Infrastructure.EFCore", "AccountM.Infrastructure.EFCore\AccountM.Infrastructure.EFCore.csproj", "{BDFC7576-354A-4236-B480-3E2713292D5E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AccountM.Infrastructure.Configuration", "AccountM.Infrastructure.Configuration\AccountM.Infrastructure.Configuration.csproj", "{B6E6D318-9F6C-493F-A90D-5415C73D572B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AccountMInfrastructureConfiguration", "AccountM.Infrastructure.Configuration\AccountMInfrastructureConfiguration.csproj", "{B6E6D318-9F6C-493F-A90D-5415C73D572B}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CommentManagment", "CommentManagment", "{B38BFC35-9B6B-42F8-8759-95627FFF10A3}"
 EndProject
@@ -73,7 +73,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CommentM.Infrastructure", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommentM.Infrastructure.EFCore", "CommentM.Infrastructure.EFCore\CommentM.Infrastructure.EFCore.csproj", "{8197B304-19CB-425E-B6E8-69A4715752BB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommentM.Infrastructure.Configuration", "CommentM.Infrastructure.Configuration\CommentM.Infrastructure.Configuration.csproj", "{50364BBB-7290-4D7A-A747-C01F3418B5E3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommentMInfrastructureConfiguration", "CommentM.Infrastructure.Configuration\CommentMInfrastructureConfiguration.csproj", "{50364BBB-7290-4D7A-A747-C01F3418B5E3}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CommentM.Application", "CommentM.Application", "{8CF30D79-EE27-4001-8FFC-9CE941E15962}"
 EndProject

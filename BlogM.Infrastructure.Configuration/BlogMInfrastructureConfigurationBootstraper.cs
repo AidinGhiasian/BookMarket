@@ -11,7 +11,7 @@ using Book.Infrastructure.EFCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace BlogM.Infrastructure.Configuration
+namespace BlogMInfrastructureConfiguration
 {
     public class BlogMInfrastructureConfigurationBootstraper
     {

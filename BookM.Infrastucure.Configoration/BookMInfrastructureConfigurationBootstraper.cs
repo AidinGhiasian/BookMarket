@@ -11,7 +11,7 @@ using BookM.Infrastructure.EFCore.Repository;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace BookM.Infrastucure.Configoration
+namespace BookMInfrastucureConfigoration
 {
     public class BookMInfrastructureConfigurationBootstraper
     {

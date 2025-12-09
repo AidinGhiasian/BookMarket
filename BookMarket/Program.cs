@@ -1,8 +1,16 @@
 
+using AccountM.Infrastructure.Configuration;
+using BlogM.Infrastructure.Configuration;
+using BookM.Infrastucure.Configoration;
+using CommentM.Infrastructure.Configuration;
 using Services;
 using Services.Model;
 var builder = WebApplication.CreateBuilder(args);
 var contectionstring = builder.Configuration.GetConnectionString("DbBookMarket");
+AccountMInfrastructureConfigurationBootstraper.Configure(builder.Services, contectionstring);
+BlogMInfrastructureConfigurationBootstraper.Configure(builder.Services, contectionstring);
+BookMInfrastructureConfigurationBootstraper.Configure(builder.Services, contectionstring);
+CommentMInfrastructureConfiguration.Configure(builder.Services, contectionstring);
 
 // Add services to the container.
 builder.Services.AddRazorPages();

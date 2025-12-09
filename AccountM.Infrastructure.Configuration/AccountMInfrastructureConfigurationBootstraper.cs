@@ -11,7 +11,7 @@ using AM.Domain.Account.AD;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace AccountM.Infrastructure.Configuration
+namespace AccountMInfrastructureConfiguration
 {
     public class AccountMInfrastructureConfigurationBootstraper
     {

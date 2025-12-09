@@ -11,7 +11,7 @@ using CommentM.Infrastructure.EFCore.Repository;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace CommentM.Infrastructure.Configuration
+namespace CommentMInfrastructureConfiguration
 {
     public class CommentMInfrastructureConfiguration
     {
