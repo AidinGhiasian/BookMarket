@@ -12,7 +12,7 @@ namespace CommentM.Application.Contacts
         public void create(CreateViewModel create);
         void Edit(EditViewModel edit);
         Comments GetById(long id);
-        List<CommentViewModel> GetComment();
+        List<CommentViewModel> GetComment(long recordId);
         void Delete(long id);
     }
 }

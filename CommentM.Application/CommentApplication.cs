@@ -42,9 +42,25 @@ namespace CommentM.Application
             return (GC);
         }
 
-        public List<CommentViewModel> GetComment()
+        public List<CommentViewModel> GetComment(long recordId)
         {
-            throw new NotImplementedException();
+            var comments= _commentrepository.GetAll(recordId);
+           var commentViewModels = new List<CommentViewModel>();
+            foreach (var comment in comments)
+            {
+                commentViewModels.Add(Map(comment));
+            }
+            return commentViewModels;
+        }
+        public CommentViewModel Map(Comments comments)
+        {
+            return new CommentViewModel
+            {
+                Id = comments.Id,
+                FullName = comments.FullName,
+                Message = comments.Message,
+                CommentDateTime = comments.CommentDatetime
+            };
         }
     }
 }

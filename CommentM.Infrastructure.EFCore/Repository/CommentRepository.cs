@@ -32,9 +32,9 @@ namespace CommentM.Infrastructure.EFCore.Repository
 
         }
 
-        public List<Comments> GetAll(string name)
+        public List<Comments> GetAll(long recordId)
         {
-            return _commentDbContext.Comments.Where(x => x.FullName == name).ToList();
+            return _commentDbContext.Comments.Where(x => x.OwnerId == recordId).ToList();
         }
 
         public void UpdateBy(Comments update)
