@@ -38,7 +38,7 @@ namespace CommentM.Application
 
         public Comments GetById(long id)
         {
-       var GC = _commentrepository.GetById(id);
+            var GC = _commentrepository.GetById(id);
             return (GC);
         }
 
