@@ -20,7 +20,7 @@ namespace BlogMInfrastructureConfiguration
             services.AddScoped<IBlogRepository,BlogRepository>();
             services.AddScoped<IPostApplication,PostApplication>();
             services.AddScoped<IEventRepository, EventRepository>();
-
+            //services.AddScoped<IEventapplication, EventApplication>();
 
             services.AddDbContext<BlogDbContext>(options => options.UseSqlServer(connectionString));
         }
