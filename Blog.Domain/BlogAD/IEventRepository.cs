@@ -14,6 +14,6 @@ namespace Blog.Domain.BlogAD
         public void  Update(Events events);
         public void Delete(long Id);
         public Events GetBy(string eventtitle);
-        public Events GetAll();
+        public List<Events> GetAll(string eventtitle);
     }
 }

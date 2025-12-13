@@ -12,6 +12,7 @@ namespace Book.Infrastructure.EFCore
     {
         public BlogDbContext(DbContextOptions<BlogDbContext> options) : base(options) { }
         public DbSet<Posts> Posts { get; set; }
+        public DbSet<Events> Events { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
