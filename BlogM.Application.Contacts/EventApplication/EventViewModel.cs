@@ -8,7 +8,7 @@ namespace BlogM.Application.Contacts.EventApplication
 {
     public class EventViewModel
     {
-        public int Id { get; set; }
+        public long Id { get; set; }
         public string Picture { get; set; }
         public string EventTitle {  get; set; }
         public string  Description { get; set; }

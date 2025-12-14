@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BlogM.Application.Contacts.EventApplication
 {
-    public  class EditViewModel
+    public class CreateViewModel
     {
         public long Id { get; set; }
         public string Picture { get; set; }
