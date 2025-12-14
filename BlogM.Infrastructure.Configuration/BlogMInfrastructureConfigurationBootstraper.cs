@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Blog.Domain.BlogAD;
 using BlogM.Application;
+using BlogM.Application.Contacts.EventApplication;
 using BlogM.Application.Contacts.PostApplication;
 using BlogM.Infrastructure.EFCore.Repository;
 using Book.Infrastructure.EFCore;
@@ -20,7 +21,7 @@ namespace BlogMInfrastructureConfiguration
             services.AddScoped<IBlogRepository,BlogRepository>();
             services.AddScoped<IPostApplication,PostApplication>();
             services.AddScoped<IEventRepository, EventRepository>();
-            //services.AddScoped<IEventapplication, EventApplication>();
+            services.AddScoped<IEventApplication, EventApplication>();
 
             services.AddDbContext<BlogDbContext>(options => options.UseSqlServer(connectionString));
         }

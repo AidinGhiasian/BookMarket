@@ -6,11 +6,9 @@ using System.Threading.Tasks;
 
 namespace CommentM.Application.Contacts
 {
-    public class EditViewModel
+    public class EditViewModel:CreateViewModel
     {
         public long Id { get; set; }    
-        public string FullName { get; set; }
-        public string Message { get; set; }
-        public DateTime CommentDateTime { get; set; }= DateTime.Now;
+
     }
 }

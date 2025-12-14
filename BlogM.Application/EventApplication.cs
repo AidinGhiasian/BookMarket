@@ -20,6 +20,8 @@ namespace BlogM.Application
         }
         public void Create(CreateViewModel create)
         {
+            var path = create.Picture;
+            var picturename = _fileuploader.UploadFileAsync(create.FileName, path);
             var CE = new Events(create.Picture, create.EventTitle,
                 create.Description, create.EventStartTime, create.EventFinishTime);
             _eventrepository.Add(CE);
@@ -50,6 +52,15 @@ namespace BlogM.Application
         public void Update(EditViewModel edit)
         {
             var EE = _eventrepository.GetById(edit.Id);
+
+            var picturepath=edit.Picture;
+
+            if (edit.FileName != null)
+            {
+                _fileuploader.DeleteFileAsync(edit.Picture);
+                var newpath = "picture";
+                picturepath = _fileuploader.UploadFileAsync(edit.FileName, newpath);
+            }
             EE.Edit(edit.Picture, edit.EventTitle, edit.Description,edit.EventStartTime,edit.EventFinishTime);
             _eventrepository.Update(EE);
         }
