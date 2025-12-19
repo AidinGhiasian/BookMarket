@@ -26,8 +26,10 @@ namespace BookM.Application
         public void Create(CreateViewModel create)
         {
             var path = "picture";
+            var prefixprice = "تومان";
             var picturename=_fileUploader.UploadFileAsync(create.FileName, path);
-            var upload = new  Books(picturename,create.BookTitle,create.Writer,create.Publisher, create.CategoryId,create.Price);
+            var npprice = create.Price + " " + prefixprice;
+            var upload = new Books(picturename, create.BookTitle, create.Writer, create.Publisher, create.CategoryId,npprice);
             _bookRepository.Create(upload);
         }
 
@@ -51,15 +53,15 @@ namespace BookM.Application
           var upBooks=_bookRepository.GetById(update.Id);
 
             var PictureName = update.Picture;
-
-
+            var prefixprice = "تومان";
+            var npprice = update.Price + " " + prefixprice;
             if (update.FileName != null)
             {
                 _fileUploader.DeleteFileAsync(update.Picture);
                 var path = "NewPicture";
                 PictureName = _fileUploader.UploadFileAsync(update.FileName, path);
             }
-            upBooks.Edit(PictureName,update.Picture, update.Writer,update.Publisher,update.CategoryId,update.status,update.Price);
+            upBooks.Edit(PictureName,update.Picture, update.Writer,update.Publisher,update.CategoryId,update.status,npprice);
 
         }
 

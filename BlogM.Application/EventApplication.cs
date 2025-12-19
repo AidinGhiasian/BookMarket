@@ -22,7 +22,7 @@ namespace BlogM.Application
         {
             var path = create.Picture;
             var picturename = _fileuploader.UploadFileAsync(create.FileName, path);
-            var CE = new Events(create.Picture, create.EventTitle,
+            var CE = new Events(picturename, create.EventTitle,
                 create.Description, create.EventStartTime, create.EventFinishTime);
             _eventrepository.Add(CE);
         }
