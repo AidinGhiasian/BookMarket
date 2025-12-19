@@ -20,11 +20,12 @@ namespace BookM.Domain.Book.AD
         public DateTime CreatetionDate { get; private set; }
         public DateTime UpdatedTime { get; private set; }
         public bool IsAvailable { get; private set; }
+        public string Price { get;private set; }
 
-       //رابطه با BookCategory با رابطه چند به چند
+        //رابطه با BookCategory با رابطه چند به چند
         public List<BookCategories> BookCategories { get; private set; } = new();
 
-        public Books(string picture, string booktitle, string writer, string publisher, int categoryId, IFormFile formFile=null)
+        public Books(string picture, string booktitle, string writer, string publisher, int categoryId, string price, IFormFile formFile = null)
         {
             PictureFile = PictureFile;
             BookTitle = booktitle;
@@ -35,19 +36,20 @@ namespace BookM.Domain.Book.AD
             CreatetionDate = DateTime.Now;
             UpdatedTime = DateTime.Now;
             IsAvailable = true;
+            Price = price;
         }
 
-        public void Edit(string picture,string bookTitle, string writer, string publisher, int categoryId, bool statusAvailable)
+        public void Edit(string picture,string bookTitle, string writer, string publisher, int categoryId, bool statusAvailable,string price)
         {
             if(picture!=null)
                 Picture = picture;
-
             BookTitle = bookTitle;
             Writer = writer;
             Publisher = publisher;
             CategoryId = categoryId;
             UpdatedTime = DateTime.Now;
             IsAvailable = statusAvailable;
+            Price = price;
         }
     }
 }

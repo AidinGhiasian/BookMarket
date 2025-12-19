@@ -27,7 +27,7 @@ namespace BookM.Application
         {
             var path = "picture";
             var picturename=_fileUploader.UploadFileAsync(create.FileName, path);
-            var upload = new  Books(picturename,create.BookTitle,create.Writer,create.Publisher,create.CategoryId);
+            var upload = new  Books(picturename,create.BookTitle,create.Writer,create.Publisher, create.CategoryId,create.Price);
             _bookRepository.Create(upload);
         }
 
@@ -59,7 +59,7 @@ namespace BookM.Application
                 var path = "NewPicture";
                 PictureName = _fileUploader.UploadFileAsync(update.FileName, path);
             }
-            upBooks.Edit(PictureName,update.Picture, update.Writer,update.Publisher,update.CategoryId,update.status);
+            upBooks.Edit(PictureName,update.Picture, update.Writer,update.Publisher,update.CategoryId,update.status,update.Price);
 
         }
 

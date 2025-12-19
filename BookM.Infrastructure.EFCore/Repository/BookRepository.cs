@@ -58,7 +58,7 @@ namespace BookM.Infrastructure.EFCore.Repository
             {
                 EB.Edit(book.Picture, book.BookTitle, book.Writer
                     , book.Publisher, book.CategoryId
-                    , book.IsAvailable);
+                    , book.IsAvailable, book.Price);
                 await _bookdbcontext.SaveChangesAsync();
             }
         }

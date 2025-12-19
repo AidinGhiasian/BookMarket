@@ -41,5 +41,9 @@ namespace BookM.Application.Contacts.BooksApplication
         [Display(Name = "فعال/غیرفعال")]
         public bool IsAvailable { get; set; }
 
+        [Required(ErrorMessage = "لطفا قیمت کتاب را وارد کنید...")]
+        [Display(Name = "قیمت کتاب")]
+        public string Price { get; set; }
+
     }
 }
