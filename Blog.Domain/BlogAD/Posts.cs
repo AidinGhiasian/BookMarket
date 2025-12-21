@@ -20,6 +20,10 @@ namespace Blog.Domain.BlogAD
         public bool IsAvailable { get; private set; }
 
 
+        private Posts() { } 
+
+
+
         public Posts(string picture, string booktitle, string writer, string publisher, string description, int categoryid)
         {
             Picture = picture;

@@ -1,4 +1,5 @@
-
+using BlogM.Infrastructure.EFCore;
+using Microsoft.EntityFrameworkCore;
 using System.Runtime.InteropServices;
 using AccountMInfrastructureConfiguration;
 using BlogMInfrastructureConfiguration;
@@ -6,6 +7,7 @@ using BookMInfrastucureConfigoration;
 using CommentMInfrastructureConfiguration;
 using Services;
 using Services.Model;
+using Book.Infrastructure.EFCore;
 
 var builder = WebApplication.CreateBuilder(args);
 var contectionstring = builder.Configuration.GetConnectionString("DbBookMarket");
@@ -13,6 +15,13 @@ AccountMInfrastructureConfigurationBootstraper.Configure(builder.Services, conte
 BlogMInfrastructureConfigurationBootstraper.Configure(builder.Services, contectionstring);
 BookMInfrastructureConfigurationBootstraper.Configure(builder.Services, contectionstring);
 CommentMInfrastructureConfigurationB.Configure(builder.Services, contectionstring);
+
+builder.Services.AddDbContext<BlogDbContext>(options =>
+{
+    options.UseSqlServer(
+        builder.Configuration.GetConnectionString("DefaultConnection"));
+});
+
 
 // Add services to the container.
 builder.Services.AddRazorPages();

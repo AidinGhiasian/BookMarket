@@ -16,22 +16,26 @@ namespace Blog.Domain.BlogAD
         public DateTime EventStartTime { get; private set; }
         public DateTime EventFinishTime { get; private set; }
 
-        public Events(string picture, string eventTitle, string description,DateTime starttime,DateTime finishtime)
+
+
+        private Events() { }
+
+        public Events(string picture, string eventTitle, string description,DateTime EventStartTime, DateTime EventFinishTime)
         {
             Picture = picture;
             EventTitle = eventTitle;
             Description = description;
-            EventStartTime =starttime;
-            EventFinishTime = finishtime;
+            EventStartTime = EventStartTime;
+            EventFinishTime = EventFinishTime;
         }
-        public void Edit(string picture, string eventTitle, string description, DateTime starttime, DateTime finishtime)
+        public void Edit(string picture, string eventTitle, string description, DateTime EventStartTime, DateTime EventFinishTime)
         {
             if(picture != null)
             Picture = picture;
             EventTitle = eventTitle;
             Description = description;
-            EventStartTime = starttime;
-            EventFinishTime=finishtime;
+            EventStartTime = EventStartTime;
+            EventFinishTime= EventFinishTime;
         }
     }
 }
