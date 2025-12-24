@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace AM.Domain.Account.AD
 {
@@ -20,7 +21,11 @@ namespace AM.Domain.Account.AD
         public string Addres { get;private set; }
         public string Scuritycode { get; private set; }
         public string Password { get; private set; }
+        [NotMapped]
         public string RePassword { get; private set; }
+
+
+        public Account() { }
 
         public Account( string name, string family, string phoneNumber, string email, DateTime birthDate,string addres,string password,string repassword)
         {

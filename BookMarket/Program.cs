@@ -8,6 +8,7 @@ using CommentMInfrastructureConfiguration;
 using Services;
 using Services.Model;
 using Book.Infrastructure.EFCore;
+using AccountM.Infrastructure.EFCore;
 
 var builder = WebApplication.CreateBuilder(args);
 var contectionstring = builder.Configuration.GetConnectionString("DbBookMarket");
@@ -19,8 +20,15 @@ CommentMInfrastructureConfigurationB.Configure(builder.Services, contectionstrin
 builder.Services.AddDbContext<BlogDbContext>(options =>
 {
     options.UseSqlServer(
-        builder.Configuration.GetConnectionString("DefaultConnection"));
+        builder.Configuration.GetConnectionString("BlogConnection"));
 });
+builder.Services.AddDbContext<AccountDbContext>(options =>
+{
+    options.UseSqlServer(
+        builder.Configuration.GetConnectionString("AccountConnection"));
+});
+
+
 
 
 // Add services to the container.
