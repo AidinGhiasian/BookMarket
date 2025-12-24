@@ -21,7 +21,6 @@ namespace AM.Domain.Account.AD
         public string Addres { get;private set; }
         public string Scuritycode { get; private set; }
         public string Password { get; private set; }
-        [NotMapped]
         public string RePassword { get; private set; }
 
 

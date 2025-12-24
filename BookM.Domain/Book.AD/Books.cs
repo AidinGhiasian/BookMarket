@@ -1,6 +1,7 @@
 ﻿
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Numerics;
 using System.Text;
@@ -12,6 +13,7 @@ namespace BookM.Domain.Book.AD
     {
         public int Id { get; private set; }
         public string? Picture { get; private set; }
+        [NotMapped]
         public IFormFile? PictureFile { get; private set; }
         public string BookTitle { get; private set; }
         public string Writer { get; private set; }
@@ -21,6 +23,10 @@ namespace BookM.Domain.Book.AD
         public DateTime UpdatedTime { get; private set; }
         public bool IsAvailable { get; private set; }
         public string Price { get;private set; }
+
+
+        public Books() { }
+
 
         //رابطه با BookCategory با رابطه چند به چند
         public List<BookCategories> BookCategories { get; private set; } = new();
