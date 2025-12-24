@@ -32,7 +32,11 @@ builder.Services.AddDbContext<AccountDbContext>(options =>
     options.UseSqlServer(
         builder.Configuration.GetConnectionString("BookConnection"));
 });
-
+builder.Services.AddDbContext<AccountDbContext>(options =>
+{
+    options.UseSqlServer(
+        builder.Configuration.GetConnectionString("CommentConnection"));
+});
 
 
 

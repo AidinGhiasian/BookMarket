@@ -21,6 +21,7 @@ namespace CommentM.Domain.Comment.AD
         public void Confirm() => IsConfirmed = true;//در حالت عادی true باشد
         public void Cancel() => IsCanceled = true;//در حالت عادی true باشد
 
+        public Comments() { }
 
         public Comments(string name, string message)
 
