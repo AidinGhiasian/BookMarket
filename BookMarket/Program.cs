@@ -9,34 +9,15 @@ using Services;
 using Services.Model;
 using Book.Infrastructure.EFCore;
 using AccountM.Infrastructure.EFCore;
+using BookM.Infrastructure.EFCore;
+using CommentM.Infrastructure.EFCore;
 
 var builder = WebApplication.CreateBuilder(args);
 var contectionstring = builder.Configuration.GetConnectionString("DbBookMarket");
 AccountMInfrastructureConfigurationBootstraper.Configure(builder.Services, contectionstring);
 BlogMInfrastructureConfigurationBootstraper.Configure(builder.Services, contectionstring);
 BookMInfrastructureConfigurationBootstraper.Configure(builder.Services, contectionstring);
-CommentMInfrastructureConfigurationB.Configure(builder.Services, contectionstring);
-
-builder.Services.AddDbContext<BlogDbContext>(options =>
-{
-    options.UseSqlServer(
-        builder.Configuration.GetConnectionString("BlogConnection"));
-});
-builder.Services.AddDbContext<AccountDbContext>(options =>
-{
-    options.UseSqlServer(
-        builder.Configuration.GetConnectionString("AccountConnection"));
-});
-builder.Services.AddDbContext<AccountDbContext>(options =>
-{
-    options.UseSqlServer(
-        builder.Configuration.GetConnectionString("BookConnection"));
-});
-builder.Services.AddDbContext<AccountDbContext>(options =>
-{
-    options.UseSqlServer(
-        builder.Configuration.GetConnectionString("CommentConnection"));
-});
+CommentMInfrastructureConfigurationBootstraper.Configure(builder.Services, contectionstring);
 
 
 
