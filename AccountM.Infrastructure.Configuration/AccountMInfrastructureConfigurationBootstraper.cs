@@ -7,6 +7,7 @@ using AccountM.Application;
 using AccountM.Application.Contacts.AccountApplication;
 using AccountM.Infrastructure.EFCore;
 using AccountM.Infrastructure.EFCore.Repository;
+using AccountManagement.Domain.RoleAgg;
 using AM.Domain.Account.AD;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
@@ -19,6 +20,8 @@ namespace AccountMInfrastructureConfiguration
         {
             services.AddScoped<IAccountApplication,AccountApplication>();
             services.AddScoped<IAccountRepository,AccountRepository>();
+            services.AddScoped<IRoleRepository,RoleRepository>();
+
 
 
 
