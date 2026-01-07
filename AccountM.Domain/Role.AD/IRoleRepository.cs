@@ -1,12 +1,18 @@
 ﻿
+using System.Security.Cryptography;
 using Services;
 
 
 namespace AccountManagement.Domain.RoleAgg
 {
-    public interface IRoleRepository : IRepositoryBase<Role>
+    public interface IRoleRepository
     {
-        List<Role> list();
+        public void create(Role Add);
+        public Role GetRole(int id);
+        Task updateby(Role Update);
+        public List<Role> list(string RoleName);
+        public List<Role> GetAll();
         Role GetDetails(long id);
+        public void RemoveRole(int id);
     }
 }

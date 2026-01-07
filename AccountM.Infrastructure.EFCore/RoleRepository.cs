@@ -15,9 +15,9 @@ namespace AccountM.Infrastructure.EFCore.Repository
             _accountDbContext = accountDbContext;
         }
 
-        public void Add(Role entity)
+        public void create(Role Add)
         {
-            _accountDbContext.Role.Add(entity); 
+            _accountDbContext.Role.Add(Add);
         }
 
         public List<Role> GetAll()
@@ -25,24 +25,28 @@ namespace AccountM.Infrastructure.EFCore.Repository
             return _accountDbContext.Role.ToList();
         }
 
-        public Role GetById(long id)
-        {
-            return _accountDbContext.Role.FirstOrDefault(x=>x.Id==id);
-        }
-
         public Role GetDetails(long id)
         {
-            return _accountDbContext.Role.FirstOrDefault(x=>x.Id==id);
+            throw new NotImplementedException();
         }
 
-        public List<Role> list()
+        public Role GetRole(int id)
         {
-            return _accountDbContext.Role.ToList();
+            return _accountDbContext.Role.FirstOrDefault(x => x.Id == id);
+        }
+        public List<Role> list(string RoleName)
+        {
+            throw new NotImplementedException();
         }
 
-        public void SaveChanges()
+        public void RemoveRole(int id)
         {
-            _accountDbContext.SaveChanges();
+            throw new NotImplementedException();
+        }
+
+        public Task updateby(Role Update)
+        {
+            throw new NotImplementedException();
         }
     }
 }

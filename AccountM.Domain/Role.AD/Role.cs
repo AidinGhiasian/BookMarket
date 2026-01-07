@@ -7,9 +7,10 @@ namespace AccountManagement.Domain.RoleAgg
     public class Role 
     {
         public long Id { get; private set; }
-        public string Name { get; private set; }
-        public List<Permission> Permissions { get; private set; }
-        public List<Account> Accounts { get; private set; }
+        public string RoleName { get; private set; }
+        public List<Permission> Permissions { get; private set; }//هر نقش میتواند چند دسترسی داشته باشد ...
+        public List<Account> Accounts { get; private set; }//هر نقش میتواند چند حساب داشته باشد...
+        public string detales { get; set; }
 
         protected Role()
         {
@@ -17,14 +18,14 @@ namespace AccountManagement.Domain.RoleAgg
 
         public Role(string name, List<Permission> permissions)
         {
-            Name = name;
+            RoleName = name;
             Permissions = permissions;
             Accounts = new List<Account>();
         }
 
         public void Edit(string name, List<Permission> permissions)
         {
-            Name = name;
+            RoleName = name;
             Permissions = permissions;
         }
     }

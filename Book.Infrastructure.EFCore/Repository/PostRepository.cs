@@ -34,9 +34,9 @@ namespace BlogM.Infrastructure.EFCore.Repository
             }
         }
 
-        public List<Posts> GetAll(string BookTitle)
+        public List<Posts> GetAll()
         {
-            return _blogdbcontext.Posts.Where(x=>x.BookTitle==BookTitle).ToList();
+            return _blogdbcontext.Posts.ToList();
         }
 
         public Posts Getby(string Title)
