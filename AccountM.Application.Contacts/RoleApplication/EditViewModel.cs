@@ -1,22 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security;
 using System.Text;
 using System.Threading.Tasks;
-using AccountManagement.Domain.RoleAgg;
-using AM.Domain.Account.AD;
 
 namespace AccountM.Application.Contacts.RoleApplication
 {
-    public class RoleViewModel
+    public class EditViewModel:CreateViewModel
     {
         public long Id { get; set; }
-        public string RoleName { get; set; }
-        public string Details { get; set; }
     }
 }
-
-
-
-

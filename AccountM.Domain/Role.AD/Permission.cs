@@ -3,20 +3,20 @@
     public class Permission
     {
         public long Id { get; private set; }//کد اصلی ;برای دیتابیس به permishioncodeربطی ندارد مثل رابطه بین نام و کد ملی.....
-        public int PermishionCode { get; private set; }//آیدی هر دسترسی ==>میتواند چند دسترسی داشته باشد مدیر معلوم میکند
-        public string NamePermishion { get; private set; }
+        public int PermissionCode { get; private set; }//آیدی هر دسترسی ==>میتواند چند دسترسی داشته باشد مدیر معلوم میکند
+        public string NamePermission { get; private set; }
         public long? RoleId { get; private set; }//آیدی هر نقش==>متواند فط یک نقش در سایت داشته باشد : مدیر >ادمین>کتابخان>کاربر
         public Role Role { get; private set; }
 
         public Permission(int code)
         {
-            PermishionCode = code;
+            PermissionCode = code;
         }
 
         public Permission(int code, string name)
         {
-            PermishionCode = code;
-            NamePermishion = name;
+            PermissionCode = code;
+             NamePermission = name;
         }
     }
 }

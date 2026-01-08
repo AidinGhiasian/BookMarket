@@ -8,7 +8,7 @@ namespace AccountManagement.Domain.RoleAgg
     public interface IRoleRepository
     {
         public void create(Role Add);
-        public Role GetRole(int id);
+        public Role GetbyId(long id);
         Task updateby(Role update);
         public List<Role> list(string RoleName);
         public List<Role> GetAll();

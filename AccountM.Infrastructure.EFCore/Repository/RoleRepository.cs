@@ -31,7 +31,7 @@ namespace AccountM.Infrastructure.EFCore.Repository
             return _accountDbContext.Role.FirstOrDefault(x => x.Id == id);
         }
 
-        public Role GetRole(int id)
+        public Role GetbyId(long id)
         {
             return _accountDbContext.Role.FirstOrDefault(x => x.Id == id);
         }
