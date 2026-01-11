@@ -35,14 +35,13 @@ namespace AccountM.Application
 
         public List<RoleViewModel> getRole()
         {
-            var roles = _roleRepository.GetAll();
-
-            return roles.Select(r => new RoleViewModel
+            var roles=_roleRepository.GetAll();
+            var list = new List<RoleViewModel>();
+            foreach(var role in roles )
             {
-                Id = r.Id,
-                RoleName=r.RoleName,
-                Details=r.Details,
-            }).ToList();
+                list.Append(Map(role));
+            }
+            return list;
         }
         
         void IRoleApplication.Create(Contacts.RoleApplication.CreateViewModel model)//کامپایلر نمیتوانست تشیص دهد منظور من کدام CreateViewModelاست...
