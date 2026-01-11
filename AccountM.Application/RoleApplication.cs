@@ -44,7 +44,7 @@ namespace AccountM.Application
                 Details=r.Details,
             }).ToList();
         }
-
+        
         void IRoleApplication.Create(Contacts.RoleApplication.CreateViewModel model)//کامپایلر نمیتوانست تشیص دهد منظور من کدام CreateViewModelاست...
         {
             var cr = new Role(model.RoleName, model.Permissions, model.details);
@@ -54,8 +54,8 @@ namespace AccountM.Application
         Task IRoleApplication.Edit(Contacts.RoleApplication.EditViewModel model)//کامپایلر نمیتوانست تشیص دهد منظور من کدام Edit ViewModelاست...
         {
             var er = _roleRepository.GetbyId(model.Id);
-            er.Edit(model.RoleName, model.Permissions, model.details);
-           return _roleRepository.updateby(er);
+            er.Edit(model.RoleName,model.Permissions,model.details);
+            return _roleRepository.updateby(er);
         }
 
 
