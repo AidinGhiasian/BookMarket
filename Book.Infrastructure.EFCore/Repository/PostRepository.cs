@@ -31,6 +31,7 @@ namespace BlogM.Infrastructure.EFCore.Repository
             if (DB != null)
             { 
                _blogdbcontext.Posts.Remove(DB);
+                _blogdbcontext.SaveChanges();
             }
         }
 

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Security;
 using System.Text;
 using System.Threading.Tasks;
 using CommentM.Domain.Comment.AD;
@@ -28,6 +29,7 @@ namespace CommentM.Infrastructure.EFCore.Repository
             if (id != null)
             {
                 _commentDbContext.Remove(id);
+                _commentDbContext.SaveChanges();
             }
 
         }

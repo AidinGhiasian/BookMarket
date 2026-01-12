@@ -8,6 +8,7 @@ using AccountM.Application.Contacts.RoleApplication;
 using AccountManagement.Domain.RoleAgg;
 using AM.Domain.Account.AD;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using Services;
 
 namespace AccountM.Application
 {
@@ -22,7 +23,11 @@ namespace AccountM.Application
 
         public void delete(long id)
         {
-            _roleRepository.Remove(id);
+            var role=_roleRepository.GetbyId(id);
+            role.ChengeStatus(false);
+            _roleRepository.SaveChanges();
+         
+          
         }
 
 
@@ -53,7 +58,7 @@ namespace AccountM.Application
         Task IRoleApplication.Edit(Contacts.RoleApplication.EditViewModel model)//کامپایلر نمیتوانست تشیص دهد منظور من کدام Edit ViewModelاست...
         {
             var er = _roleRepository.GetbyId(model.Id);
-            er.Edit(model.RoleName,model.Permissions,model.details);
+            er.Edit(model.RoleName,model.Permissions,model.details,model.isActive);
             return _roleRepository.updateby(er);
         }
 

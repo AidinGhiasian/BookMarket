@@ -45,7 +45,8 @@ namespace BlogM.Infrastructure.EFCore.Repository
 
         public void Update(Events events)
         {
-            _blogdbcontext.Update(events);
+            var ee = _blogdbcontext.Events.FirstOrDefault(x=>x.Id == events.Id);
+            ee.Edit(events.Picture, events.EventTitle, events.Description, events.EventStartTime, events.EventFinishTime);
             _blogdbcontext.SaveChanges();
         }
 

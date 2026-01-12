@@ -9,5 +9,6 @@ namespace AccountM.Application.Contacts.RoleApplication
     public class EditViewModel:CreateViewModel
     {
         public long Id { get; set; }
+        public bool isActive { get; set; }
     }
 }

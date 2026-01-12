@@ -5,7 +5,7 @@ using Services;
 
 namespace AccountManagement.Domain.RoleAgg
 {
-    public interface IRoleRepository
+    public interface IRoleRepository:IRepositoryBase<Role>
     {
         public void create(Role Add);
         public Role GetbyId(long id);

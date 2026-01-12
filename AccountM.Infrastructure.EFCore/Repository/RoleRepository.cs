@@ -3,14 +3,15 @@ using System.Linq;
 using System.Threading.Tasks;
 using AccountManagement.Domain.RoleAgg;
 using Microsoft.EntityFrameworkCore;
+using Services;
 
 namespace AccountM.Infrastructure.EFCore.Repository
 {
-    public class RoleRepository : IRoleRepository
+    public class RoleRepository :RepositoryBase<Role>, IRoleRepository
     {
         private readonly AccountDbContext _accountDbContext;
 
-        public RoleRepository(AccountDbContext accountDbContext)
+        public RoleRepository(AccountDbContext accountDbContext):base(accountDbContext) 
         {
             _accountDbContext = accountDbContext;
         }
@@ -55,7 +56,7 @@ namespace AccountM.Infrastructure.EFCore.Repository
            var ER=_accountDbContext.Role.FirstOrDefault(x=>x.Id == update.Id);
             if (ER!=null)
             {
-                ER.Edit(update.RoleName, update.Permissions, update.Details);
+                ER.Edit(update.RoleName, update.Permissions, update.Details,update.IsActive);
                 _accountDbContext.SaveChanges();
             }
         }

@@ -33,6 +33,7 @@ namespace BookM.Infrastructure.EFCore.Repository
             if (DB != null)
             {
                 _bookdbcontext.Books.Remove(DB);
+                _bookdbcontext.SaveChanges();
             }
         }
 
@@ -59,7 +60,7 @@ namespace BookM.Infrastructure.EFCore.Repository
                 EB.Edit(book.Picture, book.BookTitle, book.Writer
                     , book.Publisher, book.CategoryId
                     , book.IsAvailable, book.Price);
-                await _bookdbcontext.SaveChangesAsync();
+               await _bookdbcontext.SaveChangesAsync();
             }
         }
     }
