@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using AccountM.Application;
 using AccountM.Application.Contacts.AccountApplication;
+using AccountM.Application.Contacts.RoleApplication;
 using AccountM.Infrastructure.EFCore;
 using AccountM.Infrastructure.EFCore.Repository;
 using AccountManagement.Domain.RoleAgg;
@@ -21,6 +22,7 @@ namespace AccountMInfrastructureConfiguration
             services.AddScoped<IAccountApplication,AccountApplication>();
             services.AddScoped<IAccountRepository,AccountRepository>();
             services.AddScoped<IRoleRepository,RoleRepository>();
+            services.AddScoped<IRoleApplication,RoleApplication>();
 
 
 

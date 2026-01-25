@@ -8,11 +8,10 @@
         public long? RoleId { get; private set; }//آیدی هر نقش==>متواند فط یک نقش در سایت داشته باشد : مدیر >ادمین>کتابخان>کاربر
         public Role Role { get; private set; }
 
-        public Permission(int code)
+        public Permission()
         {
-            PermissionCode = code;
+            
         }
-
         public Permission(int code, string name)
         {
             PermissionCode = code;
