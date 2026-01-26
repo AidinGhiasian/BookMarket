@@ -1,7 +1,9 @@
 ﻿@page
 @model BookMarket.Pages.DashboardModel
 @{
+   
 }
+
 <main class="main">
     <div class="page-header text-center" style="background-image: url('assets/images/page-header-bg.jpg')">
         <div class="container">
@@ -73,6 +75,57 @@
                                         ویرایش کنید
                                     </a>.
                                 </p>
+
+                                <form method="get">
+
+                                    <label>نام</label>
+                                     <input type="text" name="Name" class="form-control" required>
+                                     <p style="color:red">لطفا نام مورد نظر را وارد نمایید</p>
+
+                                    <label>شماره تلفن</label>
+                                    <input type="text" name="PhoneNumber" class="form-control" required>
+                                    <p style="color:red">لطفا شماره تلفن مورد نظر را وارد نمایید</p>
+                                    <button type="submit" class="btn btn-outline-primary-2 float-right">تایید</button>
+                               </form>
+                               
+
+
+                                @if (Model.Accounts != null)
+                                {
+                                    <table class="invoice-table ">
+                                        <thead>
+                                            <tr>
+                                                <th>شماره</th>
+                                                <th>نام ,نام خانوادگی</th>
+                                              
+                                                <th>شماره موبایل</th>
+                                                <th> ایمیل </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach (var item in Model.Accounts)
+                                            {
+                                                <tr>
+                                                    <td>@item.Id</td>
+                                                    <td>
+                                                        <h3>
+                                                           @item.Name
+                                                        </h3>
+                                                        <p>@item.Family</p>
+                                                    </td>
+                                                    <td>@item.PhoneNumber</td>
+                                                    <td>@item.Email</td>
+                                                   
+                                                </tr>
+                                            }
+                                           
+                                            
+                                        </tbody>
+                                       
+                                    </table>
+                                }
+
+
                             </div><!-- .End .tab-pane -->
 
                             <div class="tab-pane fade" id="tab-orders" role="tabpanel"

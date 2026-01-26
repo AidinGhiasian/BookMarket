@@ -9,17 +9,22 @@ namespace BookMarket.Pages
 {
     public class DashboardModel : PageModel
     {
-        private readonly IAccountApplication _ccountApplication;
 
-        public DashboardModel(IAccountApplication ccountApplication)
+        public List<AccountViewModel> Accounts { get; set; }
+     
+
+        private readonly IAccountApplication _accountApplication;
+
+        public DashboardModel(IAccountApplication accountApplication)
         {
-            _ccountApplication = ccountApplication;
+            _accountApplication = accountApplication;
         }
 
-        public void OnGet(string id)
+        public void OnGet(string? Name,string? phone)
         {
-
+                Accounts = _accountApplication.GetAccounts(Name,phone);
         }
+
         public void OnPost(CreateViewModel command)
         {
             var account = new CreateViewModel
@@ -32,11 +37,11 @@ namespace BookMarket.Pages
                 Password = command.Password,
                 RePassword = command.RePassword,
                 PhoneNumber = command.PhoneNumber
-              
+
             };
 
 
-            _ccountApplication.Create(account);
+            _accountApplication.Create(account);
             TempData["success"] = "کتابخوان جدید ثبت شد...";
         }
     }

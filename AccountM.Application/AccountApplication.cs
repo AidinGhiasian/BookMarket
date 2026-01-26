@@ -52,9 +52,9 @@ namespace AccountM.Application
             _accountRepository.Updateby(acc);
         }
 
-        public List<AccountViewModel> GetAccounts()
+        public List<AccountViewModel> GetAccounts(string? name,string? phone)
         {
-            var accounts = _accountRepository.GetAccounts(""); 
+            var accounts = _accountRepository.GetAccounts(name,phone); 
             var list = new List<AccountViewModel>();
 
             foreach (var account in accounts)
@@ -75,6 +75,12 @@ namespace AccountM.Application
         {
            var a=  _accountRepository.GetbyId(id);
             return Map(a);
+        }
+        public AccountViewModel GetBy(string phone)
+        {
+            var a = _accountRepository.Getby(phone);
+            return Map(a);
+            
         }
 
         private AccountViewModel Map(Account model)
