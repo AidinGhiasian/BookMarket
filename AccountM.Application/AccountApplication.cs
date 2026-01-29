@@ -83,6 +83,11 @@ namespace AccountM.Application
             
         }
 
+        public bool login(string? email, string? password)
+        {
+            return _accountRepository.login(email, password);
+        }
+
         private AccountViewModel Map(Account model)
         {
             return new AccountViewModel

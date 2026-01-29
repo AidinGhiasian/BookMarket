@@ -8,5 +8,6 @@
         List<AccountViewModel> GetAccounts(string? name, string? phone);
         public void Delete(int id);
         public AccountViewModel GetBy(string phone);
+        public bool login(string? email, string? password);
     }
 }

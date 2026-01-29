@@ -19,12 +19,11 @@ namespace BlogM.Application
             _blogRepository = blogRepository;
             _fileUploader = fileUploader;
         }
-        public void create(CreateViewModel update)
+        public void create(CreateViewModel create)
         {
-            var path = update.Picture;
-            var pictureName=_fileUploader.UploadFileAsync(update.FileName, path);
-            var post = new Posts(pictureName, update.BookTitle, update.Writer, update.Publisher,
-            update.Description, update.CategoryId);
+            var path = "img";
+            var pictureName=_fileUploader.UploadFileAsync(create.FileName, path);
+            var post = new Posts(pictureName, create.Title, create.ShortDescription, create.Description);
             _blogRepository.Create(post);
         }
         public void Delete(int id)
@@ -38,7 +37,7 @@ namespace BlogM.Application
             var list=new List<PostViewModel>();
             foreach (var post in posts) 
             {
-                list.Append(map(post));
+                list.Add(map(post));
             }
             return list;
 
@@ -46,8 +45,7 @@ namespace BlogM.Application
 
         public PostViewModel? GetById(int id)
         {
-          var post=
-                _blogRepository.GetById(id);
+          var post= _blogRepository.GetById(id);
             return map(post);
         }
 
@@ -64,8 +62,8 @@ namespace BlogM.Application
                 pictureName = _fileUploader.UploadFileAsync(update.FileName, path);
             }
 
-            post.Edit(pictureName, update.BookTitle, update.Writer, update.Publisher,
-                update.Description, update.CategoryId, update.Status);
+            post.Edit(pictureName, update.Title, update.ShortDescription,
+                update.Description, update.IsAvailable);
 
             _blogRepository.Updateby(post);
 
@@ -78,11 +76,9 @@ namespace BlogM.Application
             {
                 Id = posts.Id,
                 Picture = posts.Picture,
-                BookTitle = posts.BookTitle,
-                Writer = posts.Writer,
-                Publisher = posts.Publisher,
+                Title = posts.Title,
+                ShortDescription = posts.ShortDescription,
                 Description = posts.Description,
-                CategoryId = posts.CategoryId,
                 IsAvailable = posts.IsAvailable,
                 PostTime = posts.PostTime,
                 UpdatedTime = posts.UpdatedTime,

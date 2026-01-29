@@ -20,9 +20,9 @@ namespace BookMarket.Pages
             _accountApplication = accountApplication;
         }
 
-        public void OnGet(string? Name,string? phone)
+        public void OnGet(string? Name,string? PhoneNumber)
         {
-                Accounts = _accountApplication.GetAccounts(Name,phone);
+                Accounts = _accountApplication.GetAccounts(Name, PhoneNumber);
         }
 
         public void OnPost(CreateViewModel command)

@@ -8,16 +8,14 @@ namespace BlogM.Application.Contacts.PostApplication
 {
     public  class PostViewModel
     {
-        public int Id { get;  set; }
+        public int Id { get; set; }
         public string Picture { get;  set; }
-        public string BookTitle { get;  set; }
-        public string Writer { get;  set; }
-        public string Publisher { get;  set; }
-        public string Description { get; set; }
-        public int CategoryId { get;  set; }
+        public string Title { get; set; }
+        public string ShortDescription { get;  set; }
+        public string Description { get;  set; }
         public DateTime PostTime { get;  set; }
         public DateTime UpdatedTime { get;  set; }
-        public bool IsAvailable { get; set; }
+        public bool IsAvailable { get;  set; }
 
     }
 }

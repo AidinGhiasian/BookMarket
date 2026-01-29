@@ -31,18 +31,16 @@ namespace AccountM.Infrastructure.EFCore.Repository
             }
         }
 
-        public List<Account> GetAccounts(string? Name, string phone)
+        public List<Account> GetAccounts(string? Name, string? phone)
         {
 
             var accounts = _accountdbcontext.Account.ToList();
             if (Name != null)
-            {
-                accounts = accounts.Where(x => x.Name == Name).ToList();
+                accounts = accounts.Where(x => x.Name.Contains(Name)).ToList();
 
-                if (phone != null)
-                    accounts = accounts.Where(x => x.PhoneNumber == phone).ToList();
+            if (phone != null)
+                accounts = accounts.Where(x => x.PhoneNumber.Contains(phone)).ToList();
 
-            }
             return accounts;
         }
 
@@ -72,6 +70,22 @@ namespace AccountM.Infrastructure.EFCore.Repository
             }
         }
 
-
+        public bool login(string? email, string? password)
+        {
+            var account = _accountdbcontext.Account.FirstOrDefault(x => x.Email == email);
+            if (account != null)
+            {
+                if (account.Password == password)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+                
+            }
+            return false;
+        }
     }
 }

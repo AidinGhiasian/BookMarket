@@ -42,7 +42,7 @@ namespace BlogM.Infrastructure.EFCore.Repository
 
         public Posts Getby(string Title)
         {
-            return _blogdbcontext.Posts.FirstOrDefault(x => x.BookTitle == Title);
+            return _blogdbcontext.Posts.FirstOrDefault(x => x.Title == Title);
         }
 
         public Posts? GetById(int id)
@@ -56,8 +56,8 @@ namespace BlogM.Infrastructure.EFCore.Repository
             var EB = _blogdbcontext.Posts.FirstOrDefault(x => x.Id == posts.Id);
             if (EB != null)
             {
-                EB.Edit(posts.Picture, posts.BookTitle, posts.Writer, posts.Publisher
-                    , posts.Description, posts.CategoryId, posts.IsAvailable);
+                EB.Edit(posts.Picture, posts.Title, posts.ShortDescription
+                    , posts.Description, posts.IsAvailable);
                 _blogdbcontext.SaveChanges();
             }
         }

@@ -10,43 +10,36 @@ namespace Blog.Domain.BlogAD
     {
         public int Id { get; private set; }
         public string Picture { get; private set; }
-        public string BookTitle { get; private set; }
-        public string Writer { get; private set; }
-        public string Publisher { get; private set; }
+        public string Title { get; private set; }
+        public string ShortDescription { get; private set; }
         public string Description { get; private set; }
-        public int CategoryId { get; private set; }
         public DateTime PostTime { get; private set; }
         public DateTime UpdatedTime { get; private set; }
         public bool IsAvailable { get; private set; }
 
 
-        private Posts() { } 
+        private Posts() { }
 
 
-
-        public Posts(string picture, string booktitle, string writer, string publisher, string description, int categoryid)
+        public Posts(string picture, string title, string shortDescription, string description)
         {
             Picture = picture;
-            BookTitle = booktitle;
-            Writer = writer;
-            Publisher = publisher;
+            Title = title;
+            ShortDescription = shortDescription;
             Description = description;
-            CategoryId = categoryid;
             PostTime = DateTime.Now;
             UpdatedTime = DateTime.Now;
             IsAvailable = true;
         }
-        public void Edit(string picture, string booktitle, string writer, string publisher, string description, int categoryid, bool statusavalable)
+        public void Edit(string picture, string title, string shortDescription, string description, bool statusAvalable)
         {
-            if (picture != null)
+                 if (picture != null)
             Picture = picture;
-            BookTitle = booktitle;
-            Writer = writer;
-            Publisher = publisher;
+            Title = title;
+            ShortDescription = shortDescription;
             Description = description;
-            CategoryId = categoryid;
             UpdatedTime = DateTime.Now;
-            IsAvailable = statusavalable;
+            IsAvailable = statusAvalable;
         }
     }
 }

@@ -1,4 +1,4 @@
-using BlogM.Infrastructure.EFCore;
+﻿using BlogM.Infrastructure.EFCore;
 using Microsoft.EntityFrameworkCore;
 using System.Runtime.InteropServices;
 using AccountMInfrastructureConfiguration;
@@ -34,13 +34,20 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
-app.UseHttpsRedirection();
-app.UseStaticFiles();
 
-app.UseRouting();
+app.UseAuthentication(); // احراز هویت (در صورتی که دارید).
+app.UseHttpsRedirection(); // اطمینان از استفاده از HTTPS.
+app.UseStaticFiles(); // برای سرویس‌دهی فایل‌های استاتیک.
 
-app.UseAuthorization();
+app.UseCookiePolicy(); // اعمال سیاست‌های مربوط به کوکی‌ها.
 
-app.MapRazorPages();
 
-app.Run();
+
+
+app.UseRouting(); // مسیریابی درخواست‌ها.
+app.UseAuthorization(); // مجوزها و دسترسی‌ها.
+
+app.MapControllers(); // نقشه‌برداری از کنترلرها.
+app.MapRazorPages(); // نقشه‌برداری از صفحات Razor.
+
+app.Run(); // اجرای برنامه.

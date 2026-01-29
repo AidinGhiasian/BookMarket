@@ -9,6 +9,7 @@ namespace BlogM.Application.Contacts.PostApplication
     public class EditViewModel:CreateViewModel
     {
         public int Id { get; set; }
-        public bool Status { get; set; }
+        public bool IsAvailable { get;  set; }
+
     }
 }
