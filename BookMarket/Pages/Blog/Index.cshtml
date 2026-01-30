@@ -29,53 +29,66 @@
 				<li><a href="#" data-filter=".hobbies">سرگرمی<span>2</span></a></li>
 			</ul><!-- End .blog-menu -->
 		</nav><!-- End .blog-nav -->
-		@foreach (var item in Model.Blogs)
+		@if (Model.Blogs.Count != 0)
 		{
-			<div class="entry-container max-col-3" data-layout="fitRows">
+			@foreach (var item in Model.Blogs)
+			{
+				<div class="entry-container max-col-3" data-layout="fitRows">
 
-				<div class="entry-item lifestyle col-sm-6 col-lg-4">
-					<article class="entry entry-grid text-center">
-						<figure class="entry-media entry-video">
-							<a asp-page="/Blog/BlogDetails" asp-route-id="@item.Id">
-								<img src="/@item.Picture" alt="توضیحات عکس">
-							</a>
-						</figure><!-- End .entry-media -->
-
-						<div class="entry-body">
-							<div class="entry-meta">
-								<span class="entry-author">
-									نویسنده : <a href="#">مدیر سایت</a>
-								</span>
-								<span class="meta-separator">|</span>
-								<a href="#">21 اسفند 1401</a>
-								<span class="meta-separator">|</span>
-								<a href="#">0 دیدگاه</a>
-							</div><!-- End .entry-meta -->
-
-							<h2 class="entry-title text-center">
-								<a asp-page="/Blog/BlogDetails" asp-route-id="@item.Id" >@item.Title</a>
-							</h2><!-- End .entry-title -->
-
-							<div class="entry-cats text-center">
-								<a href="#">سبک زندگی</a>
-							</div><!-- End .entry-cats -->
-
-							<div class="entry-content text-center">
-								<p>
-									@Html.Raw(item.ShortDescription)
-								</p>
-								<a href="./Blog/BLogDetails" class="read-more">
-									ادامه
-									خواندن
+					<div class="entry-item lifestyle col-sm-6 col-lg-4">
+						<article class="entry entry-grid text-center">
+							<figure class="entry-media entry-video">
+								<a asp-page="/Blog/BlogDetails" asp-route-id="@item.Id">
+									<img src="/@item.Picture" alt="توضیحات عکس">
 								</a>
-							</div><!-- End .entry-content -->
-						</div><!-- End .entry-body -->
-					</article><!-- End .entry -->
-				</div>
-				<!-- End .entry-item -->
-			</div>
+							</figure><!-- End .entry-media -->
 
-			<!-- End .entry-container -->
+							<div class="entry-body">
+								<div class="entry-meta">
+									<span class="entry-author">
+										نویسنده : <a href="#">مدیر سایت</a>
+									</span>
+									<span class="meta-separator">|</span>
+									<a href="#">21 اسفند 1401</a>
+									<span class="meta-separator">|</span>
+									<a href="#">0 دیدگاه</a>
+								</div><!-- End .entry-meta -->
+
+								<h2 class="entry-title text-center">
+									<a asp-page="/Blog/BlogDetails" asp-route-id="@item.Id">@item.Title</a>
+								</h2><!-- End .entry-title -->
+
+								<div class="entry-cats text-center">
+									<a href="#">سبک زندگی</a>
+								</div><!-- End .entry-cats -->
+
+								<div class="entry-content text-center">
+									<p>
+										@Html.Raw(item.ShortDescription)
+									</p>
+									<a asp-page="/Blog/BlogDetails" asp-route-id="@item.Id" class="read-more">
+										ادامه
+										خواندن
+									</a>
+
+
+								</div><!-- End .entry-content -->
+							</div><!-- End .entry-body -->
+						</article><!-- End .entry -->
+					</div>
+					<!-- End .entry-item -->
+				</div>
+			}
+		
+					
+				
+			
+
+			
+		}else if(Model.Blogs.Count == 0)
+		{
+				<p class="alert alert-info text-center">@TempData["information"]</p>
+
 		}
 		<nav aria-label="Page navigation">
 			<ul class="pagination justify-content-center">
@@ -94,5 +107,9 @@
 				</li>
 			</ul>
 		</nav>
-	</div><!-- End .container -->
-</div><!-- End .page-content -->
+	</div>
+
+	<!-- End .container -->
+</div>
+
+<!-- End .page-content -->

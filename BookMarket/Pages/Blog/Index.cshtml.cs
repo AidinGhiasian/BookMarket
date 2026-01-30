@@ -1,4 +1,4 @@
-
+﻿
 using BlogM.Application.Contacts.PostApplication;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
@@ -20,6 +20,10 @@ namespace BookMarket.Pages.Blog
         public void OnGet()
         {
             Blogs = _postApplication.GetAll();
+            if(Blogs.Count==0)
+            {
+                TempData["information"] = "هیچ مقاله ای وجود ندارد...";
+            }
         }
 
        
