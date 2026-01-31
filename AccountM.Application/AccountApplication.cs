@@ -23,8 +23,7 @@ namespace AccountM.Application
                 model.Email,
                 model.BirthDate,
                 model.Addres,
-                model.Password,
-                model.RePassword
+                model.Password
             );
 
             _accountRepository.Craete(acc);
@@ -45,8 +44,7 @@ namespace AccountM.Application
                 model.Email,
                 model.BirthDate,
                 model.Addres,
-                model.Password,
-                model.RePassword
+                model.Password
             );
 
             _accountRepository.Updateby(acc);
@@ -101,7 +99,6 @@ namespace AccountM.Application
                 cratetiondate = model.CreationDate, 
                 Addres = model.Addres,
                 Password = model.Password,
-                RePassword = model.RePassword
             };
         }
     }

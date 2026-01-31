@@ -21,12 +21,11 @@ namespace AM.Domain.Account.AD
         public string Addres { get;private set; }
         public string Scuritycode { get; private set; }
         public string Password { get; private set; }
-        public string RePassword { get; private set; }
 
 
         public Account() { }
 
-        public Account( string name, string family, string phoneNumber, string email, DateTime birthDate,string addres,string password,string repassword)
+        public Account( string name, string family, string phoneNumber, string email, DateTime birthDate,string addres,string password)
         {
             var random = new Random();
             
@@ -39,9 +38,8 @@ namespace AM.Domain.Account.AD
             Addres = addres;
             Scuritycode = random.Next(100000,999999).ToString();
             Password = password;
-            RePassword = repassword;
         }
-        public void Edit(string name, string family, string phoneNumber, string email, DateTime birthDate, string addres,string password,string repassword)
+        public void Edit(string name, string family, string phoneNumber, string email, DateTime birthDate, string addres,string password)
         {
             Name = name;
             Family = family;
@@ -51,7 +49,6 @@ namespace AM.Domain.Account.AD
             CreationDate = DateTime.Now;
             Addres = addres;
             Password=password;
-            RePassword=repassword;
         }
 
     }

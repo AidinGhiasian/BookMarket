@@ -32,9 +32,13 @@ namespace BookMarket.Pages.Account
             {
                 return RedirectToPage("/dashboard");
             }
-            return RedirectToPage("/Account/login");
+            return
+                RedirectToPage("/Account/login");
+                //TempData["danger"] = "???? ??? ?? ??? ???? ?????? ???...";
+            
         }
 
 
     }
 }
+ 

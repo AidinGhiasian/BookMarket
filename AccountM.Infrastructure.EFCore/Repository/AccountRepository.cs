@@ -65,7 +65,7 @@ namespace AccountM.Infrastructure.EFCore.Repository
             {
                 EA.Edit(account.Name, account.Family, account.PhoneNumber
                     , account.Email, account.BirthDate, account.Addres
-                    , account.Password, account.RePassword);
+                    , account.Password);
                 await _accountdbcontext.SaveChangesAsync();
             }
         }
