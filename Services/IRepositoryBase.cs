@@ -11,6 +11,7 @@ namespace Services
     {
         void Add(T entity);
         T GetById(long id);
+        T GetById(int id);
         public List<T> GetAll();
         void SaveChanges();
     }

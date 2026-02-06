@@ -57,7 +57,7 @@ namespace AccountM.Application.Contacts.AccountApplication
         [Compare("Password", ErrorMessage = "تکرار رمز عبور صحیح نمیباشد...")]
         [StringLength(12, MinimumLength = 3, ErrorMessage = "تعداد کاراکتر ها نباید کمتر از ۳ و بیشتر از ۱۲ باشد")]
         public string RePassword { get; set; }
-
+        public bool IsAvalable { get; set; }
 
     }
 }

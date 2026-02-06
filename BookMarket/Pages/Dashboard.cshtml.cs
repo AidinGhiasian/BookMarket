@@ -11,7 +11,8 @@ namespace BookMarket.Pages
     {
 
         public List<AccountViewModel> Accounts { get; set; }
-     
+
+        public AccountViewModel Account { get; set; }
 
         private readonly IAccountApplication _accountApplication;
 
@@ -20,10 +21,22 @@ namespace BookMarket.Pages
             _accountApplication = accountApplication;
         }
 
-        public void OnGet(string? Name,string? PhoneNumber)
+        public void OnGet(bool isStatus = true)
         {
-                Accounts = _accountApplication.GetAccounts(Name, PhoneNumber);
+            if (isStatus)
+            {
+                Accounts = _accountApplication.GetAccounts(true);
+
+            }
+            else if (isStatus == false)
+            {
+                Accounts = _accountApplication.GetAccounts(false);
+
+            }
+
+
         }
+
 
         public void OnPost(CreateViewModel command)
         {
@@ -35,7 +48,6 @@ namespace BookMarket.Pages
                 BirthDate = command.BirthDate,
                 Email = command.Email,
                 Password = command.Password,
-                RePassword = command.RePassword,
                 PhoneNumber = command.PhoneNumber
 
             };
@@ -44,5 +56,26 @@ namespace BookMarket.Pages
             _accountApplication.Create(account);
             TempData["success"] = "کتابخوان جدید ثبت شد...";
         }
+        public void OnGetAccountInformation(int id)
+        {
+            Account = _accountApplication.GetBy(id);
+        }
+        public IActionResult OnGetDelete(int id)
+        {
+            _accountApplication.Delete(id);
+            TempData["Avalable"] = "کتابخوان غیر فعال شد...";
+            return
+            RedirectToPage("/Dashboard");
+
+        }
+        public IActionResult OnGetRestore(int id)
+        {
+            _accountApplication.Restore(id);
+            TempData["NotAvalable"] = "کتابخوان فعال شد...";
+            return
+            RedirectToPage("/Dashboard");
+
+        }
+
     }
 }

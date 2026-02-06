@@ -13,12 +13,12 @@ namespace BookM.Domain.Book.AD
     {
         public int Id { get; private set; }
         public string? Picture { get; private set; }
-        [NotMapped]
-        public IFormFile? PictureFile { get; private set; }
+       
         public string BookTitle { get; private set; }
         public string Writer { get; private set; }
         public string Publisher { get; private set; }
         public int CategoryId { get; private set; }
+        public string ShortDescription { get; set; }
         public DateTime CreatetionDate { get; private set; }
         public DateTime UpdatedTime { get; private set; }
         public bool IsAvailable { get; private set; }
@@ -31,21 +31,22 @@ namespace BookM.Domain.Book.AD
         //رابطه با BookCategory با رابطه چند به چند
         public List<BookCategories> BookCategories { get; private set; } = new();
 
-        public Books(string picture, string booktitle, string writer, string publisher, int categoryId, string price, IFormFile formFile = null)
+        public Books(string picture, string booktitle, string writer, string publisher, int categoryId, string price,string shortdescription)
         {
-            PictureFile = PictureFile;
+            Picture = picture;
             BookTitle = booktitle;
             Writer = writer;
             Publisher = publisher;
             CategoryId = categoryId;
-            PictureFile = formFile;
+
             CreatetionDate = DateTime.Now;
             UpdatedTime = DateTime.Now;
             IsAvailable = true;
             Price = price;
+            ShortDescription = shortdescription;
         }
 
-        public void Edit(string picture,string bookTitle, string writer, string publisher, int categoryId, bool statusAvailable,string price)
+        public void Edit(string picture,string bookTitle, string writer, string publisher, int categoryId, bool statusAvailable,string price,string shortdescription)
         {
             if(picture!=null)
                 Picture = picture;
@@ -56,6 +57,7 @@ namespace BookM.Domain.Book.AD
             UpdatedTime = DateTime.Now;
             IsAvailable = statusAvailable;
             Price = price;
+            ShortDescription=shortdescription;
         }
     }
 }

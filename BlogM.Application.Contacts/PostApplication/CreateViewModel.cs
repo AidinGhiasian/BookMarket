@@ -9,7 +9,7 @@ namespace BlogM.Application.Contacts.PostApplication
 {
     public class CreateViewModel
     {
-        public string Picture { get; set; }
+       
         public IFormFile? FileName { get; set; }
         public string Title { get;  set; }
         public string ShortDescription { get;  set; }

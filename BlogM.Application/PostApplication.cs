@@ -21,7 +21,7 @@ namespace BlogM.Application
         }
         public void create(CreateViewModel create)
         {
-            var path = create.Picture;
+            var path ="img";
             var pictureName=_fileUploader.UploadFileAsync(create.FileName, path);
             var post = new Posts(pictureName, create.Title, create.ShortDescription, create.Description);
             _blogRepository.Create(post);

@@ -11,12 +11,12 @@ namespace AM.Domain.Account.AD
     {
        public void Craete(Account account);
         public Account? GetbyId(int id);
-        Task Updateby(Account account);
-        public List<Account> GetAccounts(string? name,string? phone);
+     
+        public List<Account> GetAccounts(bool isStatus);
         public Account Getby(string phonenumber);
         public void Delete(int id);
-        public Account? GetbyId(string phone);
         public bool login(string? email, string? password);
+        public void Restore(int id);
 
     }
 }

@@ -15,6 +15,7 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.1" />
   </ItemGroup>
 
   <ItemGroup>
@@ -23,11 +24,17 @@
    
     <ProjectReference Include="..\BlogM.Infrastructure.Configuration\BlogMInfrastructureConfiguration.csproj" />
    
+    <ProjectReference Include="..\BookM.Application\BookM.Application.csproj" />
+   
     <ProjectReference Include="..\BookM.Infrastucure.Configoration\BookMInfrastucureConfiguration.csproj" />
    
     <ProjectReference Include="..\CommentM.Infrastructure.Configuration\CommentMInfrastructureConfiguration.csproj" />
    
     <ProjectReference Include="..\Services\Services.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\picture\" />
   </ItemGroup>
 
 </Project>

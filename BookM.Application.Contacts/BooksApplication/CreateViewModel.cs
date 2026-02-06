@@ -19,5 +19,6 @@ namespace BookM.Application.Contacts.BooksApplication
         public string Publisher { get; set; }
         public int CategoryId { get; set; }
         public string Price { get; set; }
+        public string shortdescription { get; set; }
     }
 }

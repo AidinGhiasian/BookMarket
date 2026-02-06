@@ -21,7 +21,11 @@ public class RepositoryBase<T> : IRepositoryBase<T> where T : class
 
     public T GetById(long id)
     {
-        return _context.Find<T>();
+        return _context.Set<T>().Find(id);
+    }
+    public T GetById(int id)
+    {
+        return _context.Set<T>().Find(id);
     }
     public List<T> GetAll()
     {

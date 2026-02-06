@@ -29,7 +29,7 @@ namespace BookM.Application
             var prefixprice = "تومان";
             var picturename=_fileUploader.UploadFileAsync(create.FileName, path);
             var npprice = create.Price + " " + prefixprice;
-            var upload = new Books(picturename, create.BookTitle, create.Writer, create.Publisher, create.CategoryId,npprice);
+            var upload = new Books(picturename, create.BookTitle, create.Writer, create.Publisher, create.CategoryId,npprice,create.shortdescription);
             _bookRepository.Create(upload);
         }
 
@@ -47,7 +47,19 @@ namespace BookM.Application
             }
             return null;
         }
-
+        public List<BookViewModel> GetAll()
+        {
+            var list = new List<BookViewModel>();
+            var bookget = _bookRepository.GetAll();
+            if(bookget != null)
+            {
+                foreach(var book in bookget)
+                {
+                    list.Add(map(book));
+                }
+            }
+            return list;
+        }
         public void Edit(EditViewModel update)
         {
           var upBooks=_bookRepository.GetById(update.Id);
@@ -61,7 +73,7 @@ namespace BookM.Application
                 var path = "NewPicture";
                 PictureName = _fileUploader.UploadFileAsync(update.FileName, path);
             }
-            upBooks.Edit(PictureName,update.Picture, update.Writer,update.Publisher,update.CategoryId,update.status,npprice);
+            upBooks.Edit(PictureName,update.Picture, update.Writer,update.Publisher,update.CategoryId,update.status,npprice,update.shortdescription);
 
         }
 

@@ -1,0 +1,120 @@
+﻿@page
+@model BookMarket.Areas.Admin.Account.CreateAccountModel
+@{
+}
+<div class="modal-page shadow">
+    <div class="container-fluid">
+        <div class="row">
+
+            <div class="col-md-12">
+                <p class="text-center m-t-30 m-b-40">
+                    <i class="icon-user-following border img-circle font-xxxlg p-20"></i>
+                </p>
+                <h2 class="text-center m-b-20">ثبت‌نام </h2>
+                <hr>
+
+                <form id="advanced-form" method="post">
+                    <div class="form-group">
+                        <label class="sr-only control-label" for="firstname">نام</label>
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <i class="icon-note"></i>
+                            </span>
+                            <input type="text" class="form-control round"  name="Name" placeholder="نام">
+                        </div><!-- /.input-group-->
+                    </div><!-- /.form-group -->
+                    <div class="form-group">
+                        <label class="sr-only control-label" for="lastname">نام خانوادگی</label>
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <i class="icon-note"></i>
+                            </span>
+                            <input type="text" class="form-control round"name="Family" placeholder="نام خانوادگی">
+                        </div><!-- /.input-group-->
+                    </div><!-- /.form-group -->
+                    <div class="form-group">
+                        <label class="sr-only control-label" for="addres">آدرس</label>
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <i class="icon-user"></i>
+                            </span>
+                            <input type="text" class="form-control round"  name="Addres" placeholder="آدرس">
+                        </div><!-- /.input-group-->
+                    </div><!-- /.form-group -->
+                    <div class="form-group">
+                        <label class="sr-only control-label" for="email">رایانامه</label>
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <i class="icon-envelope"></i>
+                            </span>
+                            <input type="text" class="form-control ltr text-left"  name="Email" placeholder="مثال:info@site.com">
+                        </div><!-- /.input-group-->
+                    </div><!-- /.form-group -->
+                    <div class="form-group">
+                        <label class="sr-only control-label" for="password">رمز‌عبور</label>
+                        <div class="input-group has-btn-toggle-pass">
+                            <span class="input-group-addon">
+                                <i class="icon-key"></i>
+                            </span>
+                            <input type="password" class="form-control ltr text-left" name="Password" placeholder="رمز‌عبور">
+                            <span class="btn-toggle-pass">
+                                <i class="icon-eye"></i>
+                            </span>
+                        </div><!-- /.input-group-->
+                    </div><!-- /.form-group -->
+                    <div class="form-group">
+                        <label class="sr-only control-label" for="PhoneNumber">‌PhoneNumber</label>
+                        <div class="input-group has-btn-toggle-pass">
+                            <span class="input-group-addon">
+                                <i class="icon-key"></i>
+                            </span>
+                            <input type="number" class="form-control ltr text-left" name="PhoneNumber" placeholder="رمز‌عبور">
+                            <span class="btn-toggle-pass">
+                                <i class="icon-eye"></i>
+                            </span>
+                        </div><!-- /.input-group-->
+                    </div><!-- /.form-group -->
+                    <div class="form-group">
+                        <label class="sr-only control-label" for="confirmPassword">تکرار رمز‌عبور</label>
+                        <div class="input-group has-btn-toggle-pass">
+                            <span class="input-group-addon">
+                                <i class="icon-key"></i>
+                            </span>
+                            <input type="date" class="form-control rtl text-right" name="Birthdate" title="تاریخ تولد" placeholder="تاریخ تولد">
+                            <span class="btn-toggle-pass">
+                                <i class="icon-eye"></i>
+                            </span>
+                        </div><!-- /.input-group-->
+                    </div><!-- /.form-group -->
+                    <div class="form-group">
+                        <div class="input-group">
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" id="agree" name="agree" value="agree">
+                                    <a href="#">قوانین و مقررات</a>
+                                    سایت را می پذیرم
+                                </label>
+                            </div><!-- /.checkbox -->
+                        </div><!-- /.input-group-->
+                    </div><!-- /.form-group -->
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-success btn-block"  value="Sign up">
+                            <i class="icon-check"></i>
+                            ثبت‌نام
+                        </button>
+                    </div><!-- /.form-group -->
+                </form>
+
+                <hr class="m-b-30">
+                <a href="forget.html" class="btn btn-default btn-block m-b-10">
+                    <i class="icon-refresh font-lg"></i>
+                    بازیابی رمز  عبور
+                </a>
+                <a href="login.html" class="btn btn-default btn-block">
+                    <i class="icon-user-follow font-lg"></i>
+                    ثبت‌نام کرده اید؟ وارد شوید!
+                </a>
+            </div><!-- /.col-md-12 -->
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div><!-- /.modal-page -->

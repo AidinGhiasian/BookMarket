@@ -13,5 +13,6 @@ namespace BookM.Application.Contacts.BooksApplication
         Books? GetById(int id);
         void Edit(EditViewModel update);
         void Delete(int id);
+        public List<BookViewModel> GetAll();
     }
 }

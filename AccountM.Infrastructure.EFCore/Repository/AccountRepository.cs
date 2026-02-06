@@ -1,9 +1,10 @@
-﻿using System;
+﻿ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
+using AccountM.Infrastructure.EFCore.Migrations;
 using AM.Domain.Account.AD;
 using Services;
 
@@ -24,23 +25,29 @@ namespace AccountM.Infrastructure.EFCore.Repository
 
         public void Delete(int id)
         {
-            var DA = _accountdbcontext.Account.Find(id);
+            var DA = _accountdbcontext.Account.First(x => x.Id == id);
             if (DA != null)
             {
-                _accountdbcontext.Account.Remove(DA);
+                DA.ChangeStatus(false);
+                _accountdbcontext.SaveChanges();
+            }
+        }
+        public void Restore(int id)
+        {
+            var DA = _accountdbcontext.Account.First(x => x.Id == id);
+            if (DA != null)
+            {
+                DA.ChangeStatus(true);
+                _accountdbcontext.SaveChanges();
             }
         }
 
-        public List<Account> GetAccounts(string? Name, string? phone)
+        public List<Account> GetAccounts(bool isStatus)
         {
 
-            var accounts = _accountdbcontext.Account.ToList();
-            if (Name != null)
-                accounts = accounts.Where(x => x.Name.Contains(Name)).ToList();
 
-            if (phone != null)
-                accounts = accounts.Where(x => x.PhoneNumber.Contains(phone)).ToList();
-
+            var accounts = _accountdbcontext.Account.Where(x=>x.IsAvalable==isStatus).ToList();
+            
             return accounts;
         }
 
@@ -58,18 +65,7 @@ namespace AccountM.Infrastructure.EFCore.Repository
             return _accountdbcontext.Account.FirstOrDefault(x => x.PhoneNumber == phonenumber);
         }
 
-        public async Task Updateby(Account account)
-        {
-            var EA = _accountdbcontext.Account.FirstOrDefault(x => x.Id == account.Id);
-            if (EA != null)
-            {
-                EA.Edit(account.Name, account.Family, account.PhoneNumber
-                    , account.Email, account.BirthDate, account.Addres
-                    , account.Password);
-                await _accountdbcontext.SaveChangesAsync();
-            }
-        }
-
+        
         public bool login(string? email, string? password)
         {
             var account = _accountdbcontext.Account.FirstOrDefault(x => x.Email == email);

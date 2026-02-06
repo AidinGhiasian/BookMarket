@@ -11,5 +11,6 @@ namespace BookM.Domain.Book.AD
         public Books Getby(string Title);
         public void Delete(int id);
         public List<Books>GetBy(string BookTitle);
+       
     }
 }

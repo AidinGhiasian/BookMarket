@@ -1,0 +1,213 @@
+﻿@page
+@model BookMarket.Areas.Admin.Account.IndexModel
+@{
+	Layout = "_AdminLayout";
+}
+<div id="inner-content">
+	<div class="row">
+		<!-- BEGIN BREADCRUMB -->
+		<div class="col-md-12">
+			<div class="breadcrumb-box shadow">
+				<ul class="breadcrumb">
+					<li><a href="dashboard.html">پیشخوان</a></li>
+					<li><a href="#">جدول‌ها</a></li>
+					<li class="active">خروجی از Data Table</li>
+				</ul>
+				<div class="breadcrumb-left">
+					پنجشنبه، 1404/10/4
+					<i class="icon-calendar"></i>
+				</div><!-- /.breadcrumb-left -->
+			</div><!-- /.breadcrumb-box -->
+		</div><!-- /.col-md-12 -->
+		<!-- END BREADCRUMB -->
+		@if (TempData["NotAvalable"] != null)
+		{
+			<p class="alert alert-success text-center">
+				@TempData["NotAvalable"]
+			</p>
+		}
+		else if (TempData["Avalable"] != null)
+		{
+			<p class="alert alert-danger text-center">
+				@TempData["Avalable"]
+			</p>
+		}
+		@if (TempData["success"] != null)
+		{
+			<div class="alert alert-success text-center">
+				@TempData["success"]
+			</div>
+		}
+		<div class="col-lg-12">
+			<div class="portlet box shadow">
+				<div class="portlet-heading">
+					<div class="portlet-title">
+						<h3 class="title">
+							<i class="icon-frane"></i>
+							جدول با Data Table
+						</h3>
+					</div><!-- /.portlet-title -->
+					<div class="buttons-box">
+						<a class="btn btn-sm btn-default btn-round btn-code" rel="tooltip" title="کدها" href="#">
+							<i class="icon-arrow-left"></i><span>/</span><i class="icon-arrow-right"></i>
+						</a>
+						<div class="code-modal hide">
+							<!--
+							// HTML
+							<div class="table-responsive">
+								<table class="table table-bordered table-hover table-striped" id="data-table">
+									<thead>
+										<tr>
+											<th>ردیف</th>
+											<th>ماده غذایی</th>
+											<th>مقدار</th>
+											<th>کالری</th>
+											<td>عملیات</td>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>1</td>
+											<td>مغز فندق</td>
+											<td>100گرم</td>
+											<td>630</td>
+											<td>
+												<a href="#" class="btn btn-info">ویرایش</a>
+												<a href="#" class="btn btn-danger">حذف</a>
+											</td>
+										</tr>
+										...
+									</tbody>
+								</table>
+							</div>
+
+
+							// JS
+							var tableMain = $("#data-table").DataTable({
+								dom: "Bfrtip",
+								lengthChange: true,
+								buttons: [
+									{ extend: "copy", className: "btn btn-success" },
+									{ extend: "csv", className: "btn btn-success" },
+									{ extend: "excel", className: "btn btn-success" },
+									{
+										extend: 'pdf',
+										className: "btn btn-success",
+										customize: function (doc) {
+											processFont(doc);
+
+											doc.content[0]['text'] = doc.content[0]['text'].split(' ').reverse().join(' ');
+											try {
+												for (var i = 0; i < doc.content[1].table.body.length; i++) {
+													for (var j = 0; j < doc.content[1].table.body[i].length; j++) {
+														doc.content[1].table.body[i][j]['text'] = doc.content[1].table.body[i][j]['text'].split(' ').reverse().join(' ');
+													}
+												}
+											} catch (error) {
+												console.log("Unsupported content for PDF");
+											}
+										}
+									}
+								],
+								language: language,
+								"columnDefs": [{
+									"targets": [4],
+									"orderable": false
+								}],
+								"aaSorting": []
+							});
+
+							function processFont(doc) {
+								pdfMake.fonts = {
+									IranSans: {
+										normal: 'IranSans.ttf',
+										bold: 'IranSans.ttf',
+										italics: 'IranSans.ttf',
+										bolditalics: 'IranSans.ttf'
+									}
+								};
+								doc.defaultStyle.font = "IranSans";
+							}
+
+							$(window).on( 'resize', function () {
+								$('#data-table').css("width", "100%");
+							});
+
+							-->
+						</div>
+						<a class="btn btn-sm btn-default btn-round btn-fullscreen" rel="tooltip" title="تمام صفحه" href="#">
+							<i class="icon-size-fullscreen"></i>
+						</a>
+						<a class="btn btn-sm btn-default btn-round btn-collapse" rel="tooltip" title="کوچک کردن" href="#">
+							<i class="icon-arrow-up"></i>
+						</a>
+					</div><!-- /.buttons-box -->
+				</div><!-- /.portlet-heading -->
+				<div class="portlet-body">
+					<div class="top-buttons-box mb-2">
+						<a class="btn btn-success" href="./Account/CreateAccount">
+							<i class="icon-plus"></i>
+							افزودن
+						</a>
+						<form method="get">
+						<div class="custom-radio rtl ">
+							<input name="isStatus" value="true" type="radio" class="control-input" >
+							<span>
+								حذف نشده
+							</span>
+							<input name="isStatus" value="false" type="radio" class="control-input" >
+							<span>
+								حذف شده
+							</span>
+							<button type="submit" asp-page="/Admin/Account/Index" class="btn btn-outline-primary-2 float-right">تایید</button>
+						</div>
+						</form>
+					</div><!-- /.top-buttons-box -->
+
+					<div class="table-responsive">
+						<table class="table table-bordered table-hover table-striped" id="data-table">
+							<thead>
+								<tr>
+									<th>ردیف</th>
+									<th>نام و نام خانوادگی</th>
+									<th>شماره تلفن</th>
+									<th>ایمیل</th>
+									<th>عملیات</th>
+								</tr>
+							</thead>
+							<tbody>
+								@foreach (var item in Model.Accounts)
+								{
+									<tr>
+										<td>@item.Id</td>
+										<td>@item.Name - @item.Family</td>
+										<td>@item.PhoneNumber</td>
+										<td>@item.Email</td>
+										<td>
+											 <a class="btn btn-info"asp-page="EditAccount" asp-route-id="@item.Id">ویرایش</a> 
+											@if (item.IsAvalable)
+											{
+
+												<a asp-page-handler="Delete" asp-route-id="@item.Id" class="btn btn-danger" style="border-radius:5px;color:white">غیر فعال</a>
+											
+											}
+											else
+											{
+
+												<a href="~/Admin/Account/Index?handler=Restore&id=@item.Id" class="btn btn-success" style="border-radius:5px;color:white">فعال </a>
+											
+											}
+										</td>
+									</tr>
+
+								}
+
+
+							</tbody>
+						</table>
+					</div><!-- /.table-responsive -->
+				</div><!-- /.portlet-body -->
+			</div><!-- /.portlet -->
+		</div><!-- /.col-lg-12 -->
+	</div><!-- /.row -->
+</div><!-- /#inner-content -->

@@ -1,3 +1,4 @@
+using BookM.Application.Contacts.BooksApplication;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
@@ -5,14 +6,19 @@ namespace BookMarket.Pages
 {
     public class IndexModel : PageModel
     {
-        private readonly ILogger<IndexModel> _logger;
-
-        public IndexModel(ILogger<IndexModel> logger)
+        public List<BookViewModel> Books { get; set; }
+        private readonly IBookApplication _bookApplication;
+        public IndexModel(IBookApplication bookApplication)
         {
-            _logger = logger;
+            _bookApplication = bookApplication;
         }
+     
 
         public void OnGet()
+        {
+           Books= _bookApplication.GetAll();
+        }
+        public void OnGetBook()
         {
 
         }

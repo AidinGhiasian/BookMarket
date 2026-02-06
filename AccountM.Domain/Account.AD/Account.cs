@@ -10,25 +10,26 @@ namespace AM.Domain.Account.AD
 {
     public class Account
     {
-        
+
         public int Id { get; private set; }
         public string Name { get; private set; }
         public string Family { get; private set; }
         public string PhoneNumber { get; private set; }
-        public string Email { get;private set; }
+        public string Email { get; private set; }
         public DateTime BirthDate { get; private set; }
         public DateTime CreationDate { get; private set; } = DateTime.Now;
-        public string Addres { get;private set; }
+        public string Addres { get; private set; }
         public string Scuritycode { get; private set; }
         public string Password { get; private set; }
+        public bool IsAvalable { get; private set; }
 
 
         public Account() { }
 
-        public Account( string name, string family, string phoneNumber, string email, DateTime birthDate,string addres,string password)
+        public Account(string name, string family, string phoneNumber, string email, DateTime birthDate, string addres, string password)
         {
             var random = new Random();
-            
+
             Name = name;
             Family = family;
             PhoneNumber = phoneNumber;
@@ -36,10 +37,11 @@ namespace AM.Domain.Account.AD
             BirthDate = birthDate;
             CreationDate = DateTime.Now;
             Addres = addres;
-            Scuritycode = random.Next(100000,999999).ToString();
+            Scuritycode = random.Next(100000, 999999).ToString();
             Password = password;
+            IsAvalable = true;
         }
-        public void Edit(string name, string family, string phoneNumber, string email, DateTime birthDate, string addres,string password)
+        public void Edit(string name, string family, string phoneNumber, string email, DateTime birthDate, string addres)
         {
             Name = name;
             Family = family;
@@ -48,7 +50,12 @@ namespace AM.Domain.Account.AD
             BirthDate = birthDate;
             CreationDate = DateTime.Now;
             Addres = addres;
-            Password=password;
+            
+           
+        }
+        public void ChangeStatus(bool isAvaleble)
+        {
+            IsAvalable = isAvaleble;
         }
 
     }

@@ -33,26 +33,30 @@ namespace AccountM.Application
         {
             _accountRepository.Delete(id);
         }
-
+        public void Restore(int id)
+        {
+            _accountRepository.Restore(id);
+        }
         public void Edit(EditViewModel model)
         {
-            var acc = _accountRepository.Getby(model.Name); 
+            var acc = _accountRepository.GetById(model.Id); 
             acc.Edit(
                 model.Name,
                 model.Family,
                 model.PhoneNumber,
                 model.Email,
                 model.BirthDate,
-                model.Addres,
-                model.Password
+                model.Addres
+               
             );
 
-            _accountRepository.Updateby(acc);
+        
+            _accountRepository.SaveChanges();
         }
 
-        public List<AccountViewModel> GetAccounts(string? name,string? phone)
+        public List<AccountViewModel> GetAccounts(bool isStatus)
         {
-            var accounts = _accountRepository.GetAccounts(name,phone); 
+            var accounts = _accountRepository.GetAccounts(isStatus); 
             var list = new List<AccountViewModel>();
 
             foreach (var account in accounts)
@@ -62,23 +66,44 @@ namespace AccountM.Application
 
             return list;
         }
-
-        public AccountViewModel Getby(int id)
+        public List<AccountViewModel> GetAll()
         {
-            var account = _accountRepository.Getby(id.ToString());
-            return Map(account);
+            var accounts=_accountRepository.GetAll();
+            var list = new List<AccountViewModel>();
+
+            foreach (var account in accounts)
+            {
+                list.Add(Map(account));
+            }
+
+            return list;
         }
 
+        public EditViewModel Getdetail(int id)
+        {
+            var model = _accountRepository.GetbyId(id);
+            return new EditViewModel
+            {
+                Id = model.Id,
+                Name = model.Name,
+                Family = model.Family,
+                PhoneNumber = model.PhoneNumber,
+                Email = model.Email,
+                BirthDate = model.BirthDate,
+                Addres = model.Addres,
+                Password = model.Password,
+            };
+        }
         public AccountViewModel GetBy(int id)
         {
-           var a=  _accountRepository.GetbyId(id);
-            return Map(a);
+           var model=  _accountRepository.GetbyId(id);
+            return Map(model);
+          
         }
         public AccountViewModel GetBy(string phone)
         {
             var a = _accountRepository.Getby(phone);
             return Map(a);
-            
         }
 
         public bool login(string? email, string? password)
@@ -99,6 +124,7 @@ namespace AccountM.Application
                 cratetiondate = model.CreationDate, 
                 Addres = model.Addres,
                 Password = model.Password,
+                IsAvalable=model.IsAvalable,
             };
         }
     }
