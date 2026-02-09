@@ -32,9 +32,10 @@ namespace BookM.Application.Contacts.BooksApplication
 
         [Required(ErrorMessage = "لطفا شماره دسته بندی کتاب را وارد کنید...")]
         [Display(Name = "شماره دسته بندی")]
+        [StringLength(20, ErrorMessage = "شما نمیتونید بیشتر از مقدار 20 کارکتر وارد نمایید...")]
         public int CategoryId { get; set; }
 
-
+        [Display(Name = "تاریخ تولید کتاب")]
         public DateTime CreateDateTime { get; set; }
 
         [Required(ErrorMessage = "لطفا مقدار فعال/غیرفعال کتاب را وارد کنید...")]
@@ -44,6 +45,9 @@ namespace BookM.Application.Contacts.BooksApplication
         [Required(ErrorMessage = "لطفا قیمت کتاب را وارد کنید...")]
         [Display(Name = "قیمت کتاب")]
         public string Price { get; set; }
+        [Required(ErrorMessage = "لطفا توضیحات کوتاه را وارد کنید...")]
+        [Display(Name = "توضیحات کوتاه")]
+        public string ShortDescription { get; set; }
 
     }
 }

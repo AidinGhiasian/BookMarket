@@ -19,7 +19,7 @@ namespace BookMarket.Areas.Admin.Account
             
             _accountApplication.Create(added);
             TempData["success"] = "کتابخوان جدید ثبت شد...";
-            Redirect("./Account/Index");
+            Redirect("./Account/AdminIndex");
 
         }
     }

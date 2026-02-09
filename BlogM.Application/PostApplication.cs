@@ -21,7 +21,7 @@ namespace BlogM.Application
         }
         public void create(CreateViewModel create)
         {
-            var path ="img";
+            var path = "picture";
             var pictureName=_fileUploader.UploadFileAsync(create.FileName, path);
             var post = new Posts(pictureName, create.Title, create.ShortDescription, create.Description);
             _blogRepository.Create(post);
@@ -47,6 +47,20 @@ namespace BlogM.Application
         {
           var post= _blogRepository.GetById(id);
             return map(post);
+        }
+
+        public EditViewModel GetDetailes(int id)
+        {
+           var posts = _blogRepository.GetById(id);
+            return new EditViewModel
+            {
+                Id = posts.Id,
+                Picture = posts.Picture,
+                Title = posts.Title,
+                ShortDescription = posts.ShortDescription,
+                Description = posts.Description,
+                IsAvailable = posts.IsAvailable
+            };
         }
 
         public void Update(EditViewModel update)

@@ -11,8 +11,6 @@ namespace BookM.Application.Contacts.BooksApplication
 {
     public class CreateViewModel
     {
-        [Display(Name = "")]
-        public string Picture { get; set; }
         public IFormFile? FileName { get; set; }
         public string BookTitle { get; set; }
         public string Writer { get; set; }

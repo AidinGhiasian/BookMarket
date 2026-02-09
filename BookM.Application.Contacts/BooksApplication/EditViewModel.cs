@@ -10,5 +10,6 @@ namespace BookM.Application.Contacts.BooksApplication
     {
         public int Id { get; set; }
         public bool status {  get; set; }
+        public string Picture { get; set; }
     }
 }

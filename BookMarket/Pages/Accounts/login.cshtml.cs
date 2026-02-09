@@ -28,7 +28,7 @@ namespace BookMarket.Pages.Account
         {
             var Exist = _accountapplication.login(email, password);
 
-            if (Exist == true)
+            if (Exist == true);
             {
                 return RedirectToPage("/dashboard");
             }

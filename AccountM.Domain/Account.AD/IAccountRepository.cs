@@ -11,7 +11,6 @@ namespace AM.Domain.Account.AD
     {
        public void Craete(Account account);
         public Account? GetbyId(int id);
-     
         public List<Account> GetAccounts(bool isStatus);
         public Account Getby(string phonenumber);
         public void Delete(int id);

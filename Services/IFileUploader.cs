@@ -9,9 +9,8 @@ namespace Services
 {
     public interface IFileUploader
     {
-         string UploadFileAsync(IFormFile file, string filepath);
-        string UploadFileWithSignAsync(IFormFile file, string filePath, string sign);
-        void DeleteFileAsync(string filePath);
-       
+        public string UploadFileWithSignAsync(IFormFile file, string filePath, string sign);
+        public string UploadFileAsync(IFormFile file, string filepath);
+        public void DeleteFileAsync(string filePath);
     }
 }

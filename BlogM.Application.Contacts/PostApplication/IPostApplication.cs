@@ -15,5 +15,6 @@ namespace BlogM.Application.Contacts.PostApplication
         public void Update(EditViewModel update);
         public void Delete(int id);
         public List<PostViewModel> GetAll();
+        public EditViewModel GetDetailes(int id);
     }
 }
