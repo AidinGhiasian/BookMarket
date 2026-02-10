@@ -13,6 +13,9 @@ using BookM.Infrastructure.EFCore;
 using CommentM.Infrastructure.EFCore;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddHttpContextAccessor();
+
 var contectionstring = builder.Configuration.GetConnectionString("DbBookMarket");
 AccountMInfrastructureConfigurationBootstraper.Configure(builder.Services, contectionstring);
 BlogMInfrastructureConfigurationBootstraper.Configure(builder.Services, contectionstring);

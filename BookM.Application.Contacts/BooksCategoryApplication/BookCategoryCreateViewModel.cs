@@ -12,6 +12,7 @@ namespace BookM.Application.Contacts.BooksApplication
     {
         public string CategoryName { get; set; }
         public string? Description { get; set; }
+        public IFormFile FileName { get; set; }
 
 
     }

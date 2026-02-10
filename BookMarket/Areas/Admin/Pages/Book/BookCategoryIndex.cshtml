@@ -1,16 +1,17 @@
 ﻿@page
-@model BookMarket.Areas.Admin.Pages.Blog.IndexModel
+@model BookMarket.Areas.Admin.Pages.Book.BookCategoryIndexModel
 @{
 }
+
 <div id="inner-content">
 	<div class="row">
 		<!-- BEGIN BREADCRUMB -->
 		<div class="col-md-12">
 			<div class="breadcrumb-box shadow">
 				<ul class="breadcrumb">
-					<li><a href="dashboard.html">پیشخوان</a></li>
-					<li><a href="#">جدول‌ها</a></li>
-					<li class="active">مدیریت مقالات</li>
+					<li><a href="/Admin/Index">پیشخوان</a></li>
+					<li><a href="#">‌لیست ها</a></li>
+					<li class="active">مدیریت کتاب ها</li>
 				</ul>
 				<div class="breadcrumb-left">
 					پنجشنبه، 1404/10/4
@@ -19,27 +20,19 @@
 			</div><!-- /.breadcrumb-box -->
 		</div><!-- /.col-md-12 -->
 		<!-- END BREADCRUMB -->
-		<div>
-			@if (TempData["success"] != null)
-			{
-				<div class="alert alert-success text-center">
-					@TempData["success"]
-				</div>
-			}
-			else if (TempData["deleted"]!=null)
-			{
-				<div class="alert alert-success text-center">
-					@TempData["deleted"]
-				</div>
-			}
-		</div>
+		@if (TempData["success"] != null)
+		{
+			<div class="alert alert-success text-center">
+				@TempData["success"]
+			</div>
+		}
 		<div class="col-lg-12">
 			<div class="portlet box shadow">
 				<div class="portlet-heading">
 					<div class="portlet-title">
 						<h3 class="title">
 							<i class="icon-frane"></i>
-							مدیریت مقالات
+							مدیریت کتاب ها
 						</h3>
 					</div><!-- /.portlet-title -->
 					<div class="buttons-box">
@@ -56,10 +49,14 @@
 				</div><!-- /.portlet-heading -->
 				<div class="portlet-body">
 					<div class="top-buttons-box mb-2">
-						<a class="btn btn-success" href="./CreateBlog">
+						<a class="btn btn-success" href="./CreateBookCategory">
 							<i class="icon-plus"></i>
 							افزودن
 						</a>
+						
+					</div><!-- /.top-buttons-box -->
+					<div class="top-buttons-box mb-2 ">
+						
 					</div><!-- /.top-buttons-box -->
 
 					<div class="table-responsive">
@@ -68,26 +65,24 @@
 								<tr>
 									<th>ردیف</th>
 									<th>تصویر</th>
-									<th>عنوان</th>
+									<th>عنوان کتاب</th>
 									<th>توضیحات کوتاه</th>
 									<th>عملیات</th>
 								</tr>
 							</thead>
 							<tbody>
-								@foreach (var item in Model.Blogs)
+								@foreach (var item in Model.BookCategories)
 								{
 									<tr>
 										<td>@item.Id</td>
+										<td><a class="img-thumbnail">
+											<img src="/Pictures/@item.picture" style="width:100px" alt="@item.Description" />
+											</a></td>
+										<td>@item.CategoryName</td>
+										
+										<td>@item.Description</td>
 										<td>
-											<a class="img-thumbnail">
-												<img style="width:150px;" src="/@item.Picture">
-
-											</a>
-										</td>
-										<td>@item.Title</td>
-										<td>@item.ShortDescription</td>
-										<td>
-											<a class="btn btn-info" asp-page="/Blog/EditBlog" asp-page-handler="Edit" asp-route-id="@item.Id">ویرایش</a>
+											<a class="btn btn-info" asp-page="EditCategoryBook" asp-route-id="@item.Id">ویرایش</a>
 										</td>
 										<td>
 											<a class="btn btn-danger" asp-page-handler="delete" asp-route-id="@item.Id">حذف</a>
@@ -101,4 +96,4 @@
 			</div><!-- /.portlet -->
 		</div><!-- /.col-lg-12 -->
 	</div><!-- /.row -->
-</div><!-- /#inner-content -->
+</div><!-- /#inner-content 

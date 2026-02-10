@@ -27,7 +27,7 @@ namespace BookM.Application
         {
             var path = "picture";
             var prefixprice = "تومان";
-            var picturename=_fileUploader.UploadFileAsync(create.FileName, path);
+            var picturename=_fileUploader.UploadNewSize(create.FileName, path,720);
             var npprice = create.Price + " " + prefixprice;
             var upload = new Books(picturename, create.BookTitle, create.Writer, create.Publisher, create.CategoryId,npprice,create.shortdescription);
             _bookRepository.Create(upload);
@@ -69,9 +69,9 @@ namespace BookM.Application
             var npprice = update.Price + " " + prefixprice;
             if (update.FileName != null)
             {
-                _fileUploader.DeleteFileAsync(update.Picture);
+                _fileUploader.Delete(update.Picture);
                 var path = "NewPicture";
-                PictureName = _fileUploader.UploadFileAsync(update.FileName, path);
+                PictureName = _fileUploader.UploadNewSize(update.FileName, path, 720);
             }
             upBooks.Edit(PictureName,update.Picture, update.Writer,update.Publisher,update.CategoryId,update.status,npprice,update.shortdescription);
 

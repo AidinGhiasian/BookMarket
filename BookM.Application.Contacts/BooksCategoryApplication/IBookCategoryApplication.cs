@@ -13,8 +13,10 @@ namespace BookM.Application.Contacts.BooksCategoryApplication
 
         public void Create(BookCategoryCreateViewModel create);
         public void Edit(BookCategoryEditViewModel update);
-        public void Delete(int id);
+        public bool Delete(int id);
         BookCategories? GetbyId(int id);
+        List<BookCategoryViewModel> GetAll();
+        public BookCategoryEditViewModel GetById(int id);
 
 
     }

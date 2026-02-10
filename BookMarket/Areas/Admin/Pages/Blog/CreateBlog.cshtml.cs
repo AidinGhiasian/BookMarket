@@ -19,7 +19,6 @@ namespace BookMarket.Areas.Admin.Pages.Blog
         {
          _postApplication.create(command);
             TempData["success"] = "مقاله با موفقیت ثبت شد.";
-
         }
     }
 }

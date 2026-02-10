@@ -7,7 +7,7 @@ using BookM.Domain.Book.AD;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Services;
-using Services.Model;
+using Services;
 
 namespace BookM.Infrastructure.EFCore.Repository
 {
