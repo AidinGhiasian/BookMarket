@@ -40,7 +40,7 @@
 						<form method="post" enctype="multipart/form-data">
 							<div class="form-body">
 								<div class="form-group relative mt-3 mb-4">
-									<input type="file" asp-for="@Model.book.FileName" name="FileName" class="form-control">
+									<input type="file" asp-for="@Model.books.FileName" name="FileName" class="form-control">
 									<div class="input-group round">
 										<input type="text" class="form-control file-input" placeholder="برای آپلود کلیک کنید">
 										<span class="input-group-btn">
@@ -60,7 +60,7 @@
 											<span class="input-group-addon">
 												<i class="icon-user"></i>
 											</span>
-											<input type="text" name="BookTitle" asp-for="@Model.book.BookTitle" class="form-control rtl text-right" placeholder="لطفا عنوان کتاب مقاله را وارد نمایید.">
+											<input type="text" name="BookTitle" asp-for="@Model.books.BookTitle" class="form-control rtl text-right" placeholder="لطفا عنوان کتاب مقاله را وارد نمایید.">
 										</div><!-- /.input-group -->
 									</div><!-- /.form-group -->
 								</div><!-- /.col -->
@@ -71,7 +71,7 @@
 											<span class="input-group-addon">
 												<i class="icon-user"></i>
 											</span>
-											<input type="text" name="Writer" asp-for="@Model.book.Writer" class="form-control rtl text-right" placeholder="لطفا عنوان کتاب مقاله را وارد نمایید.">
+											<input type="text" name="Writer" asp-for="@Model.books.Writer" class="form-control rtl text-right" placeholder="لطفا عنوان کتاب مقاله را وارد نمایید.">
 										</div><!-- /.input-group -->
 									</div><!-- /.form-group -->
 								</div><!-- /.col -->
@@ -82,7 +82,7 @@
 											<span class="input-group-addon">
 												<i class="icon-user"></i>
 											</span>
-											<input type="text" name="Publisher" asp-for="@Model.book.Publisher" class="form-control rtl text-right" placeholder="لطفا عنوان کتاب مقاله را وارد نمایید.">
+											<input type="text" name="Publisher" asp-for="@Model.books.Publisher" class="form-control rtl text-right" placeholder="لطفا عنوان کتاب مقاله را وارد نمایید.">
 										</div><!-- /.input-group -->
 									</div><!-- /.form-group -->
 								</div><!-- /.col -->
@@ -92,7 +92,7 @@
 										<span class="input-group-addon">
 											<i class="icon-envelope"></i>
 										</span>
-										<textarea type="text" style="height: 111px;" asp-for="@Model.book.shortdescription" name="ShortDescription" class="form-control rtl text-right " placeholder="مقدار توضیحات کوتاه باید یا شامل مقدمه یا شامل یک بند خلاصه مقاله شما باشد."></textarea>
+										<textarea type="text" style="height: 111px;" asp-for="@Model.books.shortdescription" name="ShortDescription" class="form-control rtl text-right " placeholder="مقدار توضیحات کوتاه باید یا شامل مقدمه یا شامل یک بند خلاصه مقاله شما باشد."></textarea>
 									</div><!-- /.input-group -->
 								</div><!-- /.form-group -->
 								<div class="form-group" style="width: 300px;">
@@ -101,14 +101,16 @@
 										<span class="input-group-addon">
 											<i class="icon-envelope"></i>
 										</span>
-										<input type="number" name="CategoryId" asp-for="@Model.book.CategoryId" class="form-control rtl text-Right" placeholder="دسته بندی کتاب"></input>
+
+										<input type="text" name="CategoryId" asp-for="@Model.books.CategoryId" class="form-control rtl text-Right" placeholder="دسته بندی کتاب">
+
 									</div><!-- /.input-group -->
 									<label>قیمت</label>
 									<div class="input-group round" style="width: 200px;">
 										<span class="input-group-addon">
 											<i class="icon-envelope"></i>
 										</span>
-										<input type="number" name="Price" asp-for="@Model.book.Price" class="form-control rtl text-Right" placeholder="قیمت کتاب"></input>
+										<input type="number" name="Price" asp-for="@Model.books.Price" class="form-control rtl text-Right" placeholder="قیمت کتاب"></input>
 									</div><!-- /.input-group -->
 									</div><!-- /.form-group -->
 								</div><!-- /.form-group -->

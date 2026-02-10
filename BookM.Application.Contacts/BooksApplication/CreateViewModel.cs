@@ -5,6 +5,7 @@ using System.Linq;
 using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
+using BookM.Application.Contacts.BooksCategoryApplication;
 using Microsoft.AspNetCore.Http;
 
 namespace BookM.Application.Contacts.BooksApplication
@@ -18,5 +19,6 @@ namespace BookM.Application.Contacts.BooksApplication
         public int CategoryId { get; set; }
         public string Price { get; set; }
         public string shortdescription { get; set; }
+        public List<BookCategoryViewModel> BookCategories { get; set; }
     }
 }
