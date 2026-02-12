@@ -16,10 +16,11 @@ namespace BookMarket.Areas.Admin.Pages.Blog
         {
             Blogs = _postApplication.GetAll();
         }
-        public void OnGetDelete(int id)
+        public IActionResult OnGetDelete(int id)
         {
             _postApplication.Delete(id);
-            TempData["deleted"] = "مقاله با موفقیت حذف شد.";
+             TempData["deleted"] = "مقاله با موفقیت حذف شد.";
+            return RedirectToPage("./AdminIndex");
         }
     }
 }
