@@ -58,7 +58,7 @@
 						</a>
 					</div><!-- /.top-buttons-box -->
 					<div class="top-buttons-box mb-2 ">
-						
+
 					</div><!-- /.top-buttons-box -->
 
 					<div class="table-responsive">
@@ -73,30 +73,34 @@
 								</tr>
 							</thead>
 							<tbody>
-								@foreach (var item in Model.Books)
+								@if(Model.Books!=null)
 								{
-									<tr>
-										<td>@item.Id</td>
-										<td>
-											<a class="img-thumbnail">
-												<img style="width:150px;" src="/@item.PictureFile">
+									@foreach (var item in Model.Books)
+									{
+										<tr>
+											<td>@item.Id</td>
+											<td>
+												<a class="img-thumbnail">
+													<img style="width:150px;" src="Pictures/@item.PictureFile">
 
-											</a>
-										</td>
-										<td>@item.BookTitle</td>
-										<td>@item.Writer</td>
-										<td>@item.publisher</td>
-										<td>@item.Price</td>
-										<td>@item.CategoryId</td>
-										<td>@item.ShortDescription</td>
-										<td>
-											<a class="btn btn-info" asp-page="EditAccount" asp-route-id="@item.Id">ویرایش</a>
-										</td>
-										<td>
-											<a class="btn btn-danger" asp-page-handler="delete" asp-route-id="@item.Id">حذف</a>
-										</td>
-									</tr>
+												</a>
+											</td>
+											<td>@item.BookTitle</td>
+											<td>@item.Writer</td>
+											<td>@item.publisher</td>
+											<td>@item.Price</td>
+											<td>@item.CategoryId</td>
+											<td>@item.ShortDescription</td>
+											<td>
+												<a class="btn btn-info" asp-page="EditAccount" asp-route-id="@item.Id">ویرایش</a>
+											</td>
+											<td>
+												<a class="btn btn-danger" asp-page-handler="delete" asp-route-id="@item.Id">حذف</a>
+											</td>
+										</tr>
+									}
 								}
+
 							</tbody>
 						</table>
 					</div><!-- /.table-responsive -->

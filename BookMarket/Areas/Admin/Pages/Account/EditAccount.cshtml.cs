@@ -19,7 +19,7 @@ namespace BookMarket.Areas.Admin.Account
         public IActionResult OnPost(EditViewModel command) 
         {
           _accountapplication.Edit(command);
-            return Redirect("/Admin/Account");
+            return Redirect("/Admin/Account/AdminIndex");
 
         }
     }

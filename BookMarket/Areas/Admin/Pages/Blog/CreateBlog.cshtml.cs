@@ -10,7 +10,7 @@ namespace BookMarket.Areas.Admin.Pages.Blog
         private readonly IPostApplication _postApplication;
         public CreateBlogModel(IPostApplication postApplication)
         {
-            postApplication = _postApplication;
+            _postApplication = postApplication;
         }
         public void OnGet()
         {
@@ -18,7 +18,8 @@ namespace BookMarket.Areas.Admin.Pages.Blog
         public void OnPost(CreateViewModel command) 
         {
          _postApplication.create(command);
-            TempData["success"] = "مقاله با موفقیت ثبت شد.";
+                TempData["success"] = "مقاله با موفقیت ثبت شد.";
+            Redirect("./AdminIndex");
         }
     }
 }

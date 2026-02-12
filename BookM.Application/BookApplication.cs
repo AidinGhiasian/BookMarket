@@ -27,9 +27,9 @@ namespace BookM.Application
         {
             var path = "picture";
             var prefixprice = "تومان";
-            var picturename=_fileUploader.UploadNewSize(create.FileName, path,720);
+            var picturename = _fileUploader.UploadNewSize(create.FileName, path, 720);
             var npprice = create.Price + " " + prefixprice;
-            var upload = new Books(picturename, create.BookTitle, create.Writer, create.Publisher, create.CategoryId,npprice,create.shortdescription);
+            var upload = new Books(picturename, create.BookTitle, create.Writer, create.Publisher, create.CategoryId, npprice, create.shortdescription);
             _bookRepository.Create(upload);
         }
 
@@ -41,7 +41,7 @@ namespace BookM.Application
         public Books? GetById(int id)
         {
             var bookget = _bookRepository.GetById(id);
-            if(bookget != null)
+            if (bookget != null)
             {
                 return bookget;
             }
@@ -51,9 +51,9 @@ namespace BookM.Application
         {
             var list = new List<BookViewModel>();
             var bookget = _bookRepository.GetAll();
-            if(bookget != null)
+            if (bookget != null)
             {
-                foreach(var book in bookget)
+                foreach (var book in bookget)
                 {
                     list.Add(map(book));
                 }
@@ -62,7 +62,7 @@ namespace BookM.Application
         }
         public void Edit(EditViewModel update)
         {
-          var upBooks=_bookRepository.GetById(update.Id);
+            var upBooks = _bookRepository.GetById(update.Id);
 
             var PictureName = update.Picture;
             var prefixprice = "تومان";
@@ -73,7 +73,7 @@ namespace BookM.Application
                 var path = "NewPicture";
                 PictureName = _fileUploader.UploadNewSize(update.FileName, path, 720);
             }
-            upBooks.Edit(PictureName,update.Picture, update.Writer,update.Publisher,update.CategoryId,update.status,npprice,update.shortdescription);
+            upBooks.Edit(PictureName, update.Picture, update.Writer, update.Publisher, update.CategoryId, update.status, npprice, update.shortdescription);
 
         }
 
@@ -82,13 +82,28 @@ namespace BookM.Application
             return new BookViewModel
             {
                 Id = book.Id,
-                PictureFile=book.Picture,
+                PictureFile = book.Picture,
                 BookTitle = book.BookTitle,
                 Writer = book.Writer,
                 publisher = book.Publisher,
                 CategoryId = book.CategoryId,
                 CreateDateTime = book.CreatetionDate,
                 IsAvailable = book.IsAvailable,
+            };
+        }
+
+        public EditViewModel Getdetail(int id)
+        {
+            var book = _bookRepository.GetById(id);
+            return new EditViewModel
+            {
+                Id = book.Id,
+                Picture = book.Picture,
+                BookTitle = book.BookTitle,
+                Writer = book.Writer,
+                Publisher = book.Publisher,
+                CategoryId = book.CategoryId,
+                shortdescription = book.ShortDescription
             };
         }
     }

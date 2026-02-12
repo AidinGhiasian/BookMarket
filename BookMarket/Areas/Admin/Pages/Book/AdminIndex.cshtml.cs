@@ -17,9 +17,10 @@ namespace BookMarket.Areas.Admin.Pages.Book
         {
             Books = _bookApplication.GetAll();
         }
-        public void OnGetDelete(int id)
+        public IActionResult OnGetDelete(int id)
         {
             _bookApplication.Delete(id);
+            return Redirect("./AdminIndex");
         }
     }
 }

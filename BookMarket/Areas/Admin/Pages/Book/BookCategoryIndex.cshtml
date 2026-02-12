@@ -12,6 +12,8 @@
 					<li><a href="/Admin/Index">پیشخوان</a></li>
 					<li><a href="#">‌لیست ها</a></li>
 					<li class="active">مدیریت کتاب ها</li>
+					<li><a href="#">دسته بندی ها‌</a></li>
+
 				</ul>
 				<div class="breadcrumb-left">
 					پنجشنبه، 1404/10/4
@@ -32,7 +34,7 @@
 					<div class="portlet-title">
 						<h3 class="title">
 							<i class="icon-frane"></i>
-							مدیریت کتاب ها
+							دسته بندی ها
 						</h3>
 					</div><!-- /.portlet-title -->
 					<div class="buttons-box">
@@ -65,7 +67,7 @@
 								<tr>
 									<th>ردیف</th>
 									<th>تصویر</th>
-									<th>عنوان کتاب</th>
+									<th>عنوان دسته بندی </th>
 									<th>توضیحات کوتاه</th>
 									<th>عملیات</th>
 								</tr>
@@ -83,9 +85,8 @@
 										<td>@item.Description</td>
 										<td>
 											<a class="btn btn-info" asp-page="EditCategoryBook" asp-route-id="@item.Id">ویرایش</a>
-										</td>
-										<td>
-											<a class="btn btn-danger" asp-page-handler="delete" asp-route-id="@item.Id">حذف</a>
+
+											<a class="btn btn-danger float-end" asp-page-handler="delete" asp-route-id="@item.Id">حذف</a>
 										</td>
 									</tr>
 								}

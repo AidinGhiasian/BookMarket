@@ -2,17 +2,21 @@
 @model BookMarket.Areas.Admin.Account.CreateAccountModel
 @{
 }
+<div class="alert alert-primary text-center">
+    @if (TempData["success"] != null)
+    {
+        @TempData["success"]
+    }
+</div>
 <div class="modal-page shadow">
     <div class="container-fluid">
         <div class="row">
-
             <div class="col-md-12">
                 <p class="text-center m-t-30 m-b-40">
                     <i class="icon-user-following border img-circle font-xxxlg p-20"></i>
                 </p>
                 <h2 class="text-center m-b-20">ثبت‌نام </h2>
                 <hr>
-
                 <form id="advanced-form" method="post">
                     <div class="form-group">
                         <label class="sr-only control-label" for="firstname">نام</label>
@@ -98,7 +102,7 @@
                         </div><!-- /.input-group-->
                     </div><!-- /.form-group -->
                     <div class="form-group">
-                        <button type="submit" class="btn btn-success btn-block"  value="Sign up">
+                        <button asp-page="./Account/AdminIndex" type="submit" class="btn btn-success btn-block"  value="Sign up">
                             <i class="icon-check"></i>
                             ثبت‌نام
                         </button>

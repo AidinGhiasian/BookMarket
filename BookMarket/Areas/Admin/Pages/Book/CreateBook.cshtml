@@ -7,8 +7,9 @@
 	<div class="col-md-12">
 		<div class="breadcrumb-box shadow">
 			<ul class="breadcrumb">
-				<li><a href="dashboard.html">پیشخوان</a></li>
+				<li><a href="/Admin/Index">پیشخوان</a></li>
 				<li><a href="#">لیست ها</a></li>
+				<li><a href="/Admin/Book/AdminIndex">مدیریت کتاب ها</a></li>
 				<li class="active">ساخت کتاب</li>
 			</ul>
 			<div class="breadcrumb-left">
@@ -27,6 +28,14 @@
 						<i class="icon-note"></i>
 						ساخت کتاب
 					</h3>
+					<div class="bg-success-subtle" style="margin:100%">
+						@if (TempData["success"] != null)
+						{
+							@TempData["success"]
+
+						}
+					</div>
+
 				</div><!-- /.portlet-title -->
 
 			</div><!-- /.portlet-heading -->
@@ -97,7 +106,7 @@
 								</div><!-- /.form-group -->
 								<div class="form-group" style="width: 300px;">
 									<label>دسته بندی</label>
-									<div class="input-group round" style="width: 200px;" >
+									<div class="input-group round" style="width: 200px;">
 										<span class="input-group-addon">
 											<i class="icon-envelope"></i>
 										</span>
@@ -112,18 +121,18 @@
 										</span>
 										<input type="number" name="Price" asp-for="@Model.books.Price" class="form-control rtl text-Right" placeholder="قیمت کتاب"></input>
 									</div><!-- /.input-group -->
-									</div><!-- /.form-group -->
 								</div><!-- /.form-group -->
-								<div class="form-actions">
-									<button type="submit" class="btn btn-success btn-round">
-										<i class="icon-check"></i>
-										ذخیره
-									</button>
-									<a href="#" class="btn btn-warning btn-round float-end">
-										<i class="icon-close"></i>
-										بازگشت
-									</a>
-								</div><!-- /.form-actions -->
+							</div><!-- /.form-group -->
+							<div class="form-actions">
+								<button type="submit" class="btn btn-success btn-round">
+									<i class="icon-check"></i>
+									ذخیره
+								</button>
+								<a href="#" class="btn btn-warning btn-round float-end">
+									<i class="icon-close"></i>
+									بازگشت
+								</a>
+							</div><!-- /.form-actions -->
 						</form>
 					</div><!-- /.col -->
 				</div><!-- /.row -->

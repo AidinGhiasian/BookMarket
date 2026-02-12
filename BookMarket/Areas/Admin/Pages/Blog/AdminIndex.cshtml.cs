@@ -1,4 +1,4 @@
-using BlogM.Application.Contacts.PostApplication;
+﻿using BlogM.Application.Contacts.PostApplication;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
@@ -19,7 +19,7 @@ namespace BookMarket.Areas.Admin.Pages.Blog
         public void OnGetDelete(int id)
         {
             _postApplication.Delete(id);
-            TempData["deleted"] = "??? ?? ?????? ????? ??.";
+            TempData["deleted"] = "مقاله با موفقیت حذف شد.";
         }
     }
 }

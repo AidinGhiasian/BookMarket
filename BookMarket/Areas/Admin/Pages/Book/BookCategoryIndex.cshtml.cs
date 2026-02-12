@@ -16,5 +16,9 @@ namespace BookMarket.Areas.Admin.Pages.Book
         {
             BookCategories = _bookCategoryApplication.GetAll(); 
         }
+        public void OnGetDelete(int id)
+        {
+            _bookCategoryApplication.Delete(id);
+        }
     }
 }
