@@ -16,19 +16,19 @@ namespace BookMarket.Areas.Admin.Pages.Book
             _bookCategoryApplication = bookCategoryApplication;
         }
         public BookM.Application.Contacts.BooksApplication.CreateViewModel books { get; set; }
+        public List<BookCategoryViewModel> BookCategories { get; set; }
         public void OnGet()
         {
-            
+            BookCategories = _bookCategoryApplication.GetAll();
+
         }
-        public void OnGetCategory()
-        {
-            books.BookCategories = _bookCategoryApplication.GetAll();
-        }
-        public void OnPost(BookM.Application.Contacts.BooksApplication.CreateViewModel command)
+     
+        public IActionResult OnPost(BookM.Application.Contacts.BooksApplication.CreateViewModel command)
         {
             _bookApplication.Create(command);
-            Redirect("./Admin/AdminIndex");
             TempData["success"] = "کتاب با موفقیت ثبت شد.";
+          return  Redirect("./Admin/AdminIndex");
+          
         }
     }
 }

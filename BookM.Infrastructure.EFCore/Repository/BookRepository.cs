@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BookM.Application.Contacts.BooksApplication;
 using BookM.Domain.Book.AD;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
@@ -21,8 +22,15 @@ namespace BookM.Infrastructure.EFCore.Repository
             _fileUploader = fileUploader;
             _bookdbcontext = bookDbContext;
         }
+
+        public List<Books> GetAllWithCategory()
+        {
+            return _bookdbcontext.Books.Include(c => c.BookCategories).ToList();
+        }
+
         public void Create(Books books)
         {
+
             _bookdbcontext.Books.Add(books);
             _bookdbcontext.SaveChanges();
         }
@@ -42,9 +50,10 @@ namespace BookM.Infrastructure.EFCore.Repository
             return _bookdbcontext.Books.FirstOrDefault(x => x.BookTitle == Title);
         }
 
-        public List<Books> GetBy(string BookTitle)
+        public List<Books> GetBy()
         {
-           return _bookdbcontext.Books.Where(x=>x.BookTitle == BookTitle).ToList();
+            return _bookdbcontext.Books.ToList();
+
         }
 
         public Books? GetById(int id)
@@ -59,9 +68,11 @@ namespace BookM.Infrastructure.EFCore.Repository
             {
                 EB.Edit(book.Picture, book.BookTitle, book.Writer
                     , book.Publisher, book.CategoryId
-                    , book.IsAvailable, book.Price,book.ShortDescription);
-               await _bookdbcontext.SaveChangesAsync();
+                    , book.IsAvailable, book.Price, book.ShortDescription);
+                await _bookdbcontext.SaveChangesAsync();
             }
         }
+
+       
     }
 }

@@ -16,6 +16,7 @@ namespace BookMarket.Areas.Admin.Pages.Book
         public void OnGet()
         {
             Books = _bookApplication.GetAll();
+          
         }
         public IActionResult OnGetDelete(int id)
         {

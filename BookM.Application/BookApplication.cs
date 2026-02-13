@@ -11,6 +11,9 @@ using BookM.Domain.Book.AD;
 using Microsoft.EntityFrameworkCore;
 using Services;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
+using System.Runtime.InteropServices;
+using BookM.Application.Contacts.BooksCategoryApplication;
+using BookM.Infrastructure.EFCore;
 
 namespace BookM.Application
 {
@@ -18,10 +21,12 @@ namespace BookM.Application
     {
         private readonly IBookRepository _bookRepository;
         private readonly IFileUploader _fileUploader;
-        public BookApplication(IBookRepository bookRepository, IFileUploader fileUploader)
+        private readonly IBookCategoryRepository _bookCategoryRepository;
+        public BookApplication(IBookRepository bookRepository, IFileUploader fileUploader, IBookCategoryRepository bookCategoryRepository)
         {
             _bookRepository = bookRepository;
             _fileUploader = fileUploader;
+            _bookCategoryRepository = bookCategoryRepository;
         }
         public void Create(CreateViewModel create)
         {
@@ -50,7 +55,9 @@ namespace BookM.Application
         public List<BookViewModel> GetAll()
         {
             var list = new List<BookViewModel>();
+
             var bookget = _bookRepository.GetAll();
+
             if (bookget != null)
             {
                 foreach (var book in bookget)
@@ -58,8 +65,17 @@ namespace BookM.Application
                     list.Add(map(book));
                 }
             }
+            var category = _bookCategoryRepository.GetAll();
+          
+            foreach (var item in list)
+            {
+
+                item.CategoryName = category.FirstOrDefault(x => x.Id == item.CategoryId).Name;
+
+            }
             return list;
         }
+
         public void Edit(EditViewModel update)
         {
             var upBooks = _bookRepository.GetById(update.Id);
@@ -89,6 +105,20 @@ namespace BookM.Application
                 CategoryId = book.CategoryId,
                 CreateDateTime = book.CreatetionDate,
                 IsAvailable = book.IsAvailable,
+                ShortDescription=book.ShortDescription
+              
+            };
+        }
+        public BookCategoryViewModel mapcategory(BookCategories category)
+        {
+            return new BookCategoryViewModel
+            {
+                CategoryName=category.Name,
+                Books = category.Books,
+                CreatedAt = category.CreatedAt,
+                Description = category.Description,
+                Id = category.Id,
+                
             };
         }
 
@@ -106,5 +136,7 @@ namespace BookM.Application
                 shortdescription = book.ShortDescription
             };
         }
+
+        
     }
 }

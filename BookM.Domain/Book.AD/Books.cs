@@ -29,7 +29,7 @@ namespace BookM.Domain.Book.AD
 
 
         //رابطه با BookCategory با رابطه چند به چند
-        public List<BookCategories> BookCategories { get; private set; } = new();
+        public List<BookCategories> BookCategories { get;  set; } = new();
 
         public Books(string picture, string booktitle, string writer, string publisher, int categoryId, string price,string shortdescription)
         {

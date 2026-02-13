@@ -68,6 +68,7 @@
 									<th>ردیف</th>
 									<th>تصویر</th>
 									<th>عنوان کتاب</th>
+									<th>دسته بندی</th>
 									<th>توضیحات کوتاه</th>
 									<th>عملیات</th>
 								</tr>
@@ -81,15 +82,14 @@
 											<td>@item.Id</td>
 											<td>
 												<a class="img-thumbnail">
-													<img style="width:150px;" src="Pictures/@item.PictureFile">
+													<img style="width:150px;" src="/Pictures/@item.PictureFile">
 
 												</a>
 											</td>
 											<td>@item.BookTitle</td>
-											<td>@item.Writer</td>
-											<td>@item.publisher</td>
-											<td>@item.Price</td>
-											<td>@item.CategoryId</td>
+											
+											
+											<td>@item.CategoryName</td>
 											<td>@item.ShortDescription</td>
 											<td>
 												<a class="btn btn-info" asp-page="EditAccount" asp-route-id="@item.Id">ویرایش</a>

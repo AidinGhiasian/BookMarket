@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using System.ComponentModel.DataAnnotations;
+using BookM.Application.Contacts.BooksCategoryApplication;
 
 namespace BookM.Application.Contacts.BooksApplication
 {
@@ -48,6 +49,8 @@ namespace BookM.Application.Contacts.BooksApplication
         [Required(ErrorMessage = "لطفا توضیحات کوتاه را وارد کنید...")]
         [Display(Name = "توضیحات کوتاه")]
         public string ShortDescription { get; set; }
+        public List<BookCategoryViewModel> BookCategories { get; set; }
+        public string CategoryName { get; set; }
 
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Services;
 
+
 namespace BookM.Domain.Book.AD
 {
     public interface IBookRepository:IRepositoryBase<Books>
@@ -10,7 +11,9 @@ namespace BookM.Domain.Book.AD
         Task Updateby(Books book);
         public Books Getby(string Title);
         public void Delete(int id);
-        public List<Books>GetBy(string BookTitle);
        
+        public List<Books> GetBy();
+
+
     }
 }

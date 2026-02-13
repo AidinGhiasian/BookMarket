@@ -28,14 +28,12 @@
 						<i class="icon-note"></i>
 						ساخت کتاب
 					</h3>
-					<div class="bg-success-subtle" style="margin:100%">
+					<div class="bg-success-subtle" style="margin:1%">
 						@if (TempData["success"] != null)
 						{
 							@TempData["success"]
-
 						}
 					</div>
-
 				</div><!-- /.portlet-title -->
 
 			</div><!-- /.portlet-heading -->
@@ -105,15 +103,18 @@
 									</div><!-- /.input-group -->
 								</div><!-- /.form-group -->
 								<div class="form-group" style="width: 300px;">
-									<label>دسته بندی</label>
-									<div class="input-group round" style="width: 200px;">
-										<span class="input-group-addon">
-											<i class="icon-envelope"></i>
-										</span>
+									<div class="row">
+										<div class="col-md-12">
+											<div class="form-group">
+												<label asp-for="@Model.books.CategoryId" class="control-label">دسته بندی</label>
+												<select type="text" class="form-control" asp-for="@Model.books.CategoryId" asp-items='new SelectList(@Model.BookCategories,"Id","CategoryName")'>
+													<option value="0">انتخاب دسته بندی ....</option>
 
-										<input type="text" name="CategoryId" asp-for="@Model.books.CategoryId" class="form-control rtl text-Right" placeholder="دسته بندی کتاب">
-
-									</div><!-- /.input-group -->
+												</select>
+												<span asp-validation-for="@Model.books.CategoryId" class="error"></span>
+											</div>
+										</div>
+									</div>
 									<label>قیمت</label>
 									<div class="input-group round" style="width: 200px;">
 										<span class="input-group-addon">
