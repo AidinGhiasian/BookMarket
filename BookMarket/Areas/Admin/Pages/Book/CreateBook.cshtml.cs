@@ -27,7 +27,7 @@ namespace BookMarket.Areas.Admin.Pages.Book
         {
             _bookApplication.Create(command);
             TempData["success"] = "کتاب با موفقیت ثبت شد.";
-          return  Redirect("./Admin/AdminIndex");
+          return  Redirect("./AdminIndex");
           
         }
     }

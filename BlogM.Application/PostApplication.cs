@@ -21,7 +21,7 @@ namespace BlogM.Application
         }
         public void create(CreateViewModel create)
         {
-            var path = "picture";
+            var path ="Post";
             var pictureName=_fileUploader.UploadNewSize(create.FileName, path,720);
             var post = new Posts(pictureName, create.Title, create.ShortDescription, create.Description);
             _blogRepository.Create(post);
@@ -72,14 +72,14 @@ namespace BlogM.Application
             if (update.FileName != null)
             {
                 _fileUploader.Delete(update.Picture);
-                var path = "picture";
+                var path = "Post";
                 pictureName = _fileUploader.UploadNewSize(update.FileName, path, 720);
             }
 
             post.Edit(pictureName, update.Title, update.ShortDescription,
                 update.Description, update.IsAvailable);
 
-            _blogRepository.Updateby(post);
+            _blogRepository.SaveChanges();
 
         }
 

@@ -37,12 +37,13 @@
 					<div class="col-lg-6 col-md-10 m-auto m-b-30">
 
 
-						<form id="form" role="form" method="get" enctype="multipart/form-data">
+						<form method="post" enctype="multipart/form-data">
 							<div class="form-body">
 								<div class="form-group relative mt-3 mb-4">
-									<input type="file" class="form-control"name="Picture">
+									<input type="text" hidden class="form-control" name="Picture" asp-for="@Model.Blog.Picture">
+									<input class="form-control" hidden name="Id" asp-for="@Model.Blog.Id">
 									<div class="input-group round">
-										<input type="text" asp-for="@Model.Blog.Picture"  class="form-control file-input" placeholder="برای آپلود کلیک کنید">
+										<input type="file" name="FileName" asp-for="@Model.Blog.FileName" class="form-control file-input" placeholder="برای آپلود کلیک کنید">
 										<span class="input-group-btn">
 											<button type="button" class="btn btn-success">
 												<i class="icon-picture"></i>
