@@ -18,7 +18,7 @@ namespace BookM.Application
     {
         private readonly IBookCategoryRepository _bookcategory;
         private readonly IFileUploader _fileUploader;
-        public BookCategoryApplication(IBookCategoryRepository bookcategory,IFileUploader fileUploder)
+        public BookCategoryApplication(IBookCategoryRepository bookcategory, IFileUploader fileUploder)
         {
             _bookcategory = bookcategory;
             _fileUploader = fileUploder;
@@ -27,19 +27,23 @@ namespace BookM.Application
         public void Create(BookCategoryCreateViewModel create)
         {
             var pictureName = "";
-            if(create.FileName != null)
+            if (create.FileName != null)
             {
                 var path = "Category";
-                 pictureName = _fileUploader.UploadNewSize(create.FileName, path,720);
+                pictureName = _fileUploader.UploadNewSize(create.FileName, path, 720);
             }
-            var category = new BookCategories(create.CategoryName,pictureName, create.Description);
+            var category = new BookCategories(create.CategoryName, pictureName, create.Description);
             _bookcategory.Add(category);
             _bookcategory.SaveChanges();
         }
 
         public bool Delete(int id)
         {
-         var result= _bookcategory.Deleted(id);
+            var category = _bookcategory.GetById(id);
+
+            _fileUploader.Delete(category.Picture);
+
+            var result = _bookcategory.Deleted(id);
             return result;
         }
 
@@ -54,24 +58,24 @@ namespace BookM.Application
                 var pictureName = category.Picture;
                 if (update.FileName != null)
                 {
-                   _fileUploader.Delete(category.Picture);
+                    _fileUploader.Delete(category.Picture);
                     var path = "Category";
-                   pictureName = _fileUploader.UploadNewSize(update.FileName, path, 720);
+                    pictureName = _fileUploader.UploadNewSize(update.FileName, path, 720);
                 }
-                category.UpdateCategory(update.CategoryName,pictureName, update.Description);
-                
+                category.UpdateCategory(update.CategoryName, pictureName, update.Description);
+
                 _bookcategory.SaveChanges();
             }
         }
 
         public List<BookCategoryViewModel> GetAll()
         {
-            var list =_bookcategory.GetAll();
+            var list = _bookcategory.GetAll();
             return Maplist(list);
         }
         public BookCategoryEditViewModel GetById(int id)
         {
-            var category=_bookcategory.GetById(id);
+            var category = _bookcategory.GetById(id);
 
             return MapforEdit(category);
         }
@@ -93,7 +97,7 @@ namespace BookM.Application
                 Id = cat.Id,
                 CategoryName = cat.Name,
                 Description = cat.Description,
-                picture=cat.Picture,
+                picture = cat.Picture,
             };
             return categpry;
         }
@@ -107,7 +111,7 @@ namespace BookM.Application
                     categpry.Add(Map(cat));
                 }
             }
-           
+
             return categpry;
         }
         public BookCategories? GetbyId(int id)
