@@ -35,7 +35,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Areas\Admin\Pages\Blog\BlogCategory\" />
     <Folder Include="Pages\NewFolder\" />
     <Folder Include="wwwroot\picture\" />
   </ItemGroup>

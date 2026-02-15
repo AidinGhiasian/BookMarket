@@ -1,5 +1,7 @@
 ﻿using Blog.Domain.BlogCategoryAD;
 using BlogM.Application.Contacts.BlogCategoryApplication;
+using BookM.Domain.Book.AD;
+using DocumentFormat.OpenXml.Spreadsheet;
 using Services;
 using System;
 using System.Collections.Generic;
@@ -72,6 +74,12 @@ namespace BlogM.Application
             
         }
 
+        public List<BlogCategoryViewModel> GetAll()
+        {
+            var list = _blogCategoryRepository.GetAll();
+            return MapList(List);
+        }
+
         public List<BlogCategory> GetAvailableCategories()
         {
             return _blogCategoryRepository.GetAvailableCategories();
@@ -91,6 +99,19 @@ namespace BlogM.Application
         public BlogCategory? GetWithPostsBySlug(string slug)
         {
             return _blogCategoryRepository.GetWithPostsBySlug(slug);
+        }
+        public List<BlogCategoryViewModel> Maplist(List<BlogCategory>? cats)
+        {
+            var category = new List<BlogCategoryViewModel>();
+            if (cats != null)
+            {
+                foreach (var cat in cats)
+                {
+                    category.Add(Map(cat));
+                }
+            }
+
+            return category;
         }
     }
 }

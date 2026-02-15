@@ -80,7 +80,6 @@ namespace BlogM.Application
                 update.Description, update.IsAvailable,update.BlogCategoryId);
 
             _blogRepository.Updateby(post);
-
         }
 
 

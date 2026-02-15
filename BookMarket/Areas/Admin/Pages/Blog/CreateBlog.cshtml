@@ -72,6 +72,18 @@
 										</div><!-- /.input-group -->
 									</div><!-- /.form-group -->
 								</div><!-- /.col -->
+								<div class="form-group" style="width: 300px;">
+									<div class="row">
+										<div class="col-md-12">
+											<div class="form-group">
+												<label asp-for="@Model.Blogs.BlogCategoryId" class="control-label">دسته بندی</label>
+												<select type="text" class="form-control" name="CategoryId" asp-for="@Model.Blogs.BlogCategoryId" asp-items='new SelectList(@Model.BlogCategories, "Id", "CategoryName")'>
+													<option value="0">انتخاب دسته بندی ....</option>
+												</select>
+												<span asp-validation-for="@Model.Blogs.BlogCategoryId" class="error"></span>
+											</div>
+										</div>
+									</div>
 								<div class="form-group">
 									<label for="txt-mobile">توضیحات کوتاه</label>
 									<div class="input-group round">

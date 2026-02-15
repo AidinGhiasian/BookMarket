@@ -20,7 +20,6 @@ namespace BookMarket.Areas.Admin.Pages.Book
         public void OnGet()
         {
             BookCategories = _bookCategoryApplication.GetAll();
-
         }
      
         public IActionResult OnPost(BookM.Application.Contacts.BooksApplication.CreateViewModel command)

@@ -19,7 +19,7 @@ namespace BookMarket.Areas.Admin.Pages.Blog
         public IActionResult OnPost(EditViewModel command)
         {
           _postApplication.Update(command);
-            return Redirect("/Admin/Blog");
+            return Redirect("./AdminIndex");
         }
     }
 }

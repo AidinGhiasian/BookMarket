@@ -1,6 +1,7 @@
 using BookM.Application.Contacts.BooksCategoryApplication;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.SqlServer.Dac.Model;
 
 namespace BookMarket.Areas.Admin.Pages.Book
 {
