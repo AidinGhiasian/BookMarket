@@ -23,7 +23,7 @@ namespace BlogM.Application
         {
             var path = "picture";
             var pictureName=_fileUploader.UploadNewSize(create.FileName, path,720);
-            var post = new Posts(pictureName, create.Title, create.ShortDescription, create.Description);
+            var post = new Posts(pictureName, create.Title, create.ShortDescription, create.Description,create.BlogCategoryId);
             _blogRepository.Create(post);
         }
         public void Delete(int id)
@@ -77,7 +77,7 @@ namespace BlogM.Application
             }
 
             post.Edit(pictureName, update.Title, update.ShortDescription,
-                update.Description, update.IsAvailable);
+                update.Description, update.IsAvailable,update.BlogCategoryId);
 
             _blogRepository.Updateby(post);
 

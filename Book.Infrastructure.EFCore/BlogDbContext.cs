@@ -1,11 +1,12 @@
-﻿using System;
+﻿using Blog.Domain.BlogAD;
+using Blog.Domain.BlogCategoryAD;
+using BlogM.Infrastructure.EFCore.Mapping;
+using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Blog.Domain.BlogAD;
-using Blog.Domain.BlogCategoryAD;
-using Microsoft.EntityFrameworkCore;
 
 namespace Book.Infrastructure.EFCore
 {
@@ -18,6 +19,8 @@ namespace Book.Infrastructure.EFCore
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.ApplyConfiguration(new BlogCategoryMapping());
+
             base.OnModelCreating(modelBuilder);
         }
 

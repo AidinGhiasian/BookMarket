@@ -39,8 +39,9 @@ namespace Blog.Domain.BlogCategoryAD
         public void Edit(string name, string picture, string slug, string description, bool statusAvailable)
         {
             Name = name;
-            if (Picture != null)
-                Slug = slug;
+            if (!string.IsNullOrWhiteSpace(picture))
+                Picture = picture;
+            Slug = slug;
             Description = description;
             UpdatedDate = DateTime.Now;
             IsAvailable = statusAvailable;
