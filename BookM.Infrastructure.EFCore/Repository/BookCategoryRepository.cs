@@ -20,6 +20,7 @@ namespace BookM.Infrastructure.EFCore.Repository
         {
             var cat = _dbContext.BookCategories.Find(id);
             _dbContext.BookCategories.Remove(cat);
+            _dbContext.SaveChanges();
             return true;
         }
     }
