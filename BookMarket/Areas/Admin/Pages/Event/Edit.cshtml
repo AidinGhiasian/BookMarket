@@ -1,0 +1,83 @@
+﻿@page
+@model BookMarket.Areas.Admin.Pages.Event.EditModel
+@{
+}
+<div class="row">
+	<!-- BEGIN BREADCRUMB -->
+	<div class="col-md-12">
+		<div class="breadcrumb-box shadow">
+			<ul class="breadcrumb">
+				<li><a href="dashboard.html">پیشخوان</a></li>
+				<li><a href="#">صفحات</a></li>
+				<li class="active">ویرایش مقاله</li>
+			</ul>
+			<div class="breadcrumb-left">
+				پنجشنبه، 1404/10/4
+				<i class="icon-calendar"></i>
+			</div><!-- /.breadcrumb-left -->
+		</div><!-- /.breadcrumb-box -->
+	</div><!-- /.col-md-12 -->
+	<!-- END BREADCRUMB -->
+
+	<div class="col-12">
+		<div class="portlet box shadow">
+			<div class="portlet-heading">
+				<div class="portlet-title">
+					<h3 class="title">
+						<i class="icon-note"></i>
+						ویرایش مقاله
+					</h3>
+				</div><!-- /.portlet-title -->
+
+			</div><!-- /.portlet-heading -->
+
+			<div class="portlet-body edit-form">
+
+				<div class="row">
+					<div class="col-lg-6 col-md-10 m-auto m-b-30">
+						<form id="form" role="form" method="post" enctype="multipart/form-data">
+
+							<div class="form-body">
+								<div class="form-group relative mt-3 mb-4">
+									<input type="text" hidden class="form-control" name="Picture" asp-for="@Model.Events.Picture">
+									<input class="form-control" hidden name="Id" asp-for="@Model.Events.Id">
+									<div class="input-group round">
+										<input type="file" name="FileName" asp-for="@Model.Events.FileName" class="form-control file-input" placeholder="برای آپلود کلیک کنید">
+										<span class="input-group-btn">
+											<button type="button" class="btn btn-success">
+												<i class="icon-picture"></i>
+												آپلود عکس
+												<div class="paper-ripple"><div class="paper-ripple__background"></div><div class="paper-ripple__waves"></div></div>
+											</button>
+										</span>
+									</div><!-- /.input-group -->
+									<div class="help-block"></div>
+								</div>
+								<div class="col-sm-6">
+									<div class="form-group">
+										<label for="txt-firstname">عنوان مقاله</label>
+										<div class="input-group round">
+											<span class="input-group-addon">
+												<i class="icon-user"></i>
+											</span>
+											<input type="text" asp-for="@Model.Events.EventTitle" name="Title" class="form-control rtl text-right" placeholder="لطفا عنوان مقاله را وارد نمایید.">
+										</div><!-- /.input-group -->
+									</div><!-- /.form-group -->
+
+									<div class="form-actions">
+										<button type="submit" class="btn btn-success btn-round">
+											<i class="icon-check"></i>
+											ذخیره
+										</button>
+										<a href="#" class="btn btn-warning btn-round float-end">
+											<i class="icon-close"></i>
+											بازگشت
+										</a>
+									</div><!-- /.form-actions -->
+						</form>
+					</div><!-- /.col -->
+				</div><!-- /.row -->
+			</div><!-- /.portlet-body -->
+		</div><!-- /.portlet -->
+	</div><!-- /.col-12 -->
+</div><!-- /.row -->

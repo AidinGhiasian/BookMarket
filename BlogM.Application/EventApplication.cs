@@ -1,11 +1,12 @@
-﻿using System;
+﻿using Blog.Domain.BlogAD;
+using BlogM.Application.Contacts.EventApplication;
+using BookM.Domain.Book.AD;
+using Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Blog.Domain.BlogAD;
-using BlogM.Application.Contacts.EventApplication;
-using Services;
 
 namespace BlogM.Application
 {
@@ -25,6 +26,7 @@ namespace BlogM.Application
             var CE = new Events(picturename, create.EventTitle,
                 create.Description, create.EventStartTime, create.EventFinishTime);
             _eventrepository.Add(CE);
+            _eventrepository.SaveChanges();
         }
 
         public void Delete(long id)
@@ -32,13 +34,13 @@ namespace BlogM.Application
             _eventrepository.Delete(id);
         }
 
-        public List<EventViewModel> GetAll(string EventTitle)
+        public List<EventViewModel> GetAll()
         {
           var AE = _eventrepository.GetAll();
             var LE = new List<EventViewModel>();
             foreach (var e in AE)
             { 
-                LE.Append(map(e));
+                LE.Add(map(e));
             }
             return LE;
         }
@@ -48,7 +50,19 @@ namespace BlogM.Application
            var GE = _eventrepository.GetById(id);
             return map(GE);
         }
-
+        public EditViewModel Getdetail(int id)
+        {
+            var book = _eventrepository.GetById(id);
+            return new EditViewModel
+            {
+                Id = book.Id,
+                Picture = book.Picture,
+                EventTitle = book.EventTitle,
+                EventStartTime = book.EventStartTime,
+                EventFinishTime = book.EventFinishTime,
+                Description = book.Description,
+            };
+        }
         public void Update(EditViewModel edit)
         {
             var EE = _eventrepository.GetById(edit.Id);

@@ -11,10 +11,10 @@ namespace BlogM.Application.Contacts.EventApplication
     {
         public long Id { get; set; }
         public string Picture { get; set; }
-        public IFormFile? FileName { get; set; }
         public string EventTitle { get; set; }
         public string Description { get; set; }
         public DateTime EventStartTime { get; set; }
         public DateTime EventFinishTime { get; set; }
+        public IFormFile FileName { get; set; }
     }
 }
