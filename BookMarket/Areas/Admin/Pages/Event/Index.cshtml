@@ -81,7 +81,7 @@
 											<td>@item.EventStartTime</td>
 											<td>@item.EventFinishTime</td>
 											<td>
-												<a class="btn btn-info" asp-page="/Event/index" asp-page-handler="Edit" asp-route-id="@item.Id">ویرایش</a>
+												<a class="btn btn-info" asp-page="/Event/Edit" asp-page-handler="Post" asp-route-id="@item.Id">ویرایش</a>
 											</td>
 											<td>
 												<a class="btn btn-danger" asp-page-handler="delete" asp-route-id="@item.Id">حذف</a>

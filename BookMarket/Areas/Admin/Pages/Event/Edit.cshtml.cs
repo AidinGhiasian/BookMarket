@@ -12,9 +12,14 @@ namespace BookMarket.Areas.Admin.Pages.Event
             _eventApplication=eventApplication;
         }
         public EditViewModel Events { get; set; }
-        public void OnGet()
+        public void OnGet(int id)
         {
-            
+            Events = _eventApplication.Getdetail(id);
+        }
+        public IActionResult OnPost(EditViewModel command)
+        {
+            _eventApplication.Update(command);
+            return Redirect("./Index");
         }
     }
 }

@@ -7,9 +7,11 @@
 	<div class="col-md-12">
 		<div class="breadcrumb-box shadow">
 			<ul class="breadcrumb">
-				<li><a href="dashboard.html">پیشخوان</a></li>
+				<li><a href="/Admin/Index">پیشخوان</a></li>
 				<li><a href="#">صفحات</a></li>
-				<li class="active">ویرایش مقاله</li>
+				<li><a href="/Admin/Event/AdminIndex"> مدیریت رویداد ها</a></li>
+				<li><a href="#" class="active">افزودن رویداد</a></li>
+
 			</ul>
 			<div class="breadcrumb-left">
 				پنجشنبه، 1404/10/4
@@ -35,14 +37,13 @@
 
 				<div class="row">
 					<div class="col-lg-6 col-md-10 m-auto m-b-30">
-						<form id="form" role="form" method="post" enctype="multipart/form-data">
 
+						<form id="form" role="form" method="post" enctype="multipart/form-data">
 							<div class="form-body">
 								<div class="form-group relative mt-3 mb-4">
-									<input type="text" hidden class="form-control" name="Picture" asp-for="@Model.Events.Picture">
-									<input class="form-control" hidden name="Id" asp-for="@Model.Events.Id">
+									<input type="file" name="FileName" asp-for="@Model.Events.FileName" class="form-control">
 									<div class="input-group round">
-										<input type="file" name="FileName" asp-for="@Model.Events.FileName" class="form-control file-input" placeholder="برای آپلود کلیک کنید">
+										<input type="text" class="form-control file-input" placeholder="برای آپلود کلیک کنید">
 										<span class="input-group-btn">
 											<button type="button" class="btn btn-success">
 												<i class="icon-picture"></i>
@@ -55,25 +56,58 @@
 								</div>
 								<div class="col-sm-6">
 									<div class="form-group">
-										<label for="txt-firstname">عنوان مقاله</label>
+										<label for="txt-firstname">عنوان رویداد</label>
 										<div class="input-group round">
 											<span class="input-group-addon">
 												<i class="icon-user"></i>
 											</span>
-											<input type="text" asp-for="@Model.Events.EventTitle" name="Title" class="form-control rtl text-right" placeholder="لطفا عنوان مقاله را وارد نمایید.">
+											<input type="text" name="EventTitle" asp-for="@Model.Events.EventTitle" class="form-control rtl text-right" placeholder="لطفا عنوان رویداد را وارد نمایید.">
 										</div><!-- /.input-group -->
 									</div><!-- /.form-group -->
-
+								</div><!-- /.col -->
+								<div class="col-sm-6">
+									<div class="form-group">
+										<label>زمان شروع رویداد</label>
+										<div class="input-group round">
+											<span class="input-group-addon">
+												<i class="icon-user"></i>
+											</span>
+											<input type="date" name="EventStartTime" class="form-control rtl text-right" placeholder="لطفا زمان شروع رویداد را وارد نمایید.">
+										</div><!-- /.input-group -->
+									</div><!-- /.form-group -->
+								</div><!-- /.col -->
+								<div class="col-sm-6">
+									<div class="form-group">
+										<label>زمان پایان رویداد</label>
+										<div class="input-group round">
+											<span class="input-group-addon">
+												<i class="icon-user"></i>
+											</span>
+											<input type="datetime" name="EventFinishTime" asp-for="@Model.Events.EventFinishTime" class="form-control rtl text-right" placeholder="لطفا زمان پایان رویداد را وارد نمایید.">
+										</div><!-- /.input-group -->
+									</div><!-- /.form-group -->
+								</div><!-- /.col -->
+								<div class="form-group" style="width: 390px;">
+									<div class="form-group">
+										<label for="txt-email">توضیحات کامل</label>
+										<div class="input-group round">
+											<span class="input-group-addon">
+												<i class="icon-envelope"></i>
+											</span>
+											<textarea type="text" style="height: 150px;" name="Description" asp-for="@Model.Events.Description" class="form-control rtl text-Right" placeholder=" توضیخات "></textarea>
+										</div><!-- /.input-group -->
+									</div><!-- /.form-group -->
 									<div class="form-actions">
 										<button type="submit" class="btn btn-success btn-round">
 											<i class="icon-check"></i>
 											ذخیره
 										</button>
-										<a href="#" class="btn btn-warning btn-round float-end">
+										<a href="./AdminIndex" class="btn btn-warning btn-round float-end">
 											<i class="icon-close"></i>
 											بازگشت
 										</a>
 									</div><!-- /.form-actions -->
+								</div>
 						</form>
 					</div><!-- /.col -->
 				</div><!-- /.row -->

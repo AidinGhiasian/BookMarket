@@ -14,13 +14,13 @@ namespace BookMarket.Areas.Admin.Pages.Event
         public CreateViewModel Events { get; set; }
         public void OnGet()
         {
-            
+
         }
-        public IActionResult OnPost(CreateViewModel command) 
-        { 
-        _eventApplication.Create(command);
+        public IActionResult OnPost(CreateViewModel command)
+        {
+            _eventApplication.Create(command);
             TempData["success"] = "رویداد با موفقیت ثبت شد.";
-         return   Redirect("./Index");
+            return Redirect("./Index");
         }
     }
 }

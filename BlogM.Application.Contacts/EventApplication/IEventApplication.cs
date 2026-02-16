@@ -13,5 +13,6 @@ namespace BlogM.Application.Contacts.EventApplication
         public void Update(EditViewModel edit);
         public void Delete(long id);
         public List<EventViewModel> GetAll();
+        public EditViewModel Getdetail(int id);
     }
 }
