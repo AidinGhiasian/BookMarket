@@ -37,12 +37,16 @@
 					<div class="col-lg-6 col-md-10 m-auto m-b-30">
 
 
+
+
 						<form id="form" role="form" method="post" enctype="multipart/form-data">
+
 							<div class="form-body">
 								<div class="form-group relative mt-3 mb-4">
-									<input type="file" class="form-control"name="Picture">
+									<input type="text" hidden class="form-control" name="Picture" asp-for="@Model.Blog.Picture">
+									<input class="form-control" hidden name="Id" asp-for="@Model.Blog.Id">
 									<div class="input-group round">
-										<input type="text" asp-for="@Model.Blog.Picture"  class="form-control file-input" placeholder="برای آپلود کلیک کنید">
+										<input type="file" name="FileName" asp-for="@Model.Blog.FileName" class="form-control file-input" placeholder="برای آپلود کلیک کنید">
 										<span class="input-group-btn">
 											<button type="button" class="btn btn-success">
 												<i class="icon-picture"></i>
@@ -63,36 +67,17 @@
 											<input type="text" asp-for="@Model.Blog.Title" name="Title" class="form-control rtl text-right" placeholder="لطفا عنوان مقاله را وارد نمایید.">
 										</div><!-- /.input-group -->
 									</div><!-- /.form-group -->
-								</div><!-- /.col -->
-								<div class="form-group">
-									<label for="txt-mobile">توضیحات کوتاه</label>
-									<div class="input-group round">
-										<span class="input-group-addon">
-											<i class="icon-envelope"></i>
-										</span>
-										<textarea type="text" style="height: 111px;" asp-for="@Model.Blog.ShortDescription" name="ShortDescription" class="form-control rtl text-right " placeholder="مقدار توضیحات کوتاه باید یا شامل مقدمه یا شامل یک بند خلاصه مقاله شما باشد."></textarea>
-									</div><!-- /.input-group -->
-								</div><!-- /.form-group -->
 
-								<div class="form-group">
-									<label for="txt-email">توضیحات کامل</label>
-									<div class="input-group round">
-										<span class="input-group-addon">
-											<i class="icon-envelope"></i>
-										</span>
-										<textarea type="text" style="height: 456px;" asp-for="@Model.Blog.Description"  name="Description" class="form-control rtl text-Right" placeholder=" توضیخات باید به صورت کامل باشد و تمام متن مقاله از مقدمه تا بخش پایانی در آن وارد شود. "></textarea>
-									</div><!-- /.input-group -->
-								</div><!-- /.form-group -->
-								<div class="form-actions">
-									<button type="submit" class="btn btn-success btn-round">
-										<i class="icon-check"></i>
-										ذخیره
-									</button>
-									<a href="#" class="btn btn-warning btn-round float-end">
-										<i class="icon-close"></i>
-										بازگشت
-									</a>
-								</div><!-- /.form-actions -->
+									<div class="form-actions">
+										<button type="submit" class="btn btn-success btn-round">
+											<i class="icon-check"></i>
+											ذخیره
+										</button>
+										<a href="#" class="btn btn-warning btn-round float-end">
+											<i class="icon-close"></i>
+											بازگشت
+										</a>
+									</div><!-- /.form-actions -->
 						</form>
 					</div><!-- /.col -->
 				</div><!-- /.row -->

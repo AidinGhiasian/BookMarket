@@ -26,7 +26,7 @@ namespace BlogM.Application
         {
             if (Exists(command.Name))
                 return false;
-            var picturesName = _fileUploader.UploadNewSize(command.Picture, command.Name, 720);
+            var picturesName = _fileUploader.UploadNewSize(command.Picture, "BlogCategory", 720);
 
             var category = new BlogCategory(
                 command.Name,
@@ -36,6 +36,7 @@ namespace BlogM.Application
             );
 
             _blogCategoryRepository.Add(category);
+            _blogCategoryRepository.SaveChanges();
             return true;
         }
         public bool Edit(EditBlogCategoryViewModel command)
@@ -50,13 +51,13 @@ namespace BlogM.Application
                 return false;
 
 
-            var picturesName =command.PictureName;
+            var picturesName = command.PictureName;
             if (command.Picture != null)
             {
                 _fileUploader.Delete(command.PictureName);
-                 picturesName = _fileUploader.UploadNewSize(command.Picture, command.Name, 720);
+                picturesName = _fileUploader.UploadNewSize(command.Picture, "BlogCategory", 720);
             }
-          
+
             category.Edit(
                 command.Name,
                 picturesName,
@@ -70,16 +71,34 @@ namespace BlogM.Application
         }
         public bool Exists(string name)
         {
-             return _blogCategoryRepository.Exists(name);
-            
+            return _blogCategoryRepository.Exists(name);
+
         }
 
         public List<BlogCategoryViewModel> GetAll()
         {
             var list = _blogCategoryRepository.GetAll();
-            return new List<BlogCategoryViewModel>();
-        }
 
+
+            return Maplist(list);
+        }
+        public BlogCategoryViewModel MapBlog(BlogCategory blogCategory)
+        {
+            if (blogCategory == null)
+            {
+                return null;
+            }
+            return new BlogCategoryViewModel
+            {
+                Id = blogCategory.Id,
+                Name = blogCategory.Name,
+                Slug = blogCategory.Slug,
+                Description = blogCategory.Description,
+                Picture = blogCategory.Picture,
+                CreationDate = blogCategory.CreationDate.ToFarsi(),
+                IsAvailable = blogCategory.IsAvailable,
+            };
+        }
         public List<BlogCategory> GetAvailableCategories()
         {
             return _blogCategoryRepository.GetAvailableCategories();
@@ -103,15 +122,33 @@ namespace BlogM.Application
         public List<BlogCategoryViewModel> Maplist(List<BlogCategory>? cats)
         {
             var category = new List<BlogCategoryViewModel>();
-            //if (cats != null)
-            //{
-            //    foreach (var cat in cats)
-            //    {
-            //        category.Add(Map(cat));
-            //    }
-            //}
+
+            if (cats != null)
+            {
+                foreach (var cat in cats)
+                {
+                    category.Add(MapBlog(cat));
+                }
+            }
+
 
             return category;
+        }
+
+        public EditBlogCategoryViewModel GetDetail(int id)
+        {
+            var blogCategory = _blogCategoryRepository.GetById(id);
+            return new EditBlogCategoryViewModel
+            {
+                Id = blogCategory.Id,
+                Name = blogCategory.Name,
+                Slug = blogCategory.Slug,
+                Description = blogCategory.Description,
+                PictureName = blogCategory.Picture,
+                IsAvailable = blogCategory.IsAvailable,
+
+
+            };
         }
     }
 }

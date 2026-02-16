@@ -107,9 +107,10 @@
 										<div class="col-md-12">
 											<div class="form-group">
 												<label asp-for="@Model.books.CategoryId" class="control-label">دسته بندی</label>
-												<select type="text" class="form-control" name="CategoryId" asp-for="@Model.books.CategoryId" asp-items='new SelectList(@Model.BookCategories, "Id", "CategoryName")'>
-													<option value="0">انتخاب دسته بندی ....</option>
 
+												<select type="text" class="form-control" name="CategoryId" asp-for="@Model.books.CategoryId" asp-items='new SelectList(@Model.BookCategories,"Id","CategoryName")'>
+
+													<option value="0">انتخاب دسته بندی ....</option>
 												</select>
 												<span asp-validation-for="@Model.books.CategoryId" class="error"></span>
 											</div>

@@ -14,6 +14,8 @@ using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 using System.Runtime.InteropServices;
 using BookM.Application.Contacts.BooksCategoryApplication;
 using BookM.Infrastructure.EFCore;
+using DocumentFormat.OpenXml.Spreadsheet;
+using DocumentFormat.OpenXml.Office2010.Excel;
 
 namespace BookM.Application
 {
@@ -69,8 +71,10 @@ namespace BookM.Application
           
             foreach (var item in list)
             {
-
-                item.CategoryName = category.FirstOrDefault(x => x.Id == item.CategoryId).Name;
+               
+              
+                    item.CategoryName = category.FirstOrDefault(x => x.Id == item.CategoryId).Name;
+                
 
             }
             return list;

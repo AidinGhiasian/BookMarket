@@ -20,7 +20,7 @@ namespace BookMarket.Areas.Admin.Pages.Book
         public IActionResult OnPost(EditViewModel command)
         {
             _bookApplication.Edit(command);
-            return Redirect("./AdminIndex");
+            return RedirectToPage("./AdminIndex");
         }
     }
 }
