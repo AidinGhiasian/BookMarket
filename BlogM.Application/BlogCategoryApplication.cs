@@ -77,7 +77,7 @@ namespace BlogM.Application
         public List<BlogCategoryViewModel> GetAll()
         {
             var list = _blogCategoryRepository.GetAll();
-            return MapList(List);
+            return new List<BlogCategoryViewModel>();
         }
 
         public List<BlogCategory> GetAvailableCategories()
@@ -103,13 +103,13 @@ namespace BlogM.Application
         public List<BlogCategoryViewModel> Maplist(List<BlogCategory>? cats)
         {
             var category = new List<BlogCategoryViewModel>();
-            if (cats != null)
-            {
-                foreach (var cat in cats)
-                {
-                    category.Add(Map(cat));
-                }
-            }
+            //if (cats != null)
+            //{
+            //    foreach (var cat in cats)
+            //    {
+            //        category.Add(Map(cat));
+            //    }
+            //}
 
             return category;
         }
