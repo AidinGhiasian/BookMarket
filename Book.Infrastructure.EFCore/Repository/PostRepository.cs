@@ -57,7 +57,7 @@ namespace BlogM.Infrastructure.EFCore.Repository
             if (EB != null)
             {
                 EB.Edit(posts.Picture, posts.Title, posts.ShortDescription
-                    , posts.Description, posts.IsAvailable);
+                    , posts.Description, posts.IsAvailable,posts.BlogCategoryId);
                 _blogdbcontext.SaveChanges();
             }
         }

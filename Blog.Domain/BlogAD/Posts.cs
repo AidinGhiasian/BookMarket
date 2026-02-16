@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Blog.Domain.BlogCategoryAD;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,11 +18,13 @@ namespace Blog.Domain.BlogAD
         public DateTime UpdatedTime { get; private set; }
         public bool IsAvailable { get; private set; }
 
+        public virtual BlogCategory BlogCategory { get; private set; }
+        public int BlogCategoryId { get; set; }
 
         private Posts() { }
 
 
-        public Posts(string picture, string title, string shortDescription, string description)
+        public Posts(string picture, string title, string shortDescription, string description, int blogCategoryId)
         {
             Picture = picture;
             Title = title;
@@ -30,8 +33,9 @@ namespace Blog.Domain.BlogAD
             PostTime = DateTime.Now;
             UpdatedTime = DateTime.Now;
             IsAvailable = true;
+            BlogCategoryId = blogCategoryId;
         }
-        public void Edit(string picture, string title, string shortDescription, string description, bool statusAvalable)
+        public void Edit(string picture, string title, string shortDescription, string description, bool statusAvalable,int blogCategoryId)
         {
                  if (picture != null)
             Picture = picture;
@@ -40,6 +44,7 @@ namespace Blog.Domain.BlogAD
             Description = description;
             UpdatedTime = DateTime.Now;
             IsAvailable = statusAvalable;
+            BlogCategoryId = blogCategoryId;
         }
     }
 }

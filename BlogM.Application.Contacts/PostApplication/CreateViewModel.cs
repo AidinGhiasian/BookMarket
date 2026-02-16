@@ -14,6 +14,7 @@ namespace BlogM.Application.Contacts.PostApplication
         public string Title { get;  set; }
         public string ShortDescription { get;  set; }
         public string Description { get;  set; }
+        public int BlogCategoryId { get; set; }
 
     }
 }

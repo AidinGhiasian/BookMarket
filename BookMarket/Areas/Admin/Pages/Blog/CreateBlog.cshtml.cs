@@ -1,5 +1,7 @@
 ﻿using BlogM.Application;
+using BlogM.Application.Contacts.BlogCategoryApplication;
 using BlogM.Application.Contacts.PostApplication;
+using BookM.Application.Contacts.BooksCategoryApplication;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
@@ -12,6 +14,8 @@ namespace BookMarket.Areas.Admin.Pages.Blog
         {
             _postApplication = postApplication;
         }
+        public CreateViewModel Blogs { get; set; }
+        public List<BlogCategoryViewModel> BlogCategories { get; set; }
         public void OnGet()
         {
         }
