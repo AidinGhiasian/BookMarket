@@ -16,6 +16,7 @@ namespace BlogM.Application.Contacts.BlogCategoryApplication
         List<BlogCategory> GetAvailableCategories();
         List<BlogCategoryViewModel> GetAll();
         BlogCategory? GetWithPostsBySlug(string slug);
+        public EditBlogCategoryViewModel GetDetail(int id);
         bool Exists(string name);
     }
 }

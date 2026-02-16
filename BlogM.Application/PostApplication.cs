@@ -79,12 +79,10 @@ namespace BlogM.Application
             post.Edit(pictureName, update.Title, update.ShortDescription,
                 update.Description, update.IsAvailable,update.BlogCategoryId);
 
-<<<<<<< HEAD
+
             _blogRepository.SaveChanges();
 
-=======
-            _blogRepository.Updateby(post);
->>>>>>> 8b2c6dc79c5e112d8d2b22ef3e271e209d030e68
+
         }
 
 

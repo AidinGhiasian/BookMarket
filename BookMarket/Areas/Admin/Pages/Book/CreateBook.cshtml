@@ -107,11 +107,9 @@
 										<div class="col-md-12">
 											<div class="form-group">
 												<label asp-for="@Model.books.CategoryId" class="control-label">دسته بندی</label>
-<<<<<<< HEAD
-												<select type="text" class="form-control"name="CategoryId" asp-for="@Model.books.CategoryId" asp-items='new SelectList(@Model.BookCategories,"Id","CategoryName")'>
-=======
-												<select type="text" class="form-control" name="CategoryId" asp-for="@Model.books.CategoryId" asp-items='new SelectList(@Model.BookCategories, "Id", "CategoryName")'>
->>>>>>> 8b2c6dc79c5e112d8d2b22ef3e271e209d030e68
+
+												<select type="text" class="form-control" name="CategoryId" asp-for="@Model.books.CategoryId" asp-items='new SelectList(@Model.BookCategories,"Id","CategoryName")'>
+
 													<option value="0">انتخاب دسته بندی ....</option>
 												</select>
 												<span asp-validation-for="@Model.books.CategoryId" class="error"></span>
