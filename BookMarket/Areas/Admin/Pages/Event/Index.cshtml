@@ -1,4 +1,5 @@
 ﻿@page
+@using Services.Application
 @model BookMarket.Areas.Admin.Pages.Event.IndexModel
 @{
 }
@@ -9,11 +10,10 @@
 			<div class="breadcrumb-box shadow">
 				<ul class="breadcrumb">
 					<li><a href="/Admin/Index">پیشخوان</a></li>
-					<li><a href="#">جدول‌ها</a></li>
 					<li><a href="#" class="active">مدیریت رویداد ها</a></li>
 				</ul>
 				<div class="breadcrumb-left">
-					پنجشنبه، 1404/10/4
+					@ConvertDateTime.ConvertMiladiToShamsi(DateTime.Now, "HH:mm  dd MMMM yyyy")
 					<i class="icon-calendar"></i>
 				</div><!-- /.breadcrumb-left -->
 			</div><!-- /.breadcrumb-box -->

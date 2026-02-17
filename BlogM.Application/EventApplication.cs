@@ -21,7 +21,7 @@ namespace BlogM.Application
         }
         public void Create(CreateViewModel create)
         {
-            var path = create.Picture;
+            var path = "Event";
             var picturename = _fileuploader.UploadNewSize(create.FileName, path,720);
             var CE = new Events(picturename, create.EventTitle,
                 create.Description, create.EventStartTime, create.EventFinishTime);
@@ -72,8 +72,8 @@ namespace BlogM.Application
             if (edit.FileName != null)
             {
                 _fileuploader.Delete(edit.Picture);
-                var newpath = "picture";
-                picturepath = _fileuploader.UploadNewSize(edit.FileName, newpath,720);
+                var path = "Event";
+                picturepath = _fileuploader.UploadNewSize(edit.FileName, path,720);
             }
             EE.Edit(edit.Picture, edit.EventTitle, edit.Description,edit.EventStartTime,edit.EventFinishTime);
             _eventrepository.Update(EE);
