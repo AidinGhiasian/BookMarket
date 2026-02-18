@@ -17,9 +17,9 @@ namespace BookMarket.Areas.Admin.Pages.Blog.BlogCategory
         public IActionResult OnPost(CreateBlogCategoryViewModel command)
         {
           var result=  _blogCategoryApplication.Create(command);
-            if (result==false)
+            if (result.Failure)
             {
-                TempData["failed"] = "ثبت انجام نشد";
+                TempData["failed"] = result.Message;
             }
             return Redirect("./BlogCategoryIndex");
 

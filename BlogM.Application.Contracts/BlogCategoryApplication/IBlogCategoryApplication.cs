@@ -1,4 +1,5 @@
 ﻿using Blog.Domain.BlogCategoryAD;
+using Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,7 @@ namespace BlogM.Application.Contracts.BlogCategoryApplication
 {
     public interface IBlogCategoryApplication
     {
-        public bool Create(CreateBlogCategoryViewModel command);
+        public OperationResult Create(CreateBlogCategoryViewModel command);
         public bool Edit(EditBlogCategoryViewModel command);
         BlogCategory? GetByName(string name);
         BlogCategory? GetBySlug(string slug);
