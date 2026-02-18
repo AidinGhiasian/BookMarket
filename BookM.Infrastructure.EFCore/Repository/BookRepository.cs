@@ -25,7 +25,7 @@ namespace BookM.Infrastructure.EFCore.Repository
 
         public List<Books> GetAllWithCategory()
         {
-            return _bookdbcontext.Books.Include(c => c.BookCategories).ToList();
+            return _bookdbcontext.Books.Include(c => c.Category).ToList();
         }
 
         public void Create(Books books)
@@ -52,13 +52,13 @@ namespace BookM.Infrastructure.EFCore.Repository
 
         public List<Books> GetBy()
         {
-            return _bookdbcontext.Books.ToList();
+            return _bookdbcontext.Books.Include(x=>x.Category).ToList();
 
         }
 
         public Books? GetById(int id)
         {
-            return _bookdbcontext.Books.FirstOrDefault(x => x.Id == id);
+            return _bookdbcontext.Books.Include(x=>x.Category).FirstOrDefault(x => x.Id == id);
         }
 
         public async Task Updateby(Books book)

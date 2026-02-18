@@ -13,9 +13,10 @@ namespace BlogM.Application.Contracts.PostApplication
         public string Title { get; set; }
         public string ShortDescription { get;  set; }
         public string Description { get;  set; }
-        public DateTime PostTime { get;  set; }
-        public DateTime UpdatedTime { get;  set; }
+        public string PostTime { get;  set; }
+    
         public bool IsAvailable { get;  set; }
-
+        public DateTime UpdatedTime { get; set; }
+        public string Category { get; set; }
     }
 }

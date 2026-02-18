@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AccountM.Application.Contracts\AccountM.Application.Contracts.csproj" />
+    <ProjectReference Include="..\BlogM.Application.Contracts\BlogM.Application.Contracts.csproj" />
+    <ProjectReference Include="..\BlogM.Application\BlogM.Application.csproj" />
+    <ProjectReference Include="..\BookM.Application.Contracts\BookM.Application.Contracts.csproj" />
+  </ItemGroup>
+
+</Project>

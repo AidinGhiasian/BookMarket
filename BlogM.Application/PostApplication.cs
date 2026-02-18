@@ -21,9 +21,9 @@ namespace BlogM.Application
         }
         public void create(CreateViewModel create)
         {
-            var path ="Post";
-            var pictureName=_fileUploader.UploadNewSize(create.FileName, path,720);
-            var post = new Posts(pictureName, create.Title, create.ShortDescription, create.Description,create.BlogCategoryId);
+            var path = "Post";
+            var pictureName = _fileUploader.UploadNewSize(create.FileName, path, 720);
+            var post = new Posts(pictureName, create.Title, create.ShortDescription, create.Description, create.BlogCategoryId);
             _blogRepository.Create(post);
         }
         public void Delete(int id)
@@ -33,25 +33,20 @@ namespace BlogM.Application
 
         public List<PostViewModel> GetAll()
         {
-           var posts = _blogRepository.GetAll();
-            var list=new List<PostViewModel>();
-            foreach (var post in posts) 
-            {
-                list.Add(map(post));
-            }
-            return list;
+            return _blogRepository.GetAll().Select(map).ToList();
+
 
         }
 
         public PostViewModel? GetById(int id)
         {
-          var post= _blogRepository.GetById(id);
+            var post = _blogRepository.GetById(id);
             return map(post);
         }
 
         public EditViewModel GetDetailes(int id)
         {
-           var posts = _blogRepository.GetById(id);
+            var posts = _blogRepository.GetById(id);
             return new EditViewModel
             {
                 Id = posts.Id,
@@ -61,6 +56,7 @@ namespace BlogM.Application
                 Description = posts.Description,
                 IsAvailable = posts.IsAvailable,
                 BlogCategoryId = posts.BlogCategoryId,
+
             };
         }
 
@@ -68,7 +64,7 @@ namespace BlogM.Application
         {
             var post = _blogRepository.GetById(update.Id);
 
-            var pictureName =update.Picture;
+            var pictureName = update.Picture;
 
             if (update.FileName != null)
             {
@@ -78,7 +74,7 @@ namespace BlogM.Application
             }
 
             post.Edit(pictureName, update.Title, update.ShortDescription,
-                update.Description, update.IsAvailable,update.BlogCategoryId);
+                update.Description, update.IsAvailable, update.BlogCategoryId);
 
 
             _blogRepository.SaveChanges();
@@ -97,12 +93,13 @@ namespace BlogM.Application
                 ShortDescription = posts.ShortDescription,
                 Description = posts.Description,
                 IsAvailable = posts.IsAvailable,
-                PostTime = posts.PostTime,
+                PostTime = posts.PostTime.ToFarsi(),
                 UpdatedTime = posts.UpdatedTime,
+                Category = posts.BlogCategory.Name,
             };
-            
+
         }
-      
+
 
     }
 

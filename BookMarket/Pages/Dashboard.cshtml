@@ -1,281 +1,274 @@
-﻿
-
-
-@page
+﻿@page
 @model BookMarket.Pages.DashboardModel
 @{
 
 }
-
 <main class="main">
-	<div class="page-header text-center" style="background-image: url('assets/images/page-header-bg.jpg')">
-		<div class="container">
-			<h1 class="page-title">داشبورد مدیران<span>پنل ادمین</span></h1>
-		</div><!-- End .container -->
-	</div><!-- End .page-header -->
-	<nav aria-label="breadcrumb" class="breadcrumb-nav mb-3">
-		<div class="container">
-			<ol class="breadcrumb">
-				<li class="breadcrumb-item"><a href="index-1.html">خانه</a></li>
-				<li class="breadcrumb-item"><a href="#">فروشگاه</a></li>
-				<li class="breadcrumb-item active" aria-current="page">داشبورد</li>
-			</ol>
-		</div><!-- End .container -->
-	</nav><!-- End .breadcrumb-nav -->
+    <div class="page-header text-center" style="background-image: url('assets/images/page-header-bg.jpg')">
+        <div class="container">
+            <h1 class="page-title">داشبورد مدیران<span>پنل ادمین</span></h1>
+        </div><!-- End .container -->
+    </div><!-- End .page-header -->
+    <nav aria-label="breadcrumb" class="breadcrumb-nav mb-3">
+        <div class="container">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="index-1.html">خانه</a></li>
+                <li class="breadcrumb-item"><a href="#">فروشگاه</a></li>
+                <li class="breadcrumb-item active" aria-current="page">داشبورد</li>
+            </ol>
+        </div><!-- End .container -->
+    </nav><!-- End .breadcrumb-nav -->
 
-	<div class="page-content">
-		<div class="page-content">
-			<div class="dashboard">
-				<div class="container">
-					<div class="row">
-						<aside class="col-md-4 col-lg-3">
+    <div class="page-content">
+        <div class="page-content">
+            <div class="dashboard">
+                <div class="container">
+                    <div class="row">
+                        <aside class="col-md-4 col-lg-3">
 
-							<ul class="nav nav-dashboard flex-column mb-3 mb-md-0" role="tablist">
-								<li class="nav-item">
-									<a class="nav-link active " id="tab-dashboard-link" data-toggle="tab"
-									   href="#tab-dashboard" role="tab" aria-controls="tab-dashboard"
-									   aria-selected="true">کاربران</a>
-								</li>
-								<li class="nav-item">
-									<a class="nav-link " id="tab-address-link" data-toggle="tab" href="#tab-address"
-									role="tab" aria-controls="tab-address" aria-selected="false">اطلاعات کاربری</a>
-								</li>
-								<li class="nav-item">
-									<a class="nav-link" id="tab-orders-link" data-toggle="tab" href="#tab-orders"
-									role="tab" aria-controls="tab-orders" aria-selected="false">سفارشات</a>
-								</li>
-								<li class="nav-item">
-									<a class="nav-link" id="tab-downloads-link" data-toggle="tab"
-									href="#tab-downloads" role="tab" aria-controls="tab-downloads"
-									aria-selected="false">دانلود ها</a>
-								</li>
-								<li class="nav-item">
-									<a class="nav-link" id="tab-account-link" data-toggle="tab" href="#tab-account"
-									role="tab" aria-controls="tab-account" aria-selected="false">
-										ساخت حساب
-									</a>
-								</li>
-								<li class="nav-item">
-									<a class="nav-link" href="#">خروج از حساب کاربری</a>
-								</li>
-							</ul>
-						</aside><!-- End .col-lg-3 -->
+                            <ul class="nav nav-dashboard flex-column mb-3 mb-md-0" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" id="tab-address-link" data-toggle="tab" href="#tab-address"
+                                       role="tab" aria-controls="tab-address" aria-selected="true">اطلاعات کاربری</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link  " id="tab-dashboard-link" data-toggle="tab"
+                                       href="#tab-dashboard" role="tab" aria-controls="tab-dashboard"
+                                       aria-selected="false">کاربران</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="tab-orders-link" data-toggle="tab" href="#tab-orders"
+                                       role="tab" aria-controls="tab-orders" aria-selected="false">سفارشات</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="tab-downloads-link" data-toggle="tab"
+                                       href="#tab-downloads" role="tab" aria-controls="tab-downloads"
+                                       aria-selected="false">دانلود ها</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="tab-account-link" data-toggle="tab" href="#tab-account"
+                                       role="tab" aria-controls="tab-account" aria-selected="false">
+                                        ساخت حساب
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">خروج از حساب کاربری</a>
+                                </li>
+                            </ul>
+                        </aside><!-- End .col-lg-3 -->
 
-						<div class="col-md-8 col-lg-9">
-							<div class="tab-content">
-								<div class="tab-pane fade show active" id="tab-dashboard" role="tabpanel"
-								aria-labelledby="tab-dashboard-link">
-									<div>
-										@if (TempData["NotAvalable"] != null)
-										{
-											<p class="alert alert-success text-center">
-												@TempData["NotAvalable"]
-											</p>
-										}
-										else if (TempData["Avalable"] != null)
-										{
-											<p class="alert alert-danger text-center">
-												@TempData["Avalable"]
-											</p>
-										}
-										@if (TempData["success"] != null)
-										{
-											<div class="alert alert-success text-center">
-												@TempData["success"]
-											</div>
-										}
-									</div>
-									<p>
+                        <div class="col-md-8 col-lg-9">
+                            <div class="tab-content">
+                                <div class="tab-pane fade show active" id="tab-dashboard" role="tabpanel"
+                                     aria-labelledby="tab-dashboard-link">
+                                    <div>
+                                        @if (TempData["NotAvalable"] != null)
+                                        {
+                                            <p class="alert alert-success text-center">
+                                                @TempData["NotAvalable"]
+                                            </p>
+                                        }
+                                        else if (TempData["Avalable"] != null)
+                                        {
+                                            <p class="alert alert-danger text-center">
+                                                @TempData["Avalable"]
+                                            </p>
+                                        }
+                                        else if (TempData["success"] != null)
+                                        {
+                                            <div class="alert alert-success text-center">
+                                                @TempData["success"]
+                                            </div>
+                                        }
+                                    </div>
+                                    <p>
 
-										سلام <span class="font-weight-normal text-dark">کاربر</span>
-										<br>
-										شما در اینجا میتوانید <a href="#tab-orders"
-										class="tab-trigger-link link-underline">سفارشات خود را ببینید</a>، وضعیت
-										ارسال <a href="#tab-address" class="tab-trigger-link">
-											سفارشات خود را مشاهده
-											کنید وآدرس خود را تغییر دهید
-										</a>، و همچنین <a href="#tab-account"
-										class="tab-trigger-link">
-											می توانید رمز عبور یا جزئیات حساب کاربری خود را
-											ویرایش کنید
-										</a>.
-									</p>
+                                        سلام <span class="font-weight-normal text-dark">کاربر</span>
+                                        <br>
+                                        شما در اینجا میتوانید <a href="#tab-orders"
+                                                                 class="tab-trigger-link link-underline">سفارشات خود را ببینید</a>، وضعیت
+                                        ارسال <a href="#tab-address" class="tab-trigger-link">
+                                            سفارشات خود را مشاهده
+                                            کنید وآدرس خود را تغییر دهید
+                                        </a>، و همچنین <a href="#tab-account"
+                                                          class="tab-trigger-link">
+                                            می توانید رمز عبور یا جزئیات حساب کاربری خود را
+                                            ویرایش کنید
+                                        </a>.
+                                    </p>
 
-									<form method="get">
+                                    <form method="get">
 
-										<label>نام</label>
-										<input type="text" name="Name" class="form-control">
-										<p style="color:red">لطفا نام مورد نظر را وارد نمایید</p>
+                                        <label>نام</label>
+                                        <input type="text" name="Name" class="form-control">
+                                        <p style="color:red">لطفا نام مورد نظر را وارد نمایید</p>
 
-										<label>شماره تلفن</label>
-										<input type="text" name="PhoneNumber" class="form-control">
-										<p style="color:red">لطفا شماره تلفن مورد نظر را وارد نمایید</p>
+                                        <label>شماره تلفن</label>
+                                        <input type="text" name="PhoneNumber" class="form-control">
+                                        <p style="color:red">لطفا شماره تلفن مورد نظر را وارد نمایید</p>
 
-										<div class="custom-radio rtl">
-											<input name="isStatus"value="true" type="radio" class="control-input">
-											<span>
-												حذف نشده
-											</span>
-										</div>
-										<div class=" custom-radio rtl">
-											<input name="isStatus"value="false" type="radio" class="control-input">
-											<span>
-												حذف شده
-											</span>
-										</div>
+                                        <div class="custom-radio rtl">
+                                            <input name="isStatus" value="true" type="radio" class="control-input">
+                                            <span>
+                                                فعال
+                                            </span>
+                                            <input name="isStatus" value="false" type="radio" class="control-input" style="margin-right:8px">
+                                            <span>
+                                                غیر فعال
+                                            </span>
+                                        </div>
 
-										<button type="submit" class="btn btn-outline-primary-2 float-right">تایید</button>
+                                        <button type="submit" class="btn btn-outline-primary-2 float-right">تایید</button>
 
+                                    </form>
+                                    <div style="margin-top: 60px;">
+                                        @if (TempData["Info"] != null)
+                                        {
+                                            <div class="alert alert-info text-center">
+                                                @TempData["Info"]
+                                            </div>
+                                        }
+                                    </div>
+                                    @if (Model.Accounts != null)
+                                    {
+                                        <table class="invoice-table table-hover table-striped border">
+                                            <thead class="text-right">
+                                                <tr>
+                                                    <th>شماره</th>
+                                                    <th>نام و نام خانوادگی</th>
 
-									</form>
+                                                    <th>شماره موبایل</th>
+                                                    <th> ایمیل </th>
 
-									@if (Model.Accounts != null)
-									{
-										<table class="invoice-table ">
-											<thead class="text-right">
-												<tr>
-													<th>شماره</th>
-													<th>نام ,نام خانوادگی</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody class="text-right">
+                                                @foreach (var item in Model.Accounts)
+                                                {
 
-													<th>شماره موبایل</th>
-													<th> ایمیل </th>
+                                                    <tr>
 
-												</tr>
-											</thead>
-											<tbody class="text-right">
-												@foreach (var item in Model.Accounts)
-												{
-
-													<tr>
-
-														<td>@item.Id</td>
-														<td>
-															<h3>
-																@item.Name
-															</h3>
-															<p>@item.Family</p>
-														</td>
-														<td>@item.PhoneNumber</td>
-														<td>@item.Email</td>
-														@if (item.IsAvalable)
-														{
-															<th>
-																<a asp-page="/Dashboard" asp-page-handler="Delete" asp-route-id="@item.Id"  class="btn btn-danger" style="border-radius:5px;color:white">غیر فعال</a>
-															</th>
-														}else
-														{
-															<th>
-																<a asp-page="/Dashboard" asp-page-handler="Restore" asp-route-id="@item.Id"  class="btn btn-success" style="border-radius:5px;color:white">فعال </a>
-															</th>
-														}
-														
-													</tr>
-												};
+                                                        <td>@item.Id</td>
+                                                        <td>
+                                                            <h3>
+                                                                @item.Name @item.Family
+                                                            </h3>
+                                                        </td>
+                                                        <td>@item.PhoneNumber</td>
+                                                        <td>@item.Email</td>
+                                                    </tr>
+                                                }
+                                                ;
 
 
-											</tbody>
+                                            </tbody>
 
-										</table>
-									};
-
-
-								</div><!-- .End .tab-pane -->
-
-								<div class="tab-pane fade" id="tab-orders" role="tabpanel"
-									 aria-labelledby="tab-orders-link">
-									<p>سفارش جدیدی وجود ندارد</p>
-									<a href="category.html" class="btn btn-outline-primary-2">
-										<span>
-											رفتن به
-											فروشگاه
-										</span><i class="icon-long-arrow-left"></i>
-									</a>
-								</div><!-- .End .tab-pane -->
-
-								<div class="tab-pane fade" id="tab-downloads" role="tabpanel"
-									 aria-labelledby="tab-downloads-link">
-									<p>دانلود جدیدی وجود ندارد</p>
-									<a href="category.html" class="btn btn-outline-primary-2">
-										<span>
-											رفتن به
-											فروشگاه
-										</span><i class="icon-long-arrow-left"></i>
-									</a>
-								</div><!-- .End .tab-pane -->
-
-								<div class="tab-pane fade" id="tab-address" role="tabpanel"
-									 aria-labelledby="tab-address-link">
-									<p>
-										آدرسی که اینجا ثبت می کنید به صورت پیش فرض برای ارسال محصولات به شما استفاده
-										می شود.
-									</p>
-									<div class="row">
-										<div class="col-lg-12">
-											<div class="card card-dashboard">
-												<div class="card-body">
-													<h3 class="card-title">اطلاعات کاربری</h3><!-- End .card-title -->
-													<p>
-														نام کاربری شما<br>
-														نام شرکت شما<br>
-														محمد محمدی<br>
-														تهران-تهران<br>
-														خیابان آزادی - پلاک 7<br>
-														yourmail@mail.com<br>
-														<a href="#">ویرایش <i class="icon-edit"></i></a>
-													</p>
-												</div><!-- End .card-body -->
-											</div><!-- End .card-dashboard -->
-										</div><!-- End .col-lg-12 -->
-									</div><!-- End .row -->
+                                        </table>
+                                    }
 
 
-								</div><!-- .End .tab-pane -->
 
-								<div class="tab-pane fade" id="tab-account" role="tabpanel"
-									 aria-labelledby="tab-account-link">
-									<form method="post">
+                                </div><!-- .End .tab-pane -->
 
-										<div class="col mb-3">
-										</div>
-										<div class="row">
-											<div class="col-sm-6">
-												<label>نام *</label>
-												<input type="text" name="Name" class="form-control" required>
-											</div><!-- End .col-sm-6 -->
+                                <div class="tab-pane fade" id="tab-orders" role="tabpanel"
+                                     aria-labelledby="tab-orders-link">
+                                    <p>سفارش جدیدی وجود ندارد</p>
+                                    <a href="category.html" class="btn btn-outline-primary-2">
+                                        <span>
+                                            رفتن به
+                                            فروشگاه
+                                        </span><i class="icon-long-arrow-left"></i>
+                                    </a>
+                                </div><!-- .End .tab-pane -->
 
-											<div class="col-sm-6">
-												<label>نام خانوادگی *</label>
-												<input type="text" name="Family" class="form-control" required>
-											</div><!-- End .col-sm-6 -->
-										</div><!-- End .row -->
+                                <div class="tab-pane fade" id="tab-downloads" role="tabpanel"
+                                     aria-labelledby="tab-downloads-link">
+                                    <p>دانلود جدیدی وجود ندارد</p>
+                                    <a href="category.html" class="btn btn-outline-primary-2">
+                                        <span>
+                                            رفتن به
+                                            فروشگاه
+                                        </span><i class="icon-long-arrow-left"></i>
+                                    </a>
+                                </div><!-- .End .tab-pane -->
 
-										<label>شماره تلفن *</label>
-										<input type="number" name="PhoneNumber" class="form-control" required>
+                                <div class="tab-pane fade" id="tab-address" role="tabpanel"
+                                     aria-labelledby="tab-address-link">
+                                    <p>
+                                        آدرسی که اینجا ثبت می کنید به صورت پیش فرض برای ارسال محصولات به شما استفاده
+                                        می شود.
+                                    </p>
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <div class="card card-dashboard">
+                                                <div class="card-body">
+                                                    
+                                                    @if(Model.Account != null)
+                                                    {
+                                                        <h3 class="card-title">اطلاعات کاربری</h3>
+                                                        <tr>
+                                                            <td>@Model.Account.Name</td>
+                                                            <td>@Model.Account.Family</td>
+                                                            <td>@Model.Account.PhoneNumber</td>
+                                                            <td>@Model.Account.Email</td>
+                                                            <td>@Model.Account.BirthDate</td>
+                                                            <td>@Model.Account.Addres</td>
+                                                            <a href="#">ویرایش <i class="icon-edit"></i></a>
+                                                        </tr>
+                                                    }
+                                                </div><!-- End .card-body -->
+                                            </div><!-- End .card-dashboard -->
+                                        </div><!-- End .col-lg-12 -->
+                                    </div><!-- End .row -->
 
-										<label>تاریخ تولد</label>
-										<input type="date" name="BirthDate" class="form-control" required>
 
-										<label>آدرس</label>
-										<input type="text" name="Addres" class="form-control" required>
+                                </div><!-- .End .tab-pane -->
 
-										<label>ایمیل *</label>
-										<input type="email" name="Email" class="form-control" required>
+                                <div class="tab-pane fade" id="tab-account" role="tabpanel"
+                                     aria-labelledby="tab-account-link">
+                                    <form method="post">
+
+                                        <div class="col mb-3">
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <label>نام *</label>
+                                                <input type="text" name="Name" class="form-control" required>
+                                            </div><!-- End .col-sm-6 -->
+
+                                            <div class="col-sm-6">
+                                                <label>نام خانوادگی *</label>
+                                                <input type="text" name="Family" class="form-control" required>
+                                            </div><!-- End .col-sm-6 -->
+                                        </div><!-- End .row -->
+
+                                        <label>شماره تلفن *</label>
+                                        <input type="number" name="PhoneNumber" class="form-control" required>
+
+                                        <label>تاریخ تولد</label>
+                                        <input type="date" name="BirthDate" class="form-control" required>
+
+                                        <label>آدرس</label>
+                                        <input type="text" name="Addres" class="form-control" required>
+
+                                        <label>ایمیل *</label>
+                                        <input type="email" name="Email" class="form-control" required>
 
 
-										<label> پسورد جدید</label>
-										<input type="password" name="Password" class="form-control">
+                                        <label> پسورد جدید</label>
+                                        <input type="password" name="Password" class="form-control">
 
 
-										<button type="submit" class="btn btn-outline-primary-2 float-right">
-											<span>ذخیره تغییرات</span>
-											<i class="icon-long-arrow-left"></i>
-										</button>
-									</form>
-								</div><!-- .End .tab-pane -->
-							</div>
-						</div><!-- End .col-lg-9 -->
-					</div><!-- End .row -->
-				</div><!-- End .container -->
-			</div><!-- End .dashboard -->
-		</div><!-- End .page-content -->
+                                        <button type="submit" class="btn btn-outline-primary-2 float-right">
+                                            <span>ذخیره تغییرات</span>
+                                            <i class="icon-long-arrow-left"></i>
+                                        </button>
+                                    </form>
+                                </div><!-- .End .tab-pane -->
+                            </div>
+                        </div><!-- End .col-lg-9 -->
+                    </div><!-- End .row -->
+                </div><!-- End .container -->
+            </div><!-- End .dashboard -->
+        </div><!-- End .page-content -->
 </main><!-- End .main -->

@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using BookM.Domain.Book.AD;
 using Microsoft.AspNetCore.Http;
 using System.ComponentModel.DataAnnotations;
-using BookM.Application.Contracts.BooksCategoryApplication;
 
-namespace BookM.Application.Contracts.BooksApplication
+namespace BookM.ClientQueries.Model.Book.Books
 {
-    public class BookViewModel
+    public class BookQueryViewModel
     {
         [Display(Name = "شناسه یکتا")]
         public int Id { get; set; }
@@ -49,7 +44,7 @@ namespace BookM.Application.Contracts.BooksApplication
         [Required(ErrorMessage = "لطفا توضیحات کوتاه را وارد کنید...")]
         [Display(Name = "توضیحات کوتاه")]
         public string ShortDescription { get; set; }
-        public BookCategoryViewModel BookCategories { get; set; }
+        
         public string CategoryName { get; set; }
 
     }

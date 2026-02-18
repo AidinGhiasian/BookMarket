@@ -12,7 +12,7 @@ namespace BookMarket.Pages.Account
     public class loginModel : PageModel
     {
         public List<AccountViewModel> Accounts { get; set; }
-
+        public AccountViewModel Account { get; set; }
 
 
         private readonly IAccountApplication _accountapplication;
@@ -22,23 +22,22 @@ namespace BookMarket.Pages.Account
         }
         public void OnGet()
         {
-        
+
         }
+
         public IActionResult OnPostLogin(string? email, string? password)
+        
         {
             var Exist = _accountapplication.login(email, password);
 
-            if (Exist == true);
+            if (Exist == true) ;
             {
                 return RedirectToPage("/dashboard");
             }
-            return
-                RedirectToPage("/Account/login");
-                //TempData["danger"] = "???? ??? ?? ??? ???? ?????? ???...";
-            
+
+
         }
 
 
     }
 }
- 

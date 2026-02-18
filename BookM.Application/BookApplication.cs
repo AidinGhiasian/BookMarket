@@ -33,7 +33,7 @@ namespace BookM.Application
         public void Create(CreateViewModel create)
         {
             var path = "Book";
-          
+
             var picturename = _fileUploader.UploadNewSize(create.FileName, path, 720);
             var npprice = create.Price;
             var upload = new Books(picturename, create.BookTitle, create.Writer, create.Publisher, create.CategoryId, npprice, create.shortdescription);
@@ -56,28 +56,23 @@ namespace BookM.Application
         }
         public List<BookViewModel> GetAll()
         {
-            var list = new List<BookViewModel>();
 
-            var bookget = _bookRepository.GetAll();
 
-            if (bookget != null)
+            return _bookRepository.GetBy().Select(book => new BookViewModel
             {
-                foreach (var book in bookget)
-                {
-                    list.Add(map(book));
-                }
-            }
-            var category = _bookCategoryRepository.GetAll();
-          
-            foreach (var item in list)
-            {
-               
-              
-                    item.CategoryName = category.FirstOrDefault(x => x.Id == item.CategoryId).Name;
-                
+                Id = book.Id,
+                PictureFile = book.Picture,
+                BookTitle = book.BookTitle,
+                Writer = book.Writer,
+                publisher = book.Publisher,
+                CategoryId = book.CategoryId,
+                CreateDateTime = book.CreatetionDate,
+                IsAvailable = book.IsAvailable,
+                ShortDescription = book.ShortDescription,
+                CategoryName = book.Category.Name
+            }).ToList();
 
-            }
-            return list;
+
         }
 
         public void Edit(EditViewModel update)
@@ -85,8 +80,8 @@ namespace BookM.Application
             var upBooks = _bookRepository.GetById(update.Id);
 
             var PictureName = update.Picture;
-            
-            var npprice = update.Price ;
+
+            var npprice = update.Price;
             if (update.FileName != null)
             {
                 _fileUploader.Delete(update.Picture);
@@ -109,20 +104,20 @@ namespace BookM.Application
                 CategoryId = book.CategoryId,
                 CreateDateTime = book.CreatetionDate,
                 IsAvailable = book.IsAvailable,
-                ShortDescription=book.ShortDescription
-              
+                ShortDescription = book.ShortDescription
+
             };
         }
         public BookCategoryViewModel mapcategory(BookCategories category)
         {
             return new BookCategoryViewModel
             {
-                CategoryName=category.Name,
+                CategoryName = category.Name,
                 Books = category.Books,
                 CreatedAt = category.CreatedAt,
                 Description = category.Description,
                 Id = category.Id,
-                
+
             };
         }
 
@@ -137,10 +132,11 @@ namespace BookM.Application
                 Writer = book.Writer,
                 Publisher = book.Publisher,
                 CategoryId = book.CategoryId,
-                shortdescription = book.ShortDescription
+                shortdescription = book.ShortDescription,
+                Categorey = book.Category.Name
             };
         }
 
-        
+
     }
 }

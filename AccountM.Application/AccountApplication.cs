@@ -127,5 +127,21 @@ namespace AccountM.Application
                 IsAvalable=model.IsAvalable,
             };
         }
+
+        public AccountViewModel GetdetailInfo(int id)
+        {
+            var model = _accountRepository.GetbyId(id);
+            return new AccountViewModel
+            {
+                Id = model.Id,
+                Name = model.Name,
+                Family = model.Family,
+                PhoneNumber = model.PhoneNumber,
+                Email = model.Email,
+                BirthDate = model.BirthDate,
+                Addres = model.Addres,
+                Password = model.Password,
+            };
+        }
     }
 }

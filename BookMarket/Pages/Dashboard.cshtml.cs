@@ -26,12 +26,12 @@ namespace BookMarket.Pages
             if (isStatus)
             {
                 Accounts = _accountApplication.GetAccounts(true);
-
+                TempData["Info"] = "کاربران غیرفعال";
             }
             else if (isStatus == false)
             {
                 Accounts = _accountApplication.GetAccounts(false);
-
+                TempData["Info"] = "کاربران فعال";
             }
 
 
@@ -58,24 +58,7 @@ namespace BookMarket.Pages
         }
         public void OnGetAccountInformation(int id)
         {
-            Account = _accountApplication.GetBy(id);
+            Account = _accountApplication.GetdetailInfo(id);
         }
-        public IActionResult OnGetDelete(int id)
-        {
-            _accountApplication.Delete(id);
-            TempData["Avalable"] = "کتابخوان غیر فعال شد...";
-            return
-            RedirectToPage("/Dashboard");
-
-        }
-        public IActionResult OnGetRestore(int id)
-        {
-            _accountApplication.Restore(id);
-            TempData["NotAvalable"] = "کتابخوان فعال شد...";
-            return
-            RedirectToPage("/Dashboard");
-
-        }
-
     }
 }
