@@ -51,7 +51,6 @@ namespace BlogM.Infrastructure.EFCore.Repository
            
                 _context.BlogCategories.Remove(category);
                 _context.SaveChanges();
-           
         }
 
         public List<BlogCategory> GetAvailableCategories()

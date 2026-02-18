@@ -82,6 +82,7 @@ namespace BlogM.Application
         {
             var list = _blogCategoryRepository.GetAll();
 
+
             return Maplist(list);
         }
         public BlogCategoryViewModel MapBlog(BlogCategory blogCategory)
@@ -124,6 +125,7 @@ namespace BlogM.Application
         public List<BlogCategoryViewModel> Maplist(List<BlogCategory>? cats)
         {
             var category = new List<BlogCategoryViewModel>();
+
             if (cats != null)
             {
                 foreach (var cat in cats)
@@ -131,6 +133,7 @@ namespace BlogM.Application
                     category.Add(MapBlog(cat));
                 }
             }
+
 
             return category;
         }
@@ -146,8 +149,8 @@ namespace BlogM.Application
                 Description = blogCategory.Description,
                 PictureName = blogCategory.Picture,
                 IsAvailable = blogCategory.IsAvailable,
-                
-                
+
+
             };
         }
     }

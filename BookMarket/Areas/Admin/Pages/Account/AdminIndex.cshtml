@@ -1,4 +1,5 @@
 ﻿@page
+@using Services.Application
 @model BookMarket.Areas.Admin.Account.IndexModel
 @{
 	Layout = "_AdminLayout";
@@ -10,11 +11,11 @@
 			<div class="breadcrumb-box shadow">
 				<ul class="breadcrumb">
 					<li><a href="/Admin/Index">پیشخوان</a></li>
-					<li><a href="#">‌لیست ها</a></li>
 					<li class="active">مدیریت کاربران</li>
 				</ul>
 				<div class="breadcrumb-left">
-					پنجشنبه، 1404/10/4
+					@ConvertDateTime.ConvertMiladiToShamsi(DateTime.Now, "HH:mm  dd MMMM yyyy")
+
 					<i class="icon-calendar"></i>
 				</div><!-- /.breadcrumb-left -->
 			</div><!-- /.breadcrumb-box -->
@@ -51,90 +52,6 @@
 						<a class="btn btn-sm btn-default btn-round btn-code" rel="tooltip" title="کدها" href="#">
 							<i class="icon-arrow-left"></i><span>/</span><i class="icon-arrow-right"></i>
 						</a>
-						<div class="code-modal hide">
-							<!--
-							// HTML
-							<div class="table-responsive">
-								<table class="table table-bordered table-hover table-striped" id="data-table">
-									<thead>
-										<tr>
-											<th>ردیف</th>
-											<th>ماده غذایی</th>
-											<th>مقدار</th>
-											<th>کالری</th>
-											<td>عملیات</td>
-										</tr>
-									</thead>
-									<tbody>
-										<tr>
-											<td>1</td>
-											<td>مغز فندق</td>
-											<td>100گرم</td>
-											<td>630</td>
-											<td>
-												<a href="#" class="btn btn-info">ویرایش</a>
-												<a href="#" class="btn btn-danger">حذف</a>
-											</td>
-										</tr>
-										...
-									</tbody>
-								</table>
-							</div>
-
-
-							// JS
-							var tableMain = $("#data-table").DataTable({
-								dom: "Bfrtip",
-								lengthChange: true,
-								buttons: [
-									{ extend: "copy", className: "btn btn-success" },
-									{ extend: "csv", className: "btn btn-success" },
-									{ extend: "excel", className: "btn btn-success" },
-									{
-										extend: 'pdf',
-										className: "btn btn-success",
-										customize: function (doc) {
-											processFont(doc);
-
-											doc.content[0]['text'] = doc.content[0]['text'].split(' ').reverse().join(' ');
-											try {
-												for (var i = 0; i < doc.content[1].table.body.length; i++) {
-													for (var j = 0; j < doc.content[1].table.body[i].length; j++) {
-														doc.content[1].table.body[i][j]['text'] = doc.content[1].table.body[i][j]['text'].split(' ').reverse().join(' ');
-													}
-												}
-											} catch (error) {
-												console.log("Unsupported content for PDF");
-											}
-										}
-									}
-								],
-								language: language,
-								"columnDefs": [{
-									"targets": [4],
-									"orderable": false
-								}],
-								"aaSorting": []
-							});
-
-							function processFont(doc) {
-								pdfMake.fonts = {
-									IranSans: {
-										normal: 'IranSans.ttf',
-										bold: 'IranSans.ttf',
-										italics: 'IranSans.ttf',
-										bolditalics: 'IranSans.ttf'
-									}
-								};
-								doc.defaultStyle.font = "IranSans";
-							}
-
-							$(window).on( 'resize', function () {
-								$('#data-table').css("width", "100%");
-							});
-
-							-->
-						</div>
 						<a class="btn btn-sm btn-default btn-round btn-fullscreen" rel="tooltip" title="تمام صفحه" href="#">
 							<i class="icon-size-fullscreen"></i>
 						</a>

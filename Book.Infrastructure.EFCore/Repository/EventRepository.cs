@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Blog.Domain.BlogAD;
 using Book.Infrastructure.EFCore;
+using Microsoft.EntityFrameworkCore.Internal;
 using Services;
 
 namespace BlogM.Infrastructure.EFCore.Repository
@@ -33,14 +34,20 @@ namespace BlogM.Infrastructure.EFCore.Repository
             }
         }
 
-        public List<Events> GetAll(string eventtitle)
+        public List<Events> GetAll()
         {
-            return _blogdbcontext.Events.Where(e=>e.EventTitle == eventtitle).ToList();
+            return _blogdbcontext.Events.ToList();
         }
 
         public Events GetBy(string eventtitle)
         {
          return _blogdbcontext.Events.FirstOrDefault(e => e.EventTitle == eventtitle);
+        }
+
+        public Events GetDetailes(int id)
+        {
+          return _blogdbcontext.Events.FirstOrDefault(x => x.Id == id);
+
         }
 
         public void Update(Events events)
