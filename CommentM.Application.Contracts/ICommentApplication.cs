@@ -1,0 +1,18 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using CommentM.Domain.Comment.AD;
+
+namespace CommentM.Application.Contracts
+{
+    public interface ICommentApplication
+    {
+        public void create(CreateViewModel create);
+        void Edit(EditViewModel edit);
+        Comments GetById(long id);
+        List<CommentViewModel> GetComment(long recordId);
+        void Delete(long id);
+    }
+}

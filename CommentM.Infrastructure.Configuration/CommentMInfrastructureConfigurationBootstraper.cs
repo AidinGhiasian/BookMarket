@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CommentM.Application;
-using CommentM.Application.Contacts;
+using CommentM.Application.Contracts;
 using CommentM.Domain.Comment.AD;
 using CommentM.Infrastructure.EFCore;
 using CommentM.Infrastructure.EFCore.Repository;

@@ -1,5 +1,5 @@
 ﻿using Blog.Domain.BlogAD;
-using BlogM.Application.Contacts.EventApplication;
+using BlogM.Application.Contracts.EventApplication;
 using BookM.Domain.Book.AD;
 using Services;
 using System;

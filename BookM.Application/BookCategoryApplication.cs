@@ -1,16 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using BookM.Application.Contacts.BooksApplication;
-using BookM.Application.Contacts.BooksCategoryApplication;
+﻿using BookM.Application.Contracts.BooksApplication;
+using BookM.Application.Contracts.BooksCategoryApplication;
 using BookM.Domain.Book.AD;
-using DocumentFormat.OpenXml.Drawing.Diagrams;
-using FLEXYGO.GoogleResourceTypes;
-using Microsoft.EntityFrameworkCore;
 using Services;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace BookM.Application
 {

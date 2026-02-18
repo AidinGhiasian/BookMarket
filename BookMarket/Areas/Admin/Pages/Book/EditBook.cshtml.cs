@@ -1,4 +1,4 @@
-using BookM.Application.Contacts.BooksApplication;
+using BookM.Application.Contracts.BooksApplication;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 

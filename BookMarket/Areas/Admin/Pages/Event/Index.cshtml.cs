@@ -1,4 +1,4 @@
-using BlogM.Application.Contacts.EventApplication;
+using BlogM.Application.Contracts.EventApplication;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 

@@ -1,7 +1,7 @@
 using AccountM.Infrastructure.EFCore;
 using AccountM.Infrastructure.EFCore.Migrations;
 using AM.Domain.Account.AD;
-using AccountM.Application.Contacts.AccountApplication;
+using AccountM.Application.Contracts.AccountApplication;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using AccountM.Application;
 using Microsoft.AspNetCore.Mvc;

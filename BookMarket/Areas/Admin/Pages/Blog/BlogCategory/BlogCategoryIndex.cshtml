@@ -27,6 +27,12 @@
 				@TempData["success"]
 			</div>
 		}
+		else if (TempData["danger"] != null)
+		{
+			<div class="alert alert-danger text-center">
+				@TempData["danger"]
+			</div>
+		}
 		<div class="col-lg-12">
 			<div class="portlet box shadow">
 				<div class="portlet-heading">

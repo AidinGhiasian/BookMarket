@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Blog.Domain.BlogAD;
-using BlogM.Application.Contacts.PostApplication;
+using BlogM.Application.Contracts.PostApplication;
 using Services;
 
 
@@ -59,7 +59,8 @@ namespace BlogM.Application
                 Title = posts.Title,
                 ShortDescription = posts.ShortDescription,
                 Description = posts.Description,
-                IsAvailable = posts.IsAvailable
+                IsAvailable = posts.IsAvailable,
+                BlogCategoryId = posts.BlogCategoryId,
             };
         }
 

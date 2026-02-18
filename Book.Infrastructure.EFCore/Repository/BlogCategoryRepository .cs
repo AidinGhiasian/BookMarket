@@ -15,7 +15,7 @@ namespace BlogM.Infrastructure.EFCore.Repository
     {
         private readonly BlogDbContext _context;
 
-        public BlogCategoryRepository(BlogDbContext context):base(context)
+        public BlogCategoryRepository(BlogDbContext context) : base(context)
         {
             _context = context;
         }
@@ -26,7 +26,7 @@ namespace BlogM.Infrastructure.EFCore.Repository
             _context.SaveChanges();
         }
 
-        
+
         public BlogCategory? GetByName(string name)
         {
             return _context.BlogCategories
@@ -39,19 +39,14 @@ namespace BlogM.Infrastructure.EFCore.Repository
                            .FirstOrDefault(x => x.Slug == slug);
         }
 
-       
+
         public void Update(BlogCategory category)
         {
             _context.BlogCategories.Update(category);
             _context.SaveChanges();
         }
 
-        public void Delete(BlogCategory category)
-        {
-           
-                _context.BlogCategories.Remove(category);
-                _context.SaveChanges();
-        }
+        
 
         public List<BlogCategory> GetAvailableCategories()
         {
@@ -60,7 +55,7 @@ namespace BlogM.Infrastructure.EFCore.Repository
                            .ToList();
         }
 
-     
+
 
         public BlogCategory? GetWithPostsBySlug(string slug)
         {
@@ -69,9 +64,9 @@ namespace BlogM.Infrastructure.EFCore.Repository
 
         public bool Exists(string name)
         {
-            return _context.BlogCategories.Where(x=>x.Name == name).Any();
+            return _context.BlogCategories.Where(x => x.Name == name).Any();
         }
 
-       
+
     }
 }

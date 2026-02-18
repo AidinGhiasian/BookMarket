@@ -1,4 +1,4 @@
-﻿using BlogM.Application.Contacts.PostApplication;
+﻿using BlogM.Application.Contracts.PostApplication;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 

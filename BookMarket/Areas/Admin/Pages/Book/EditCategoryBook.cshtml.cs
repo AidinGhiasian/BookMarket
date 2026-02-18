@@ -1,5 +1,5 @@
-using BookM.Application.Contacts.BooksApplication;
-using BookM.Application.Contacts.BooksCategoryApplication;
+using BookM.Application.Contracts.BooksApplication;
+using BookM.Application.Contracts.BooksCategoryApplication;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 

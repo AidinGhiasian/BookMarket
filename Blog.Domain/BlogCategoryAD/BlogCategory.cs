@@ -46,6 +46,7 @@ namespace Blog.Domain.BlogCategoryAD
             UpdatedDate = DateTime.Now;
             IsAvailable = statusAvailable;
         }
+
     }
 
 

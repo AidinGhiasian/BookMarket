@@ -1,5 +1,5 @@
 ﻿
-using BlogM.Application.Contacts.PostApplication;
+using BlogM.Application.Contracts.PostApplication;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace BookMarket.Pages.Blog
@@ -7,7 +7,7 @@ namespace BookMarket.Pages.Blog
     public class IndexModel : PageModel
     {
 
-        public List<BlogM.Application.Contacts.PostApplication.PostViewModel> Blogs { get; set; }
+        public List<BlogM.Application.Contracts.PostApplication.PostViewModel> Blogs { get; set; }
 
         private readonly IPostApplication _postApplication;
         public IndexModel(IPostApplication postApplication)

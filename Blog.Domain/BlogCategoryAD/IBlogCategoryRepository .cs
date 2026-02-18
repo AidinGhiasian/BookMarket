@@ -12,7 +12,6 @@ namespace Blog.Domain.BlogCategoryAD
         BlogCategory? GetByName(string name);
         BlogCategory? GetBySlug(string slug);
         List<BlogCategory> GetAvailableCategories();
-     
         BlogCategory? GetWithPostsBySlug(string slug);
         bool Exists(string name);
 

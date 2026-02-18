@@ -1,4 +1,4 @@
-using BlogM.Application.Contacts.EventApplication;
+using BlogM.Application.Contracts.EventApplication;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
@@ -21,5 +21,6 @@ namespace BookMarket.Areas.Admin.Pages.Event
             _eventApplication.Update(command);
             return Redirect("./Index");
         }
+        
     }
 }

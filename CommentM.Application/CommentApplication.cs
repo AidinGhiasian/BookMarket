@@ -4,7 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using CommentM.Application.Contacts;
+using CommentM.Application.Contracts;
 using CommentM.Domain.Comment.AD;
 
 namespace CommentM.Application

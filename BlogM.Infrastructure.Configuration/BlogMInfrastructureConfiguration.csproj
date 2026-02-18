@@ -20,7 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\BlogM.Application.Contacts\BlogM.Application.Contacts.csproj" />
+    <ProjectReference Include="..\BlogM.Application.Contracts\BlogM.Application.Contracts.csproj" />
     <ProjectReference Include="..\BlogM.Application\BlogM.Application.csproj" />
     <ProjectReference Include="..\Book.Infrastructure.EFCore\BlogM.Infrastructure.EFCore.csproj" />
   </ItemGroup>

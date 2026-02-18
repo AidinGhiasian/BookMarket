@@ -1,9 +1,9 @@
-﻿using AccountM.Application.Contacts.AccountApplication;
-using BookM.Application.Contacts.BooksApplication;
+﻿using AccountM.Application.Contracts.AccountApplication;
+using BookM.Application.Contracts.BooksApplication;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using BookM.Application.Contacts;
-using BookM.Application.Contacts.BooksCategoryApplication;
+using BookM.Application.Contracts;
+using BookM.Application.Contracts.BooksCategoryApplication;
 namespace BookMarket.Areas.Admin.Pages.Book
 {
     public class CreateBookModel : PageModel
@@ -15,14 +15,14 @@ namespace BookMarket.Areas.Admin.Pages.Book
             _bookApplication = bookApplication;
             _bookCategoryApplication = bookCategoryApplication;
         }
-        public BookM.Application.Contacts.BooksApplication.CreateViewModel books { get; set; }
+        public BookM.Application.Contracts.BooksApplication.CreateViewModel books { get; set; }
         public List<BookCategoryViewModel> BookCategories { get; set; }
         public void OnGet()
         {
             BookCategories = _bookCategoryApplication.GetAll();
         }
      
-        public IActionResult OnPost(BookM.Application.Contacts.BooksApplication.CreateViewModel command)
+        public IActionResult OnPost(BookM.Application.Contracts.BooksApplication.CreateViewModel command)
         {
             _bookApplication.Create(command);
             TempData["success"] = "کتاب با موفقیت ثبت شد.";

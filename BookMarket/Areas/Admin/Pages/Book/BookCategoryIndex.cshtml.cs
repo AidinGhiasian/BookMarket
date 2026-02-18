@@ -1,4 +1,4 @@
-using BookM.Application.Contacts.BooksCategoryApplication;
+using BookM.Application.Contracts.BooksCategoryApplication;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.SqlServer.Dac.Model;

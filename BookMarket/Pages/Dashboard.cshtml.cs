@@ -1,4 +1,4 @@
-﻿using AccountM.Application.Contacts.AccountApplication;
+﻿using AccountM.Application.Contracts.AccountApplication;
 using AccountM.Infrastructure.EFCore;
 using AccountM.Infrastructure.EFCore.Migrations;
 using AM.Domain.Account.AD;

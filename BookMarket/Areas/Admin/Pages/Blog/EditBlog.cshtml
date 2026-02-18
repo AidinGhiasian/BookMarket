@@ -44,10 +44,10 @@
 
                             <div class="form-body">
                                 <div class="form-group relative mt-3 mb-4">
-                                    <input type="text" hidden class="form-control" name="Picture" asp-for="@Model.Blog.Picture">
+                                    <input type="file" class="form-control file-input" name="FileName" asp-for="@Model.Blog.FileName" placeholder="برای آپلود کلیک کنید">
                                     <input class="form-control" hidden name="Id" asp-for="@Model.Blog.Id">
                                     <div class="input-group round">
-                                        <input type="file" name="FileName" asp-for="@Model.Blog.FileName" class="form-control file-input" placeholder="برای آپلود کلیک کنید">
+                                        <input type="text" name="Picture" asp-for="@Model.Blog.Picture" class="form-control file-input" placeholder="برای آپلود کلیک کنید">
                                         <span class="input-group-btn">
                                             <button type="button" class="btn btn-success">
                                                 <i class="icon-picture"></i>
@@ -68,6 +68,37 @@
                                             <input type="text" asp-for="@Model.Blog.Title" name="Title" class="form-control rtl text-right" placeholder="لطفا عنوان مقاله را وارد نمایید.">
                                         </div><!-- /.input-group -->
                                     </div><!-- /.form-group -->
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label asp-for="@Model.Blog.BlogCategoryId" class="control-label">دسته بندی</label>
+                                                <select type="text" class="form-control" name="BlogCategoryId" asp-for="@Model.Blog.BlogCategoryId" asp-items='new SelectList(@Model.BlogCategories, "Id", "Name")'>
+                                                    <option value="0">انتخاب دسته بندی ....</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="txt-mobile">توضیحات کوتاه</label>
+                                        <div class="input-group round">
+                                            <span class="input-group-addon">
+                                                <i class="icon-envelope"></i>
+                                            </span>
+                                            <textarea type="text" style="height: 111px;" name="ShortDescription" asp-for="@Model.Blog.ShortDescription" class="form-control rtl text-right " placeholder="مقدار توضیحات کوتاه باید یا شامل مقدمه یا شامل یک بند خلاصه مقاله شما باشد."></textarea>
+                                        </div><!-- /.input-group -->
+                                    </div><!-- /.form-group -->
+
+                                    <div class="form-group">
+                                        <label for="txt-email">توضیحات کامل</label>
+                                        <div class="input-group round">
+                                            <span class="input-group-addon">
+                                                <i class="icon-envelope"></i>
+                                            </span>
+                                            <textarea type="text" style="height: 456px;" name="Description" asp-for="@Model.Blog.Description" class="form-control rtl text-Right" placeholder=" توضیخات باید به صورت کامل باشد و تمام متن مقاله از مقدمه تا بخش پایانی در آن وارد شود. "></textarea>
+                                        </div><!-- /.input-group -->
+                                    </div><!-- /.form-group -->
+                                <div class="col-sm-6">
+                                   
 
                                     <div class="form-actions">
                                         <button type="submit" class="btn btn-success btn-round">
@@ -79,6 +110,7 @@
                                             بازگشت
                                         </a>
                                     </div><!-- /.form-actions -->
+
                         </form>
                     </div><!-- /.col -->
                 </div><!-- /.row -->

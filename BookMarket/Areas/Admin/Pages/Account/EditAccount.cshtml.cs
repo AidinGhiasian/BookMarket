@@ -1,4 +1,4 @@
-using AccountM.Application.Contacts.AccountApplication;
+using AccountM.Application.Contracts.AccountApplication;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 

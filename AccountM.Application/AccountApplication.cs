@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using AccountM.Application.Contacts.AccountApplication;
+using AccountM.Application.Contracts.AccountApplication;
 using AM.Domain.Account.AD;
 
 namespace AccountM.Application

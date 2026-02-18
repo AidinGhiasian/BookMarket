@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using AccountM.Application.Contacts.AccountApplication;
-using AccountM.Application.Contacts.RoleApplication;
+using AccountM.Application.Contracts.AccountApplication;
+using AccountM.Application.Contracts.RoleApplication;
 using AccountManagement.Domain.RoleAgg;
 using AM.Domain.Account.AD;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
@@ -49,13 +49,13 @@ namespace AccountM.Application
             return list;
         }
         
-        void IRoleApplication.Create(Contacts.RoleApplication.CreateViewModel model)//کامپایلر نمیتوانست تشیص دهد منظور من کدام CreateViewModelاست...
+        void IRoleApplication.Create(Contracts.RoleApplication.CreateViewModel model)//کامپایلر نمیتوانست تشیص دهد منظور من کدام CreateViewModelاست...
         {
             var cr = new Role(model.RoleName, model.Permissions, model.details);
              _roleRepository.create(cr);
         }
 
-        Task IRoleApplication.Edit(Contacts.RoleApplication.EditViewModel model)//کامپایلر نمیتوانست تشیص دهد منظور من کدام Edit ViewModelاست...
+        Task IRoleApplication.Edit(Contracts.RoleApplication.EditViewModel model)//کامپایلر نمیتوانست تشیص دهد منظور من کدام Edit ViewModelاست...
         {
             var er = _roleRepository.GetbyId(model.Id);
             er.Edit(model.RoleName,model.Permissions,model.details,model.isActive);

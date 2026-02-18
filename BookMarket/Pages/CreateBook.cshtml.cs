@@ -1,5 +1,5 @@
-using AccountM.Application.Contacts.AccountApplication;
-using BookM.Application.Contacts.BooksApplication;
+using AccountM.Application.Contracts.AccountApplication;
+using BookM.Application.Contracts.BooksApplication;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
@@ -17,7 +17,7 @@ namespace BookMarket.Pages
         {
 
         }
-        public void OnPost(BookM.Application.Contacts.BooksApplication.CreateViewModel command)
+        public void OnPost(BookM.Application.Contracts.BooksApplication.CreateViewModel command)
         {
             _bookApplicarion.Create(command);
             TempData["BookSuccess"] = "???? ???? ?? ?????? ??? ??...";

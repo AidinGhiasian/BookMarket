@@ -1,7 +1,9 @@
-﻿using Blog.Domain.BlogCategoryAD;
-using BlogM.Application.Contacts.BlogCategoryApplication;
+﻿using Blog.Domain.BlogAD;
+using Blog.Domain.BlogCategoryAD;
+using BlogM.Application.Contracts.BlogCategoryApplication;
 using BookM.Domain.Book.AD;
 using DocumentFormat.OpenXml.Spreadsheet;
+using Quartz.Util;
 using Services;
 using System;
 using System.Collections.Generic;
@@ -119,6 +121,7 @@ namespace BlogM.Application
         {
             return _blogCategoryRepository.GetWithPostsBySlug(slug);
         }
+
         public List<BlogCategoryViewModel> Maplist(List<BlogCategory>? cats)
         {
             var category = new List<BlogCategoryViewModel>();

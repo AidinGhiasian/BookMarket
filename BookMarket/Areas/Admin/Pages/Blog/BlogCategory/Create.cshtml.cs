@@ -1,4 +1,4 @@
-﻿using BlogM.Application.Contacts.BlogCategoryApplication;
+﻿using BlogM.Application.Contracts.BlogCategoryApplication;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
@@ -21,7 +21,7 @@ namespace BookMarket.Areas.Admin.Pages.Blog.BlogCategory
             {
                 TempData["failed"] = "ثبت انجام نشد";
             }
-            return Redirect("./BlogCategory/BlogCategoryIndex");
+            return Redirect("./BlogCategoryIndex");
 
         }
     }
