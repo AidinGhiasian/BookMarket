@@ -22,10 +22,13 @@ namespace BlogM.Application
             _fileUploader = fileUploader;
         }
 
-        public bool Create(CreateBlogCategoryViewModel command)
+        public OperationResult Create(CreateBlogCategoryViewModel command)
         {
+            OperationResult result = new OperationResult();
+
             if (Exists(command.Name))
-                return false;
+                return result.Failed(ApplicationMessage.Duplicate);
+
             var picturesName = _fileUploader.UploadNewSize(command.Picture, "BlogCategory", 720);
 
             var category = new BlogCategory(
@@ -37,7 +40,7 @@ namespace BlogM.Application
 
             _blogCategoryRepository.Add(category);
             _blogCategoryRepository.SaveChanges();
-            return true;
+            return result.IsSuccess();
         }
         public bool Edit(EditBlogCategoryViewModel command)
         {
