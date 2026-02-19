@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BookM.ClientQueries.Model.Blog.Evant
 {
-    public interface IEvantQuerirs
+    public interface IEventQueries
     {
         public List<EventQueryViewModel> Evants();
     }

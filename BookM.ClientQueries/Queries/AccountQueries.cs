@@ -58,6 +58,7 @@ namespace BookM.ClientQueries.Queries
             };
         }
 
+
         public EditViewModel GetDetail(int id)
         {
             var model = _accountApplication.Getdetail(id);
@@ -71,5 +72,6 @@ namespace BookM.ClientQueries.Queries
                 Addres = model.Addres,
             };
         }
+
     }
 }

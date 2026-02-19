@@ -3,7 +3,7 @@ using BookM.ClientQueries.Model.Blog.Evant;
 
 namespace BookM.ClientQueries.Queries
 {
-    public class EvantQuerirs : IEvantQuerirs
+    public class EvantQuerirs : IEventQueries
     {
         private readonly EventApplication _eventApplication;
         public EvantQuerirs(EventApplication eventApplication)

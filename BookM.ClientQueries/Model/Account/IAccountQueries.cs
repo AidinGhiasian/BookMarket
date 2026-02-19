@@ -8,8 +8,8 @@ namespace BookM.ClientQueries.Model.Account
 {
     public interface IAccountQueries
     {
-       public AccountViewModel Account (int id);
-        public AccountViewModel Account (string  phoneNumber);
+        public AccountViewModel Account(int id);
+        public AccountViewModel Account(string phoneNumber);
         public EditViewModel GetDetail(int id);
     }
 }

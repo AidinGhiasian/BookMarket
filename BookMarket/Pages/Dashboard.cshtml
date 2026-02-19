@@ -32,11 +32,6 @@
                                        role="tab" aria-controls="tab-address" aria-selected="true">اطلاعات کاربری</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link  " id="tab-dashboard-link" data-toggle="tab"
-                                       href="#tab-dashboard" role="tab" aria-controls="tab-dashboard"
-                                       aria-selected="false">کاربران</a>
-                                </li>
-                                <li class="nav-item">
                                     <a class="nav-link" id="tab-orders-link" data-toggle="tab" href="#tab-orders"
                                        role="tab" aria-controls="tab-orders" aria-selected="false">سفارشات</a>
                                 </li>
@@ -96,78 +91,6 @@
                                             ویرایش کنید
                                         </a>.
                                     </p>
-
-                                    <form method="get">
-
-                                        <label>نام</label>
-                                        <input type="text" name="Name" class="form-control">
-                                        <p style="color:red">لطفا نام مورد نظر را وارد نمایید</p>
-
-                                        <label>شماره تلفن</label>
-                                        <input type="text" name="PhoneNumber" class="form-control">
-                                        <p style="color:red">لطفا شماره تلفن مورد نظر را وارد نمایید</p>
-
-                                        <div class="custom-radio rtl">
-                                            <input name="isStatus" value="true" type="radio" class="control-input">
-                                            <span>
-                                                فعال
-                                            </span>
-                                            <input name="isStatus" value="false" type="radio" class="control-input" style="margin-right:8px">
-                                            <span>
-                                                غیر فعال
-                                            </span>
-                                        </div>
-
-                                        <button type="submit" class="btn btn-outline-primary-2 float-right">تایید</button>
-
-                                    </form>
-                                    <div style="margin-top: 60px;">
-                                        @if (TempData["Info"] != null)
-                                        {
-                                            <div class="alert alert-info text-center">
-                                                @TempData["Info"]
-                                            </div>
-                                        }
-                                    </div>
-                                    @if (Model.Accounts != null)
-                                    {
-                                        <table class="invoice-table table-hover table-striped border">
-                                            <thead class="text-right">
-                                                <tr>
-                                                    <th>شماره</th>
-                                                    <th>نام و نام خانوادگی</th>
-
-                                                    <th>شماره موبایل</th>
-                                                    <th> ایمیل </th>
-
-                                                </tr>
-                                            </thead>
-                                            <tbody class="text-right">
-                                                @foreach (var item in Model.Accounts)
-                                                {
-
-                                                    <tr>
-
-                                                        <td>@item.Id</td>
-                                                        <td>
-                                                            <h3>
-                                                                @item.Name @item.Family
-                                                            </h3>
-                                                        </td>
-                                                        <td>@item.PhoneNumber</td>
-                                                        <td>@item.Email</td>
-                                                    </tr>
-                                                }
-                                                ;
-
-
-                                            </tbody>
-
-                                        </table>
-                                    }
-
-
-
                                 </div><!-- .End .tab-pane -->
 
                                 <div class="tab-pane fade" id="tab-orders" role="tabpanel"
@@ -220,50 +143,6 @@
                                             </div><!-- End .card-dashboard -->
                                         </div><!-- End .col-lg-12 -->
                                     </div><!-- End .row -->
-
-
-                                </div><!-- .End .tab-pane -->
-
-                                <div class="tab-pane fade" id="tab-account" role="tabpanel"
-                                     aria-labelledby="tab-account-link">
-                                    <form method="post">
-
-                                        <div class="col mb-3">
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-sm-6">
-                                                <label>نام *</label>
-                                                <input type="text" name="Name" class="form-control" required>
-                                            </div><!-- End .col-sm-6 -->
-
-                                            <div class="col-sm-6">
-                                                <label>نام خانوادگی *</label>
-                                                <input type="text" name="Family" class="form-control" required>
-                                            </div><!-- End .col-sm-6 -->
-                                        </div><!-- End .row -->
-
-                                        <label>شماره تلفن *</label>
-                                        <input type="number" name="PhoneNumber" class="form-control" required>
-
-                                        <label>تاریخ تولد</label>
-                                        <input type="date" name="BirthDate" class="form-control" required>
-
-                                        <label>آدرس</label>
-                                        <input type="text" name="Addres" class="form-control" required>
-
-                                        <label>ایمیل *</label>
-                                        <input type="email" name="Email" class="form-control" required>
-
-
-                                        <label> پسورد جدید</label>
-                                        <input type="password" name="Password" class="form-control">
-
-
-                                        <button type="submit" class="btn btn-outline-primary-2 float-right">
-                                            <span>ذخیره تغییرات</span>
-                                            <i class="icon-long-arrow-left"></i>
-                                        </button>
-                                    </form>
                                 </div><!-- .End .tab-pane -->
                             </div>
                         </div><!-- End .col-lg-9 -->

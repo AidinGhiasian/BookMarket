@@ -56,15 +56,8 @@ namespace AccountM.Application
 
         public List<AccountViewModel> GetAccounts(bool isStatus)
         {
-            var accounts = _accountRepository.GetAccounts(isStatus); 
-            var list = new List<AccountViewModel>();
-
-            foreach (var account in accounts)
-            {
-                list.Add(Map(account)); 
-            }
-
-            return list;
+            return _accountRepository.GetAccounts(isStatus).Select(Map).ToList(); 
+           
         }
         public List<AccountViewModel> GetAll()
         {
@@ -75,7 +68,6 @@ namespace AccountM.Application
             {
                 list.Add(Map(account));
             }
-
             return list;
         }
 

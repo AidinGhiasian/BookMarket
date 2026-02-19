@@ -7,6 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Pages\NewFolder\**" />
+    <Content Remove="Pages\NewFolder\**" />
+    <EmbeddedResource Remove="Pages\NewFolder\**" />
+    <None Remove="Pages\NewFolder\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Include="wwwroot\img\Screenshot %2811%29.png" />
   </ItemGroup>
 
@@ -29,15 +36,15 @@
    
     <ProjectReference Include="..\BookM.Application\BookM.Application.csproj" />
    
+    <ProjectReference Include="..\BookM.ClientQueries.Configuration\BookM.ClientQueries.Configuration.csproj" />
+   
+    <ProjectReference Include="..\BookM.ClientQueries\BookM.ClientQueries.csproj" />
+   
     <ProjectReference Include="..\BookM.Infrastucure.Configoration\BookMInfrastucureConfiguration.csproj" />
    
     <ProjectReference Include="..\CommentM.Infrastructure.Configuration\CommentMInfrastructureConfiguration.csproj" />
    
     <ProjectReference Include="..\Services\Services.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Pages\NewFolder\" />
   </ItemGroup>
 
 </Project>
