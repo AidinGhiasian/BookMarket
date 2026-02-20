@@ -1,4 +1,7 @@
 using BlogM.Application.Contracts.PostApplication;
+using BookM.ClientQueries.Blog.Post;
+using BookM.ClientQueries.Model.Blog.Post;
+using BookM.ClientQueries.Queries;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
@@ -6,16 +9,17 @@ namespace BookMarket.Pages.Blog
 {
     public class BLogDetailsModel : PageModel
     {
-        public PostViewModel Post { get; set; }
+        private readonly IPostQueries _postQueries;
+        public PostQueryViewModel Post { get; set; }
 
-        public IPostApplication _PostApplication { get; set; }
-        public BLogDetailsModel(IPostApplication PostApplication)
+      
+        public BLogDetailsModel(IPostQueries postQueries)
         {
-            _PostApplication = PostApplication;
+           _postQueries = postQueries;
         }
         public void OnGet(int id)
         {
-            Post = _PostApplication.GetById(id);
+            Post = _postQueries.GetDetail(id);
         }
     }
 }

@@ -16,37 +16,25 @@
 
 <div class="page-content">
 	<figure class="entry-media">
-		<img src="/@Model.Post.Picture" alt="توضیحات عکس">
+		<img src="/Pictures/@Model.Post.Picture" alt="توضیحات عکس" style="width:720px;margin-right: 600px;" ">
 	</figure><!-- End .entry-media عکس اصلی-->
 	<div class="container">
 		<article class="entry single-entry entry-fullwidth">
 			<div class="row">
 				<div class="col-lg-11">
 					<div class="entry-body">
-						<div class="entry-meta">
-							<span class="entry-author">
-								نویسنده : <a href="#">مدیر سایت</a>
-							</span>
-							<span class="meta-separator">|</span>
-							<a href="#">22 اسفند 1401</a>
-							<span class="meta-separator">|</span>
-							<a href="#">2 دیدگاه</a>
-						</div><!-- End .entry-meta -->
-
-						<h2 class="entry-title entry-title-big">
+						<h2 class="entry-title entry-title-big mb-5">
 							@Model.Post.Title
 						</h2><!-- End .entry-title -->
-
-						<div class="entry-cats">
-							<a href="#">سفر</a>
-						</div><!-- End .entry-cats -->
-
+						<div class="entry-content editor-content">
+							<p>
+								@Html.Raw(Model.Post.ShortDescription)
+							</p>
+						</div><!-- End .entry-content -->
 						<div class="entry-content editor-content">
 							<p>
 								@Html.Raw(Model.Post.Description)
-							</p>
-
-							
+                           </p>
 						</div><!-- End .entry-content -->
 
 						<div class="entry-footer row no-gutters">
@@ -58,55 +46,6 @@
 						</div><!-- End .entry-footer row no-gutters -->
 					</div><!-- End .entry-body -->
 				</div><!-- End .col-lg-11 -->
-
-				<div class="col-lg-1 order-lg-first mb-2 mb-lg-0">
-					<div class="sticky-content">
-						<div class="social-icons social-icons-colored social-icons-vertical">
-							<span class="social-label">اشتراک گذاری</span>
-							<a href="#" class="social-icon social-facebook" title="فیسبوک"
-							   target="_blank"><i class="icon-facebook-f"></i></a>
-							<a href="#" class="social-icon social-twitter" title="توییتر" target="_blank">
-								<i class="icon-twitter"></i>
-							</a>
-							<a href="#" class="social-icon social-pinterest" title="پینترست"
-							   target="_blank"><i class="icon-pinterest"></i></a>
-							<a href="#" class="social-icon social-linkedin" title="لینکدین"
-							   target="_blank"><i class="icon-linkedin"></i></a>
-						</div><!-- End .soial-icons -->
-					</div><!-- End .sticky-content -->
-				</div><!-- End .col-lg-1 -->
-			</div><!-- End .row -->
-
-			<div class="entry-author-details">
-				<figure class="author-media">
-					<a href="#">
-						<img src="assets/images/blog/single/author.jpg" alt="User name">
-					</a>
-				</figure><!-- End .author-media -->
-
-				<div class="author-body">
-					<div class="author-header row no-gutters flex-column flex-md-row">
-						<div class="col-12">
-							<h4><a href="#">مدیر سایت</a></h4>
-						</div><!-- End .col -->
-						<div class="col-auto mt-1 mt-md-0">
-							<a href="#" class="author-link">
-								مشاهده همه پست های این نویسنده <i class="icon-long-arrow-left"></i>
-							</a>
-						</div><!-- End .col -->
-					</div><!-- End .row -->
-
-					<div class="author-content">
-						<p>
-							لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم لورم ایپسوم متن ساختگی با
-							تولید سادگی نامفهوملورم ایپسوم متن ساختگی با تولید سادگی نامفهوم لورم
-							ایپسوم متن ساختگی با تولید سادگی
-						</p>
-					</div><!-- End .author-content -->
-				</div><!-- End .author-body -->
-			</div><!-- End .entry-author-details-->
-		</article><!-- End .entry -->
-
 		<nav class="pager-nav" aria-label="Page navigation">
 			<a class="pager-link pager-link-prev" href="#" aria-label="Previous" tabindex="-1">
 				پست قبلی
@@ -193,12 +132,6 @@
 				</article><!-- End .entry -->
 
 				<article class="entry entry-grid">
-					<figure class="entry-media">
-						<a href="single.html">
-							<img src="assets/images/blog/grid/3cols/post-3.jpg" alt="توضیحات عکس">
-						</a>
-					</figure><!-- End .entry-media -->
-
 					<div class="entry-body">
 						<div class="entry-meta justify-content-start">
 							<a href="#">18 اسفند 1401</a>
