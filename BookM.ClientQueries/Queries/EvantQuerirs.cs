@@ -1,12 +1,13 @@
 ﻿using BlogM.Application;
+using BlogM.Application.Contracts.EventApplication;
 using BookM.ClientQueries.Model.Blog.Evant;
 
 namespace BookM.ClientQueries.Queries
 {
     public class EvantQuerirs : IEventQueries
     {
-        private readonly EventApplication _eventApplication;
-        public EvantQuerirs(EventApplication eventApplication)
+        private readonly IEventApplication _eventApplication;
+        public EvantQuerirs(IEventApplication eventApplication)
         {
             _eventApplication = eventApplication;
         }

@@ -16,6 +16,7 @@ namespace BookM.ClientQueries.Blog.Post
         public string PostTime { get; set; }
         public string Category { get; set; }
         public bool IsAvailable { get; set; }
+        public int categoryId { get; set; }
 
     }
 }

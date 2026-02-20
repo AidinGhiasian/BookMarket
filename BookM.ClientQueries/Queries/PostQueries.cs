@@ -32,6 +32,7 @@ namespace BookM.ClientQueries.Queries
                    Description = x.Description,
                    Category = x.Category,
                    IsAvailable = x.IsAvailable
+                   
                })
                .ToList();
         }

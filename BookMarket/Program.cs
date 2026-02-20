@@ -22,7 +22,7 @@ AccountMInfrastructureConfigurationBootstraper.Configure(builder.Services, conte
 BlogMInfrastructureConfigurationBootstraper.Configure(builder.Services, contectionstring);
 BookMInfrastructureConfigurationBootstraper.Configure(builder.Services, contectionstring);
 CommentMInfrastructureConfigurationBootstraper.Configure(builder.Services, contectionstring);
-BookMClientQueriesConfigurationBootStrapper.Configure(builder.Services);
+
 
 
 // Add services to the container.

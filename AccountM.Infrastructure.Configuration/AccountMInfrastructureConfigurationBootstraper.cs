@@ -10,6 +10,8 @@ using AccountM.Infrastructure.EFCore;
 using AccountM.Infrastructure.EFCore.Repository;
 using AccountManagement.Domain.RoleAgg;
 using AM.Domain.Account.AD;
+using BookM.ClientQueries.Model.Account;
+using BookM.ClientQueries.Queries;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -24,6 +26,7 @@ namespace AccountMInfrastructureConfiguration
             services.AddScoped<IRoleRepository,RoleRepository>();
             services.AddScoped<IRoleApplication,RoleApplication>();
 
+            services.AddScoped<IAccountQueries, AccountQueries>();
 
 
 

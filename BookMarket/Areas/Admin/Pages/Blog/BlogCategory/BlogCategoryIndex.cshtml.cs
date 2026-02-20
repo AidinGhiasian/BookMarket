@@ -16,7 +16,7 @@ namespace BookMarket.Areas.Admin.Pages.Blog.BlogCategory
         public List<BlogCategoryViewModel> BlogCategories { get; set; }
         public void OnGet()
         {
-           
+            BlogCategories = _blogCategoryApplication.GetAll();
         }
 
     }
