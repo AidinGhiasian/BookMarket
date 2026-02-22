@@ -1,40 +1,44 @@
 using AccountM.Infrastructure.EFCore;
 using AccountM.Infrastructure.EFCore.Migrations;
 using AM.Domain.Account.AD;
-using AccountM.Application.Contracts.AccountApplication;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using AccountM.Application;
 using Microsoft.AspNetCore.Mvc;
+using BookM.ClientQueries.Model.Account;
+using AccountM.Application.Contracts.AccountApplication;
 
 namespace BookMarket.Pages.Account
 {
 
     public class loginModel : PageModel
     {
-        public List<AccountViewModel> Accounts { get; set; }
-        public AccountViewModel Account { get; set; }
+        public List<BookM.ClientQueries.Model.Account.AccountViewModel> Accounts { get; set; }
+        public BookM.ClientQueries.Model.Account.AccountViewModel Account { get; set; }
 
 
-        private readonly IAccountApplication _accountapplication;
-        public loginModel(IAccountApplication accountApplication)
+        private readonly IAccountQueries _accountQueries;
+    
+        public loginModel(IAccountQueries accountQueries)
         {
-            _accountapplication = accountApplication;
+           _accountQueries = accountQueries;
+           
         }
         public void OnGet()
         {
 
         }
 
-        public IActionResult OnPostLogin(string? email, string? password)
+        public IActionResult OnPostLogin(string? phone, string? password)
         
         {
-            var Exist = _accountapplication.login(email, password);
-
-            if (Exist == true) ;
+            var result = _accountQueries.Login(phone, password);
+           
+            if (result.Success)
             {
-                return RedirectToPage("/dashboard");
+                var acc = _accountQueries.GetDetail(phone);
+                return RedirectToPage("/dashboard", new {id=acc.Id});
             }
-
+            return Page();
 
         }
 

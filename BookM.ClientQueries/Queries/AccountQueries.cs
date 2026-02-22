@@ -72,6 +72,22 @@ namespace BookM.ClientQueries.Queries
                 Addres = model.Addres,
             };
         }
-
+        public EditViewModel GetDetail(string phone)
+        {
+            var model = _accountApplication.GetBy(phone);
+            return new EditViewModel
+            {
+                Id = model.Id,
+                Name = model.Name,
+                Family = model.Family,
+                Email = model.Email,
+                BirthDate = model.BirthDate,
+                Addres = model.Addres,
+            };
+        }
+        public OperationResult Login(string? phone, string? password)
+        {
+          return _accountApplication.login(phone, password);
+        }
     }
 }
