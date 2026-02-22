@@ -13,7 +13,7 @@ namespace BookMarket.Pages
             _bookApplication = bookApplication;
         }
      
-
+        
         public void OnGet()
         {
            Books= _bookApplication.GetAll();
