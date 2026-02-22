@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using AccountM.Infrastructure.EFCore.Migrations;
 using AM.Domain.Account.AD;
+using FLEXYGO.PushService;
 using Services;
 
 namespace AccountM.Infrastructure.EFCore.Repository
@@ -64,24 +65,25 @@ namespace AccountM.Infrastructure.EFCore.Repository
         {
             return _accountdbcontext.Account.FirstOrDefault(x => x.PhoneNumber == phonenumber);
         }
+       
 
-        
-        public bool login(string? email, string? password)
+        public OperationResult login(string? phonNumber, string? password)
         {
-            var account = _accountdbcontext.Account.FirstOrDefault(x => x.Email == email);
+            OperationResult result = new OperationResult();
+            var account = _accountdbcontext.Account.FirstOrDefault(x => x.PhoneNumber == phonNumber);
             if (account != null)
             {
                 if (account.Password == password)
                 {
-                    return true;
+                    return result.IsSuccess();
                 }
                 else
                 {
-                    return false;
+                    return result.Failed(ApplicationMessage.NotFund);
                 }
-                
             }
-            return false;
+            return result.Failed(ApplicationMessage.NotFund);
+
         }
     }
 }

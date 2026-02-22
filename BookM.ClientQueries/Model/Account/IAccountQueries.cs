@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,5 +12,7 @@ namespace BookM.ClientQueries.Model.Account
         public AccountViewModel Account(int id);
         public AccountViewModel Account(string phoneNumber);
         public EditViewModel GetDetail(int id);
+        public EditViewModel GetDetail(string phone);
+        public OperationResult Login(string? phone, string? password);
     }
 }

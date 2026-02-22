@@ -13,8 +13,9 @@ namespace AM.Domain.Account.AD
         public Account? GetbyId(int id);
         public List<Account> GetAccounts(bool isStatus);
         public Account Getby(string phonenumber);
+       
         public void Delete(int id);
-        public bool login(string? email, string? password);
+        public OperationResult login(string? phonNumber, string? password);
         public void Restore(int id);
 
     }

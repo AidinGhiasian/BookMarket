@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using AccountM.Application.Contracts.AccountApplication;
 using AM.Domain.Account.AD;
+using Services;
 
 namespace AccountM.Application
 {
@@ -97,13 +98,14 @@ namespace AccountM.Application
             var a = _accountRepository.Getby(phone);
             return Map(a);
         }
-
-        public bool login(string? email, string? password)
+       
+        public OperationResult login(string? phone, string? password)
         {
-            return _accountRepository.login(email, password);
+            var login= _accountRepository.login(phone, password);
+            return login;
         }
 
-        private AccountViewModel Map(Account model)
+        public AccountViewModel Map(Account model)
         {
             return new AccountViewModel
             {

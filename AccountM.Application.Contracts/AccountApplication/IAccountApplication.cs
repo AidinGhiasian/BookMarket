@@ -1,4 +1,7 @@
-﻿namespace AccountM.Application.Contracts.AccountApplication
+﻿using Microsoft.OpenApi.Validations.Rules;
+using Services;
+
+namespace AccountM.Application.Contracts.AccountApplication
 {
     public interface IAccountApplication
     {
@@ -9,7 +12,7 @@
         public void Delete(int id);
         public void Restore(int id);
         public AccountViewModel GetBy(string phone);
-        public bool login(string? email, string? password);
+        public OperationResult login(string? phone, string? password);
         public List<AccountViewModel> GetAll();
         public EditViewModel Getdetail(int id);
         public AccountViewModel GetdetailInfo(int id);
