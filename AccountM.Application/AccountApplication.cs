@@ -56,15 +56,8 @@ namespace AccountM.Application
 
         public List<AccountViewModel> GetAccounts(bool isStatus)
         {
-            var accounts = _accountRepository.GetAccounts(isStatus); 
-            var list = new List<AccountViewModel>();
-
-            foreach (var account in accounts)
-            {
-                list.Add(Map(account)); 
-            }
-
-            return list;
+            return _accountRepository.GetAccounts(isStatus).Select(Map).ToList(); 
+           
         }
         public List<AccountViewModel> GetAll()
         {
@@ -75,7 +68,6 @@ namespace AccountM.Application
             {
                 list.Add(Map(account));
             }
-
             return list;
         }
 
@@ -125,6 +117,22 @@ namespace AccountM.Application
                 Addres = model.Addres,
                 Password = model.Password,
                 IsAvalable=model.IsAvalable,
+            };
+        }
+
+        public AccountViewModel GetdetailInfo(int id)
+        {
+            var model = _accountRepository.GetbyId(id);
+            return new AccountViewModel
+            {
+                Id = model.Id,
+                Name = model.Name,
+                Family = model.Family,
+                PhoneNumber = model.PhoneNumber,
+                Email = model.Email,
+                BirthDate = model.BirthDate,
+                Addres = model.Addres,
+                Password = model.Password,
             };
         }
     }

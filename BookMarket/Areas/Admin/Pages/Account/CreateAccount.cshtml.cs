@@ -14,13 +14,12 @@ namespace BookMarket.Areas.Admin.Account
         public void OnGet()
         {
         }
-        public void OnPost(CreateViewModel added)
+        public IActionResult OnPost(CreateViewModel added)
         {
             
             _accountApplication.Create(added);
             TempData["success"] = "کتابخوان جدید ثبت شد...";
-            Redirect("./Account/AdminIndex");
-
+           return Redirect("./AdminIndex");
         }
     }
 }

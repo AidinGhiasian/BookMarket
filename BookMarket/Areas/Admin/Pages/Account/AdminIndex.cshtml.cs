@@ -20,14 +20,14 @@ namespace BookMarket.Areas.Admin.Account
             _accountApplication.Delete(id);
             TempData["Avalable"] = "کتابخوان غیر فعال شد...";
            
-            return Redirect("/Admin/Account/Index");
+            return Redirect("./AdminIndex");
         }
         public IActionResult OnGetRestore(int id)
         {
             _accountApplication.Restore(id);
             TempData["NotAvalable"] = "کتابخوان فعال شد...";
 
-            return Redirect("/Admin/Account/Index");
+            return Redirect("./AdminIndex");
         }
         public void OnGet(bool IsStatus = true)
         {

@@ -11,6 +11,7 @@ using Book.Infrastructure.EFCore;
 using AccountM.Infrastructure.EFCore;
 using BookM.Infrastructure.EFCore;
 using CommentM.Infrastructure.EFCore;
+using BookM.ClientQueries.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 

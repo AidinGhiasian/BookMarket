@@ -20,8 +20,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Book.Infrastructure.EFCore\BlogM.Infrastructure.EFCore.csproj" />
     <ProjectReference Include="..\BookM.Application.Contracts\BookM.Application.Contracts.csproj" />
     <ProjectReference Include="..\BookM.Application\BookM.Application.csproj" />
+    <ProjectReference Include="..\BookM.ClientQueries\BookM.ClientQueries.csproj" />
     <ProjectReference Include="..\BookM.Infrastructure.EFCore\BookM.Infrastructure.EFCore.csproj" />
   </ItemGroup>
 

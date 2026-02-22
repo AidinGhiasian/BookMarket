@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Blog.Domain.BlogAD;
+﻿using Blog.Domain.BlogAD;
 using Blog.Domain.BlogCategoryAD;
 using BlogM.Application;
 using BlogM.Application.Contracts.BlogCategoryApplication;
@@ -12,8 +7,17 @@ using BlogM.Application.Contracts.PostApplication;
 using BlogM.Infrastructure.EFCore.Migrations;
 using BlogM.Infrastructure.EFCore.Repository;
 using Book.Infrastructure.EFCore;
+using BookM.ClientQueries.Model.Blog.Categores;
+using BookM.ClientQueries.Model.Blog.Evant;
+using BookM.ClientQueries.Model.Blog.Post;
+using BookM.ClientQueries.Queries;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace BlogMInfrastructureConfiguration
 {
@@ -21,13 +25,19 @@ namespace BlogMInfrastructureConfiguration
     {
         public static void Configure(IServiceCollection services, string connectionString)
         {
-            services.AddScoped<IBlogRepository,BlogRepository>();
-            services.AddScoped<IPostApplication,PostApplication>();
-            services.AddScoped<IEventRepository, EventRepository>();
-            services.AddScoped<IEventApplication, EventApplication>();
+            services.AddTransient<IBlogRepository,BlogRepository>();
+            services.AddTransient<IPostApplication,PostApplication>();
+            services.AddTransient<IEventRepository, EventRepository>();
+            services.AddTransient<IEventApplication, EventApplication>();
 
-            services.AddScoped<IBlogCategoryApplication,BlogCategoryApplication>();
-            services.AddScoped<IBlogCategoryRepository,BlogCategoryRepository>();
+            services.AddTransient<IBlogCategoryApplication,BlogCategoryApplication>();
+            services.AddTransient<IBlogCategoryRepository,BlogCategoryRepository>();
+
+
+            services.AddTransient<IBlogCategoryQueries, BlogCategoryQueries>();
+            services.AddTransient<IPostQueries, PostQueries>();
+            services.AddTransient<IEventQueries, EvantQuerirs>();
+
 
             services.AddDbContext<BlogDbContext>(options => options.UseSqlServer(connectionString));
         }

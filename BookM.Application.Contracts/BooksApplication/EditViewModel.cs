@@ -11,5 +11,6 @@ namespace BookM.Application.Contracts.BooksApplication
         public int Id { get; set; }
         public bool status {  get; set; }
         public string Picture { get; set; }
+        public string Categorey { get; set; }
     }
 }

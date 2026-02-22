@@ -23,6 +23,7 @@
  
     <ProjectReference Include="..\AccountM.Application\AccountM.Application.csproj" />
     <ProjectReference Include="..\AccountM.Infrastructure.EFCore\AccountM.Infrastructure.EFCore.csproj" />
+    <ProjectReference Include="..\BookM.ClientQueries\BookM.ClientQueries.csproj" />
   </ItemGroup>
 
 </Project>

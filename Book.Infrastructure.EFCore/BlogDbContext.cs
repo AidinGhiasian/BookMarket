@@ -20,6 +20,7 @@ namespace Book.Infrastructure.EFCore
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new BlogCategoryMapping());
+            modelBuilder.ApplyConfiguration(new PostsMapping());
 
             base.OnModelCreating(modelBuilder);
         }

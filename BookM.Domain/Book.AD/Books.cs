@@ -23,13 +23,13 @@ namespace BookM.Domain.Book.AD
         public DateTime UpdatedTime { get; private set; }
         public bool IsAvailable { get; private set; }
         public string Price { get;private set; }
-
+        public BookCategories Category { get; private set; }
 
         public Books() { }
 
 
         //رابطه با BookCategory با رابطه چند به چند
-        public List<BookCategories> BookCategories { get;  set; } = new();
+       
 
         public Books(string picture, string booktitle, string writer, string publisher, int categoryId, string price,string shortdescription)
         {

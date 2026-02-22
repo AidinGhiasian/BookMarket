@@ -1,5 +1,6 @@
 ﻿
-using BlogM.Application.Contracts.PostApplication;
+using BookM.ClientQueries.Blog.Post;
+using BookM.ClientQueries.Model.Blog.Post;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace BookMarket.Pages.Blog
@@ -7,19 +8,15 @@ namespace BookMarket.Pages.Blog
     public class IndexModel : PageModel
     {
 
-        public List<BlogM.Application.Contracts.PostApplication.PostViewModel> Blogs { get; set; }
-
-        private readonly IPostApplication _postApplication;
-        public IndexModel(IPostApplication postApplication)
+        public List<PostQueryViewModel> Blogs { get; set; }
+        private readonly IPostQueries _postQueries;
+        public IndexModel(IPostQueries postQueries)
         {
-            _postApplication = postApplication;
+            _postQueries = postQueries;
         }
-
-
-
         public void OnGet()
         {
-            Blogs = _postApplication.GetAll();
+            Blogs = _postQueries.GetAll();
             if(Blogs.Count==0)
             {
                 TempData["information"] = "هیچ مقاله ای وجود ندارد...";

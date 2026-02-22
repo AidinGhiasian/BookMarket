@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -37,7 +38,7 @@ namespace BlogM.Infrastructure.EFCore.Repository
 
         public List<Posts> GetAll()
         {
-            return _blogdbcontext.Posts.ToList();
+            return _blogdbcontext.Posts.Include(x=>x.BlogCategory).ToList();
         }
 
         public Posts Getby(string Title)
@@ -47,7 +48,7 @@ namespace BlogM.Infrastructure.EFCore.Repository
 
         public Posts? GetById(int id)
         {
-            return _blogdbcontext.Posts.FirstOrDefault(x => x.Id == id);
+            return _blogdbcontext.Posts.Include(x=>x.BlogCategory).FirstOrDefault(x => x.Id == id);
         }
 
 

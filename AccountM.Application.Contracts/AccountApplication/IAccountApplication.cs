@@ -12,5 +12,6 @@
         public bool login(string? email, string? password);
         public List<AccountViewModel> GetAll();
         public EditViewModel Getdetail(int id);
+        public AccountViewModel GetdetailInfo(int id);
     }
 }

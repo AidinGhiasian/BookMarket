@@ -18,7 +18,7 @@ namespace Blog.Domain.BlogAD
         public DateTime UpdatedTime { get; private set; }
         public bool IsAvailable { get; private set; }
 
-        public virtual BlogCategory BlogCategory { get; private set; }
+        public virtual BlogCategory BlogCategory { get;  set; }
         public int BlogCategoryId { get; set; }
 
         private Posts() { }

@@ -13,6 +13,7 @@ namespace BookM.Domain.Book.AD
         public void Delete(int id);
        
         public List<Books> GetBy();
+      
 
 
     }

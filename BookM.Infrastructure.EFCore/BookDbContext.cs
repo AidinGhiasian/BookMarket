@@ -17,7 +17,7 @@ namespace BookM.Infrastructure.EFCore
         protected override void OnModelCreating(ModelBuilder modelBuilder) 
         {
             base.OnModelCreating(modelBuilder);
-            modelBuilder.Entity<Books>().HasMany(b => b.BookCategories).WithMany(c => c.Books);
+            modelBuilder.Entity<Books>().HasOne(b => b.Category).WithMany(c => c.Books);
         }
     }
 

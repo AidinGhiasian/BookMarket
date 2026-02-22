@@ -49,7 +49,7 @@ namespace BookM.Application.Contracts.BooksApplication
         [Required(ErrorMessage = "لطفا توضیحات کوتاه را وارد کنید...")]
         [Display(Name = "توضیحات کوتاه")]
         public string ShortDescription { get; set; }
-        public List<BookCategoryViewModel> BookCategories { get; set; }
+        public BookCategoryViewModel BookCategories { get; set; }
         public string CategoryName { get; set; }
 
     }
