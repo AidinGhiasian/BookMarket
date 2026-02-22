@@ -1,0 +1,167 @@
+﻿@using BookM.ClientQueries.Model.Book.Books
+@model List<BookQueryViewModel>?
+@{
+}
+
+<div class="page-content" style="margin-bottom: 0 !important; padding-bottom: 0 !important;">
+	<div class="container" style="margin-bottom: 0 !important; padding-bottom: 0 !important;">
+		@if (Model != null)
+		{
+			<div class="heading heading-flex">
+				<div class="heading-left">
+					<h2 class="title">تازه منتشر شده</h2><!-- End .title -->
+				</div><!-- End .heading-left -->
+
+				<div class="heading-right">
+					<a href="category.html" class="title-link">
+						مشاهده محصولات بیشتر <i class="icon-long-arrow-left"></i>
+					</a>
+				</div><!-- End .heading-right -->
+			</div>
+
+			<!-- End .header-flex -->
+
+			<div class="row">
+				<div class="col-xl-4">
+					<div class="owl-carousel carousel-equal-height owl-simple" data-toggle="owl" data-owl-options='{
+										"nav": false,
+										"rtl": true,
+										"dots": true,
+										"margin": 10
+									}'>
+						<div class="product-big">
+							<img src="assets/images/demos/demo-20/products/product-big-1-bg.jpg"
+								 alt="product bg img">
+
+							<div class="product-wrap">
+
+
+								<div class="product-body">
+								</div><!-- End .product-body -->
+							</div><!-- End .product-wrap -->
+						</div><!-- End .product-big -->
+
+						<div class="product-big">
+							<img src="assets/images/demos/demo-20/products/product-big-2-bg.jpg"
+								 alt="product bg img">
+
+							<div class="product-wrap">
+								<figure class="product-media">
+									<a href="product.html">
+										<img src="assets/images/demos/demo-20/products/product-12.jpg"
+											 alt="تصویر محصول" class="product-image">
+									</a>
+								</figure><!-- End .product-media -->
+
+								<div class="product-body">
+									<div class="product-cat" dir="rtl">
+										نویسنده : <a href="#">نیکولا یون </a>
+									</div><!-- End .product-cat -->
+									<h3 class="product-title">
+										<a href="product.html">خورشید نیز یک ستاره است</a>
+									</h3><!-- End .product-title -->
+									<div class="product-price">
+										10,000 تومان
+									</div><!-- End .product-price -->
+
+									<div class="product-action">
+										<a href="#" class="btn-product btn-cart"><span>افزودن به سبد خرید</span></a>
+									</div><!-- End .product-action -->
+								</div><!-- End .product-body -->
+							</div><!-- End .product-wrap -->
+						</div><!-- End .product-big -->
+					</div><!-- End .owl-carousel -->
+
+					<div class="mb-3 d-xl-none"></div><!-- End .mb-3 d-none -->
+				</div><!-- End .col-lg-4 -->
+
+				<div class="col-xl-8">
+					<div class="block-wrapper ">
+						<div class="owl-carousel carousel-equal-height owl-simple" data-toggle="owl"
+							 data-owl-options='{
+											"nav": false,
+											"dots": true,
+											"margin": 20,
+											"loop": false,
+											"rtl": true,
+									"responsive": {
+												"0": {
+													"items":2
+												},
+												"480": {
+													"items":2
+												},
+												"768": {
+													"items":3
+												},
+												"992": {
+													"items":4
+												},
+												"1200": {
+													"items":3
+												},
+												"1440": {
+													"items":4
+												}
+											}
+										}'>
+							@foreach (var item in Model)
+							{
+								<div class="product">
+									<figure class="product-media">
+										<a href="product.html">
+											<img src="/Pictures/@item.PictureFile"
+												 alt="تصویر محصول" class="product-image">
+										</a>
+									</figure><!-- End .product-media -->
+
+									<div class="product-body">
+										<div class="product-cat" dir="rtl">
+											نویسنده : <a href="#">@item.Writer</a>
+										</div><!-- End .product-cat -->
+										<h3 class="product-title">
+											<a href="product.html">@item.BookTitle: نسخه اختصاصی</a>
+										</h3><!-- End .product-title -->
+										<div class="product-price">
+											@item.Price  تومان
+										</div><!-- End .product-price -->
+
+										<div class="product-footer">
+											<div class="ratings-container">
+												<div class="ratings">
+													<div class="ratings-val" style="width: 80%;"></div>
+													<!-- End .ratings-val -->
+												</div><!-- End .ratings -->
+												<span class="ratings-text">( 5 دیدگاه )</span>
+											</div><!-- End .rating-container -->
+											<div class="product-action">
+												<a href="#" class="btn-product btn-cart">
+													<span>
+														افزودن به سبد
+														خرید
+													</span>
+												</a>
+												<a href="#" class="btn-product btn-wishlist">
+													<span>
+														افزودن به لیست علاقه
+														مندی
+													</span>
+												</a>
+											</div><!-- End .product-action -->
+										</div><!-- End .product-footer -->
+									</div><!-- End .product-body -->
+								</div>
+
+								<!-- End .product -->
+							}
+
+
+						</div><!-- End .owl-carousel -->
+					</div><!-- End .block-wrapper -->
+				</div><!-- End .col-lg-8 -->
+			</div>
+
+			<!-- End .row -->
+		}
+	</div>
+</div>
