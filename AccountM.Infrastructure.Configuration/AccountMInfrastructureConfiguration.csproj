@@ -20,8 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\AccountM.Application.Contacts\AccountM.Application.Contracts.csproj" />
-    <ProjectReference Include="..\AccountM.Application.Contracts\AccountM.Application.Contracts.csproj" />
+ 
     <ProjectReference Include="..\AccountM.Application\AccountM.Application.csproj" />
     <ProjectReference Include="..\AccountM.Infrastructure.EFCore\AccountM.Infrastructure.EFCore.csproj" />
   </ItemGroup>
