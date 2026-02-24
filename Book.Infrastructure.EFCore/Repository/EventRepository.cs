@@ -32,6 +32,7 @@ namespace BlogM.Infrastructure.EFCore.Repository
             {
                 _blogdbcontext.Remove(DE);
             }
+            _blogdbcontext.SaveChanges();
         }
 
         public List<Events> GetAll()
@@ -47,7 +48,6 @@ namespace BlogM.Infrastructure.EFCore.Repository
         public Events GetDetailes(int id)
         {
           return _blogdbcontext.Events.FirstOrDefault(x => x.Id == id);
-
         }
 
         

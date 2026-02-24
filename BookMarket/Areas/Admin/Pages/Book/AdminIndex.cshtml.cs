@@ -21,6 +21,7 @@ namespace BookMarket.Areas.Admin.Pages.Book
         public IActionResult OnGetDelete(int id)
         {
             _bookApplication.Delete(id);
+            TempData["danger"] = "کتاب با موفقیت ثبت شد...";
             return Redirect("./AdminIndex");
         }
     }

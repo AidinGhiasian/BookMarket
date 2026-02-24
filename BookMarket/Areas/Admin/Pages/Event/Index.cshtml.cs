@@ -17,6 +17,13 @@ namespace BookMarket.Areas.Admin.Pages.Event
         {
             Events = _eventApplication.GetAll();
         }
+        public IActionResult OnGetDelete(int id)
+        { 
+         _eventApplication.Delete(id);
+            TempData["danger"] = "رویداد یا موفقیت حذف شد";
+            return RedirectToPage("./Index");
+        }
+
 
     }
 }

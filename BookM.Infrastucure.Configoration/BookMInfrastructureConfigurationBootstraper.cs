@@ -32,7 +32,8 @@ namespace BookMInfrastucureConfigoration
 
 
 
-            services.AddDbContext<BookDbContext>(options => options.UseSqlServer(connectionString));
+            services.AddDbContext<BookDbContext>(options => 
+            options.UseSqlServer(connectionString));
            
         }
     }
