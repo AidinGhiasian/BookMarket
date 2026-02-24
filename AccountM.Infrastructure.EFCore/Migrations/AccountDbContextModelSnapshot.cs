@@ -63,8 +63,11 @@ namespace AccountM.Infrastructure.EFCore.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<long?>("RoleId")
-                        .HasColumnType("bigint");
+                    b.Property<string>("Picture")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("RoleId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Scuritycode")
                         .IsRequired()
@@ -95,20 +98,23 @@ namespace AccountM.Infrastructure.EFCore.Migrations
                     b.Property<long?>("RoleId")
                         .HasColumnType("bigint");
 
+                    b.Property<int>("RoleId1")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
-                    b.HasIndex("RoleId");
+                    b.HasIndex("RoleId1");
 
                     b.ToTable("Permission");
                 });
 
             modelBuilder.Entity("AccountManagement.Domain.RoleAgg.Role", b =>
                 {
-                    b.Property<long>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
+                        .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Details")
                         .IsRequired()
@@ -128,16 +134,22 @@ namespace AccountM.Infrastructure.EFCore.Migrations
 
             modelBuilder.Entity("AM.Domain.Account.AD.Account", b =>
                 {
-                    b.HasOne("AccountManagement.Domain.RoleAgg.Role", null)
+                    b.HasOne("AccountManagement.Domain.RoleAgg.Role", "Role")
                         .WithMany("Accounts")
-                        .HasForeignKey("RoleId");
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Role");
                 });
 
             modelBuilder.Entity("AccountManagement.Domain.RoleAgg.Permission", b =>
                 {
                     b.HasOne("AccountManagement.Domain.RoleAgg.Role", "Role")
                         .WithMany("Permissions")
-                        .HasForeignKey("RoleId");
+                        .HasForeignKey("RoleId1")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Role");
                 });

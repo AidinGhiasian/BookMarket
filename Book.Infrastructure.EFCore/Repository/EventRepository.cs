@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Blog.Domain.BlogAD;
 using Book.Infrastructure.EFCore;
 using Microsoft.EntityFrameworkCore.Internal;
-using Services;
+using Services.Application;
 
 namespace BlogM.Infrastructure.EFCore.Repository
 {
@@ -50,12 +50,7 @@ namespace BlogM.Infrastructure.EFCore.Repository
 
         }
 
-        public void Update(Events events)
-        {
-            var ee = _blogdbcontext.Events.FirstOrDefault(x=>x.Id == events.Id);
-            ee.Edit(events.Picture, events.EventTitle, events.Description, events.EventStartTime, events.EventFinishTime);
-            _blogdbcontext.SaveChanges();
-        }
+        
 
 
     }

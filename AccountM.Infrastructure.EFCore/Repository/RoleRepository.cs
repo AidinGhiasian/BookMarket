@@ -3,7 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using AccountManagement.Domain.RoleAgg;
 using Microsoft.EntityFrameworkCore;
-using Services;
+using Services.Application;
 
 namespace AccountM.Infrastructure.EFCore.Repository
 {

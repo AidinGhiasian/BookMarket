@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Blog.Domain.BlogAD;
 using BlogM.Application.Contracts.PostApplication;
-using Services;
+using Services.Application;
 
 
 namespace BlogM.Application

@@ -5,7 +5,7 @@ using System.Net.Security;
 using System.Text;
 using System.Threading.Tasks;
 using CommentM.Domain.Comment.AD;
-using Services;
+using Services.Application;
 
 namespace CommentM.Infrastructure.EFCore.Repository
 {

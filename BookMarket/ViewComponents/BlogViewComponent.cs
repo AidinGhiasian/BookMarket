@@ -1,4 +1,5 @@
 ﻿using BookM.ClientQueries.Model.Blog.Post;
+using Humanizer;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BookMarket.ViewComponents
@@ -16,6 +17,7 @@ namespace BookMarket.ViewComponents
         {
             var post = _postQueries.GetAll();
             return View(post);
+                
         }
     }
 }

@@ -6,7 +6,7 @@ namespace AccountManagement.Domain.RoleAgg
 {
     public class Role
     {
-        public long Id { get; private set; }
+        public int Id { get; private set; }
         public string RoleName { get; private set; }
         public List<Permission> Permissions { get; private set; }//هر نقش میتواند چند دسترسی داشته باشد ...
         public List<Account> Accounts { get; private set; }//هر نقش میتواند چند حساب داشته باشد...

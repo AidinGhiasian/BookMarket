@@ -36,8 +36,8 @@
                 {
                     <article class="entry">
                         <figure class="entry-media">
-                            <a href="single.html">
-                                <img src="/Pictures/@item.Picture" alt="توضیحات عکس">
+                            <a href="./Blog/BlogDetails">
+                                <img href="./Blog/BlogDetails" src="/Pictures/@item.Picture" alt="توضیحات عکس">
                             </a>
                         </figure><!-- End .entry-media -->
 
@@ -47,14 +47,14 @@
                             </div><!-- End .entry-meta -->
 
                             <h3 class="entry-title">
-                                <a href="single.html">@item.Title</a>
+                                <a href="./Blog/BlogDetails">@item.Title</a>
                             </h3><!-- End .entry-title -->
 
                             <div class="entry-content">
                                 <p>
                                    @item.ShortDescription
                                 </p>
-                                <a href="./Blog?id=@item.Id" class="read-more">ادامه خواندن ...</a>
+                                <a href="./Blog/BlogDetails?id=@item.Id" class="read-more">ادامه خواندن ...</a>
                             </div><!-- End .entry-content -->
                         </div><!-- End .entry-body -->
                     </article>

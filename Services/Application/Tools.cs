@@ -2,7 +2,7 @@
 using System.Globalization;
 using System.IO;
 
-namespace Services
+namespace Services.Application
 {
     public static class Tools
     {

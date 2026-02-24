@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BookM.ClientQueries.Model.Blog.Evant
+namespace BookM.ClientQueries.Model.Blog.Event
 {
     public interface IEventQueries
     {
-        public List<EventQueryViewModel> Evants();
+        public List<EventQueryViewModel> Events();
     }
 }

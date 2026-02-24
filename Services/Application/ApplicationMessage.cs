@@ -1,4 +1,4 @@
-﻿namespace Services
+﻿namespace Services.Application
 {
     public static class ApplicationMessage
     {

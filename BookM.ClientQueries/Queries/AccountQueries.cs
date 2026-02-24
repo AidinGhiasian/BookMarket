@@ -2,7 +2,7 @@
 using BookM.ClientQueries.Model.Account;
 using DocumentFormat.OpenXml.Office2010.Excel;
 using FLEXYGO.GoogleResourceTypes;
-using Services;
+using Services.Application;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,8 +35,7 @@ namespace BookM.ClientQueries.Queries
                 BirthDate = model.BirthDate,
                 cratetiondate = model.cratetiondate,
                 Addres = model.Addres,
-                Password = model.Password,
-                IsAvalable = model.IsAvalable,
+                  IsAvalable = model.IsAvalable,
             };
         }
 
@@ -53,8 +52,7 @@ namespace BookM.ClientQueries.Queries
                 BirthDate = model.BirthDate,
                 cratetiondate = model.cratetiondate,
                 Addres = model.Addres,
-                Password = model.Password,
-                IsAvalable = model.IsAvalable,
+                                IsAvalable = model.IsAvalable,
             };
         }
 

@@ -1,7 +1,7 @@
 ﻿using Blog.Domain.BlogAD;
 using BlogM.Application.Contracts.EventApplication;
 using BookM.Domain.Book.AD;
-using Services;
+using Services.Application;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -36,7 +36,7 @@ namespace BlogM.Application
 
         public List<EventViewModel> GetAll()
         {
-          var AE = _eventrepository.GetAll();
+          var AE = _eventrepository.GetAll().OrderByDescending(x=>x.Id);
             var LE = new List<EventViewModel>();
             foreach (var e in AE)
             { 
@@ -75,8 +75,9 @@ namespace BlogM.Application
                 var path = "Event";
                 picturepath = _fileuploader.UploadNewSize(edit.FileName, path,720);
             }
-            EE.Edit(edit.Picture, edit.EventTitle, edit.Description,edit.EventStartTime,edit.EventFinishTime);
-            _eventrepository.Update(EE);
+            EE.Edit(picturepath, edit.EventTitle, edit.Description,edit.EventStartTime,edit.EventFinishTime);
+           
+            _eventrepository.SaveChanges();
         }
         private EventViewModel map(Events events)
         {

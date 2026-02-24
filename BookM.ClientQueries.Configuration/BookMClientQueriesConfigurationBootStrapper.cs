@@ -2,7 +2,7 @@
 using Book.Infrastructure.EFCore;
 using BookM.ClientQueries.Model.Account;
 using BookM.ClientQueries.Model.Blog.Categores;
-using BookM.ClientQueries.Model.Blog.Evant;
+using BookM.ClientQueries.Model.Blog.Event;
 using BookM.ClientQueries.Model.Blog.Post;
 using BookM.ClientQueries.Model.Book.Books;
 using BookM.ClientQueries.Queries;

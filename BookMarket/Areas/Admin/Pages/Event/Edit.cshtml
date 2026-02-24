@@ -39,6 +39,8 @@
                     <div class="col-lg-6 col-md-10 m-auto m-b-30">
 
                         <form id="form" role="form" method="post" enctype="multipart/form-data">
+                            <input hidden asp-for="@Model.Events.Id"name="Id"/>
+                            <input hidden asp-for="@Model.Events.Picture"name="Picture"/>
                             <div class="form-body">
                                 <div class="form-group relative mt-3 mb-4">
                                     <input type="file" name="FileName" asp-for="@Model.Events.FileName" class="form-control">

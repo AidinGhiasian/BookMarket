@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using AccountManagement.Domain.RoleAgg;
 
 namespace AM.Domain.Account.AD
 {
@@ -22,11 +23,12 @@ namespace AM.Domain.Account.AD
         public string Scuritycode { get; private set; }
         public string Password { get; private set; }
         public bool IsAvalable { get; private set; }
-
-
+        public int RoleId { get; private set; }
+        public string? Picture { get; private set; }
+        public Role Role { get; private set; }
         public Account() { }
 
-        public Account(string name, string family, string phoneNumber, string email, DateTime birthDate, string addres, string password)
+        public Account(string name, string family, string phoneNumber, string email, DateTime birthDate, string addres, string password, int roleId, string? picture)
         {
             var random = new Random();
 
@@ -40,8 +42,10 @@ namespace AM.Domain.Account.AD
             Scuritycode = random.Next(100000, 999999).ToString();
             Password = password;
             IsAvalable = true;
+            RoleId = roleId;
+            Picture = picture;
         }
-        public void Edit(string name, string family, string phoneNumber, string email, DateTime birthDate, string addres)
+        public void Edit(string name, string family, string phoneNumber, string email, DateTime birthDate, string addres, int roleId, string? picture)
         {
             Name = name;
             Family = family;
@@ -50,8 +54,9 @@ namespace AM.Domain.Account.AD
             BirthDate = birthDate;
             CreationDate = DateTime.Now;
             Addres = addres;
-            
-           
+            RoleId = roleId;
+            Picture = picture;
+
         }
         public void ChangeStatus(bool isAvaleble)
         {

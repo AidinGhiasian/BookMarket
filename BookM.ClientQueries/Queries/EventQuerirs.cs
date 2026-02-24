@@ -1,17 +1,17 @@
 ﻿using BlogM.Application;
 using BlogM.Application.Contracts.EventApplication;
-using BookM.ClientQueries.Model.Blog.Evant;
+using BookM.ClientQueries.Model.Blog.Event;
 
 namespace BookM.ClientQueries.Queries
 {
-    public class EvantQuerirs : IEventQueries
+    public class EventQuerirs : IEventQueries
     {
         private readonly IEventApplication _eventApplication;
-        public EvantQuerirs(IEventApplication eventApplication)
+        public EventQuerirs(IEventApplication eventApplication)
         {
             _eventApplication = eventApplication;
         }
-        public List<EventQueryViewModel> Evants()
+        public List<EventQueryViewModel> Events()
         {
             return _eventApplication.GetAll().Select(events => new EventQueryViewModel
             {

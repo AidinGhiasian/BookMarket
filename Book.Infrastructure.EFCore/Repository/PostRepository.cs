@@ -6,8 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Blog.Domain.BlogAD;
 using Book.Infrastructure.EFCore;
-using Services;
-using Services;
+using Services.Application;
 
 namespace BlogM.Infrastructure.EFCore.Repository
 {

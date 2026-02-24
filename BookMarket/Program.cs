@@ -1,17 +1,16 @@
-﻿using BlogM.Infrastructure.EFCore;
-using Microsoft.EntityFrameworkCore;
-using System.Runtime.InteropServices;
-using AccountMInfrastructureConfiguration;
+﻿using AccountMInfrastructureConfiguration;
 using BlogMInfrastructureConfiguration;
+using BookMarket;
 using BookMInfrastucureConfigoration;
 using CommentMInfrastructureConfiguration;
-using Services;
+
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.EntityFrameworkCore;
+using Services.Application;
+using Services.Application.AuthHelper;
+using Services.Application.Categoreis;
+using Services.Application.HashPassword;
 using Services.Model;
-using Book.Infrastructure.EFCore;
-using AccountM.Infrastructure.EFCore;
-using BookM.Infrastructure.EFCore;
-using CommentM.Infrastructure.EFCore;
-using BookM.ClientQueries.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -23,12 +22,50 @@ BlogMInfrastructureConfigurationBootstraper.Configure(builder.Services, contecti
 BookMInfrastructureConfigurationBootstraper.Configure(builder.Services, contectionstring);
 CommentMInfrastructureConfigurationBootstraper.Configure(builder.Services, contectionstring);
 
+builder.Services.AddScoped<IPasswordHasher, PasswordHasher>();
+builder.Services.AddTransient<IAuthHelper, AuthHelper>();
+builder.Services.AddScoped<IFileUploader, FileUploader>();
+
+builder.Services.Configure<CookiePolicyOptions>(options =>
+{
+    options.CheckConsentNeeded = context => true;
+    options.MinimumSameSitePolicy = SameSiteMode.Lax;
+});
+
+
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, o =>
+    {
+        o.ExpireTimeSpan = TimeSpan.FromDays(30);
+        o.SlidingExpiration = true;
+        o.LoginPath = new PathString("/Account");
+        o.LogoutPath = new PathString("/Account");
+        o.AccessDeniedPath = new PathString("/AccessDenied");
+    });
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAll",
+        builder => builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
+});
+//builder.Services.AddAuthorization(options =>
+//{
+//    options.AddPolicy("SuperAdmin",
+//        builder => builder.RequireRole(new List<string> { Roles.Admin }));
+//});
+
+//builder.Services.AddRazorPages().AddMvcOptions(options => options.Filters.Add<SecurityPageFilter>())
+//    .AddRazorPagesOptions(options =>
+//    {
+//        options.Conventions.AuthorizeAreaFolder("Admin", "/", "SuperAdmin");
+
+
+//    });
+
 
 
 // Add services to the container.
 builder.Services.AddRazorPages();
 
-builder.Services.AddScoped<IFileUploader, FileUploader>();
 
 var app = builder.Build();
 

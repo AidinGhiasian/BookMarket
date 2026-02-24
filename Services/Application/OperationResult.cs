@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.SqlServer.Dac.Model;
 
-namespace Services
+namespace Services.Application
 {
     public class OperationResult
     {

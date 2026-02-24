@@ -1,12 +1,13 @@
-﻿using System;
+﻿using AccountManagement.Domain.RoleAgg;
+using AM.Domain.Account.AD;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Design;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
-using AccountManagement.Domain.RoleAgg;
-using AM.Domain.Account.AD;
-using Microsoft.EntityFrameworkCore;
 
 namespace AccountM.Infrastructure.EFCore
 {
@@ -18,6 +19,20 @@ namespace AccountM.Infrastructure.EFCore
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+        }
+    }
+
+    public class AccountDbContextFactory
+        : IDesignTimeDbContextFactory<AccountDbContext>
+    {
+        public AccountDbContext CreateDbContext(string[] args)
+        {
+            var optionsBuilder = new DbContextOptionsBuilder<AccountDbContext>();
+
+            optionsBuilder.UseSqlServer(
+                "Server=.;Database=BookMarket;Integrated Security=True;TrustServerCertificate=True;");
+
+            return new AccountDbContext(optionsBuilder.Options);
         }
     }
 }

@@ -1,5 +1,5 @@
 ﻿using Microsoft.OpenApi.Validations.Rules;
-using Services;
+using Services.Application;
 
 namespace AccountM.Application.Contracts.AccountApplication
 {
@@ -16,5 +16,6 @@ namespace AccountM.Application.Contracts.AccountApplication
         public List<AccountViewModel> GetAll();
         public EditViewModel Getdetail(int id);
         public AccountViewModel GetdetailInfo(int id);
+        public void Logout();
     }
 }

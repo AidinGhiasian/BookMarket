@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace Services;
+namespace Services.Application;
 
 public class RepositoryBase<T> : IRepositoryBase<T> where T : class
     //در اینجا ما معلوم میکنیم که متغیر T

@@ -1,4 +1,6 @@
-﻿namespace AccountM.Application.Contracts.AccountApplication
+﻿using Microsoft.AspNetCore.Http;
+
+namespace AccountM.Application.Contracts.AccountApplication
 {
     public class CreateViewModel
     {
@@ -9,6 +11,7 @@
         public DateTime BirthDate { get; set; }
         public string Addres { get; set; }
         public string Password { get; set; }
+        public IFormFile FilePicture { get; set; }
 
     }
 }

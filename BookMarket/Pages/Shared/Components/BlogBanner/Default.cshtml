@@ -1,0 +1,36 @@
+﻿@using BookM.ClientQueries.Blog.Post
+@using BookM.ClientQueries.Model.Blog.Event
+@model List<PostQueryViewModel>
+@{
+}
+<div class="col-sm-6 col-lg-3">
+    @foreach (var item in Model)
+    {
+        <div class="banner banner-small banner-overlay">
+            <a href="#">
+                <img src="/Pictures/@item.Picture" alt="بنر">
+            </a>
+
+            <div class="banner-content text-right">
+                <h4 class="banner-subtitle text-white d-lg-none d-xl-block">
+                    <a href="#">
+                        20% تخفیف <br>کد تخفیف:
+                        <span>bookmarket</span>
+                    </a>
+                </h4><!-- End .banner-subtitle -->
+                <h3 class="banner-title text-white">
+                    <a href="#">
+                        @item.Title
+                    </a>
+                </h3><!-- End .banner-title -->
+                <a href="#" class="btn btn-outline-white-3 banner-link">
+                    خرید<i class="icon-long-arrow-left"></i>
+                </a>
+            </div><!-- End .banner-content -->
+        </div>
+    
+        <!-- End .banner -->
+    }
+   
+    
+</div><!-- End .col-lg-3 -->
