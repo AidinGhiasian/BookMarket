@@ -1,11 +1,12 @@
-﻿using System;
+﻿using CommentM.Domain.Comment.AD;
+using CrystalDecisions.ReportAppServer;
+using Services.Application;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Security;
 using System.Text;
 using System.Threading.Tasks;
-using CommentM.Domain.Comment.AD;
-using Services.Application;
 
 namespace CommentM.Infrastructure.EFCore.Repository
 {
@@ -17,36 +18,23 @@ namespace CommentM.Infrastructure.EFCore.Repository
             _commentDbContext = commentdbcontext;
         }
 
-        public void Create(Comments create)
-        {
-            _commentDbContext.Add(create);
-            _commentDbContext.SaveChanges();
-        }
 
-        public void Delete(long id)
+        public OperationResult Delete(int id)
         {
-            var DC = _commentDbContext.Comments.Find(id);
-            if (id != null)
+            OperationResult result = new OperationResult();
+            var comment = _commentDbContext.Comments.FirstOrDefault(x => x.Id == id);
+            if (comment != null)
             {
-                _commentDbContext.Remove(id);
-                _commentDbContext.SaveChanges();
+                result.IsSuccess();
             }
-
+            return result.Failed(ApplicationMessage.NotFund);
         }
 
-        public List<Comments> GetAll(long recordId)
-        {
-            return _commentDbContext.Comments.Where(x => x.OwnerId == recordId).ToList();
-        }
 
-        public void UpdateBy(Comments update)
+
+        public List<Comments> GetComment(int ownerid)
         {
-            var EC = _commentDbContext.Comments.FirstOrDefault(x => x.FullName == update.FullName);
-            if (EC != null)
-            {
-                EC.Edit(update.FullName,update.Message);
-                _commentDbContext.SaveChanges();
-            }
+            return _commentDbContext.Comments.Where(x => x.OwnerId == ownerid).ToList();
         }
     }
 }

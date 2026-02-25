@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CommentM.Application.Contracts
+namespace BookM.ClientQueries.Model.Comment
 {
     public class CommentViewModel
     {
@@ -28,7 +28,7 @@ namespace CommentM.Application.Contracts
 
         [Display(Name = "کد کتاب ")]
         [Required(ErrorMessage = "مقدار کد کتاب اشتباه میباشد...")]
-        public int OwnerId { get; set; }
+        public long OwnerId { get; set; }
 
 
 

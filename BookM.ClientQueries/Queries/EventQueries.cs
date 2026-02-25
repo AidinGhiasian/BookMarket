@@ -4,10 +4,10 @@ using BookM.ClientQueries.Model.Blog.Event;
 
 namespace BookM.ClientQueries.Queries
 {
-    public class EventQuerirs : IEventQueries
+    public class EventQueries : IEventQueries
     {
         private readonly IEventApplication _eventApplication;
-        public EventQuerirs(IEventApplication eventApplication)
+        public EventQueries(IEventApplication eventApplication)
         {
             _eventApplication = eventApplication;
         }

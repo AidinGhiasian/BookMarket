@@ -16,47 +16,42 @@ namespace CommentM.Application
         {
             _commentrepository = commentrepository;
         }
-        public void create(CreateViewModel create)
+        public void Create(CreateViewModel create)
         {
             var CC = new Comments(create.FullName, create.Message);
-            _commentrepository.Create(CC);
+            _commentrepository.Add(CC);
+            _commentrepository.SaveChanges();
         }
 
-        public void Delete(long id)
+        public void Delete(int id)
         {
-            _commentrepository.Delete(id);
+            _commentrepository.GetById(id);
+
         }
 
-        public void Edit(EditViewModel edit)
+        public List<Comments> GetAll()
         {
-            var EC = _commentrepository.GetById(edit.Id);
-            if (EC != null)
-            {
-                EC.Edit(edit.FullName, edit.Message);
-            }
+            var comments = GetAll();
+            return comments;
         }
 
-        public Comments GetById(long id)
+        public List<CommentViewModel> GetComment(int recordId)
         {
-            var GC = _commentrepository.GetById(id);
-            return (GC);
-        }
-
-        public List<CommentViewModel> GetComment(long recordId)
-        {
-            var comments= _commentrepository.GetAll(recordId);
-           var commentViewModels = new List<CommentViewModel>();
+            var comments = _commentrepository.GetAll();
+            var commentViewModels = new List<CommentViewModel>();
             foreach (var comment in comments)
             {
                 commentViewModels.Add(Map(comment));
             }
             return commentViewModels;
         }
+
+
         public CommentViewModel Map(Comments comments)
         {
             return new CommentViewModel
             {
-                Id = comments.Id,
+                Id =Convert.ToInt32(comments.Id),
                 FullName = comments.FullName,
                 Message = comments.Message,
                 CommentDateTime = comments.CommentDatetime

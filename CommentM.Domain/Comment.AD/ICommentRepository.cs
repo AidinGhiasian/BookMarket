@@ -1,17 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using DocumentFormat.OpenXml.Drawing.Charts;
+using FLEXYGO.Objects.Settings;
+using Services.Application;
 
 namespace CommentM.Domain.Comment.AD
 {
-    public interface ICommentRepository
+    public interface ICommentRepository: IRepositoryBase<Comments>
     {
-        public void Create(Comments create);
-        public List<Comments> GetAll(long recordId);
-        public Comments GetById(long id);
-        public void UpdateBy(Comments update);
-        void Delete(long id);
+        public OperationResult Delete(int id);
+        List<Comments> GetComment(int ownerid);
     }
 }

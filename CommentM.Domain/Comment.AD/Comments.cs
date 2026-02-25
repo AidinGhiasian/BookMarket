@@ -11,7 +11,7 @@ namespace CommentM.Domain.Comment.AD
         public long Id { get; private set; }
         public string FullName { get; private set; }//کاربر
         public string Message { get; private set; }//کاربر
-        public long OwnerId { get; private set; }// پست یا کتابی که قراره براش نظر ثبت بشهID
+        public int OwnerId { get; private set; }// پست یا کتابی که قراره براش نظر ثبت بشهID
         public int Type { get; private set; }//تایپ آن چیزی که قراره براش نظر ثبت بشه :Book=>1,Blog=>2,Event=>3
         public DateTime CommentDatetime { get; private set; }
         public bool IsConfirmed { get; private set; }//تایید شدن یه کامنت 
@@ -29,11 +29,6 @@ namespace CommentM.Domain.Comment.AD
             FullName = name;
             Message = message;
 
-        }
-        public void Edit(string name, string message)
-        {
-            FullName = name;
-            Message = message;
         }
     }
     

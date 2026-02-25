@@ -15,6 +15,7 @@
     <ProjectReference Include="..\BlogM.Application.Contracts\BlogM.Application.Contracts.csproj" />
     <ProjectReference Include="..\BlogM.Application\BlogM.Application.csproj" />
     <ProjectReference Include="..\BookM.Application.Contracts\BookM.Application.Contracts.csproj" />
+    <ProjectReference Include="..\CommentM.Application.Contracts\CommentM.Application.Contracts.csproj" />
   </ItemGroup>
 
 </Project>

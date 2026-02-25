@@ -9,10 +9,9 @@ namespace CommentM.Application.Contracts
 {
     public interface ICommentApplication
     {
-        public void create(CreateViewModel create);
-        void Edit(EditViewModel edit);
-        Comments GetById(long id);
-        List<CommentViewModel> GetComment(long recordId);
-        void Delete(long id);
+        public void Create(CreateViewModel create);
+        List<Comments> GetAll();
+        List<CommentViewModel> GetComment(int recordId);
+        void Delete(int id);
     }
 }
