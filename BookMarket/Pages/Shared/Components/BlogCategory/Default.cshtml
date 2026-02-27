@@ -1,0 +1,63 @@
+﻿@using BookM.Application.Contracts.BooksCategoryApplication
+@using BookM.ClientQueries.Blog.Categores
+@using Services.Application
+@model List<BlogCategoryQueryViewModel>
+@{
+}
+<div class="owl-carousel carousel-equal-height owl-simple" data-toggle="owl"
+     data-owl-options='{
+                                    "nav": false,
+                                    "dots": true,
+                                    "margin": 20,
+                                    "loop": false,
+                                    "rtl": true,
+                            "responsive": {
+                                        "0": {
+                                            "items":2
+                                        },
+                                        "480": {
+                                            "items":2
+                                        },
+                                        "768": {
+                                            "items":3
+                                        },
+                                        "992": {
+                                            "items":4
+                                        },
+                                        "1440": {
+                                            "items":5
+                                        }
+                                    }
+                                }'>
+
+    @foreach (var item in Model)
+    {
+        <div class="product">
+            <figure class="product-media">
+                <a href="/product">
+                    <img src="/Pictures/@item.Picture"
+                         alt="تصویر محصول" class="product-image">
+                </a>
+            </figure>
+
+            <div class="product-body">
+
+                <h3 class="product-title">
+                    <a href="product.html">
+                        @item.Name
+                    </a>
+                </h3>
+                <div class="product-price">
+                    <span class="new-price rtl">@item.Description.Truncate(50)</span>
+
+                </div>
+
+
+            </div>
+        </div>
+
+
+    }
+
+
+</div>
