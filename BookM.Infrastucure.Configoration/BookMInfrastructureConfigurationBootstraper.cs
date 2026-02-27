@@ -29,7 +29,7 @@ namespace BookMInfrastucureConfigoration
 
 
             services.AddScoped<IBookQueries, BookQueries>();
-
+            services.AddScoped<IBookCategoryQuery,BookCategoryQuery>();
 
 
             services.AddDbContext<BookDbContext>(options => 

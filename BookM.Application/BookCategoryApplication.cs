@@ -88,7 +88,7 @@ namespace BookM.Application
                 Id = cat.Id,
                 CategoryName = cat.Name,
                 Description = cat.Description,
-                picture = cat.Picture,
+                Picture = cat.Picture,
             };
             return categpry;
         }

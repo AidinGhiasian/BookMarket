@@ -15,7 +15,7 @@ namespace BookMarket.ViewComponents
 
         public IViewComponentResult Invoke()
         {
-            var post = _postQueries.GetAll();
+            var post = _postQueries.GetAll().ToList();
             return View(post);
                 
         }

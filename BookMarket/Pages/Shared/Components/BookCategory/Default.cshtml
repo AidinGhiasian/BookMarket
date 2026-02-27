@@ -1,0 +1,60 @@
+﻿@using BookM.Application.Contracts.BooksCategoryApplication
+@using Services.Application
+@model List<BookCategoryQueryViewModel>?
+@{
+}
+<div class="owl-carousel carousel-equal-height owl-simple" data-toggle="owl" data-owl-options='{
+                                  "nav": false,
+                                  "dots": false,
+                                  "margin": 0,
+                                  "loop": true,
+                                  "rtl": true,
+                              "responsive": {
+                                      "0": {
+                                          "items":2
+                                      },
+                                      "480": {
+                                          "items":2
+                                      },
+                                      "768": {
+                                          "items":3
+                                      },
+                                      "992": {
+                                          "items":4
+                                      },
+                                      "1200": {
+                                          "items":5
+                                      },
+                                      "1440": {
+                                          "items":6
+                                      }
+                                  }
+                              }'>
+    @foreach (var item in Model)
+    {
+        <div class="product">
+          
+            <figure class="product-media">
+                <a href="product.html">
+                    <img src="/Pictures/@item.Picture" alt="تصویر محصول"
+                         class="product-image">
+                </a>
+            </figure><!-- End .product-media -->
+
+            <div class="product-body">
+               
+                <h3 class="product-title"><a href="product.html">@item.CategoryName</a></h3>
+                <!-- End .product-title -->
+                <div class="product-price">
+                    <span class="new-price">@item.Description.Truncate(50)</span>
+                  
+                </div><!-- End .product-price -->
+
+              
+            </div><!-- End .product-body -->
+        </div>
+
+    }
+
+
+</div>

@@ -13,7 +13,7 @@ namespace BookM.Application.Contracts.BooksCategoryApplication
         public string CategoryName { get; set; }
         public string? Description { get; set; }        
         public DateTime CreatedAt { get; set; }
-        public string picture { get; set; }
+        public string Picture { get; set; }
         public List<Books> Books { get;  set; } = new List<Books>();
 
     }
