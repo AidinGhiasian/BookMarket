@@ -36,7 +36,7 @@ namespace BlogMInfrastructureConfiguration
 
             services.AddTransient<IBlogCategoryQueries, BlogCategoryQueries>();
             services.AddTransient<IPostQueries, PostQueries>();
-            services.AddTransient<IEventQueries, EventQuerirs>();
+            services.AddTransient<IEventQueries, EventQueries>();
 
 
             services.AddDbContext<BlogDbContext>(options => options.UseSqlServer(connectionString));
