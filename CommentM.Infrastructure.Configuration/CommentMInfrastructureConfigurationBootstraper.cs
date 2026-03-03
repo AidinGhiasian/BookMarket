@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BookM.ClientQueries.Model.Comment;
+using BookM.ClientQueries.Queries;
 using CommentM.Application;
 using CommentM.Application.Contracts;
 using CommentM.Domain.Comment.AD;
@@ -20,6 +22,7 @@ namespace CommentMInfrastructureConfiguration
             services.AddScoped<ICommentRepository,CommentRepository>();
             services.AddScoped<ICommentApplication, CommentApplication>();
 
+            services.AddScoped<ICommentQueries,CommentQueries>();
 
             services.AddDbContext<CommentDbContext>(options=>options.UseSqlServer(connectionString));
         }

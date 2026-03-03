@@ -10,7 +10,7 @@ namespace BookM.ClientQueries.Model.Comment
     public class CommentViewModel
     {
         [Display(Name = "شناسه یکتا")]
-        public int Id { get; set; }
+        public long Id { get; set; }
 
 
 

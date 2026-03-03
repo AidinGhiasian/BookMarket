@@ -1,11 +1,12 @@
-﻿using System;
+﻿using CommentM.Application.Contracts;
+using CommentM.Domain.Comment.AD;
+using Services.Application;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using CommentM.Application.Contracts;
-using CommentM.Domain.Comment.AD;
 
 namespace CommentM.Application
 {
@@ -16,29 +17,34 @@ namespace CommentM.Application
         {
             _commentrepository = commentrepository;
         }
-        public void Create(CreateViewModel create)
+        public OperationResult Create(CreateViewModel create)
         {
-            var CC = new Comments(create.FullName, create.Message);
+            var result= new OperationResult();
+            var CC = new Comments(create.FullName, create.Message,create.OwnerId);
             _commentrepository.Add(CC);
             _commentrepository.SaveChanges();
+            return result.IsSuccess();
         }
 
-        public void Delete(int id)
+        public OperationResult Delete(int id)
         {
-            _commentrepository.GetById(id);
+            var result = new OperationResult();
 
+          var comment=  _commentrepository.GetById(id);
+            if(comment==null)
+            return result.Failed("");
+
+            _commentrepository.Delete(id);
+            return result.IsSuccess();
         }
 
-        public List<Comments> GetAll()
-        {
-            var comments = GetAll();
-            return comments;
-        }
+       
 
-        public List<CommentViewModel> GetComment(int recordId)
+        public List<CommentViewModel> GetComment(int ownerId)
         {
-            var comments = _commentrepository.GetAll();
+            
             var commentViewModels = new List<CommentViewModel>();
+            var comments = _commentrepository.GetComment(ownerId);
             foreach (var comment in comments)
             {
                 commentViewModels.Add(Map(comment));
@@ -51,11 +57,13 @@ namespace CommentM.Application
         {
             return new CommentViewModel
             {
-                Id =Convert.ToInt32(comments.Id),
+                Id =comments.Id,
                 FullName = comments.FullName,
                 Message = comments.Message,
-                CommentDateTime = comments.CommentDatetime
+                CommentDateTime = comments.CommentDatetime,
+                OwnerId = comments.OwnerId,
             };
         }
+
     }
 }

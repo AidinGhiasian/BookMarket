@@ -20,6 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\BookM.ClientQueries\BookM.ClientQueries.csproj" />
     <ProjectReference Include="..\CommentM.Application.Contracts\CommentM.Application.Contracts.csproj" />
     <ProjectReference Include="..\CommentM.Application\CommentM.Application.csproj" />
     <ProjectReference Include="..\CommentM.Infrastructure.EFCore\CommentM.Infrastructure.EFCore.csproj" />

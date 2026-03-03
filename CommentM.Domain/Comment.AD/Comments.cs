@@ -23,11 +23,12 @@ namespace CommentM.Domain.Comment.AD
 
         public Comments() { }
 
-        public Comments(string name, string message)
+        public Comments(string name, string message,int ownerId)
 
         {
             FullName = name;
             Message = message;
+            OwnerId = ownerId;
 
         }
     }

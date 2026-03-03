@@ -1,35 +1,51 @@
 ﻿using BookM.ClientQueries.Model.Comment;
 using CommentM.Application.Contracts;
+using CommentM.Domain.Comment.AD;
+using DocumentFormat.OpenXml.Spreadsheet;
 using Services.Application;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BookM.ClientQueries.Queries
 {
     public class CommentQueries : ICommentQueries
     {
-        private readonly ICommentQueries _commentQueries;
-        public CommentQueries(ICommentQueries commentQueries)
+        private readonly ICommentApplication _commentApplication;
+        public CommentQueries(ICommentApplication commentApplication)
         {
-         _commentQueries = commentQueries;   
+            _commentApplication = commentApplication;
+        }
+
+        public OperationResult Create(CreateViewModel command)
+        {
+            return _commentApplication.Create(command);
         }
 
         public OperationResult Delete(int id)
         {
-           return _commentQueries.Delete(id);
+            return _commentApplication.Delete(id);
         }
 
-        public List<Model.Comment.CommentViewModel> GetAll()
+       
+        public Model.Comment.CommentViewModel Map(CommentM.Application.Contracts.CommentViewModel comment)
         {
-          return _commentQueries.GetAll();
+            return new Model.Comment.CommentViewModel
+            {
+                Id = comment.Id,
+                FullName = comment.FullName,
+                Message = comment.Message,
+                CommentDateTime = comment.CommentDateTime,
+                OwnerId = comment.OwnerId,
+            };
         }
-
         public List<Model.Comment.CommentViewModel> GetComment(int recordId)
         {
-          return _commentQueries.GetComment(recordId);
+            var comment= _commentApplication.GetComment(recordId);
+            var newList = new List<Model.Comment.CommentViewModel>();
+            foreach (var item in comment)
+            {
+                newList.Add(Map(item));
+            }
+            return newList;
         }
+      
     }
 }

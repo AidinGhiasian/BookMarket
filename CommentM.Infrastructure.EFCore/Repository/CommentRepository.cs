@@ -19,7 +19,7 @@ namespace CommentM.Infrastructure.EFCore.Repository
         }
 
 
-        public OperationResult Delete(int id)
+        public OperationResult Delete(long id)
         {
             OperationResult result = new OperationResult();
             var comment = _commentDbContext.Comments.FirstOrDefault(x => x.Id == id);
@@ -34,7 +34,8 @@ namespace CommentM.Infrastructure.EFCore.Repository
 
         public List<Comments> GetComment(int ownerid)
         {
-            return _commentDbContext.Comments.Where(x => x.OwnerId == ownerid).ToList();
+            var comments= _commentDbContext.Comments.Where(x => x.OwnerId == ownerid).ToList();
+            return comments;
         }
     }
 }

@@ -7,13 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Pages\NewFolder\**" />
-    <Content Remove="Pages\NewFolder\**" />
-    <EmbeddedResource Remove="Pages\NewFolder\**" />
-    <None Remove="Pages\NewFolder\**" />
-  </ItemGroup>
-
-  <ItemGroup>
     <None Include="wwwroot\img\Screenshot %2811%29.png" />
   </ItemGroup>
 
@@ -41,6 +34,10 @@
     <ProjectReference Include="..\BookM.ClientQueries\BookM.ClientQueries.csproj" />
    
     <ProjectReference Include="..\BookM.Infrastucure.Configoration\BookMInfrastucureConfiguration.csproj" />
+   
+    <ProjectReference Include="..\CommentM.Application.Contracts\CommentM.Application.Contracts.csproj" />
+   
+    <ProjectReference Include="..\CommentM.Application\CommentM.Application.csproj" />
    
     <ProjectReference Include="..\CommentM.Infrastructure.Configuration\CommentMInfrastructureConfiguration.csproj" />
    

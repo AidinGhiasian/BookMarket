@@ -14,7 +14,6 @@
                 </ul>
                 <div class="breadcrumb-left">
                     @ConvertDateTime.ConvertMiladiToShamsi(DateTime.Now, "HH:mm  dd MMMM yyyy")
-
                     <i class="icon-calendar"></i>
                 </div><!-- /.breadcrumb-left -->
             </div><!-- /.breadcrumb-box -->
@@ -92,7 +91,7 @@
                                             <td>@item.CategoryName</td>
                                             <td>@item.ShortDescription</td>
                                             <td>
-                                                <a class="btn btn-info" asp-page="EditAccount" asp-route-id="@item.Id">ویرایش</a>
+                                                <a class="btn btn-info"asp-page="./EditBook" asp-page-handler="Edit" asp-route-id="@item.Id">ویرایش</a>
                                             </td>
                                             <td>
                                                 <a class="btn btn-danger" asp-page-handler="delete" asp-route-id="@item.Id">حذف</a>

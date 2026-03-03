@@ -6,7 +6,7 @@ namespace CommentM.Domain.Comment.AD
 {
     public interface ICommentRepository: IRepositoryBase<Comments>
     {
-        public OperationResult Delete(int id);
+        public OperationResult Delete(long id);
         List<Comments> GetComment(int ownerid);
     }
 }

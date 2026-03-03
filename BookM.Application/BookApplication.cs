@@ -135,6 +135,21 @@ namespace BookM.Application
                 Categorey = book.Category.Name
             };
         }
+        public BookViewModel GetdetailInfo(int id)
+        {
+            var book = _bookRepository.GetById(id);
+            return new BookViewModel
+            {
+                Id = book.Id,
+                PictureFile = book.Picture,
+                BookTitle = book.BookTitle,
+                Writer = book.Writer,
+                publisher = book.Publisher,
+                CategoryId = book.CategoryId,
+                ShortDescription = book.ShortDescription,
+                CategoryName = book.Category.Name
+            };
+        }
 
 
     }

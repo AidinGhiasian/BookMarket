@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.WebPages;
 
 namespace BookM.ClientQueries.Queries
 {
@@ -34,6 +35,27 @@ namespace BookM.ClientQueries.Queries
                    IsAvailable = x.IsAvailable
                    
                })
+               .ToList();
+        }
+
+       
+
+        public List<PostQueryViewModel> GetAllBlogWithCategory(int? categoryId)
+        {
+            return _postApplication.GetAll()
+               .Select(x => new PostQueryViewModel
+               {
+                   Id = x.Id,
+                   Picture = x.Picture,
+                   Title = x.Title,
+                   ShortDescription = x.ShortDescription,
+                   Description = x.Description,
+                   Category = x.Category,
+                   IsAvailable = x.IsAvailable,
+                   categoryId= x.BlogCategoryId,
+                   
+
+               }).Where(x => x.categoryId == categoryId)
                .ToList();
         }
         public PostQueryViewModel GetDetail(int id)

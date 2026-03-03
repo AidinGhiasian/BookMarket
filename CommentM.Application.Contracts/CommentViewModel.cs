@@ -10,7 +10,7 @@ namespace CommentM.Application.Contracts
     public class CommentViewModel
     {
         [Display(Name = "شناسه یکتا")]
-        public int Id { get; set; }
+        public long Id { get; set; }
 
 
 
@@ -23,7 +23,6 @@ namespace CommentM.Application.Contracts
         [Display(Name = "نظر شما")]
         [Required(ErrorMessage = "لطفا فورم نظر خود را بنویسید...")]
         public string Message { get; set; }
-
 
 
         [Display(Name = "کد کتاب ")]

@@ -1,4 +1,5 @@
 ﻿using BookM.Application.Contracts.BooksApplication;
+using BookM.ClientQueries.Blog.Post;
 using BookM.ClientQueries.Model.Book.Books;
 using BookM.Domain.Book.AD;
 using System;
@@ -33,7 +34,23 @@ namespace BookM.ClientQueries.Queries
             }).ToList();
         }
 
-        public BookQueryViewModel GetDetail(int id)
+        public List<BookQueryViewModel> GetAllBookWithCategory(int? categoryId)
+        {
+            return _bookApplication.GetAll()
+             .Select(x => new BookQueryViewModel
+             {
+                 Id = x.Id,
+                 PictureFile = x.PictureFile,
+                 BookTitle = x.BookTitle,
+                 ShortDescription = x.ShortDescription,
+                 CategoryName = x.CategoryName,
+                 IsAvailable = x.IsAvailable,
+                 CategoryId = x.CategoryId,
+             }).Where(x => x.CategoryId == categoryId).ToList();
+        }
+
+
+        public BookQueryViewModel GetDetailInfo(int id)
         {
             var book = _bookApplication.Getdetail(id);
             return new BookQueryViewModel
@@ -48,5 +65,6 @@ namespace BookM.ClientQueries.Queries
                 CategoryName = book.Categorey,
             };
         }
+
     }
 }

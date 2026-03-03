@@ -15,7 +15,7 @@
             "dots": true,
             "items": 3,
             "margin": 20,
-            "loop": false,
+            "loop": true,
             "rtl": true,
             "responsive": {
             "0": {
@@ -36,8 +36,8 @@
                 {
                     <article class="entry">
                         <figure class="entry-media">
-                            <a href="./Blog/BlogDetails">
-                                <img href="./Blog/BlogDetails" src="/Pictures/@item.Picture" alt="توضیحات عکس">
+                            <a href="./Blog/BlogDetails?id=@item.Id">
+                                <img  src="/Pictures/@item.Picture" alt="توضیحات عکس">
                             </a>
                         </figure><!-- End .entry-media -->
 
@@ -47,14 +47,14 @@
                             </div><!-- End .entry-meta -->
 
                             <h3 class="entry-title">
-                                <a href="./Blog/BlogDetails">@item.Title</a>
+                                <a href="./Blog/BlogDetails?id=@item.Id">@item.Title</a>
                             </h3><!-- End .entry-title -->
 
                             <div class="entry-content">
                                 <p>
                                    @item.ShortDescription
                                 </p>
-                                <a href="./Blog/BlogDetails?id=@item.Id" class="read-more">ادامه خواندن ...</a>
+                                <a href="./Blog/BlogDetails?id=@item.Id=@item.Id" class="read-more">ادامه خواندن ...</a>
                             </div><!-- End .entry-content -->
                         </div><!-- End .entry-body -->
                     </article>

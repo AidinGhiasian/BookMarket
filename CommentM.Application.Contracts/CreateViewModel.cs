@@ -11,5 +11,6 @@ namespace CommentM.Application.Contracts
         public string FullName { get; set; }
         public string Message { get; set; }
         public DateTime CommentDatetime { get; set; }
+        public int OwnerId { get; set; }
     }
 } 

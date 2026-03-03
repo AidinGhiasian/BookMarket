@@ -47,8 +47,8 @@ namespace CommentM.Infrastructure.EFCore.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<long>("OwnerId")
-                        .HasColumnType("bigint");
+                    b.Property<int>("OwnerId")
+                        .HasColumnType("int");
 
                     b.Property<int>("Type")
                         .HasColumnType("int");

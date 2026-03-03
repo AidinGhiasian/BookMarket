@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BookM.ClientQueries.Blog.Post;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,6 +10,7 @@ namespace BookM.ClientQueries.Model.Book.Books
     public interface IBookQueries
     {
         public List<BookQueryViewModel> GetAll();
-        public BookQueryViewModel GetDetail(int id);
+        public BookQueryViewModel GetDetailInfo(int id);
+        public List<BookQueryViewModel> GetAllBookWithCategory(int? categoryId);
     }
 }

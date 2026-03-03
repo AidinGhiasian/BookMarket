@@ -18,5 +18,6 @@ namespace BlogM.Application.Contracts.PostApplication
         public bool IsAvailable { get;  set; }
         public DateTime UpdatedTime { get; set; }
         public string Category { get; set; }
+        public int BlogCategoryId { get; set; }
     }
 }

@@ -96,6 +96,8 @@ namespace BlogM.Application
                 PostTime = posts.PostTime.ToFarsi(),
                 UpdatedTime = posts.UpdatedTime,
                 Category = posts.BlogCategory.Name,
+                BlogCategoryId=posts.BlogCategoryId,
+                
             };
 
         }
