@@ -29,7 +29,7 @@ namespace CommentM.Infrastructure.EFCore.Repository
             var comment = _commentDbContext.Comments.FirstOrDefault(x => x.Id == id);
             if (comment != null)
             {
-                comment.ChangeStatus(false,true);
+                comment.ChangeStatus(true);
                 result.IsSuccess();
                 _commentDbContext.SaveChanges();
             }

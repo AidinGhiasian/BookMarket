@@ -51,7 +51,7 @@
                     </div><!-- /.top-buttons-box -->
                     <form method="get">
                         <div class="custom-radio rtl ">
-                            <input checked name="isStatus" value="1"  type="radio" class="control-input">
+                            <input  name="isStatus" value="1"  type="radio" class="control-input">
                             <span>
                                 تایید نشده
                             </span>
@@ -84,7 +84,6 @@
                                             <td>@item.Message</td>
                                             <td>@item.CommentDateTime</td>
                                             <td>
-                                                <a class="btn btn-info" asp-route-id="@item.Id">تایید</a>
                                                 <a class="btn btn-danger"asp-page="./index" asp-page-handler="Delete" asp-route-id="@item.Id">عدم تایید</a>
                                                 <a class="btn btn-warning" asp-route-id="@item.Id">پاسخ</a>
                                             </td>

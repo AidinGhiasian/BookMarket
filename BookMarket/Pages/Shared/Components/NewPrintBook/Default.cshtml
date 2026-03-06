@@ -1,0 +1,45 @@
+﻿@using BookM.ClientQueries.Model.Book.Books
+@model List<BookQueryViewModel>
+@{
+}
+<div class="col-xl-4">
+    <div class="owl-carousel carousel-equal-height owl-simple" data-toggle="owl" data-owl-options='{
+          "nav": false,
+          "rtl": true,
+          "dots": true,
+          "margin": 10
+         }'>
+        @foreach (var item in Model)
+        {
+            <div class="product-big">
+                <img src="/assets/images/demos/demo-20/products/product-big-2-bg.jpg"
+                     alt="product bg img">
+
+                <div class="product-wrap">
+                    <figure class="product-media">
+                        <a href="product.html">
+                            <img src="/Pictures/@item.PictureFile"
+                                 alt="تصویر محصول" class="product-image">
+                        </a>
+                    </figure><!-- End .product-media -->
+
+                    <div class="product-body">
+                        <div class="product-cat" dir="rtl">
+                            نویسنده : <a href="#">@item.Writer</a>
+                        </div><!-- End .product-cat -->
+                        <h3 class="product-title">
+                            <a href="product.html">@item.BookTitle</a>
+                        </h3><!-- End .product-title -->
+                        <div class="product-price">
+                            @item.Price تومان
+                        </div><!-- End .product-price -->
+
+                        <div class="product-action">
+                            <a href="#" class="btn-product btn-cart"><span>افزودن به سبد خرید</span></a>
+                        </div><!-- End .product-action -->
+                    </div><!-- End .product-body -->
+                </div><!-- End .product-wrap -->
+            </div>
+        }
+    </div><!-- End .owl-carousel -->
+</div><!-- End .col-lg-4 -->

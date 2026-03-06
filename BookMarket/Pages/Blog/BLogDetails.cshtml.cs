@@ -35,7 +35,7 @@ namespace BookMarket.Pages.Blog
         public void OnGet(int id)
         {
             Post = _postQueries.GetDetail(id);
-            CommentList = _commentQueries.GetComment(id);
+            CommentList = _commentQueries.CommentStatus(status: false);
             Categories = _blogCategoryQueries.GetPostWithCategories();
             Posts = _postQueries.GetAll();
             postCategory = _postQueries.GetAllBlogWithCategory(Post.categoryId);
