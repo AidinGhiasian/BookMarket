@@ -34,8 +34,6 @@ namespace BlogM.Application
         public List<PostViewModel> GetAll()
         {
             return _blogRepository.GetAll().Select(map).ToList();
-
-
         }
 
         public PostViewModel? GetById(int id)

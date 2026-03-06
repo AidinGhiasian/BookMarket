@@ -9,6 +9,7 @@
         public string Description { get; set; }
         public bool IsAvailable { get; set; }
         public string CreationDate { get; set; }
+        public int? PostCount { get; set; }
     }
 
 }

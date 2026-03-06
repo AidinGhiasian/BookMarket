@@ -1,90 +1,132 @@
 ﻿@page
+@using Services.Application
 @model BookMarket.Pages.Blog.BLogDetailsModel
 @{
 }
-<nav aria-label="breadcrumb" class="breadcrumb-nav border-0 mb-0">
+<div class="page-header text-center" style="background-image: url('assets/images/page-header-bg.jpg')">
+    <div class="container">
+        <h1 class="page-title"><span> @Model.Post.Title </span></h1>
+    </div><!-- End .container -->
+</div><!-- End .page-header -->
+<nav aria-label="breadcrumb" class="breadcrumb-nav mb-3">
     <div class="container">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="index-1.html">خانه</a></li>
             <li class="breadcrumb-item"><a href="#">اخبار</a></li>
-            <li class="breadcrumb-item active" aria-current="page">پست تکی تمام عرض</li>
+            <li class="breadcrumb-item active" aria-current="page">پست تکی پیش فرض با سایدبار</li>
         </ol>
     </div><!-- End .container -->
 </nav><!-- End .breadcrumb-nav -->
 
-
-
 <div class="page-content">
-    <figure class="entry-media">
-        <img src="/Pictures/@Model.Post.Picture" alt="توضیحات عکس" style="width:720px;margin-right: 600px;" ">
-    </figure><!-- End .entry-media عکس اصلی-->
     <div class="container">
-        <article class="entry single-entry entry-fullwidth">
-            <div class="row">
-                <div class="col-lg-11">
+        <div class="row">
+            <div class="col-lg-9">
+                <article class="entry single-entry">
+                    <figure class="entry-media">
+                        <img src="/Pictures/@Model.Post.Picture" alt="توضیحات عکس">
+                    </figure><!-- End .entry-media -->
+
                     <div class="entry-body">
-                        <h2 class="entry-title entry-title-big mb-5">
+                        <div class="entry-meta">
+                            <span class="entry-author">
+                                نویسنده : <a href="#">مدیر سایت</a>
+                            </span>
+                            <span class="meta-separator">|</span>
+                            <a href="#">22 اسفند 1401</a>
+                            <span class="meta-separator">|</span>
+                            <a href="#">2 دیدگاه</a>
+                        </div><!-- End .entry-meta -->
+
+                        <h2 class="entry-title">
                             @Model.Post.Title
                         </h2><!-- End .entry-title -->
+
+                        <div class="entry-cats">
+                            <a href="#">@Model.Post.Category</a>
+                        </div><!-- End .entry-cats -->
+
                         <div class="entry-content editor-content">
-                            <p>
-                                @Html.Raw(Model.Post.ShortDescription)
-                            </p>
-                        </div><!-- End .entry-content -->
-                        <div class="entry-content editor-content">
-                            <p>
-                                @Html.Raw(Model.Post.Description)
-                            </p>
+                            @Html.Raw(Model.Post.Description)
                         </div><!-- End .entry-content -->
 
-                        <div class="entry-footer row no-gutters">
-                            <div class="col-12">
+                        <div class="entry-footer row no-gutters flex-column flex-md-row">
+                            <div class="col-md">
                                 <div class="entry-tags">
                                     <span>برچسب : </span> <a href="#">عکاسی</a> <a href="#">استایل</a>
                                 </div><!-- End .entry-tags -->
                             </div><!-- End .col -->
+
+                            <div class="col-md-auto mt-2 mt-md-0">
+                                <div class="social-icons social-icons-color">
+                                    <span class="social-label">اشتراک گذاری این پست : </span>
+                                    <a href="#" class="social-icon social-facebook" title="فیسبوک"
+                                       target="_blank"><i class="icon-facebook-f"></i></a>
+                                    <a href="#" class="social-icon social-twitter" title="توییتر"
+                                       target="_blank"><i class="icon-twitter"></i></a>
+                                    <a href="#" class="social-icon social-pinterest" title="پینترست"
+                                       target="_blank"><i class="icon-pinterest"></i></a>
+                                    <a href="#" class="social-icon social-linkedin" title="لینکدین"
+                                       target="_blank"><i class="icon-linkedin"></i></a>
+                                </div><!-- End .soial-icons -->
+                            </div><!-- End .col-auto -->
                         </div><!-- End .entry-footer row no-gutters -->
                     </div><!-- End .entry-body -->
-                </div><!-- End .col-lg-11 -->
-                <nav class="pager-nav" aria-label="Page navigation">
-                    <a class="pager-link pager-link-prev" href="#" aria-label="Previous" tabindex="-1">
-                        پست قبلی
-                        <span class="pager-link-title">لورم ایپسوم متن ساختگی با تولید سادگی</span>
-                    </a>
 
-                    <a class="pager-link pager-link-next" href="#" aria-label="Next" tabindex="-1">
-                        پست بعدی
-                        <span class="pager-link-title">لورم ایپسوم متن ساختگی</span>
-                    </a>
-                </nav><!-- End .pager-nav -->
+                    <div class="entry-author-details">
+                        <figure class="author-media">
+                            <a href="#">
+                                <img src="/assets/images/blog/single/author.jpg" alt="User name">
+                            </a>
+                        </figure><!-- End .author-media -->
+
+                        <div class="author-body">
+                            <div class="author-header row no-gutters flex-column flex-md-row">
+                                <div class="col-12">
+                                    <h4><a href="#">مدیر سایت</a></h4>
+                                </div><!-- End .col -->
+                                <div class="col-auto mt-1 mt-md-0">
+                                    <a href="#" class="author-link">
+                                        مشاهده همه پست های این نویسنده <i class="icon-long-arrow-left"></i>
+                                    </a>
+                                </div><!-- End .col -->
+                            </div><!-- End .row -->
+
+                            <div class="author-content">
+                                <p>
+                                    مدیریت سایت سعی بر این دارد که در هر روز یک پست روی سایت منتشر شود .
+                                </p>
+                            </div><!-- End .author-content -->
+                        </div><!-- End .author-body -->
+                    </div><!-- End .entry-author-details-->
+                </article><!-- End .entry -->
+
+             
 
                 <div class="related-posts">
                     <h3 class="title">پست های مرتبط</h3><!-- End .title -->
 
                     <div class="owl-carousel owl-simple" data-toggle="owl" data-owl-options='{
-        "nav": false,
-        "dots": true,
-        "margin": 20,
-        "loop": false,
-        "rtl": true,
-       "responsive": {
-         "0": {
-          "items":1
-         },
-         "480": {
-          "items":2
-         },
-         "768": {
-          "items":3
-         },
-         "992": {
-          "items":4
-         }
-        }
-       }'>
+                                        "nav": false,
+                                        "dots": true,
+                                        "margin": 20,
+                                        "loop": false,
+                                        "rtl": true,
+                            "responsive": {
+                                            "0": {
+                                                "items":1
+                                            },
+                                            "480": {
+                                                "items":2
+                                            },
+                                            "768": {
+                                                "items":3
+                                            }
+                                        }
+                                    }'>
                         <article class="entry entry-grid">
                             <figure class="entry-media">
-                                <a href="./Blog/BlogDetails">
+                                <a href="single.html">
                                     <img src="assets/images/blog/grid/3cols/post-1.jpg" alt="توضیحات عکس">
                                 </a>
                             </figure><!-- End .entry-media -->
@@ -132,6 +174,12 @@
                         </article><!-- End .entry -->
 
                         <article class="entry entry-grid">
+                            <figure class="entry-media">
+                                <a href="single.html">
+                                    <img src="assets/images/blog/grid/3cols/post-3.jpg" alt="توضیحات عکس">
+                                </a>
+                            </figure><!-- End .entry-media -->
+
                             <div class="entry-body">
                                 <div class="entry-meta justify-content-start">
                                     <a href="#">18 اسفند 1401</a>
@@ -176,8 +224,42 @@
                     </div><!-- End .owl-carousel -->
                 </div><!-- End .related-posts -->
 
+
                 <div class="comments">
-                    <h3 class="title">0 دیدگاه</h3><!-- End .title -->
+                    <h3 class="title"> دیدگاه  <span>(@Model.CommentList.Count())</span> </h3><!-- End .title -->
+
+                    <ul>
+                        @foreach (var item in Model.CommentList)
+                        {
+                            <li>
+                                <div class="comment">
+
+
+                                    <div class="comment-body">
+                                        <a href="#" class="comment-reply">پاسخ</a>
+                                        <div class="comment-user">
+                                            <h4><a href="#">@item.FullName</a></h4>
+                                            <span class="comment-date">
+                                                @ConvertDateTime.ConvertMiladiToShamsi(@item.CommentDateTime, "HH:mm  dd MMMM yyyy")
+
+                                            </span>
+                                        </div> <!-- End .comment-user -->
+
+                                        <div class="comment-content">
+                                            <p>
+                                                @item.Message
+                                            </p>
+                                        </div><!-- End .comment-content -->
+                                    </div><!-- End .comment-body -->
+                                </div><!-- End .comment -->
+
+
+                            </li>
+
+                        }
+
+
+                    </ul>
                 </div><!-- End .comments -->
                 <div class="reply">
                     <div class="heading">
@@ -187,41 +269,101 @@
                             شده اند.
                         </p>
                     </div><!-- End .heading -->
-                    @if (@Model.CommentList != null || Model.CommentList.Count() != 0)
-                    {
-                        @foreach (var item in Model.CommentList)
-                        {
-                            <ul>
-                                <li>
-                                    <div class="comment">
-                                        <figure class="comment-media">
-                                            <a href="#">
-                                                <img src="assets/images/blog/comments/2.jpg"
-                                                     alt="User name">
-                                            </a>
-                                        </figure>
 
-                                        <div class="comment-body">
-                                            <a href="#" class="comment-reply">پاسخ</a>
-                                            <div class="comment-user">
-                                                <h4><a href="#">@item.FullName</a></h4>
-                                                <span class="comment-date">
-                                                    9 اسفند 1401 - 2:19
-                                                    بعدازظهر
-                                                </span>
-                                            </div><!-- End .comment-user -->
+                    <form method="Post">
+                        <input hidden name="OwnerId" value="@Model.Post.Id" />
+                        <label for="reply-message" class="sr-only">دیدگاه</label>
+                        <textarea name="Message" id="reply-message" cols="30" rows="4"
+                                  class="form-control" required placeholder="دیدگاه شما *"></textarea>
 
-                                            <div class="comment-content">
-                                                <p>@item.Message</p>
-                                            </div><!-- End .comment-content -->
-                                        </div><!-- End .comment-body -->
-                                    </div><!-- End .comment -->
-                                </li>
-                            </ul>
-                        }
-                    }
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label for="reply-name" class="sr-only">نام</label>
+                                <input type="text" class="form-control" id="reply-name" name="FullName"
+                                       required placeholder="نام شما *">
+                            </div><!-- End .col-md-6 -->
+
+
+                        </div><!-- End .row -->
+
+                        <button type="submit" class="btn btn-outline-primary-2 float-right">
+                            <span>ارسال دیدگاه</span>
+                            <i class="icon-long-arrow-left"></i>
+                        </button>
+                    </form>
                 </div><!-- End .reply -->
+            </div><!-- End .col-lg-9 -->
 
-            </div><!-- End .container -->
-    </div><!-- End .page-content -->
-    d
+            <aside class="col-lg-3">
+                <div class="sidebar">
+                    <div class="widget widget-search">
+                        <h3 class="widget-title">جستجو</h3><!-- End .widget-title -->
+
+                        <form action="#">
+                            <label for="ws" class="sr-only">جستجوی اخبار</label>
+                            <input type="search" class="form-control" name="ws" id="ws"
+                                   placeholder="جستجوی خبر مورد نظر" required>
+                            <button type="submit" class="btn">
+                                <i class="icon-search"></i><span class="sr-only">جستجو</span>
+                            </button>
+                        </form>
+                    </div><!-- End .widget -->
+
+                    <div class="widget widget-cats">
+                        <h3 class="widget-title">دسته بندی ها</h3><!-- End .widget-title -->
+
+                        <ul>
+                              @foreach (var item in Model.Categories)
+                            {
+                                <li><a href="/Blog/Index?id=@item.Id">@item.Name <span>@item.PostCount</span></a></li>
+
+                            } 
+
+                        </ul>
+                    </div><!-- End .widget -->
+
+                    <div class="widget">
+                        <h3 class="widget-title">محبوب ترین اخبار</h3><!-- End .widget-title -->
+
+                        <ul class="posts-list">
+                            @foreach (var item in Model.Posts)
+                            {
+                                <li>
+                                    <figure>
+                                        <a href="#">
+                                            <img src="/Pictures/@item.Picture" alt="post">
+                                        </a>
+                                    </figure>
+
+                                    <div>
+
+                                        <h4><a href="#">@item.ShortDescription.Truncate(100)</a></h4>
+                                    </div>
+                                </li>
+
+                            }
+
+                        </ul><!-- End .posts-list -->
+                    </div><!-- End .widget -->
+
+
+                    <div class="widget">
+                        <h3 class="widget-title">برچسب ها</h3><!-- End .widget-title -->
+
+                        <div class="tagcloud">
+                            <a href="#">مد</a>
+                            <a href="#">استایل</a>
+                            <a href="#">زنانه</a>
+                            <a href="#">عکس</a>
+                            <a href="#">سفر</a>
+                            <a href="#">خرید</a>
+                            <a href="#">سرگرمی</a>
+                        </div><!-- End .tagcloud -->
+                    </div><!-- End .widget -->
+
+
+                </div><!-- End .sidebar -->
+            </aside><!-- End .col-lg-3 -->
+        </div><!-- End .row -->
+    </div><!-- End .container -->
+</div><!-- End .page-content -->

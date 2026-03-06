@@ -54,7 +54,13 @@ namespace BlogM.Infrastructure.EFCore.Repository
                            .Where(x => x.IsAvailable)
                            .ToList();
         }
-
+        public List<BlogCategory> GetPostWithCategories()
+        {
+            var posts= _context.BlogCategories
+                           .Include(x => x.Posts).Where(x=>x.IsAvailable)
+                           .ToList();
+            return posts;
+        }
 
 
         public BlogCategory? GetWithPostsBySlug(string slug)
@@ -65,6 +71,11 @@ namespace BlogM.Infrastructure.EFCore.Repository
         public bool Exists(string name)
         {
             return _context.BlogCategories.Where(x => x.Name == name).Any();
+        }
+        public BlogCategory GetPostsWithCategory()
+        {
+            return (BlogCategory)_context.BlogCategories.Include(x => x.Posts);
+
         }
 
 

@@ -1,4 +1,5 @@
-﻿using BookM.ClientQueries.Model.Comment;
+﻿using BookM.ClientQueries.Blog.Post;
+using BookM.ClientQueries.Model.Comment;
 using CommentM.Application.Contracts;
 using CommentM.Domain.Comment.AD;
 using DocumentFormat.OpenXml.Spreadsheet;
@@ -14,17 +15,13 @@ namespace BookM.ClientQueries.Queries
             _commentApplication = commentApplication;
         }
 
-        public OperationResult Create(CreateViewModel command)
-        {
-            return _commentApplication.Create(command);
-        }
 
-        public OperationResult Delete(int id)
+        public OperationResult Delete(long id)
         {
             return _commentApplication.Delete(id);
         }
 
-       
+
         public Model.Comment.CommentViewModel Map(CommentM.Application.Contracts.CommentViewModel comment)
         {
             return new Model.Comment.CommentViewModel
@@ -38,7 +35,7 @@ namespace BookM.ClientQueries.Queries
         }
         public List<Model.Comment.CommentViewModel> GetComment(int recordId)
         {
-            var comment= _commentApplication.GetComment(recordId);
+            var comment = _commentApplication.GetComment(recordId);
             var newList = new List<Model.Comment.CommentViewModel>();
             foreach (var item in comment)
             {
@@ -46,6 +43,15 @@ namespace BookM.ClientQueries.Queries
             }
             return newList;
         }
-      
+
+        public List<Model.Comment.CommentViewModel> GetAll()
+        {
+            return _commentApplication.GetAll().Select(Map).ToList();
+        }
+
+        public List<Model.Comment.CommentViewModel> CommentStatus(bool status)
+        {
+            return _commentApplication.CommentStatus(status).Select(Map).ToList();
+        }
     }
 }

@@ -36,7 +36,7 @@ namespace BookM.ClientQueries.Queries
 
         public List<BookQueryViewModel> GetAllBookWithCategory(int? categoryId)
         {
-            return _bookApplication.GetAll()
+            var a= _bookApplication.GetAll()
              .Select(x => new BookQueryViewModel
              {
                  Id = x.Id,
@@ -47,6 +47,7 @@ namespace BookM.ClientQueries.Queries
                  IsAvailable = x.IsAvailable,
                  CategoryId = x.CategoryId,
              }).Where(x => x.CategoryId == categoryId).ToList();
+            return a;
         }
 
 

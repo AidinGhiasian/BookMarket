@@ -29,7 +29,13 @@ namespace CommentM.Domain.Comment.AD
             FullName = name;
             Message = message;
             OwnerId = ownerId;
+            CommentDatetime=DateTime.Now;
 
+        }
+        public void ChangeStatus(bool isConfirmed, bool isCanceled)
+        {
+            IsConfirmed = isConfirmed;
+            IsCanceled = isCanceled;
         }
     }
     

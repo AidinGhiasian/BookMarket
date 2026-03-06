@@ -19,5 +19,7 @@ namespace BlogM.Application.Contracts.BlogCategoryApplication
         BlogCategory? GetWithPostsBySlug(string slug);
         public EditBlogCategoryViewModel GetDetail(int id);
         bool Exists(string name);
+        BlogCategory GetPostsWithCategory();
+        public List<BlogCategory> GetPostWithCategories();
     }
 }

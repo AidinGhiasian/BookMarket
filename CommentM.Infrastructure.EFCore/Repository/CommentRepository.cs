@@ -18,6 +18,10 @@ namespace CommentM.Infrastructure.EFCore.Repository
             _commentDbContext = commentdbcontext;
         }
 
+        public List<Comments> CommentStatus(bool status)
+        {
+           return _commentDbContext.Comments.Where(x=>x.IsCanceled==status).ToList();
+        }
 
         public OperationResult Delete(long id)
         {
@@ -25,7 +29,9 @@ namespace CommentM.Infrastructure.EFCore.Repository
             var comment = _commentDbContext.Comments.FirstOrDefault(x => x.Id == id);
             if (comment != null)
             {
+                comment.ChangeStatus(false,true);
                 result.IsSuccess();
+                _commentDbContext.SaveChanges();
             }
             return result.Failed(ApplicationMessage.NotFund);
         }

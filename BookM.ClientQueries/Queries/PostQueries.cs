@@ -74,7 +74,9 @@ namespace BookM.ClientQueries.Queries
                 Description = post.Description,
                 PostTime = post.PostTime,
                 Category = post.Category,
-                IsAvailable = post.IsAvailable
+                IsAvailable = post.IsAvailable,
+                categoryId=post.BlogCategoryId
+
             };
         }
     }

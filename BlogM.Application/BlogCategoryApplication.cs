@@ -156,5 +156,15 @@ namespace BlogM.Application
 
             };
         }
+
+        public BlogCategory GetPostsWithCategory()
+        {
+           return _blogCategoryRepository.GetPostsWithCategory();
+        }
+
+        public List<BlogCategory> GetPostWithCategories()
+        {
+           return _blogCategoryRepository.GetPostWithCategories();
+        }
     }
 }

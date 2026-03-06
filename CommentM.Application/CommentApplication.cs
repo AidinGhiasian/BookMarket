@@ -17,6 +17,12 @@ namespace CommentM.Application
         {
             _commentrepository = commentrepository;
         }
+
+        public List<CommentViewModel> CommentStatus(bool status)
+        {
+          return  _commentrepository.CommentStatus(status).Select(Map).ToList();
+        }
+
         public OperationResult Create(CreateViewModel create)
         {
             var result= new OperationResult();
@@ -26,19 +32,22 @@ namespace CommentM.Application
             return result.IsSuccess();
         }
 
-        public OperationResult Delete(int id)
+        public OperationResult Delete(long id)
         {
             var result = new OperationResult();
-
-          var comment=  _commentrepository.GetById(id);
+            var comment=  _commentrepository.GetById(id);
             if(comment==null)
-            return result.Failed("");
-
+            {
+                return result.Failed("Not Found...");
+            }
             _commentrepository.Delete(id);
             return result.IsSuccess();
         }
 
-       
+        public List<CommentViewModel> GetAll()
+        {
+            return _commentrepository.GetAll().Select(Map).ToList();
+        }
 
         public List<CommentViewModel> GetComment(int ownerId)
         {

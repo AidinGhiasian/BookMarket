@@ -11,8 +11,9 @@ namespace CommentM.Application.Contracts
     public interface ICommentApplication
     {
         public OperationResult Create(CreateViewModel create);
-      
-        List<CommentViewModel> GetComment(int ownerId);
-        OperationResult Delete(int id);
+        public List<CommentViewModel> GetComment(int ownerId);
+        public List<CommentViewModel> CommentStatus(bool status);
+        public List<CommentViewModel> GetAll();
+        public OperationResult Delete(long id);
     }
 }

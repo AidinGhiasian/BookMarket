@@ -14,6 +14,8 @@ namespace Blog.Domain.BlogCategoryAD
         List<BlogCategory> GetAvailableCategories();
         BlogCategory? GetWithPostsBySlug(string slug);
         bool Exists(string name);
+        BlogCategory GetPostsWithCategory();
+        public List<BlogCategory> GetPostWithCategories();
 
     }
 }

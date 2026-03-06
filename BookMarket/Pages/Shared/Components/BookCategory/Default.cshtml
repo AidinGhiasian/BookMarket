@@ -35,7 +35,7 @@
         <div class="product">
           
             <figure class="product-media">
-                <a href="product.html">
+                <a href="~/Book/Index?id=@item.Id">
                     <img src="/Pictures/@item.Picture" alt="تصویر محصول"
                          class="product-image">
                 </a>
@@ -43,7 +43,7 @@
 
             <div class="product-body">
                
-                <h3 class="product-title"><a href="product.html">@item.CategoryName</a></h3>
+                <h3 class="product-title"><a href="~/Book/Index?id=@item.Id">@item.CategoryName</a></h3>
                 <!-- End .product-title -->
                 <div class="product-price">
                     <span class="new-price">@item.Description.Truncate(50)</span>

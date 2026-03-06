@@ -8,5 +8,6 @@ namespace CommentM.Domain.Comment.AD
     {
         public OperationResult Delete(long id);
         List<Comments> GetComment(int ownerid);
+        List<Comments> CommentStatus(bool status);
     }
 }
