@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel;
 
-namespace BookMarket.ViewComponents
+namespace BookMarket.Pages.ViewComponents
 {
     public class NewPrintBookViewComponent:ViewComponent
     {

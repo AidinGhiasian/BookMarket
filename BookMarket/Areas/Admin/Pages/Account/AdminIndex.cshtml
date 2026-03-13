@@ -90,7 +90,8 @@
 									<th>نام و نام خانوادگی</th>
 									<th>شماره تلفن</th>
 									<th>ایمیل</th>
-									<th>عملیات</th>
+									<th>عملیات حذف</th>
+									<th> وضعیت</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -103,17 +104,17 @@
 										<td>@item.Email</td>
 										<td>
 											 <a class="btn btn-info"asp-page="EditAccount" asp-route-id="@item.Id">ویرایش</a> 
+										</td>
+										<td>
 											@if (item.IsAvalable)
 											{
+												<a asp-page-handler="ChangeStatus" asp-route-id="@item.Id" class="btn btn-success">فعال </a>
 
-												<a asp-page-handler="Delete" asp-route-id="@item.Id" class="btn btn-danger" style="border-radius:5px;color:white">غیر فعال</a>
 											
 											}
 											else
 											{
-
-												<a href="~/Admin/Account/AdminIndex?handler=Restore&id=@item.Id" class="btn btn-success" style="border-radius:5px;color:white">فعال </a>
-											
+												<a asp-page-handler="ChangeStatus" asp-route-id="@item.Id" class="btn btn-danger">غیر فعال</a>
 											}
 										</td>
 									</tr>

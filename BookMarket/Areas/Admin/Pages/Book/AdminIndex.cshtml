@@ -69,7 +69,8 @@
                                     <th>عنوان کتاب</th>
                                     <th>دسته بندی</th>
                                     <th>توضیحات کوتاه</th>
-                                    <th>عملیات</th>
+                                    <th>عملیات حذف</th>
+                                    <th>عملیات ویرایش</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -91,10 +92,11 @@
                                             <td>@item.CategoryName</td>
                                             <td>@item.ShortDescription</td>
                                             <td>
-                                                <a class="btn btn-info"asp-page="./EditBook" asp-page-handler="Edit" asp-route-id="@item.Id">ویرایش</a>
+                                                <a class="btn btn-danger" asp-page-handler="delete" asp-route-id="@item.Id">حذف</a>
+                                                
                                             </td>
                                             <td>
-                                                <a class="btn btn-danger" asp-page-handler="delete" asp-route-id="@item.Id">حذف</a>
+                                                <a class="btn btn-info" asp-page="./EditBook" asp-page-handler="Edit" asp-route-id="@item.Id">ویرایش</a>
                                             </td>
                                         </tr>
                                     }

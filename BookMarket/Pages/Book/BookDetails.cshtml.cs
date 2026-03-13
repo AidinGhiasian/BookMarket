@@ -19,7 +19,7 @@ namespace BookMarket.Pages.Book
             _commentQueries = commentQueries;
         }
         public BookQueryViewModel Book { get; set; }
-        public List<BookM.ClientQueries.Model.Comment.CommentViewModel>? CommentList { get; set; }
+        public List<BookM.ClientQueries.Model.Comment.CommentQueryViewModel>? CommentList { get; set; }
         public List<BookQueryViewModel> BookWithCategory {  get; set; }
         public void OnGet(int id)
         {

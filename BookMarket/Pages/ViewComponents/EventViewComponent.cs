@@ -2,7 +2,7 @@
 using Microsoft.Ajax.Utilities;
 using Microsoft.AspNetCore.Mvc;
 
-namespace BookMarket.ViewComponents
+namespace BookMarket.Pages.ViewComponents
 {
     public class EventViewComponent:ViewComponent
     {

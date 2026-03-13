@@ -29,13 +29,13 @@ namespace BookMarket.Pages.Blog
         }
         public PostQueryViewModel Post { get; set; }
         public List<PostQueryViewModel> Posts { get; set; }
-        public List<BookM.ClientQueries.Model.Comment.CommentViewModel> CommentList { get; set; }
+        public List<BookM.ClientQueries.Model.Comment.CommentQueryViewModel> CommentList { get; set; }
         public List<BlogCategoryQueryViewModel> Categories { get; set; }
         public List<PostQueryViewModel> postCategory { get; set; }
         public void OnGet(int id)
         {
             Post = _postQueries.GetDetail(id);
-            CommentList = _commentQueries.CommentStatus(status: false);
+            CommentList = _commentQueries.CommentStatus(2);
             Categories = _blogCategoryQueries.GetPostWithCategories();
             Posts = _postQueries.GetAll();
             postCategory = _postQueries.GetAllBlogWithCategory(Post.categoryId);

@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.SqlServer.Query.Internal;
 
-namespace BookMarket.ViewComponents
+namespace BookMarket.Pages.ViewComponents
 {
     public class BlogCategoryViewComponent:ViewComponent
     {

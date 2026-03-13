@@ -65,8 +65,10 @@
                                         <th>ردیف</th>
                                         <th>تصویر</th>
                                         <th>عنوان</th>
+                                        <th>دسته بندی</th>
                                         <th>توضیحات کوتاه</th>
-                                        <th>عملیات</th>
+                                        <th>عملیات حذف</th>
+                                        <th>عملیات ویرایش</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -80,13 +82,15 @@
                                                 </a>
                                             </td>
                                             <td>@item.Title</td>
-                                            <td>@item.ShortDescription</td>
-                                            <td>
-                                                <a class="btn btn-info" asp-page="/Blog/EditBlog" asp-page-handler="Edit" asp-route-id="@item.Id">ویرایش</a>
-                                            </td>
+                                            <td>@item.Category</td>
+                                            <td>@item.ShortDescription.Truncate(200)</td>
                                             <td>
                                                 <a class="btn btn-danger" asp-page-handler="delete" asp-route-id="@item.Id">حذف</a>
                                             </td>
+                                            <td>
+                                                <a class="btn btn-info" asp-page="/Blog/EditBlog" asp-page-handler="Edit" asp-route-id="@item.Id">ویرایش</a>
+                                            </td>
+
                                         </tr>
                                     }
                                 </tbody>

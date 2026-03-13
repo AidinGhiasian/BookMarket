@@ -27,7 +27,7 @@ namespace AccountM.Infrastructure.EFCore.Migrations
                 name: "Role",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "bigint", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     RoleName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Details = table.Column<string>(type: "nvarchar(max)", nullable: false),
@@ -42,11 +42,11 @@ namespace AccountM.Infrastructure.EFCore.Migrations
                 name: "Permission",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "bigint", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     PermissionCode = table.Column<int>(type: "int", nullable: false),
                     NamePermission = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    RoleId = table.Column<long>(type: "bigint", nullable: true)
+                    RoleId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {

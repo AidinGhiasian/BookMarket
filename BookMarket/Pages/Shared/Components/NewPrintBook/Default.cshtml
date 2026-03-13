@@ -17,7 +17,7 @@
 
                 <div class="product-wrap">
                     <figure class="product-media">
-                        <a href="product.html">
+                        <a href="/Book/BookDetails?id=@item.Id">
                             <img src="/Pictures/@item.PictureFile"
                                  alt="تصویر محصول" class="product-image">
                         </a>
@@ -28,7 +28,7 @@
                             نویسنده : <a href="#">@item.Writer</a>
                         </div><!-- End .product-cat -->
                         <h3 class="product-title">
-                            <a href="product.html">@item.BookTitle</a>
+                            <a href="/Book/BookDetails?id=@item.Id">@item.BookTitle</a>
                         </h3><!-- End .product-title -->
                         <div class="product-price">
                             @item.Price تومان

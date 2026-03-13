@@ -22,7 +22,7 @@ namespace BookM.ClientQueries.Queries
                 EventStartTime = events.EventStartTime,
                 EventFinishTime = events.EventFinishTime,
             }).ToList();
-
+            
         }
     }
 }

@@ -1,15 +1,16 @@
 ﻿using BookM.Application.Contracts.BooksCategoryApplication;
 using Microsoft.AspNetCore.Mvc;
 
-namespace BookMarket.ViewComponents
+namespace BookMarket.Pages.ViewComponents
 {
-    public class BookCategoryMenuViewComponent:ViewComponent
+    public class MenuViewComponent : ViewComponent
     {
         private readonly IBookCategoryQuery _bookCategoryQuery;
-        public BookCategoryMenuViewComponent(IBookCategoryQuery bookCategoryQuery)
+        public MenuViewComponent(IBookCategoryQuery bookCategoryQuery)
         {
             _bookCategoryQuery = bookCategoryQuery;
         }
+
         public IViewComponentResult Invoke()
         {
             var category = _bookCategoryQuery.GetAll();

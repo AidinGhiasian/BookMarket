@@ -1,8 +1,7 @@
 ﻿using BookM.Application.Contracts.BooksCategoryApplication;
-
 using Microsoft.AspNetCore.Mvc;
 
-namespace BookMarket.ViewComponents
+namespace BookMarket.Pages.ViewComponents
 {
     public class BookCategoryViewComponent : ViewComponent
     {

@@ -16,15 +16,15 @@ namespace BookM.ClientQueries.Queries
         }
 
 
-        public OperationResult Delete(long id)
+        public OperationResult ChangeStatus(long id,int status)
         {
-            return _commentApplication.Delete(id);
+            return _commentApplication.ChangeStatus(id,status);
         }
+       
 
-
-        public Model.Comment.CommentViewModel Map(CommentM.Application.Contracts.CommentViewModel comment)
+        public CommentQueryViewModel Map(CommentViewModel comment)
         {
-            return new Model.Comment.CommentViewModel
+            return new CommentQueryViewModel
             {
                 Id = comment.Id,
                 FullName = comment.FullName,
@@ -33,10 +33,10 @@ namespace BookM.ClientQueries.Queries
                 OwnerId = comment.OwnerId,
             };
         }
-        public List<Model.Comment.CommentViewModel> GetComment(int recordId)
+        public List<CommentQueryViewModel> GetComment(int recordId)
         {
             var comment = _commentApplication.GetComment(recordId);
-            var newList = new List<Model.Comment.CommentViewModel>();
+            var newList = new List<CommentQueryViewModel>();
             foreach (var item in comment)
             {
                 newList.Add(Map(item));
@@ -44,12 +44,12 @@ namespace BookM.ClientQueries.Queries
             return newList;
         }
 
-        public List<Model.Comment.CommentViewModel> GetAll()
+        public List<CommentQueryViewModel> GetAll()
         {
             return _commentApplication.GetAll().Select(Map).ToList();
         }
 
-        public List<Model.Comment.CommentViewModel> CommentStatus(bool status)
+        public List<CommentQueryViewModel> CommentStatus(int status)
         {
             return _commentApplication.CommentStatus(status).Select(Map).ToList();
         }

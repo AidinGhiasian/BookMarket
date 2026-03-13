@@ -18,18 +18,18 @@ namespace CommentM.Infrastructure.EFCore.Repository
             _commentDbContext = commentdbcontext;
         }
 
-        public List<Comments> CommentStatus(bool status)
+        public List<Comments> CommentStatus(int status)
         {
-           return _commentDbContext.Comments.Where(x=>x.IsCanceled==status).ToList();
+           return _commentDbContext.Comments.Where(x=>x.IsStatus==status).ToList();
         }
 
-        public OperationResult Delete(long id)
+        public OperationResult ChangeStatus(long id,int status)
         {
             OperationResult result = new OperationResult();
             var comment = _commentDbContext.Comments.FirstOrDefault(x => x.Id == id);
             if (comment != null)
             {
-                comment.ChangeStatus(true);
+                comment.ChangeStatus(status);
                 result.IsSuccess();
                 _commentDbContext.SaveChanges();
             }
@@ -43,5 +43,7 @@ namespace CommentM.Infrastructure.EFCore.Repository
             var comments= _commentDbContext.Comments.Where(x => x.OwnerId == ownerid).ToList();
             return comments;
         }
+
+       
     }
 }

@@ -2,15 +2,15 @@
 {
     public class Permission
     {
-        public int Id { get; private set; }//کد اصلی ;برای دیتابیس به permishioncodeربطی ندارد مثل رابطه بین نام و کد ملی.....
-        public int PermissionCode { get; private set; }//آیدی هر دسترسی ==>میتواند چند دسترسی داشته باشد مدیر معلوم میکند
-        public string NamePermission { get; private set; }
-        public int? RoleId { get; private set; }//آیدی هر نقش==>متواند فط یک نقش در سایت داشته باشد : مدیر >ادمین>کتابخان>کاربر
-        public Role Role { get; private set; }
+        public int Id { get;  set; }//کد اصلی ;برای دیتابیس به permishioncodeربطی ندارد مثل رابطه بین نام و کد ملی.....
+        public int PermissionCode { get;  set; }//آیدی هر دسترسی ==>میتواند چند دسترسی داشته باشد مدیر معلوم میکند
+        public string NamePermission { get;  set; }
+        public int? RoleId { get;  set; }//آیدی هر نقش==>متواند فط یک نقش در سایت داشته باشد : مدیر >ادمین>کتابخان>کاربر
+        public Role Role { get;  set; }
 
         public Permission()
         {
-            
+           
         }
         public Permission(int code, string name)
         {

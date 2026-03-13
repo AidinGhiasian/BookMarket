@@ -1,7 +1,7 @@
 ﻿using BookM.ClientQueries.Model.Book.Books;
 using Microsoft.AspNetCore.Mvc;
 
-namespace BookMarket.ViewComponents
+namespace BookMarket.Pages.ViewComponents
 {
     
     public class BookViewComponent:ViewComponent

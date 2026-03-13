@@ -77,7 +77,7 @@ namespace AccountM.Infrastructure.EFCore.Migrations
 
                     b.HasIndex("RoleId");
 
-                    b.ToTable("Account");
+                    b.ToTable("Account", (string)null);
                 });
 
             modelBuilder.Entity("AccountManagement.Domain.RoleAgg.Permission", b =>
@@ -102,7 +102,7 @@ namespace AccountM.Infrastructure.EFCore.Migrations
 
                     b.HasIndex("RoleId");
 
-                    b.ToTable("Permission");
+                    b.ToTable("Permission", (string)null);
                 });
 
             modelBuilder.Entity("AccountManagement.Domain.RoleAgg.Role", b =>
@@ -126,7 +126,7 @@ namespace AccountM.Infrastructure.EFCore.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Role");
+                    b.ToTable("Role", (string)null);
                 });
 
             modelBuilder.Entity("AM.Domain.Account.AD.Account", b =>

@@ -1,7 +1,7 @@
 ﻿using BookM.ClientQueries.Model.Blog.Categores;
 using Microsoft.AspNetCore.Mvc;
 
-namespace BookMarket.ViewComponents
+namespace BookMarket.Pages.ViewComponents
 {
     public class BlogCategoryMenuViewComponent:ViewComponent
     {

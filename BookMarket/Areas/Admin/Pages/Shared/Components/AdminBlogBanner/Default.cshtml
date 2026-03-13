@@ -1,0 +1,27 @@
+﻿@using BookM.ClientQueries.Blog.Post
+@using Services.Application
+@model List<PostQueryViewModel>?
+@{
+}
+
+<div class="portlet-body min-height-650">
+    @foreach (var item in Model)
+    {
+
+            <div class="row">
+                <div class="col-sm-6 col-md-12">
+                    <div class="effect effect-border">
+                    <a asp-page="./Blog/EditBlog"asp-route-id="@item.Id">
+                            <div class="desc">
+                                <img src="/Pictures/@item.Picture" class="img-responsive img-center">
+                                <div class="desc-in">
+                                    <h3>@item.Title</h3>
+                                    <div class="btn btn-primary btn-more">مشاهده و ویرایش</div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+    }
+</div>

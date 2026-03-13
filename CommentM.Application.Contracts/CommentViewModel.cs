@@ -42,9 +42,7 @@ namespace CommentM.Application.Contracts
 
 
 
-        [Display(Name = "تایید شدن کد")]
-        public bool IsConfirmed { get; set; }
-        [Display(Name = "تایید نشدن کد")]
-        public bool IsCanceled { get; set; }
+        [Display(Name = "وضعیت")]
+        public int IsStatus { get; set; }
     }
 }

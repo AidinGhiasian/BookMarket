@@ -1,8 +1,8 @@
 ﻿@using BookM.Application.Contracts.BooksCategoryApplication
+@using Services.Application.AuthHelper
 @model List<BookCategoryQueryViewModel>?
 @{
 }
-
 <div class="header-middle">
     <div class="container">
         <div class="header-left">
@@ -43,7 +43,9 @@
 
 
             <div class="header-dropdown-link">
+
                 <div class="account">
+
                     <a href="~/dashboard" title="پروفایل من">
                         <div class="icon">
                             <i class="icon-user"></i>

@@ -7,10 +7,10 @@ namespace BookM.ClientQueries.Model.Comment
 {
     public interface ICommentQueries
     {
-        List<CommentViewModel> GetComment(int ownerId);
-        OperationResult Delete(long id);
-        public List<CommentViewModel> CommentStatus(bool status);
-        CommentViewModel Map(CommentM.Application.Contracts.CommentViewModel comment);
-        List<CommentViewModel> GetAll();
+        List<CommentQueryViewModel> GetComment(int ownerId);
+        OperationResult ChangeStatus(long id,int status);
+        public List<CommentQueryViewModel> CommentStatus(int status);
+        CommentQueryViewModel Map(CommentM.Application.Contracts.CommentViewModel comment);
+        List<CommentQueryViewModel> GetAll();
     }
 }

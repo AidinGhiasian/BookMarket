@@ -7,7 +7,7 @@
     <meta name="description" content="قالب مدیریت ایرانی مدیران ">
     <meta name="keywords" content="قالب مدیریت, قالب داشبورد, قالب ادمین, قالب مدیران, قالب مدیریت راستچین , قالب ایرانی مدیریت, پوسته مدیریت, قالب ادمین داشبورد سایت, قالب مدیریتی, مدیران, قالب مدیریت مدیران, پنل مدیریت, پنل مدیریت مدرن, قالب ادمین متریال, قالب مدیریت بوت استرپ, قالب ادمین بوتسترپ, قالب ادمین سایت, پوسته مدیریتی ایرانی, قالب مدیرتی مدیران ایرانی, بهترین قالب مدیریت, قالب مدیریت ریسپانسیو, قالب مدیریت ارزان, قالب admin">
     <meta name="fontiran.com:license" content="NE29X">
-    <link rel="shortcut icon" href="/Admin/assets/images/favicon.png">
+    <link rel="shortcut icon" href="/Admin/assets/images/BookMarketLogo.png">
 
     <!-- BEGIN CSS -->
     <link href="/Admin/assets/plugins/bootstrap/bootstrap5/css/bootstrap.rtl.min.css" rel="stylesheet">
@@ -32,8 +32,8 @@
 
     <div class="navbar navbar-fixed-top" id="main-navbar">
         <div class="header-right">
-            <a href="dashboard.html" class="logo-con">
-                <img src="/Admin/assets/images/logo.png" class="img-responsive center-block" alt="لوگو قالب مدیران">
+            <a href="/Admin/Index" class="logo-con">
+                <img src="/Admin/assets/images/BookMarketLogo-2.png" class="img-responsive center-block" alt="لوگو سایت کتاب فروشی">
             </a>
         </div><!-- /.header-right -->
         <div class="header-left">
@@ -50,7 +50,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#" class="btn" id="toggle-dark-mode">
+                        <a href="#" class="btn " id="toggle-dark-mode">
                             <i class="icon-bulb"></i>
                         </a>
                     </li>
@@ -292,120 +292,7 @@
     <div id="wrapper">
 
         <!-- BEGIN SIDEBAR -->
-        <div id="sidebar">
-            <div class="sidebar-top">
-                <div class="search-box">
-                    <form class="search-form" action="#" method="GET">
-                        <div class="input-group">
-                            <input type="text" class="form-control placeholder-light" placeholder="جستجو..." name="key">
-                            <span class="input-group-btn">
-                                <button type="submit" class="btn btn-round submit">
-                                    <i class="icon-magnifier"></i>
-                                </button>
-                            </span>
-                        </div>
-                    </form>
-                </div><!-- /.search-box -->
-                <div class="user-box">
-                    <a href="#">
-                        <img src="/Admin/assets/images/user/128.png" alt="عکس پروفایل" class="img-circle img-responsive">
-                    </a>
-                    <div class="user-details">
-                        <h4>حمید آفرینش فر</h4>
-                        <p class="role">مدیر فنی</p>
-                        <div class="dropdown user-login">
-                            <button class="btn btn-xs btn-status dropdown-toggle btn-round" type="button" data-bs-toggle="dropdown" data-hover="dropdown">
-                                <i class="fas fa-circle text-success"></i>
-                                <span>دردسترس</span>
-                            </button>
-                            <ul class="dropdown-menu dropdown-status">
-                                <li>
-                                    <a href="#" class="busy">
-                                        <i class="fas fa-circle text-success"></i>
-                                        <span>دردسترس</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#" class="busy">
-                                        <i class="fas fa-circle text-danger"></i>
-                                        <span>مشغول</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="fas fa-circle text-gray"></i>
-                                        <span>مخفی</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="fas fa-circle text-warning"></i>
-                                        <span>سایر</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div><!-- /dropdown -->
-                    </div><!-- /.user-details -->
-                </div><!-- /.user-box -->
-            </div><!-- /.sidebar-top -->
-            <div class="side-menu-container">
-                <ul class="metismenu" id="side-menu">
-                        <a href="/Admin/Index" class="dropdown-toggle current">
-                            <i class="icon-home"></i>
-                            <span>پیشخوان</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="dropdown-toggle">
-                            <i class="icon- fas fa-bars"></i>
-                            <span>لیست ها</span>
-                        </a>
-                        <ul>
-                            <li>
-                                <a asp-page="/Account/AdminIndex" class="">
-                                    <i class="icon- fas fa-user-large"></i>
-                                    <span>مدیریت کاربران</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a asp-page="/Blog/AdminIndex" class="">
-                                    <i class="icon- fas fa-file"></i>
-                                    <span>مدیریت مقالات</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a asp-page="/Book/AdminIndex" class="">
-                                    <i class="icon- fas fa-book"></i>
-                                    <span>مدیریت کتاب ها</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a asp-page="/Event/Index" class="">
-                                    <i class="icon-event"></i>
-                                    <span>مدیریت رویداد ها</span>
-                                </a>
-                            </li>
-                        </ul>
-
-                    </li>
-                    <li>
-                        <a href="#" class="dropdown-toggle">
-                            <i class="icon- fas fa-bars"></i>
-                            <span>لورم </span>
-                        </a>
-                        <ul>
-                            <li>
-                                <a href="validation.html" class="">
-                                    <i class="icon-shield"></i>
-                                    <span>لورم 2</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                </ul><!-- /#side-menu -->
-            </div><!-- /.side-menu-container -->
-        </div><!-- /#sidebar -->
+       <partial name="_SideMenu" />
         <!-- END SIDEBAR -->
         <!-- BEGIN PAGE CONTENT -->
         <div id="page-content">
@@ -523,7 +410,7 @@
 
         <div class="img-box">
             <img class="img-bottom dark" src="/Admin/assets/images/logo-dark.png">
-            <img class="img-bottom light" src="/Admin/assets/images/logo.png">
+            <img class="img-bottom light" src="/Admin/assets/images/BookMarketLogo.png">
         </div><!-- /.img-box -->
     </div><!-- /.settings -->
     <!-- END SETTING -->

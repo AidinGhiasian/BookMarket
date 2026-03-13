@@ -18,7 +18,7 @@ namespace CommentM.Application
             _commentrepository = commentrepository;
         }
 
-        public List<CommentViewModel> CommentStatus(bool status)
+        public List<CommentViewModel> CommentStatus(int status)
         {
           return  _commentrepository.CommentStatus(status).Select(Map).ToList();
         }
@@ -32,7 +32,7 @@ namespace CommentM.Application
             return result.IsSuccess();
         }
 
-        public OperationResult Delete(long id)
+        public OperationResult ChangeStatus(long id,int status)
         {
             var result = new OperationResult();
             var comment=  _commentrepository.GetById(id);
@@ -40,7 +40,7 @@ namespace CommentM.Application
             {
                 return result.Failed("Not Found...");
             }
-            _commentrepository.Delete(id);
+            _commentrepository.ChangeStatus(id,status);
             return result.IsSuccess();
         }
 
@@ -74,5 +74,6 @@ namespace CommentM.Application
             };
         }
 
+       
     }
 }

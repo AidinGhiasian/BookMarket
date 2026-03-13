@@ -29,7 +29,7 @@ namespace Services.Application.AuthHelper
             result.Fullname = claims.FirstOrDefault(x => x.Type == ClaimTypes.Name).Value;
             result.Role = Roles.GetRoleBy(result.RoleId);
             result.ProfilePicture = claims.FirstOrDefault(x => x.Type == "ProfilePicture").Value;
-            result.Phone = claims.FirstOrDefault(x => x.Type == "Mobile").Value;
+            //result.Phone = claims.FirstOrDefault(x => x.Type == "Mobile").Value;
             result.IsActiv=Convert.ToBoolean(claims.FirstOrDefault(x => x.Type == "IsActiv").Value);
             return result;
         }

@@ -127,7 +127,7 @@ namespace AccountM.Application
         {
             var a = _accountRepository.Getby(phone);
             return Map(a);
-        }
+        }                                                           
 
         public OperationResult login(string? phone, string? password)
         {
@@ -140,11 +140,13 @@ namespace AccountM.Application
             if (!result.Verified)
                 operation.Failed(ApplicationMessage.NotFund);
 
-            var permissions = _roleRepository.GetById(account.RoleId)
-               .Permissions
-               .Select(x => x.PermissionCode)
-               .ToList();
-
+            //var permissions = _roleRepository.GetById(account.RoleId)
+            //   .Permissions
+            //   .Select(x => x.PermissionCode)
+            //   .ToList();
+            List<int> permissions = new List<int>(1);
+          
+              
 
             var fulName = account.Name + " " + account.Family;
             var authViewModel = new AuthViewModel(account.Id, account.RoleId, fulName, account.PhoneNumber,

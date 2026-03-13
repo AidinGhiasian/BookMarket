@@ -29,8 +29,13 @@ namespace AccountM.Infrastructure.EFCore.Mapping
                    .OnDelete(DeleteBehavior.Restrict);
 
             // اگر Permission هم داری و many-to-many است
-            builder.HasMany(x => x.Permissions)
-                   .WithMany();
+            builder.OwnsMany(x => x.Permissions, navigationBuilder =>
+            {
+                navigationBuilder.HasKey(x => x.Id);
+                navigationBuilder.ToTable("Permission");
+                navigationBuilder.Ignore(x => x.NamePermission);
+                navigationBuilder.WithOwner(x => x.Role);
+            });
         }
     }
 }

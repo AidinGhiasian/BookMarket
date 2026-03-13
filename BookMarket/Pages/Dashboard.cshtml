@@ -118,8 +118,7 @@
                                 <div class="tab-pane fade" id="tab-address" role="tabpanel"
                                      aria-labelledby="tab-address-link">
                                     <p>
-                                        آدرسی که اینجا ثبت می کنید به صورت پیش فرض برای ارسال محصولات به شما استفاده
-                                        می شود.
+
                                     </p>
                                     <div class="row">
                                         <div class="col-lg-12">
@@ -130,12 +129,17 @@
                                                     {
                                                         <h3 class="card-title">اطلاعات کاربری</h3>
                                                         <tr>
-                                                            <td>@Model.Account.Name</td>
-                                                            <td>@Model.Account.Family</td>
-                                                            <td>@Model.Account.PhoneNumber</td>
-                                                            <td>@Model.Account.Email</td>
-                                                            <td>@Model.Account.BirthDate</td>
-                                                            <td>@Model.Account.Addres</td>
+                                                            <td>نام و نام خانوادگی : @Model.Account.Name
+                                                                @Model.Account.Family<br /></td>
+
+                                                            <td>شماره تلفن : @Model.Account.PhoneNumber<br /></td>
+
+                                                            <td>آدرس ایمیل : @Model.Account.Email<br /></td>
+
+                                                            <td>تاریخ تولد : @Model.Account.BirthDate<br /></td>
+
+                                                            <td>آدرس : @Model.Account.Addres<br /></td>
+
                                                             <a href="#">ویرایش <i class="icon-edit"></i></a>
                                                         </tr>
                                                     }

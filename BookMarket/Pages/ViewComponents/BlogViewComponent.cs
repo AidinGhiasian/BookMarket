@@ -2,7 +2,7 @@
 using Humanizer;
 using Microsoft.AspNetCore.Mvc;
 
-namespace BookMarket.ViewComponents
+namespace BookMarket.Pages.ViewComponents
 {
     public class BlogViewComponent:ViewComponent
     {

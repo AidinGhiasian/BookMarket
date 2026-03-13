@@ -12,8 +12,9 @@ namespace CommentM.Application.Contracts
     {
         public OperationResult Create(CreateViewModel create);
         public List<CommentViewModel> GetComment(int ownerId);
-        public List<CommentViewModel> CommentStatus(bool status);
+        public List<CommentViewModel> CommentStatus(int status);
         public List<CommentViewModel> GetAll();
-        public OperationResult Delete(long id);
+        public OperationResult ChangeStatus(long id, int status);
+        
     }
 }

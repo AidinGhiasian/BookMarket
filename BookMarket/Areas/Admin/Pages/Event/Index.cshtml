@@ -63,7 +63,8 @@
 										<th>توضیحات </th>
 										<th>زمان شروع رویداد </th>
 										<th>زمان پایان رویداد </th>
-										<th>عملیات</th>
+										<th>عملیات حذف</th>
+										<th>عملیات ویرایش</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -81,10 +82,10 @@
 											<td>@item.EventStartTime</td>
 											<td>@item.EventFinishTime</td>
 											<td>
-												<a class="btn btn-info" asp-page="/Event/Edit" asp-page-handler="Post" asp-route-id="@item.Id">ویرایش</a>
+												<a class="btn btn-danger" asp-page-handler="Delete" asp-route-id="@item.Id">حذف</a>
 											</td>
 											<td>
-												<a class="btn btn-danger" asp-page-handler="Delete" asp-route-id="@item.Id">حذف</a>
+												<a class="btn btn-info" asp-page="/Event/Edit" asp-page-handler="Post" asp-route-id="@item.Id">ویرایش</a>
 											</td>
 										</tr>
 									}

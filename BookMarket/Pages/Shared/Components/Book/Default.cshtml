@@ -57,7 +57,7 @@
 							{
 								<div class="product">
 									<figure class="product-media">
-										<a href="product.html">
+										<a href="/Book/BookDetails?id=@item.Id">
 											<img src="/Pictures/@item.PictureFile"
 												 alt="تصویر محصول" class="product-image">
 										</a>
@@ -65,10 +65,10 @@
 
 									<div class="product-body">
 										<div class="product-cat" dir="rtl">
-											نویسنده : <a href="#">@item.Writer</a>
+											نویسنده : <a href="">@item.Writer</a>
 										</div><!-- End .product-cat -->
 										<h3 class="product-title">
-											<a href="product.html">@item.BookTitle: نسخه اختصاصی</a>
+											<a href="/Book/BookDetails?id=@item.Id">@item.BookTitle: نسخه اختصاصی</a>
 										</h3><!-- End .product-title -->
 										<div class="product-price">
 											@item.Price  تومان

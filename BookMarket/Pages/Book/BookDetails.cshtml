@@ -48,7 +48,7 @@
                                         <div class="ratings-val" style="width: 80%;"></div>
                                         <!-- End .ratings-val -->
                                     </div><!-- End .ratings -->
-                                    <a class="ratings-text" href="#product-review-link" id="review-link">
+                                    <a class="ratings-text" href="/Book/BookDetails?id=@Model.Book.Id" id="review-link">
                                         ( @Model.CommentList.Count()
                                         دیدگاه )
                                     </a>
@@ -280,7 +280,7 @@
                         <div class="product product-7 text-center">
                             <figure class="product-media">
                                 <span class="product-label label-new">جدید</span>
-                                <a href="product.html">
+                                <a href="/Book/BookDetails?id=@item.Id">
                                     <img src="/Pictures/@item.PictureFile" alt="@item.BookTitle"
                                          class="product-image">
                                 </a>
@@ -342,7 +342,7 @@
                             {
                                 <div class="product product-sm">
                                 <figure class="product-media">
-                                    <a href="product.html">
+                                    <a href="/Book/BookDetails?id=@item.Id">
                                         <img src="/Pictures/@item.PictureFile"
                                                  alt="@item.BookTitle" class="product-image">
                                     </a>
@@ -350,7 +350,7 @@
 
                                 <div class="product-body">
                                     <h5 class="product-title">
-                                        <a href="product.html">
+                                            <a href="/Book/BookDetails?id=@item.Id">
                                             @item.BookTitle
                                         </a>
                                     </h5><!-- End .product-title -->

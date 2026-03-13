@@ -2,7 +2,7 @@
 using BookM.ClientQueries.Model.Blog.Post;
 using Microsoft.AspNetCore.Mvc;
 
-namespace BookMarket.ViewComponents
+namespace BookMarket.Pages.ViewComponents
 {
     public class BlogBannerViewComponent:ViewComponent
     {
@@ -13,7 +13,7 @@ namespace BookMarket.ViewComponents
         }
         public IViewComponentResult Invoke()
         {
-            var posts=_postQueries.GetAll().Take(2).ToList();
+            var posts = _postQueries.GetAll().Take(2).ToList();
             return View(posts);
         }
     }

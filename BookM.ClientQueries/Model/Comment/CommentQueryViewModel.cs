@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BookM.ClientQueries.Model.Comment
 {
-    public class CommentViewModel
+    public class CommentQueryViewModel
     {
         [Display(Name = "شناسه یکتا")]
         public long Id { get; set; }
@@ -42,10 +42,7 @@ namespace BookM.ClientQueries.Model.Comment
         public DateTime CommentDateTime { get; set; }
 
 
-
-        [Display(Name = "تایید شدن کد")]
-        public bool IsConfirmed { get; set; }
         [Display(Name = "تایید نشدن کد")]
-        public bool IsCanceled { get; set; }
+        public int IsStatus { get; set; }
     }
 }

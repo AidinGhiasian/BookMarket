@@ -1,0 +1,134 @@
+﻿@using Services.Application.AuthHelper
+
+@inject IAuthHelper AuthHelper;
+@{
+    var currentAccout = AuthHelper.CurrentAccountInfo();
+}
+<div id="sidebar">
+    <div class="sidebar-top">
+        <div class="search-box">
+            <form class="search-form" action="#" method="GET">
+                <div class="input-group">
+                    <input type="text" class="form-control placeholder-light" placeholder="جستجو..." name="key">
+                    <span class="input-group-btn">
+                        <button type="submit" class="btn btn-round submit">
+                            <i class="icon-magnifier"></i>
+                        </button>
+                    </span>
+                </div>
+            </form>
+        </div><!-- /.search-box -->
+        <div class="user-box">
+            <a href="#">
+                <img src="~/assets/images/Default-Avatar.png" alt="عکس پروفایل" class="img-circle img-responsive">
+            </a>
+            <div class="user-details">
+                <h4>@currentAccout.Fullname</h4>
+                <p class="role">مدیریت سایت</p>
+            </div><!-- /.user-details -->
+        </div><!-- /.user-box -->
+    </div><!-- /.sidebar-top -->
+    <div class="side-menu-container">
+        <ul class="metismenu" id="side-menu">
+            <a href="/Admin/Index" class="dropdown-toggle current">
+                <i class="icon-home"></i>
+                <span>پیشخوان</span>
+            </a>
+            <li>
+                <a href="#" class="dropdown-toggle">
+                    <i class="icon- fas fa-bars"></i>
+                    <span>لیست ها</span>
+                </a>
+                <ul>
+                    <li>
+                        <a asp-page="/Account/AdminIndex" class="">
+                            <i class="icon- fas fa-user-large"></i>
+                            <span>مدیریت کاربران</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a asp-page="/Blog/AdminIndex" class="">
+                            <i class="icon- fas fa-file"></i>
+                            <span>مدیریت مقالات</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a asp-page="/Book/AdminIndex" class="">
+                            <i class="icon- fas fa-book"></i>
+                            <span>مدیریت کتاب ها</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a asp-page="/Event/Index" class="">
+                            <i class="icon-event"></i>
+                            <span>مدیریت رویداد ها</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a asp-page="/Comment/Index" class="">
+                            <i class="icon- fas fa-comments"></i>
+                            <span>مدیریت دیدگاه ها</span>
+                        </a>
+                    </li>
+                </ul>
+
+            </li>
+            <li>
+                <a href="#" class="dropdown-toggle">
+                    <i class="icon- fas fa-bars"></i>
+                    <span>ایجاد</span>
+                </a>
+                <ul>
+                    <li>
+                        <a href="/Admin/Account/CreateAccount" class="">
+                            <i class="icon-plus"></i>
+                            <span> کاربر </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/Admin/Book/CreateBook" class="">
+                            <i class="icon-plus"></i>
+                            <span> کتاب </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/Admin/Blog/CreateBlog" class="">
+                            <i class="icon-plus"></i>
+                            <span> مقاله </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/Admin/Event/Create" class="">
+                            <i class="icon-plus"></i>
+                            <span> رویداد </span>
+                        </a>
+                    </li>
+                    <li>
+
+
+                                <a href="/Admin/Event/Create" class="dropdown-toggle">
+                                    <i class="icon-plus"></i>
+                                    <span>دسته بندی</span>
+                                </a>
+                            <ul class="metismenu" id="side-menu" id="side-menu">
+                                <li>
+                                    <a href="/Admin/Book/CreateBookCategory">
+                                        <i class="icon-plus"></i>
+                                        <span> کتاب </span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/Admin/Blog/BlogCategory/Create">
+                                        <i class="icon-plus"></i>
+                                        <span> مقاله </span>
+                                    </a>
+                                </li>
+                            </ul>
+
+                    </li>
+                </ul>
+            </li>
+            <li>
+        </ul><!-- /#side-menu -->
+    </div><!-- /.side-menu-container -->
+</div><!-- /#sidebar -->
