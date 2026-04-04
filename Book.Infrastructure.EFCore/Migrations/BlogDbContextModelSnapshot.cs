@@ -44,6 +44,10 @@ namespace BlogM.Infrastructure.EFCore.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Link")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Picture")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -66,25 +70,29 @@ namespace BlogM.Infrastructure.EFCore.Migrations
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(2000)
+                        .HasColumnType("nvarchar(2000)");
 
                     b.Property<bool>("IsAvailable")
                         .HasColumnType("bit");
 
                     b.Property<string>("Picture")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
 
                     b.Property<DateTime>("PostTime")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("ShortDescription")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
 
                     b.Property<string>("Title")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
 
                     b.Property<DateTime>("UpdatedTime")
                         .HasColumnType("datetime2");
@@ -93,7 +101,7 @@ namespace BlogM.Infrastructure.EFCore.Migrations
 
                     b.HasIndex("BlogCategoryId");
 
-                    b.ToTable("Posts");
+                    b.ToTable("Posts", (string)null);
                 });
 
             modelBuilder.Entity("Blog.Domain.BlogCategoryAD.BlogCategory", b =>

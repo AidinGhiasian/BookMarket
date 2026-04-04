@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AccountM.Infrastructure.EFCore.Migrations
 {
     [DbContext(typeof(AccountDbContext))]
-    [Migration("20260125155013_IniRole")]
-    partial class IniRole
+    [Migration("20260317212357_accountroles")]
+    partial class accountroles
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -51,6 +51,9 @@ namespace AccountM.Infrastructure.EFCore.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<bool>("IsAvalable")
+                        .HasColumnType("bit");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -63,12 +66,11 @@ namespace AccountM.Infrastructure.EFCore.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("RePassword")
-                        .IsRequired()
+                    b.Property<string>("Picture")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<long?>("RoleId")
-                        .HasColumnType("bigint");
+                    b.Property<int>("RoleId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Scuritycode")
                         .IsRequired()
@@ -83,11 +85,11 @@ namespace AccountM.Infrastructure.EFCore.Migrations
 
             modelBuilder.Entity("AccountManagement.Domain.RoleAgg.Permission", b =>
                 {
-                    b.Property<long>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
+                        .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("NamePermission")
                         .IsRequired()
@@ -96,8 +98,8 @@ namespace AccountM.Infrastructure.EFCore.Migrations
                     b.Property<int>("PermissionCode")
                         .HasColumnType("int");
 
-                    b.Property<long?>("RoleId")
-                        .HasColumnType("bigint");
+                    b.Property<int?>("RoleId")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -108,11 +110,11 @@ namespace AccountM.Infrastructure.EFCore.Migrations
 
             modelBuilder.Entity("AccountManagement.Domain.RoleAgg.Role", b =>
                 {
-                    b.Property<long>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
+                        .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Details")
                         .IsRequired()
@@ -132,9 +134,13 @@ namespace AccountM.Infrastructure.EFCore.Migrations
 
             modelBuilder.Entity("AM.Domain.Account.AD.Account", b =>
                 {
-                    b.HasOne("AccountManagement.Domain.RoleAgg.Role", null)
+                    b.HasOne("AccountManagement.Domain.RoleAgg.Role", "Role")
                         .WithMany("Accounts")
-                        .HasForeignKey("RoleId");
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Role");
                 });
 
             modelBuilder.Entity("AccountManagement.Domain.RoleAgg.Permission", b =>

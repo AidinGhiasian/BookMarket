@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Services.Application;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,10 +9,11 @@ namespace AccountM.Application.Contracts.RoleApplication
 {
     public interface IRoleApplication
     {
-        public void Create(CreateViewModel model);
-        Task Edit(EditViewModel model);
-        public RoleViewModel GetById(long id);
-        List<RoleViewModel>getRole();
-        public void delete(long id);
+        public OperationResult Create(CreateViewModel model);
+        public OperationResult Edit(EditViewModel command);
+        public EditViewModel GetDetails(int id);
+
+        public List<RoleViewModel> List();
+       
     }
 }

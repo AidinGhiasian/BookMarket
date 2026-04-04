@@ -33,12 +33,12 @@ namespace BookM.ClientQueries.Queries
                    Description = x.Description,
                    Category = x.Category,
                    IsAvailable = x.IsAvailable
-                   
+
                })
                .ToList();
         }
 
-       
+
 
         public List<PostQueryViewModel> GetAllBlogWithCategory(int? categoryId)
         {
@@ -52,8 +52,8 @@ namespace BookM.ClientQueries.Queries
                    Description = x.Description,
                    Category = x.Category,
                    IsAvailable = x.IsAvailable,
-                   categoryId= x.BlogCategoryId,
-                   
+                   categoryId = x.BlogCategoryId,
+
 
                }).Where(x => x.categoryId == categoryId)
                .ToList();
@@ -75,9 +75,27 @@ namespace BookM.ClientQueries.Queries
                 PostTime = post.PostTime,
                 Category = post.Category,
                 IsAvailable = post.IsAvailable,
-                categoryId=post.BlogCategoryId
+                categoryId = post.BlogCategoryId
 
             };
+        }
+
+        public List<PostQueryViewModel> Search(string title)
+        {
+            return _postApplication.Search(title).Select(x => new PostQueryViewModel
+            {
+                Id = x.Id,
+                Picture = x.Picture,
+                Title = x.Title,
+                ShortDescription = x.ShortDescription,
+                Description = x.Description,
+                IsAvailable = x.IsAvailable,
+                categoryId = x.BlogCategoryId,
+
+
+            }).Where(x => x.Title.Contains(title))
+                .ToList(); ;
+
         }
     }
 }

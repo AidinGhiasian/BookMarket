@@ -1,4 +1,5 @@
 ﻿@page
+@using Services.Application
 @model BookMarket.Areas.Admin.Pages.IndexModel
 @{
     Layout = "_AdminLayout";
@@ -12,7 +13,7 @@
                     <li><a href="#">پیشخوان</a></li>
                 </ul>
                 <div class="breadcrumb-left">
-                    پنجشنبه، 1404/10/4
+                    @ConvertDateTime.ConvertMiladiToShamsi(DateTime.Now, "HH:mm  dd MMMM yyyy")
                     <i class="icon-calendar"></i>
                 </div><!-- /.breadcrumb-left -->
             </div><!-- /.breadcrumb-box -->
@@ -84,7 +85,7 @@
 
 
         <div class="row">
-            <div class="col-md-6 col-xs-12">
+            <div class="col-md-12 col-xs-12">
                 <div class="portlet box shadow min-height-600">
                     <div class="portlet-heading">
                         <div class="portlet-title">
@@ -168,135 +169,10 @@
 
                 </div><!-- /.portlet -->
             </div><!-- /.col-md-6 -->
-            <div class="col-md-6 col-xs-12">
-                <div class="portlet box shadow min-height-600">
-                    <div class="portlet-heading">
-                        <div class="portlet-title">
-                            <h3 class="title">
-                                <i class="icon-location-pin"></i>
-                                فروش نمایندگی‌ها
-                            </h3>
-                        </div><!-- /.portlet-title -->
-                        <div class="buttons-box">
-
-                            <a class="btn btn-sm btn-default btn-round btn-fullscreen" rel="tooltip" title="تمام صفحه" href="#">
-                                <i class="icon-size-fullscreen"></i>
-                            </a>
-
-                        </div><!-- /.buttons-box -->
-                    </div><!-- /.portlet-heading -->
-                    <div class="portlet-body">
-                        <div id="map" class="ammap-box"></div>
-                    </div><!-- /.portlet-body -->
-                </div><!-- /.portlet -->
-            </div><!-- /.col-md-6 -->
+          
         </div><!-- /.row -->
 
-        <div class="row">
-            <div class="col-xl-4 col-lg-6 col-12">
-                <div class="portlet box shadow">
-                    <div class="portlet-heading">
-                        <div class="portlet-title">
-                            <h3 class="title">
-                                <i class="icon-picture"></i>
-                                پست ها
-                            </h3>
-                        </div><!-- /.portlet-title -->
-                        <div class="buttons-box toggle toggle-mobile">
-                            <a class="btn btn-sm btn-default btn-round btn-toggle" href="#">
-                                <i class="icon-options"></i>
-                            </a>
-
-                            <a class="btn btn-sm btn-default btn-round btn-collapse" rel="tooltip" title="کوچک کردن" href="#">
-                                <i class="icon-arrow-up"></i>
-                            </a>
-
-                        </div><!-- /.buttons-box -->
-                    </div><!-- /.portlet-heading -->
-                    @await Component.InvokeAsync("AdminBlogBanner")
-                </div><!-- /.portlet -->
-            </div><!-- /.col-xl-4 -->
-            <div class="col-xl-4 col-lg-6 col-12">
-                <div class="portlet box shadow">
-                    <div class="portlet-heading">
-                        <div class="portlet-title">
-                            <h3 class="title">
-                                <i class="icon-frame"></i>
-                                نمونه فرم
-                            </h3>
-                        </div><!-- /.portlet-title -->
-                        <div class="buttons-box">
-
-
-                            <a class="btn btn-sm btn-default btn-round btn-collapse" rel="tooltip" title="کوچک کردن" href="#">
-                                <i class="icon-arrow-up"></i>
-                            </a>
-
-                        </div><!-- /.buttons-box -->
-                    </div><!-- /.portlet-heading -->
-                    @await Component.InvokeAsync("AdminEventBanner")
-                </div><!-- /.portlet -->
-            </div><!-- /.col-xl-4 -->
-            <div class="col-xl-4 col-12">
-                <div class="portlet box shadow">
-                    <div class="portlet-heading">
-                        <div class="portlet-title">
-                            <h3 class="title">
-                                <i class="icon-bubbles"></i>
-                                گفتگو با کاربر
-                            </h3>
-                        </div><!-- /.portlet-title -->
-                        <div class="buttons-box">
-
-                            <a class="btn btn-sm btn-default btn-round btn-collapse" rel="tooltip" title="کوچک کردن" href="#">
-                                <i class="icon-arrow-up"></i>
-                            </a>
-
-                        </div><!-- /.buttons-box -->
-                    </div><!-- /.portlet-heading -->
-                    <div class="portlet-body min-height-650">
-                        <ul class="chat">
-                            <li class="self">
-                                @* @await Component.InvokeAsync("UserComment") *@
-                            </li>
-                            <li class="other">
-                                @* @await Component.InvokeAsync("AdminComment") *@
-                            </li>
-                            <li class="self">
-                                <div class="avatar">
-                                    <img src="/Admin/assets/images/user/customer.png" alt="">
-                                </div>
-                                <div class="message">
-                                    <div class="content">
-                                        پلاگین‌ها چطور؟
-                                    </div>
-                                    <span class="sender-name">
-                                        بهزاد
-                                    </span>
-                                    <time>، 10:23</time>
-                                </div>
-                            </li>
-                            <div class="message">
-                                <div class="content">
-                                    بله، کلیه پلاگین‌ها هم با زبان فارسی و راستچین هستند و تقویم و نقشه‌ها هم بومی شده هستند.
-                                </div>
-                                <span class="sender-name">
-                                    پشتیبان قالب
-                                </span>
-                                <time>، 10:24</time>
-                            </div>
-                            </li>
-                        </ul>
-                        <div class="input-group m-t-20">
-                            <input type="text" class="form-control" placeholder="پیام جدید">
-                            <span class="input-group-btn">
-                                <button class="btn btn-success" type="button">ارسال</button>
-                            </span>
-                        </div><!-- /.input-group -->
-                    </div><!-- /.portlet-body -->
-                </div><!-- /.portlet -->
-            </div><!-- /.col-xl-4 -->
-        </div><!-- /.row -->
+       
     </div><!-- /.col-md-12 -->
 </div><!-- /.row -->
 </div><!-- /#inner-content -->

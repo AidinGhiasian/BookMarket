@@ -13,7 +13,7 @@ namespace BookMarket.Pages.ViewComponents
         }
         public IViewComponentResult Invoke()
         {
-            var posts = _postQueries.GetAll().Take(2).ToList();
+            var posts = _postQueries.GetAll().TakeLast(2).ToList();
             return View(posts);
         }
     }

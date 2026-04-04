@@ -55,23 +55,7 @@ namespace BookM.Application
         }
         public List<BookViewModel> GetAll()
         {
-
-
-            return _bookRepository.GetBy().Select(book => new BookViewModel
-            {
-                Id = book.Id,
-                PictureFile = book.Picture,
-                BookTitle = book.BookTitle,
-                Writer = book.Writer,
-                publisher = book.Publisher,
-                CategoryId = book.CategoryId,
-                CreateDateTime = book.CreatetionDate,
-                IsAvailable = book.IsAvailable,
-                ShortDescription = book.ShortDescription,
-                CategoryName = book.Category.Name
-            }).ToList();
-
-
+            return _bookRepository.GetBy().Select(map).ToList();
         }
 
         public void Edit(EditViewModel update)
@@ -81,6 +65,7 @@ namespace BookM.Application
             var PictureName = update.Picture;
 
             var npprice = update.Price;
+
             if (update.FileName != null)
             {
                 _fileUploader.Delete(update.Picture);
@@ -103,14 +88,15 @@ namespace BookM.Application
                 CategoryId = book.CategoryId,
                 CreateDateTime = book.CreatetionDate,
                 IsAvailable = book.IsAvailable,
-                ShortDescription = book.ShortDescription
-
+                ShortDescription = book.ShortDescription,
+                Price = book.Price
             };
         }
         public BookCategoryViewModel mapcategory(BookCategories category)
         {
             return new BookCategoryViewModel
             {
+
                 CategoryName = category.Name,
                 Books = category.Books,
                 CreatedAt = category.CreatedAt,
@@ -132,7 +118,8 @@ namespace BookM.Application
                 Publisher = book.Publisher,
                 CategoryId = book.CategoryId,
                 shortdescription = book.ShortDescription,
-                Categorey = book.Category.Name
+                Categorey = book.Category.Name,
+                Price = book.Price
             };
         }
         public BookViewModel GetdetailInfo(int id)
@@ -147,8 +134,13 @@ namespace BookM.Application
                 publisher = book.Publisher,
                 CategoryId = book.CategoryId,
                 ShortDescription = book.ShortDescription,
-                CategoryName = book.Category.Name
+                CategoryName = book.Category.Name,
+                Price = book.Price
             };
+        }
+        public List<Books> Search(string title)
+        {
+            return _bookRepository.GetBy(title);
         }
 
 

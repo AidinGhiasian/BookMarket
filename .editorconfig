@@ -1,0 +1,4 @@
+﻿[*.cs]
+
+# IDE0021: Use block body for constructor
+dotnet_diagnostic.IDE0021.severity = silent

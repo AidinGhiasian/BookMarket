@@ -47,7 +47,10 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#">خروج از حساب کاربری</a>
+                                    <form method="post" asp-page-handler="LogOut">
+                                        <button  type="submit" class="nav-link">خروج از حساب کاربری</button>
+
+                                    </form>
                                 </li>
                             </ul>
                         </aside><!-- End .col-lg-3 -->

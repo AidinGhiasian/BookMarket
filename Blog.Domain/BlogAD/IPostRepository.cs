@@ -15,5 +15,6 @@ namespace Blog.Domain.BlogAD
         public Posts Getby(string Title);
         public void Delete(int id);
         public List<Posts> GetAll();
+        public List<Posts> Search(string title);
     }
 }

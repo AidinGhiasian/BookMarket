@@ -1,5 +1,9 @@
-﻿using CommentM.Domain.Comment.AD;
+﻿using Blog.Domain.BlogAD;
+using BookM.Domain.Book.AD;
+using CommentM.Domain.Comment.AD;
 using CrystalDecisions.ReportAppServer;
+using DocumentFormat.OpenXml.Office2010.Excel;
+using FLEXYGO.GoogleResourceTypes;
 using Services.Application;
 using System;
 using System.Collections.Generic;
@@ -15,15 +19,17 @@ namespace CommentM.Infrastructure.EFCore.Repository
         private readonly CommentDbContext _commentDbContext;
         public CommentRepository(CommentDbContext commentdbcontext) : base(commentdbcontext)
         {
+            
             _commentDbContext = commentdbcontext;
         }
 
-        public List<Comments> CommentStatus(int status)
+        public List<Comments> CommentStatus(int status,int ownerid)
         {
-           return _commentDbContext.Comments.Where(x=>x.IsStatus==status).ToList();
+           
+                return _commentDbContext.Comments.Where(x => x.IsStatus == status).ToList();
         }
 
-        public OperationResult ChangeStatus(long id,int status)
+        public OperationResult ChangeStatus(long id, int status)
         {
             OperationResult result = new OperationResult();
             var comment = _commentDbContext.Comments.FirstOrDefault(x => x.Id == id);
@@ -33,17 +39,38 @@ namespace CommentM.Infrastructure.EFCore.Repository
                 result.IsSuccess();
                 _commentDbContext.SaveChanges();
             }
-            return result.Failed(ApplicationMessage.NotFund);
+                return result.Failed(ApplicationMessage.NotFund);
         }
 
 
 
-        public List<Comments> GetComment(int ownerid)
+        public List<Comments> GetComment(int ownerid,int status)
         {
-            var comments= _commentDbContext.Comments.Where(x => x.OwnerId == ownerid).ToList();
+            Comments comment = new Comments();
+            Books book = new Books();
+            var comments = _commentDbContext.Comments.Where(x => x.OwnerId == ownerid).ToList();
+            if (status != null && comment.OwnerId == book.Id)
+            {
+                return _commentDbContext.Comments.Where(x => x.IsStatus == status).ToList();
+            }
             return comments;
+
         }
 
-       
+        public OperationResult Delete(long id)
+        {
+            OperationResult result = new OperationResult();
+            var comment = _commentDbContext.Comments.FirstOrDefault(x => x.Id == id);
+            if (comment != null)
+            {
+
+                _commentDbContext.Comments.Remove(comment);
+                _commentDbContext.SaveChanges();
+                return result.IsSuccess();
+                
+            }
+             return result.Failed(ApplicationMessage.NotFund);
+        }
+
     }
 }

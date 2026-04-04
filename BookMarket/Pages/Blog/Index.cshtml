@@ -1,4 +1,5 @@
 ﻿@page
+@using Services.Application
 @model BookMarket.Pages.Blog.IndexModel
 @{
 }
@@ -10,18 +11,17 @@
 <nav aria-label="breadcrumb" class="breadcrumb-nav mb-2">
     <div class="container">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="/index">خانه</a></li>
-            @if (Model.BlogsWithCategory==null)
+            <li class="breadcrumb-item"><a href="~/Index">خانه</a></li>
+
+            @if (Model.BlogsWithCategory == null)
             {
-                <li class="breadcrumb-item active"><a href="#">اخبار و مقالات</a></li>
-
+                <li class="breadcrumb-item"><a href="#">اخبار و مقالات</a></li>
             }
-            @if (Model.BlogsWithCategory!=null)
-             {
-                <li class="breadcrumb-item "><a href="/Blog/index">اخبار و مقالات</a></li>
+            @if (Model.BlogsWithCategory != null)
+            {
+                <li class="breadcrumb-item "><a href="/Blog/index">کتاب ها</a></li>
 
-                <li class="breadcrumb-item active"><a href="#">@Model.BlogsWithCategory.First().Category</a></li>
-
+                <li class="breadcrumb-item active"><a href="#">@Model.BlogsWithCategory.First().Category<span> @Model.BlogsWithCategory.Count() </span></a></li>
             }
         </ol>
     </div><!-- End .container -->
@@ -31,94 +31,109 @@
     <div class="container">
         <nav class="blog-nav">
             <ul class="menu-cat entry-filter justify-content-center">
-                <li class=""><a href="/Blog/Index" data-filter="*">همه<span></span></a></li>
+                <li class="active"><a href="/Blog/Index" data-filter="*">همه<span></span></a></li>
 
                 @if (Model.Categories != null)
                 {
                     @foreach (var item in Model.Categories)
                     {
-                        <li class="@((Model.BlogsWithCategory != null) ? "active":"") "><a href="/Blog/Index?id=@item.Id" data-filter="*">@item.Name<span></span></a></li>
-
+                        <li class="@((Model.BlogsWithCategory != null) ? "active" : "") "><a href="/Blog/Index?id=@item.Id" data-filter="*">
+                            @item.Name</a></li>
                     }
                 }
-               
+
             </ul><!-- End .blog-menu -->
         </nav><!-- End .blog-nav -->
-
-        <div class="entry-container max-col-4">
-            @if (Model.Blogs != null)
+        <div class="entry-container max-col-4 row" data-layout="fitRows">
+            @if (Model.BlogsWithCategory != null)
             {
-                @foreach (var item in Model.Blogs)
+                foreach (var item in Model.BlogsWithCategory)
                 {
-                    <div class="entry-item lifestyle shopping col-sm-6 col-md-4 col-lg-3">
+
+                    <div class="entry-item lifestyle fashion col-sm-6 col-md-4 col-lg-3">
                         <article class="entry entry-grid text-center">
                             <figure class="entry-media">
-                                <a href="/Blog/BlogDetails?id=@item.Id">
-                                    <img src="/Pictures/@item.Picture" alt="توضیحات عکس">
-                                </a>
-                            </figure><!-- End .entry-media AIDIN -->
-                            <div class="entry-body">
-                                <div class="entry-meta">
-                                    <a href="#">22 اسفند 1401</a>
-                                    <span class="meta-separator">|</span>
-                                    <a href="#">2 دیدگاه</a>
-                                </div><!-- End .entry-meta -->
-
-                                <h2 class="entry-title text-center">
-                                    <a href="/Blog/BlogDetails?id=@item.Id">@item.Title</a>
-                                </h2><!-- End .entry-title -->
-
-                                <div class="entry-cats text-center">
-                                    
-                                       <a href="/Blog/index?id=@item.categoryId">@item.Category</a>
-                                   
-                                                               
-                                </div><!-- End .entry-cats -->
-                            </div><!-- End .entry-body -->
-                        </article><!-- End .entry -->
-                    </div>
-
-                }
-
-            }else if (Model.BlogsWithCategory!=null)
-            {
-                @foreach (var item in Model.BlogsWithCategory)
-                {
-                    <div class="entry-item lifestyle shopping col-sm-6 col-md-4 col-lg-3">
-                        <article class="entry entry-grid text-center">
-                            <figure class="entry-media">
-                                <a href="/Blog/BlogDetails?id=@item.Id">
-                                    <img src="/Pictures/@item.Picture" alt="توضیحات عکس">
-                                </a>
+                                <div>
+                                    <a href="/Blog/BlogDetails?Id=@item.Id">
+                                        <img src="/Pictures/@item.Picture" alt="توضیحات عکس">
+                                    </a>
+                                </div><!-- End .owl-carousel -->
                             </figure><!-- End .entry-media -->
 
                             <div class="entry-body">
                                 <div class="entry-meta">
-                                    <a href="#">22 اسفند 1401</a>
+                                    <a href="#">@item.PostTime</a>
                                     <span class="meta-separator">|</span>
-                                    <a href="#">2 دیدگاه</a>
+                                    <a href="#">3 دیدگاه</a>
                                 </div><!-- End .entry-meta -->
 
                                 <h2 class="entry-title text-center">
-                                    <a href="/Blog/BlogDetails?id=@item.Id">@item.Title</a>
+                                    <a href="/Blog/BlogDetails?Id=@item.Id">@item.Title</a>
                                 </h2><!-- End .entry-title -->
 
                                 <div class="entry-cats text-center">
-
-                                    <a href="/Blog/index?id=@item.categoryId">@item.Category </a>
-
-                                  
+                                    <a href="#">@item.Category</a>
                                 </div><!-- End .entry-cats -->
+
+                                <div class="entry-content text-center">
+                                    <p>
+                                        @item.ShortDescription
+                                    </p>
+                                    <a href="/Blog/BlogDetails?Id=@item.Id" class="read-more">
+                                        ادامه
+                                        خواندن
+                                    </a>
+                                </div><!-- End .entry-content -->
+                            </div><!-- End .entry-body -->
+                        </article><!-- End .entry -->
+                    </div>
+                }
+            }
+            @if (Model.Blogs!=null)
+            {
+                @foreach (var item in Model.Blogs)
+                {
+                    <div class="entry-item lifestyle fashion col-sm-6 col-md-4 col-lg-3">
+                        <article class="entry entry-grid text-center">
+                            <figure class="entry-media">
+                                <div>
+                                    <a href="/Blog/BlogDetails?Id=@item.Id">
+                                        <img src="/Pictures/@item.Picture" alt="توضیحات عکس">
+                                    </a>
+                                </div><!-- End .owl-carousel -->
+                            </figure><!-- End .entry-media -->
+
+                            <div class="entry-body">
+                                <div class="entry-meta">
+                                    <a href="#">@item.PostTime</a>
+                                    <span class="meta-separator">|</span>
+                                    <a href="#">3 دیدگاه</a>
+                                </div><!-- End .entry-meta -->
+
+                                <h2 class="entry-title text-center">
+                                    <a href="/Blog/BlogDetails?Id=@item.Id">@item.Title</a>
+                                </h2><!-- End .entry-title -->
+
+                                <div class="entry-cats text-center">
+                                    <a href="#">@item.Category</a>
+                                </div><!-- End .entry-cats -->
+
+                                <div class="entry-content text-center">
+                                    <p>
+                                        @item.ShortDescription
+                                    </p>
+                                    <a href="/Blog/BlogDetails?Id=@item.Id" class="read-more">
+                                        ادامه
+                                        خواندن
+                                    </a>
+                                </div><!-- End .entry-content -->
                             </div><!-- End .entry-body -->
                         </article><!-- End .entry -->
                     </div>
 
                 }
             }
-          
-
-
-        </div><!-- End .entry-container -->
+        </div>
 
         <nav aria-label="Page navigation">
             <ul class="pagination justify-content-center">

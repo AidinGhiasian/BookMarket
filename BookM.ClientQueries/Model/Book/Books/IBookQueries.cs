@@ -12,5 +12,6 @@ namespace BookM.ClientQueries.Model.Book.Books
         public List<BookQueryViewModel> GetAll();
         public BookQueryViewModel GetDetailInfo(int id);
         public List<BookQueryViewModel> GetAllBookWithCategory(int? categoryId);
+        public List<BookQueryViewModel> Search(string? title);
     }
 }

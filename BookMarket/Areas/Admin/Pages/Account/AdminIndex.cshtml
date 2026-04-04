@@ -67,6 +67,9 @@
 							<i class="icon-plus"></i>
 							افزودن
 						</a>
+						<a class="btn btn-info float-end" href="./Role/Index">
+						    نقش ها
+						</a>
 						<form method="get">
 						<div class="custom-radio rtl ">
 							<input name="isStatus" value="true" type="radio" class="control-input" >
@@ -108,13 +111,13 @@
 										<td>
 											@if (item.IsAvalable)
 											{
-												<a asp-page-handler="ChangeStatus" asp-route-id="@item.Id" class="btn btn-success">فعال </a>
+												<a asp-page-handler="Restore" asp-route-id="@item.Id" class="btn btn-success">فعال </a>
 
 											
 											}
 											else
 											{
-												<a asp-page-handler="ChangeStatus" asp-route-id="@item.Id" class="btn btn-danger">غیر فعال</a>
+												<a asp-page-handler="Delete" asp-route-id="@item.Id" class="btn btn-danger">غیر فعال</a>
 											}
 										</td>
 									</tr>

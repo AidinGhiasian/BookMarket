@@ -47,19 +47,19 @@ builder.Services.AddCors(options =>
     options.AddPolicy("AllowAll",
         builder => builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
 });
-//builder.Services.AddAuthorization(options =>
-//{
-//    options.AddPolicy("SuperAdmin",
-//        builder => builder.RequireRole(new List<string> { Roles.Admin }));
-//});
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("Admin",
+        builder => builder.RequireRole(new List<string> { Roles.Admin }));
+});
 
-//builder.Services.AddRazorPages().AddMvcOptions(options => options.Filters.Add<SecurityPageFilter>())
-//    .AddRazorPagesOptions(options =>
-//    {
-//        options.Conventions.AuthorizeAreaFolder("Admin", "/", "SuperAdmin");
+builder.Services.AddRazorPages().AddMvcOptions(options => options.Filters.Add<SecurityPageFilter>())
+    .AddRazorPagesOptions(options =>
+    {
+        options.Conventions.AuthorizeAreaFolder("Admin", "/", "Admin");
 
 
-//    });
+    });
 
 
 

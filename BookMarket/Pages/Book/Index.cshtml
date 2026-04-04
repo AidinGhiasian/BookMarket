@@ -1,4 +1,5 @@
 ﻿@page
+@using Services.Application
 @model BookMarket.Pages.Book.IndexModel
 @{
 }
@@ -10,12 +11,13 @@
 <nav aria-label="breadcrumb" class="breadcrumb-nav mb-2">
     <div class="container">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="/index">خانه</a></li>
+            <li class="breadcrumb-item"><a href="~/Index">خانه</a></li>
+            
             @if (Model.BooksWithCategory == null)
             {
-                <li class="breadcrumb-item active"><a href="/Book/Index">کتاب ها</a></li>
-
-            }else if (Model.BooksWithCategory != null)
+                <li class="breadcrumb-item"><a href="#">کتاب ها</a></li>
+            }
+            @if (Model.BooksWithCategory != null)
             {
                 <li class="breadcrumb-item "><a href="/Book/index">کتاب ها</a></li>
 
@@ -29,94 +31,111 @@
     <div class="container">
         <nav class="blog-nav">
             <ul class="menu-cat entry-filter justify-content-center">
-                <li class=""><a href="/Book/Index" data-filter="*">همه<span></span></a></li>
+                <li class="active"><a href="/Book/Index" data-filter="*">همه<span></span></a></li>
 
                 @if (Model.Categories != null)
                 {
                     @foreach (var item in Model.Categories)
                     {
-                        <li class="@((Model.BooksWithCategory != null) ? "active" : "") "><a href="/Blog/Index?id=@item.Id" data-filter="*">@item.CategoryName<span></span></a></li>
-
+                        <li class="@((Model.BooksWithCategory != null) ? "active" : "") "><a href="/Book/Index?id=@item.Id" data-filter="*">@item.CategoryName</a></li>
                     }
                 }
 
-            </ul><!-- End .blog-menu -->
-        </nav><!-- End .blog-nav -->
+            </ul>
+        </nav>
+        <div class="entry-container max-col-4 row" data-layout="fitRows">
+            @if (Model.BooksWithCategory != null)
+            {
+                foreach (var item in Model.BooksWithCategory)
+                {
 
-        <div class="entry-container max-col-4">
+                    <div class="entry-item lifestyle fashion col-sm-6 col-md-4 col-lg-3">
+                        <article class="entry entry-grid text-center">
+                            <figure class="entry-media">
+                                <div >
+                                    <a href="/Book/BookDetails?Id=@item.Id">
+                                        <img src="/Pictures/@item.PictureFile" alt="توضیحات عکس">
+                                    </a>
+                                </div><!-- End .owl-carousel -->
+                            </figure><!-- End .entry-media -->
+
+                            <div class="entry-body">
+                                <div class="entry-meta">
+                                    <a href="#">@item.CreateDateTime</a>
+                                    <span class="meta-separator">|</span>
+                                    <a href="#">3 دیدگاه</a>
+                                </div><!-- End .entry-meta -->
+
+                                <h2 class="entry-title text-center">
+                                    <a href="/Book/BookDetails?Id=@item.Id">@item.BookTitle</a>
+                                </h2><!-- End .entry-title -->
+
+                                <div class="entry-cats text-center">
+                                    <a href="#">@item.CategoryName</a>
+                                </div><!-- End .entry-cats -->
+
+                                <div class="entry-content text-center">
+                                    <p>
+                                        @item.ShortDescription
+                                    </p>
+                                    <a href="/Blog/BlogDetails?Id=@item.Id" class="read-more">
+                                        ادامه
+                                        خواندن
+                                    </a>
+                                </div><!-- End .entry-content -->
+                            </div><!-- End .entry-body -->
+                        </article><!-- End .entry -->
+                    </div>
+            
+                    <!-- End .entry-item -->
+                }
+            }
             @if (Model.Books != null)
             {
                 @foreach (var item in Model.Books)
                 {
-                    <div class="entry-item lifestyle shopping col-sm-6 col-md-4 col-lg-3">
+                    <div class="entry-item lifestyle fashion col-sm-6 col-md-4 col-lg-3">
                         <article class="entry entry-grid text-center">
                             <figure class="entry-media">
-                                <a href="/Book/BookDetails?id=@item.Id">
-                                    <img src="/Pictures/@item.PictureFile" alt="توضیحات عکس">
-                                </a>
+                                <div>
+                                    <a href="/Book/BookDetails?Id=@item.Id">
+                                        <img src="/Pictures/@item.PictureFile" alt="توضیحات عکس">
+                                    </a>
+                                </div><!-- End .owl-carousel -->
                             </figure><!-- End .entry-media -->
 
                             <div class="entry-body">
                                 <div class="entry-meta">
-                                    <a href="#">22 اسفند 1401</a>
+                                    <a href="#">@item.CreateDateTime</a>
                                     <span class="meta-separator">|</span>
-                                    <a href="#">2 دیدگاه</a>
+                                    <a href="#">3 دیدگاه</a>
                                 </div><!-- End .entry-meta -->
 
                                 <h2 class="entry-title text-center">
-                                    <a href="/Book/BookDetails?id=@item.Id">@item.BookTitle</a>
+                                    <a href="/Book/BookDetails?Id=@item.Id">@item.BookTitle</a>
                                 </h2><!-- End .entry-title -->
 
                                 <div class="entry-cats text-center">
-
-                                    <a href="#">@item.CategoryName </a>
-
-
+                                    <a href="#">@item.CategoryName</a>
                                 </div><!-- End .entry-cats -->
-                            </div><!-- End .entry-body -->
-                        </article><!-- End .entry -->
-                    </div>
 
-                }
-
-            }
-            else if (Model.BooksWithCategory != null)
-            {
-                @foreach (var item in Model.BooksWithCategory)
-                {
-                    <div class="entry-item lifestyle shopping col-sm-6 col-md-4 col-lg-3">
-                        <article class="entry entry-grid text-center">
-                            <figure class="entry-media">
-                                <a href="/Book/BookDetails">
-                                    <img src="/Pictures/@item.PictureFile" alt="توضیحات عکس">
-                                </a>
-                            </figure><!-- End .entry-media -->
-
-                            <div class="entry-body">
-                                <div class="entry-meta">
-                                    <a href="#">22 اسفند 1401</a>
-                                    <span class="meta-separator">|</span>
-                                    <a href="#">2 دیدگاه</a>
-                                </div><!-- End .entry-meta -->
-
-                                <h2 class="entry-title text-center">
-                                    <a href="/Book/BookDetails?id=@item.Id">@item.BookTitle</a>
-                                </h2><!-- End .entry-title -->
-
-                                <div class="entry-cats text-center">
-
-                                    <a href="/Book/Index?id=@item.CategoryId">@item.CategoryName</a>
-
-
-                                </div><!-- End .entry-cats -->
+                                <div class="entry-content text-center">
+                                    <p>
+                                        @item.ShortDescription
+                                    </p>
+                                    <a href="/Book/BookDetails?Id=@item.Id" class="read-more">
+                                        ادامه
+                                        خواندن
+                                    </a>
+                                </div><!-- End .entry-content -->
                             </div><!-- End .entry-body -->
                         </article><!-- End .entry -->
                     </div>
 
                 }
             }
-
-        </div><!-- End .entry-container -->
+           
+        </div>
 
         <nav aria-label="Page navigation">
             <ul class="pagination justify-content-center">

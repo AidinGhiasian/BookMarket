@@ -1,78 +1,86 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AccountM.Application.Contracts.AccountApplication;
-using AccountM.Application.Contracts.RoleApplication;
+﻿using AccountM.Application.Contracts.RoleApplication;
 using AccountManagement.Domain.RoleAgg;
-using AM.Domain.Account.AD;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
-using Services;
+using Services.Application;
+using Services.Infrastructure;
 
-namespace AccountM.Application
+namespace AccountManagement.Application
 {
     public class RoleApplication : IRoleApplication
     {
         private readonly IRoleRepository _roleRepository;
-        public RoleApplication(IRoleRepository rolerepository)
+
+        public RoleApplication(IRoleRepository roleRepository)
         {
-            _roleRepository = rolerepository;
+            _roleRepository = roleRepository;
         }
 
-
-        public void delete(long id)
+        public OperationResult Create(CreateViewModel command)
         {
-            var role=_roleRepository.GetbyId(id);
-            role.ChengeStatus(false);
+            var operation = new OperationResult();
+
+            var role = new Role(command.RoleName, new List<Permission>(), command.details);
+            _roleRepository.Add(role);
             _roleRepository.SaveChanges();
-         
-          
+            return operation.IsSuccess();
         }
 
-
-
-        public RoleViewModel GetById(long id)
+        public OperationResult Edit(EditViewModel command)
         {
-           var gr = _roleRepository.GetbyId(id);
-            return Map(gr);
+            var operation = new OperationResult();
+            var role = _roleRepository.GetById(command.Id);
+            if (role == null)
+                return operation.Failed(ApplicationMessage.NotFund);
+
+
+            var permissions = new List<Permission>();
+            command.Permissions.ForEach(code => permissions.Add(new Permission(code,"")));
+
+            role.Edit(command.RoleName, permissions, command.details, command.isActive);
+            _roleRepository.SaveChanges();
+            return operation.IsSuccess();
         }
-
-        public List<RoleViewModel> getRole()
+        private static List<PermissionDto> MapPermissions(IEnumerable<Permission> permissions)
         {
-            var roles=_roleRepository.GetAll();
-            var list = new List<RoleViewModel>();
-            foreach(var role in roles )
+            return permissions.Select(x => new PermissionDto(x.PermissionCode, x.NamePermission)).ToList();
+        }
+        public EditViewModel GetDetails(int id)
+        {
+            var role = _roleRepository.GetDetails(id);
+            var roles = new EditViewModel
             {
-                list.Append(Map(role));
+                Id = role.Id,
+                RoleName = role.RoleName,
+                details = role.Details,
+                isActive = role.IsActive,
+                MappedPermissions = MapPermissions(role.Permissions),
+            };
+            if (roles.MappedPermissions!=null)
+            {
+                roles.Permissions = roles.MappedPermissions.Select(x => x.Code).ToList();
+
             }
-            return list;
+            return roles;
         }
-        
-        void IRoleApplication.Create(Contracts.RoleApplication.CreateViewModel model)//کامپایلر نمیتوانست تشیص دهد منظور من کدام CreateViewModelاست...
+
+        public List<RoleViewModel> List()
         {
-            var cr = new Role(model.RoleName, model.Permissions, model.details);
-             _roleRepository.create(cr);
+            var roleList= _roleRepository.list();
+            var roles= new List<RoleViewModel>();
+            foreach (var item in roleList)
+            {
+                roles.Add(Map(item));
+            }
+            return roles;
         }
-
-        Task IRoleApplication.Edit(Contracts.RoleApplication.EditViewModel model)//کامپایلر نمیتوانست تشیص دهد منظور من کدام Edit ViewModelاست...
-        {
-            var er = _roleRepository.GetbyId(model.Id);
-            er.Edit(model.RoleName,model.Permissions,model.details,model.isActive);
-            return _roleRepository.updateby(er);
-        }
-
-
-        //maps
-        private RoleViewModel Map(Role model)
+        public RoleViewModel Map(Role? roles)
         {
             return new RoleViewModel
             {
-                Id = model.Id,
-                RoleName= model.RoleName,
-                Details= model.Details,
+                Id = roles.Id,
+                RoleName = roles.RoleName,
+                Details = roles.Details,
+
             };
         }
     }
 }
-

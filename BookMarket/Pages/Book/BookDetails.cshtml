@@ -7,7 +7,7 @@
     <div class="container d-flex align-items-center">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="index-1.html">خانه</a></li>
-            <li class="breadcrumb-item"><a href="#">حالت صفحه جمع</a></li>
+            <li class="breadcrumb-item"><a href="#">کتاب ها</a></li>
             <li class="breadcrumb-item active" aria-current="page"></li>
         </ol>
 
@@ -24,7 +24,7 @@
                         <div class="col-md-6">
                             <div class="product-gallery">
                                 <figure class="product-main-image">
-                                    <span class="product-label label-top">برتر</span>
+                                
                                     <img id="product-zoom"
                                          src="/Pictures/@Model.Book.PictureFile"
                                          data-zoom-image="/Pictures/@Model.Book.PictureFile"
@@ -48,14 +48,12 @@
                                         <div class="ratings-val" style="width: 80%;"></div>
                                         <!-- End .ratings-val -->
                                     </div><!-- End .ratings -->
-                                    <a class="ratings-text" href="/Book/BookDetails?id=@Model.Book.Id" id="review-link">
-                                        ( @Model.CommentList.Count()
-                                        دیدگاه )
+                                    <a class="ratings-text" href="/Book/BookDetails?id=@Model.Book.Id" id="review-link"> ( @Model.CommentList.Count() دیدگاه )
                                     </a>
                                 </div><!-- End .rating-container -->
 
                                 <div class="product-price">
-                                    @Model.Book.Price   تومان
+                                    @Model.Book.Price  تومان
                                 </div><!-- End .product-price -->
 
                                 <div class="product-content">
@@ -103,9 +101,7 @@
                                 <div class="product-details-footer details-footer-col">
                                     <div class="product-cat">
                                         <span>دسته ها : </span>
-                                        <a href="#">زنانه</a>،
-                                        <a href="#">لباس زنانه</a>،
-                                        <a href="#">زرد</a>
+                                        <a href="#">@Model.Book.CategoryName</a>
                                     </div><!-- End .product-cat -->
 
                                     <div class="social-icons social-icons-sm">
@@ -113,139 +109,139 @@
                                         <a href="#" class="social-icon" title="فیسبوک" target="_blank">
                                             <i class="icon-facebook-f"></i>
                                         </a>
-                                        <a href="#" class="social-icon" title="توییتر" target="_blank">
-                                            <i class="icon-twitter"></i>
-                                        </a>
                                         <a href="#" class="social-icon" title="اینستاگرام"
                                            target="_blank"><i class="icon-instagram"></i></a>
-                                        <a href="#" class="social-icon" title="پینترست" target="_blank">
-                                            <i class="icon-pinterest"></i>
-                                        </a>
                                     </div>
                                 </div><!-- End .product-details-footer -->
                             </div><!-- End .product-details -->
                         </div><!-- End .col-md-6 -->
-                    </div><!-- End .row -->
-                </div><!-- End .product-details-top -->
+                    </div>
+                </div>
 
-                <div class="product-details-tab">
-                    <ul class="nav nav-pills justify-content-center" role="tablist">
-                        <li class="nav-item">
-                            <a class="nav-link active" id="product-desc-link" data-toggle="tab"
-                               href="#product-desc-tab" role="tab" aria-controls="product-desc-tab"
-                               aria-selected="true">توضیحات</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" id="product-info-link" data-toggle="tab"
-                               href="#product-info-tab" role="tab" aria-controls="product-info-tab"
-                               aria-selected="false">اطلاعات اضافی</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" id="product-shipping-link" data-toggle="tab"
-                               href="#product-shipping-tab" role="tab" aria-controls="product-shipping-tab"
-                               aria-selected="false">ارسال و بازگشت</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" id="product-review-link" data-toggle="tab"
-                               href="#product-review-tab" role="tab" aria-controls="product-review-tab"
-                               aria-selected="false">دیدگاه (@Model.CommentList.Count())</a>
-                        </li>
-                    </ul>
-                    <div class="tab-content">
-                        <div class="tab-pane fade show active" id="product-desc-tab" role="tabpanel"
-                             aria-labelledby="product-desc-link">
-                            <div class="product-desc-content">
-                                <h3>اطلاعات محصول</h3>
-                                @Html.Raw(Model.Book.ShortDescription)
-                            </div><!-- End .product-desc-content -->
-                        </div><!-- .End .tab-pane -->
-                        <div class="tab-pane fade" id="product-info-tab" role="tabpanel"
-                             aria-labelledby="product-info-link">
-                            <div class="product-desc-content">
-                                <h3>اطلاعات</h3>
-                                <p>
-                                    لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم لورم ایپسوم متن ساختگی با
-                                    تولید سادگی نامفهوم لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم لورم
-                                    ایپسوم متن ساختگی با تولید سادگی نامفهوملورم ایپسوم متن ساختگی با تولید
-                                    سادگی نامفهوم
-                                </p>
+                    <div class="product-details-tab">
+                        <ul class="nav nav-pills justify-content-center" role="tablist">
 
-                                <h3>کیفیت و مراقبت</h3>
-                                <ul>
-                                    <li>کیفیت عالی</li>
-                                    <li>ساخت دست</li>
-                                    <li>برند RI</li>
-                                    <li>چاپ تمیز داخلی </li>
-                                    <li>قابل تنظیم</li>
-                                    <li> ارتفاع:31 سانتی متر، عرض:32 سانتی متر</li>
-                                </ul>
+                            <li class="nav-item">
+                                <input type="hidden" name="IsStatus" value="0" />
+                                <a class="nav-link" id="product-desc-link" data-toggle="tab"
+                                   href="#product-desc-tab" role="tab" aria-controls="product-desc-tab"
+                                   aria-selected="false">توضیحات
+                               </a>
+                            </li>
+                            <li class="nav-item">
+                                <input type="hidden" name="IsStatus" value="0" />
+                                <a class="nav-link show active" id="product-review-link" data-toggle="tab"
+                                   href="#product-review-tab" role="tab" aria-controls="product-review-tab"
+                                   aria-selected="true">دیدگاه (@Model.CommentList.Count())
+                               </a>
+                            </li>
+                            <li class="nav-item" style="margin-bottom:10px;">
+                                <div class="btn-warp ">
+                                    <a href="/Book/BookDetails?id=@Model.Book.Id"="btn btn-outline-primary btn-round">
+                                        <span>اعمال</span>
+                                        <i class="icon-long-arrow-left"></i>
+                                    </a>
+                                </div>
+                            </li>
+                        
+                        </ul>
+                    
+                        <div class="tab-content">
+                            <div class="tab-pane fade show active" id="product-desc-tab" role="tabpanel"
+                                 aria-labelledby="product-desc-link">
+                                <div class="product-desc-content">
+                                    <h3>اطلاعات محصول</h3>
+                                    توضیحات کتاب : @Html.Raw(Model.Book.ShortDescription)
+                                    <br />  قیمت کتاب : @Html.Raw(Model.Book.Price)
+                                </div><!-- End .product-desc-content -->
+                            </div><!-- .End .tab-pane -->
+                            <div class="tab-pane fade" id="product-info-tab" role="tabpanel"
+                                 aria-labelledby="product-info-link">
+                                <div class="product-desc-content">
+                                    <h3>اطلاعات</h3>
+                                    <p>
+                                        لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم لورم ایپسوم متن ساختگی با
+                                        تولید سادگی نامفهوم لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم لورم
+                                        ایپسوم متن ساختگی با تولید سادگی نامفهوملورم ایپسوم متن ساختگی با تولید
+                                        سادگی نامفهوم
+                                    </p>
 
-                                <h3>سایز</h3>
-                                <p>تک سایز</p>
-                            </div><!-- End .product-desc-content -->
-                        </div><!-- .End .tab-pane -->
-                        <div class="tab-pane fade" id="product-shipping-tab" role="tabpanel"
-                             aria-labelledby="product-shipping-link">
-                            <div class="product-desc-content">
-                                <h3>ارسال و بازگشت</h3>
-                                <p>
-                                    لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم لورم ایپسوم متن ساختگی با
-                                    تولید سادگی نامفهوم لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم لورم
-                                    ایپسوم متن ساختگی با تولید سادگی نامفهوم <a href="#">
-                                        اطلاعات
-                                        ارسال
-                                    </a><br>
-                                    لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم لورم ایپسوم متن ساختگی با
-                                    تولید سادگی نامفهوم لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم لورم
-                                    ایپسوم متن ساختگی با تولید سادگی نامفهوم <a href="#">اطلاعات بازگشت</a>
-                                </p>
-                            </div><!-- End .product-desc-content -->
-                        </div><!-- .End .tab-pane -->
-                        <div class="tab-pane fade" id="product-review-tab" role="tabpanel"
-                             aria-labelledby="product-review-link">
-                            <div class="دیدگاه">
-                                <h3>دیدگاه (@Model.CommentList.Count())</h3>
-                                @foreach (var item in Model.CommentList)
-                                {
-                                    <div class="review">
-                                        <div class="row no-gutters">
-                                            <div class="col-auto">
-                                                <h4><a href="#"> @item.FullName</a></h4>
-                                                <div class="ratings-container">
-                                                    <div class="ratings">
-                                                        <div class="ratings-val" style="width: 80%;"></div>
-                                                        <!-- End .ratings-val -->
-                                                    </div><!-- End .ratings -->
-                                                </div><!-- End .rating-container -->
-                                                <span class="review-date">6 روز پیش</span>
-                                            </div><!-- End .col -->
-                                            <div class="col-12">
+                                    <h3>کیفیت و مراقبت</h3>
+                                    <ul>
+                                        <li>کیفیت عالی</li>
+                                        <li>ساخت دست</li>
+                                        <li>برند RI</li>
+                                        <li>چاپ تمیز داخلی </li>
+                                        <li>قابل تنظیم</li>
+                                        <li> ارتفاع:31 سانتی متر، عرض:32 سانتی متر</li>
+                                    </ul>
 
-
-                                                <div class="review-content">
-                                                    <p>
-                                                        @item.Message
-                                                    </p>
-                                                </div><!-- End .review-content -->
-
-                                                <div class="review-action">
-                                                    <a href="#"><i class="icon-thumbs-up"></i>مفید (2)</a>
-                                                    <a href="#">
-                                                        <i class="icon-thumbs-down"></i>غیرمفید (0)
-                                                    </a>
-                                                </div><!-- End .review-action -->
-                                            </div><!-- End .col-auto -->
-                                        </div><!-- End .row -->
-                                    </div>
-                                
-                                    <!-- End .review -->
-                                }
+                                    <h3>سایز</h3>
+                                    <p>تک سایز</p>
+                                </div><!-- End .product-desc-content -->
+                            </div><!-- .End .tab-pane -->
+                            <div class="tab-pane fade" id="product-shipping-tab" role="tabpanel"
+                                 aria-labelledby="product-shipping-link">
+                                <div class="product-desc-content">
+                                    <h3>ارسال و بازگشت</h3>
+                                    <p>
+                                        لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم لورم ایپسوم متن ساختگی با
+                                        تولید سادگی نامفهوم لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم لورم
+                                        ایپسوم متن ساختگی با تولید سادگی نامفهوم <a href="#">
+                                            اطلاعات
+                                            ارسال
+                                        </a><br>
+                                        لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم لورم ایپسوم متن ساختگی با
+                                        تولید سادگی نامفهوم لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم لورم
+                                        ایپسوم متن ساختگی با تولید سادگی نامفهوم <a href="#">اطلاعات بازگشت</a>
+                                    </p>
+                                </div><!-- End .product-desc-content -->
+                            </div><!-- .End .tab-pane -->
+                            <div class="tab-pane fade" id="product-review-tab" role="tabpanel"
+                                 aria-labelledby="product-review-link">
+                                <div class="دیدگاه">
+                                    <h3>دیدگاه (@Model.CommentList.Count())</h3>
+                                    @foreach (var item in Model.CommentList)
+                                    {
+                                        <div class="review">
+                                            <div class="row no-gutters">
+                                                <div class="col-auto">
+                                                    <h4><a href="#"> @item.FullName</a></h4>
+                                                    <div class="ratings-container">
+                                                        <div class="ratings">
+                                                            <div class="ratings-val" style="width: 80%;"></div>
+                                                            <!-- End .ratings-val -->
+                                                        </div><!-- End .ratings -->
+                                                    </div><!-- End .rating-container -->
+                                                    <span class="review-date">6 روز پیش</span>
+                                                </div><!-- End .col -->
+                                                <div class="col-12">
 
 
-                            </div><!-- End .دیدگاه -->
-                        </div><!-- .End .tab-pane -->
-                    </div><!-- End .tab-content -->
-                </div><!-- End .product-details-tab -->
+                                                    <div class="review-content">
+                                                        <p>
+                                                            @item.Message
+                                                        </p>
+                                                    </div><!-- End .review-content -->
+
+                                                    <div class="review-action">
+                                                        <a href="#"><i class="icon-thumbs-up"></i>مفید (2)</a>
+                                                        <a href="#">
+                                                            <i class="icon-thumbs-down"></i>غیرمفید (0)
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
 
                 <h2 class="title text-center mb-4">شاید شما بپسندید</h2><!-- End .title text-center -->
                 <div class="owl-carousel owl-simple carousel-equal-height carousel-with-shadow"
@@ -341,28 +337,27 @@
                             @foreach (var item in Model.BookWithCategory)
                             {
                                 <div class="product product-sm">
-                                <figure class="product-media">
-                                    <a href="/Book/BookDetails?id=@item.Id">
-                                        <img src="/Pictures/@item.PictureFile"
-                                                 alt="@item.BookTitle" class="product-image">
-                                    </a>
-                                </figure>
-
-                                <div class="product-body">
-                                    <h5 class="product-title">
-                                            <a href="/Book/BookDetails?id=@item.Id">
-                                            @item.BookTitle
+                                    <figure class="product-media">
+                                        <a href="/Book/BookDetails?id=@item.Id">
+                                            <img src="/Pictures/@item.PictureFile"
+                                            alt="@item.BookTitle" class="product-image">
                                         </a>
-                                    </h5><!-- End .product-title -->
-                                    <div class="product-price">
-                                        <span class="new-price">@item.Price تومان</span>
-                                      
-                                    </div><!-- End .product-price -->
-                                </div><!-- End .product-body -->
-                            </div><!-- End .product product-sm -->
+                                    </figure>
+
+                                    <div class="product-body">
+                                        <h5 class="product-title">
+                                            <a href="/Book/BookDetails?id=@item.Id">
+                                                @item.BookTitle
+                                            </a>
+                                        </h5><!-- End .product-title -->
+                                        <div class="product-price">
+                                            <span class="new-price">@item.Price تومان</span>
+                                        </div>
+                                    </div>
+                                </div>
 
                             }
-                            
+
                            
                         </div><!-- End .products -->
 

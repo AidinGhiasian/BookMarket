@@ -10,7 +10,7 @@ namespace Services.Application
     public interface IRepositoryBase<T> where T : class
     {
         void Add(T entity);
-        T GetById(long id);
+        T GetByLongId(long id);
         T GetById(int id);
         public List<T> GetAll();
         void SaveChanges();

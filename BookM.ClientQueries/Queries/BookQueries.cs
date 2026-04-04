@@ -30,7 +30,8 @@ namespace BookM.ClientQueries.Queries
                 CreateDateTime = book.CreateDateTime,
                 IsAvailable = book.IsAvailable,
                 ShortDescription = book.ShortDescription,
-                CategoryName = book.CategoryName
+                CategoryName = book.CategoryName,
+                Price = book.Price
             }).ToList();
         }
 
@@ -46,6 +47,7 @@ namespace BookM.ClientQueries.Queries
                  CategoryName = x.CategoryName,
                  IsAvailable = x.IsAvailable,
                  CategoryId = x.CategoryId,
+                 Price = x.Price
              }).Where(x => x.CategoryId == categoryId).ToList();
             return a;
         }
@@ -64,8 +66,26 @@ namespace BookM.ClientQueries.Queries
                 CategoryId = book.CategoryId,
                 ShortDescription = book.shortdescription,
                 CategoryName = book.Categorey,
+                Price = book.Price
             };
         }
 
+        public List<BookQueryViewModel> Search(string? title)
+        {
+            return _bookApplication.GetAll().Select(book => new BookQueryViewModel
+            {
+                Id = book.Id,
+                PictureFile = book.PictureFile,
+                BookTitle = book.BookTitle,
+                Writer = book.Writer,
+                publisher = book.publisher,
+                CategoryId = book.CategoryId,
+                CreateDateTime = book.CreateDateTime,
+                IsAvailable = book.IsAvailable,
+                ShortDescription = book.ShortDescription,
+                CategoryName = book.CategoryName,
+                Price = book.Price
+            }).Where(x=>x.BookTitle.Contains(title)).ToList();
+        }
     }
 }

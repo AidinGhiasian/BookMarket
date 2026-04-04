@@ -24,17 +24,13 @@ namespace BookMarket.Pages.Book
         {
             Categories = _categoryQuery.GetAll();
 
-            if (id != null && id != 0)
+            if (id != null )
             {
                 BooksWithCategory = _bookQueries.GetAllBookWithCategory(id);
             }
-            else
+            else if(id == null ) 
             {
                 Books = _bookQueries.GetAll();
-                if (Books.Count == 0)
-                {
-                    TempData["information"] = "هیچ مقاله ای وجود ندارد...";
-                }
             }
         }
     }

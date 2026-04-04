@@ -1,5 +1,4 @@
 using AccountM.Infrastructure.EFCore;
-using AccountM.Infrastructure.EFCore.Migrations;
 using AM.Domain.Account.AD;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using AccountM.Application;
@@ -31,14 +30,10 @@ namespace BookMarket.Pages.Account
         public IActionResult OnPostLogin(string? phone, string? password)
         
         {
-            var result = _accountQueries.Login(phone, password);
+            _accountQueries.Login(phone, password);
            
-            if (result.Success)
-            {
-                var acc = _accountQueries.GetDetail(phone);
-                return RedirectToPage("/dashboard", new {id=acc.Id});
-            }
-            return Page();
+           
+            return RedirectToPage("/index");
 
         }
 

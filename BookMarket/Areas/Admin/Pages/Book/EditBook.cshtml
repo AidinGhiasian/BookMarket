@@ -29,12 +29,7 @@
 						<i class="icon-note"></i>
 						ویرایش کتاب
 					</h3>
-					@if(TempData["success"]!=null)
-					{
-						<span class="bg-success-subtle" style="margin-right:750px">
-							@TempData["success"]
-						</span>
-					}
+
 				</div><!-- /.portlet-title -->
 
 			</div><!-- /.portlet-heading -->
@@ -94,27 +89,30 @@
 										</div><!-- /.input-group -->
 									</div><!-- /.form-group -->
 								</div><!-- /.col -->
-								<div class="form-group">
+								<div class="form-group col-6">
 									<label for="txt-mobile">توضیحات کوتاه</label>
 									<div class="input-group round">
-										<span class="input-group-addon">
+										<span class="input-group-addon col-6 cols-xs-12 ">
 											<i class="icon-envelope"></i>
 										</span>
-										<textarea type="text" style="height: 111px;" asp-for="@Model.Book.shortdescription" name="ShortDescription" class="form-control rtl text-right " placeholder="مقدار توضیحات کوتاه باید یا شامل مقدمه یا شامل یک بند خلاصه مقاله شما باشد."></textarea>
+										<textarea type="text"  asp-for="@Model.Book.shortdescription" name="ShortDescription" class="form-control rtl text-right " placeholder="مقدار توضیحات کوتاه باید یا شامل مقدمه یا شامل یک بند خلاصه مقاله شما باشد."></textarea>
 									</div><!-- /.input-group -->
 								</div><!-- /.form-group -->
-								<div class="form-group" style="width: 300px;">
+								<div class="form-group col-6 cols-xs-12">
 									<label>دسته بندی</label>
-									<div class="input-group round" style="width: 200px;" >
-										<span class="input-group-addon">
-											<i class="icon-envelope"></i>
-										</span>
+									<div class="col-md-12">
+										<div class="form-group">
+											<label asp-for="@Model.Book.CategoryId" class="control-label">دسته بندی</label>
 
-										<input type="text" name="CategoryId" asp-for="@Model.Book.CategoryId" class="form-control rtl text-Right" placeholder="دسته بندی کتاب">
+											<select type="text" class="form-control" name="CategoryId" asp-for="@Model.Book.CategoryId" asp-items='new SelectList(@Model.Book.BookCategories, "Id", "CategoryName")'>
 
-									</div><!-- /.input-group -->
+												<option value="0">انتخاب دسته بندی ....</option>
+											</select>
+											<span asp-validation-for="@Model.Book.CategoryId" class="error"></span>
+										</div>
+									</div>
 									<label>قیمت</label>
-									<div class="input-group round" style="width: 200px;">
+									<div class="input-group round col-3 cols-xs-12">
 										<span class="input-group-addon">
 											<i class="icon-envelope"></i>
 										</span>

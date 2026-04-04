@@ -16,5 +16,6 @@ namespace BookMarket.Pages.ViewComponents
             var category = _bookCategoryQuery.GetAll();
             return View(category);
         }
+      
     }
 }

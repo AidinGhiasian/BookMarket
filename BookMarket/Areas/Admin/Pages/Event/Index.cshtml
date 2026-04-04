@@ -79,8 +79,8 @@
 											</td>
 											<td>@item.EventTitle</td>
 											<td>@item.Description</td>
-											<td>@item.EventStartTime</td>
-											<td>@item.EventFinishTime</td>
+											<td>@item.EventStartTime.ToFarsi()</td>
+											<td>@item.EventFinishTime.ToFarsi()</td>
 											<td>
 												<a class="btn btn-danger" asp-page-handler="Delete" asp-route-id="@item.Id">حذف</a>
 											</td>

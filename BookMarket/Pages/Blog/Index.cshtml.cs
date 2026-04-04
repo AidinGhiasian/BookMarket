@@ -3,7 +3,9 @@ using BookM.ClientQueries.Blog.Categores;
 using BookM.ClientQueries.Blog.Post;
 using BookM.ClientQueries.Model.Blog.Categores;
 using BookM.ClientQueries.Model.Blog.Post;
+using BookM.ClientQueries.Model.Book.Books;
 using BookM.ClientQueries.Queries;
+using BookM.Domain.Book.AD;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace BookMarket.Pages.Blog
@@ -25,19 +27,16 @@ namespace BookMarket.Pages.Blog
         public void OnGet(int? id)
         {
             Categories = _blogCategoryQueries.GetAll();
-           
-            if (id!=null&&id!=0)
-            {
-                BlogsWithCategory= _postQueries.GetAllBlogWithCategory(id);
-            }
-            else
+         
+            if (id == null || id == 0)
             {
                 Blogs = _postQueries.GetAll();
-                if (Blogs.Count == 0)
-                {
-                    TempData["information"] = "هیچ مقاله ای وجود ندارد...";
-                }
+            }else
+            {
+                BlogsWithCategory = _postQueries.GetAllBlogWithCategory(id);
             }
+
+
         }
 
        

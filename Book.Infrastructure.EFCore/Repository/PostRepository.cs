@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Blog.Domain.BlogAD;
 using Book.Infrastructure.EFCore;
+using Google.Apis.Util;
 using Services.Application;
 
 namespace BlogM.Infrastructure.EFCore.Repository
@@ -50,6 +51,15 @@ namespace BlogM.Infrastructure.EFCore.Repository
             return _blogdbcontext.Posts.Include(x=>x.BlogCategory).FirstOrDefault(x => x.Id == id);
         }
 
+        public List<Posts> Search(string title)
+        {
+           var query=_blogdbcontext.Posts.ToList();
+
+            if (!string.IsNullOrWhiteSpace(title))
+                query=query.Where(x=>x.Title.Contains(title)).ToList();
+
+            return query;
+        }
 
         void IBlogRepository.Updateby(Posts posts)
         {

@@ -72,6 +72,16 @@ namespace BookM.Infrastructure.EFCore.Repository
             }
         }
 
-       
+        public List<Books> GetBy(string title)
+        {
+          var Query=_bookdbcontext.Books.ToList();
+
+            if (!string.IsNullOrWhiteSpace(title))
+            {
+                Query=Query.Where(x=>x.BookTitle.Contains(title)).ToList();
+            }
+
+            return Query.ToList();
+        }
     }
 }

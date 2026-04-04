@@ -12,9 +12,9 @@
         {
             switch (id)
             {
-                case 1:
-                    return "مدیرسیستم";
                 case 2:
+                    return "مدیرسیستم";
+                case 3:
                     return "کاربر معمولی  ";
                
                 default:

@@ -31,6 +31,7 @@ namespace BookM.ClientQueries.Queries
                 Message = comment.Message,
                 CommentDateTime = comment.CommentDateTime,
                 OwnerId = comment.OwnerId,
+                IsStatus = comment.IsStatus,
             };
         }
         public List<CommentQueryViewModel> GetComment(int recordId)
@@ -52,6 +53,11 @@ namespace BookM.ClientQueries.Queries
         public List<CommentQueryViewModel> CommentStatus(int status)
         {
             return _commentApplication.CommentStatus(status).Select(Map).ToList();
+        }
+
+        public OperationResult Delete(long id)
+        {
+            return _commentApplication.Delete(id);
         }
     }
 }

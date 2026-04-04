@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Numerics;
-using System.Text;
-using System.Threading.Tasks;
-using AccountM.Infrastructure.EFCore.Migrations;
-using AM.Domain.Account.AD;
-using FLEXYGO.PushService;
+﻿using AM.Domain.Account.AD;
 using Services.Application;
 
 namespace AccountM.Infrastructure.EFCore.Repository

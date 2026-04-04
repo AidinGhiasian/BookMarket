@@ -31,5 +31,8 @@ namespace BlogM.Application.Contracts.EventApplication
 
         [Display(Name = "تاریخ پایان رویداد")]
         public DateTime EventFinishTime { get; set; }
+
+        [Display(Name = "لینک مقاله یا کتاب")]
+        public string Link { get; set; }
     }
 }

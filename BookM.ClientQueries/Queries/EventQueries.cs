@@ -21,6 +21,7 @@ namespace BookM.ClientQueries.Queries
                 Description = events.Description,
                 EventStartTime = events.EventStartTime,
                 EventFinishTime = events.EventFinishTime,
+                Link = events.Link,
             }).ToList();
             
         }

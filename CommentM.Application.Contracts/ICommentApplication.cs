@@ -15,6 +15,7 @@ namespace CommentM.Application.Contracts
         public List<CommentViewModel> CommentStatus(int status);
         public List<CommentViewModel> GetAll();
         public OperationResult ChangeStatus(long id, int status);
+        public OperationResult Delete(long id);
         
     }
 }

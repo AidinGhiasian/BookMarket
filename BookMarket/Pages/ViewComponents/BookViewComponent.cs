@@ -15,8 +15,7 @@ namespace BookMarket.Pages.ViewComponents
 
         public IViewComponentResult Invoke()
         {
-            var book = _bookQueries.GetAll();
-
+            var book = _bookQueries.GetAll().TakeLast(20).ToList();
             return View(book);
         }
 

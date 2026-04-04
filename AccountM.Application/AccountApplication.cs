@@ -140,13 +140,9 @@ namespace AccountM.Application
             if (!result.Verified)
                 operation.Failed(ApplicationMessage.NotFund);
 
-            //var permissions = _roleRepository.GetById(account.RoleId)
-            //   .Permissions
-            //   .Select(x => x.PermissionCode)
-            //   .ToList();
-            List<int> permissions = new List<int>(1);
-          
+            var permissions = _roleRepository.GetDetails(account.RoleId).Permissions.Select(x=>x.PermissionCode).ToList();
               
+            
 
             var fulName = account.Name + " " + account.Family;
             var authViewModel = new AuthViewModel(account.Id, account.RoleId, fulName, account.PhoneNumber,

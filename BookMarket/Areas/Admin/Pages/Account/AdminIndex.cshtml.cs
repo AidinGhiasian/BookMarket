@@ -15,6 +15,8 @@ namespace BookMarket.Areas.Admin.Account
         }
         public List<AccountViewModel> Accounts { get; set; }
 
+
+
         public IActionResult OnGetDelete(int id)
         {
             _accountApplication.Delete(id);
@@ -29,6 +31,10 @@ namespace BookMarket.Areas.Admin.Account
 
             return Redirect("./AdminIndex");
         }
+
+
+
+
         public void OnGet(bool IsStatus = true)
         {
             if(IsStatus == true)

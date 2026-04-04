@@ -1,7 +1,10 @@
 ﻿@using BookM.Application.Contracts.BooksCategoryApplication
 @using Services.Application.AuthHelper
+@using Services.Application.Categoreis
 @model List<BookCategoryQueryViewModel>?
+@inject IAuthHelper AccountInfo;
 @{
+    var account = AccountInfo.CurrentAccountInfo();
 }
 <div class="header-middle">
     <div class="container">
@@ -12,17 +15,19 @@
             </button>
 
             <a href="~/index" class="logo">
-                <img src="/Pictures/Logo/BookMarketLogo-2.png" alt=" لگوی فروشگاه کتابخوان" width="105" height="25">
+                <img src="/Pictures/Logo/BookMarketLogo-2.png" alt=" لگوی فروشگاه کتاب" width="105" height="25">
             </a>
         </div>
 
+
         <div class="header-right">
             <div class="header-search header-search-extended header-search-visible header-search-no-radius">
+
                 <a href="#" class="search-toggle" role="button"><i class="icon-search"></i></a>
-                <form action="#" method="get">
+                <form asp-page="Search/Index"  method="get">
                     <div class="header-search-wrapper search-wrapper-wide">
                         <label for="q" class="sr-only">جستجو</label>
-                        <input type="search" class="form-control" style="width:779px;" name="" id=""
+                        <input type="search" class="form-control" style="width:779px;" name="title" id=""
                                placeholder="جستجوی محصول ..." required>
 
                         <div class="select-custom">
@@ -33,7 +38,7 @@
                                     <option value="@item.Id">@item.CategoryName </option>
                                 }
 
-                            </select>
+                            </select> 
                         </div>
                         <button class="btn btn-primary" type="submit"><i class="icon-search"></i></button>
                     </div>
@@ -41,17 +46,42 @@
             </div>
 
 
-
             <div class="header-dropdown-link">
 
                 <div class="account">
+                    @if (account != null && account.RoleId != 0)
+                    {
+                        @if (account.RoleId == Convert.ToInt64(Roles.Admin))
+                        {
+                            <a href="~/Admin" title="پروفایل من">
+                                <div class="icon">
+                                    <i class="icon-user"></i>
+                                </div>
+                                <p>@account.Fullname </p>
+                            </a>
+                        }
+                        else
+                        {
+                            <a href="~/dashboard?id=@account.Id" title="پروفایل من">
+                                <div class="icon">
+                                    <i class="icon-user"></i>
+                                </div>
+                                <p>@account.Fullname </p>
+                            </a>
+                        }
 
-                    <a href="~/dashboard" title="پروفایل من">
-                        <div class="icon">
-                            <i class="icon-user"></i>
-                        </div>
-                        <p>حساب کاربری</p>
-                    </a>
+                    }
+                    else
+                    {
+                        <a href="~/Accounts/Login" title="پروفایل من">
+                            <div class="icon">
+                                <i class="icon-user"></i>
+                            </div>
+                            <p> ورود/ثبت نام</p>
+                        </a>
+                    }
+
+
                 </div>
                 <div class="dropdown cart-dropdown">
                     <a href="~/cart" class="dropdown-toggle" role="button" data-toggle="dropdown"
@@ -73,6 +103,7 @@
         </div>
     </div>
 </div>
+
 
 <div class="header-bottom sticky-header">
     <div class="container">

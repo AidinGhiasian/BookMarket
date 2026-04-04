@@ -45,13 +45,12 @@ namespace BlogM.Infrastructure.EFCore.Repository
          return _blogdbcontext.Events.FirstOrDefault(e => e.EventTitle == eventtitle);
         }
 
+       
+
         public Events GetDetailes(int id)
         {
           return _blogdbcontext.Events.FirstOrDefault(x => x.Id == id);
         }
-
-        
-
 
     }
 }

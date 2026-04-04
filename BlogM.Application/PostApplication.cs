@@ -99,6 +99,10 @@ namespace BlogM.Application
             };
 
         }
+        public List<Posts> Search(string title)
+        {
+            return _blogRepository.Search(title); 
+        }
 
 
     }

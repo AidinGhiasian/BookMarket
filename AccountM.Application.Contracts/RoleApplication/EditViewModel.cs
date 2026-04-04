@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Services.Infrastructure;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,7 +9,12 @@ namespace AccountM.Application.Contracts.RoleApplication
 {
     public class EditViewModel:CreateViewModel
     {
-        public long Id { get; set; }
+        public int Id { get; set; }
         public bool isActive { get; set; }
+        public List<PermissionDto> MappedPermissions { get; set; }
+        public EditViewModel()
+        {
+            Permissions = new List<int>();
+        }
     }
 }

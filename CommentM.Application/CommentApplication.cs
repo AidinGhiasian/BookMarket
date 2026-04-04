@@ -35,7 +35,7 @@ namespace CommentM.Application
         public OperationResult ChangeStatus(long id,int status)
         {
             var result = new OperationResult();
-            var comment=  _commentrepository.GetById(id);
+            var comment=  _commentrepository.GetByLongId(id);
             if(comment==null)
             {
                 return result.Failed("Not Found...");
@@ -71,9 +71,20 @@ namespace CommentM.Application
                 Message = comments.Message,
                 CommentDateTime = comments.CommentDatetime,
                 OwnerId = comments.OwnerId,
+                IsStatus=comments.IsStatus
             };
         }
 
-       
+        public OperationResult Delete(long id)
+        {
+            var result = new OperationResult();
+            var comment = _commentrepository.GetByLongId(id);
+            if (comment == null)
+            {
+                return result.Failed("Not Found...");
+            }
+            _commentrepository.Delete(id);
+            return result.IsSuccess();
+        }
     }
 }

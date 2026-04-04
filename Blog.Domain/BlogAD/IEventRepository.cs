@@ -11,8 +11,7 @@ namespace Blog.Domain.BlogAD
     public  interface IEventRepository:IRepositoryBase<Events>
     {
     
-        public Events? GetById(long id);
-     
+      
         public void Delete(long Id);
         public Events GetBy(string eventtitle);
         public List<Events> GetAll();

@@ -1,9 +1,17 @@
 ﻿@page
+@using Services.Application.AuthHelper
+@using Services.Application.Categoreis
 @model IndexModel
+@inject IAuthHelper AccountInfo;
+@{
+    var account = AccountInfo.CurrentAccountInfo();
+}
 @{
     Layout = "Shared/_Layout";
     ViewData["Title"] = "Home page";
 }
+
+
 <div class="intro-section pt-lg-2">
     <div class="container">
         <div class="row">
@@ -65,20 +73,21 @@
             <div class="container">
                 <div class="heading heading-flex">
                     <div class="heading-left">
-                        <h2 class="title">دسته بندی کتاب ها</h2><!-- End .title -->
-                    </div><!-- End .heading-left -->
+                        <h2 class="title">دسته بندی کتاب ها</h2>
+                    </div>
 
                     <div class="heading-right">
-                        <a href="category.html" class="title-link">
+                        <a href="/book/Index" class="title-link">
                             مشاهده محصولات بیشتر <i class="icon-long-arrow-left"></i>
                         </a>
-                    </div><!-- End .heading-right -->
-                </div><!-- End .header-flex -->
+                    </div>
+                </div>
               @await Component.InvokeAsync("BookCategory")
-            </div><!-- End .container -->
-        </div><!-- End .block-wrapper -->
-    </div><!-- End .block -->
-</div><!-- End .bg-light pt-4 pb-4 -->
+            </div>
+        </div>
+    </div>
+</div>
+
 
 <div class="container">
     @await Component.InvokeAsync("Book")
@@ -97,10 +106,10 @@
 
                     <div class="banner-content text-right">
                         <h4 class="banner-subtitle text-white">
-                            <a href="#">اخبار و مقالات کتاب فروشی را از اینجا ببینید.</a>
+                            <a href="/Blog/Index">اخبار و مقالات کتاب فروشی را از اینجا ببینید.</a>
                         </h4><!-- End .banner-subtitle -->
                         <h3 class="banner-title text-white">
-                            <a href="#">اخبار و مقالات</a>
+                            <a href="/Blog/Index">اخبار و مقالات</a>
                         </h3><!-- End .banner-title -->
                         <a href="/Blog/Index" class="btn btn-outline-white-3 banner-link">
                             مشاهده<i class="icon-long-arrow-left"></i>
@@ -111,7 +120,7 @@
 
             <div class="col-md-6 col-lg-4">
                 <div class="banner banner-overlay">
-                    <a href="#">
+                    <a href="/Book/Index">
                         <img src="assets/images/demos/demo-20/banners/banner-1.jpg" alt="بنر">
                     </a>
 
@@ -120,9 +129,9 @@
                             <a href="#">تمامی کتاب های کتاب فروشی را از اینجا ببینید.</a>
                         </h4><!-- End .banner-subtitle -->
                         <h3 class="banner-title text-white">
-                            <a href="#">بهترین کتاب ها  <br>برای شما</a>
+                            <a href="/Book/Index">بهترین کتاب ها  <br>برای شما</a>
                         </h3><!-- End .banner-title -->
-                        <a href="#" class="btn btn-outline-white-3 banner-link">
+                        <a href="/Book/Index" class="btn btn-outline-white-3 banner-link">
                             مشاهده<i class="icon-long-arrow-left"></i>
                         </a>
                     </div><!-- End .banner-content -->
@@ -138,7 +147,7 @@
                 </div><!-- End .heading-left -->
 
                 <div class="heading-right">
-                    <a href="category.html" class="title-link">
+                    <a href="/Blog/Index" class="title-link">
                         مشاهده  بیشتر <i class="icon-long-arrow-left"></i>
                     </a>
                 </div><!-- End .heading-right -->
@@ -148,7 +157,6 @@
         </div><!-- End .container -->
     </div><!-- End .block-wrapper -->
 </div><!-- End .block -->
-
 
 <div class="blog-posts bg-light pt-4 pb-4">
   @await Component.InvokeAsync("Blog")

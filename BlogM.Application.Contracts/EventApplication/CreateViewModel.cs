@@ -13,8 +13,9 @@ namespace BlogM.Application.Contracts.EventApplication
         public string Picture { get; set; }
         public string EventTitle { get; set; }
         public string Description { get; set; }
-        public DateTime EventStartTime { get; set; }
-        public DateTime EventFinishTime { get; set; }
+        public string EventStartTime { get; set; }
+        public string EventFinishTime { get; set; }
         public IFormFile FileName { get; set; }
+        public string Link { get; set; }
     }
 }

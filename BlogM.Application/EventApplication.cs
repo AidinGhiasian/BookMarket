@@ -1,6 +1,7 @@
 ﻿using Blog.Domain.BlogAD;
 using BlogM.Application.Contracts.EventApplication;
 using BookM.Domain.Book.AD;
+using FLEXYGO.GoogleResourceTypes;
 using Services.Application;
 using System;
 using System.Collections.Generic;
@@ -23,8 +24,10 @@ namespace BlogM.Application
         {
             var path = "Event";
             var picturename = _fileuploader.UploadNewSize(create.FileName, path,720);
-            var CE = new Events(picturename, create.EventTitle,
-                create.Description, create.EventStartTime, create.EventFinishTime);
+            DateTime StartdateTime = create.EventStartTime.ToGeorgianDateTime();
+            DateTime EnddateTime = create.EventFinishTime.ToGeorgianDateTime();
+
+            var CE = new Events(picturename, create.EventTitle,create.Description, StartdateTime, EnddateTime,create.Link);
             _eventrepository.Add(CE);
             _eventrepository.SaveChanges();
         }
@@ -47,27 +50,31 @@ namespace BlogM.Application
 
         public EventViewModel? GetById(long id)
         {
-           var GE = _eventrepository.GetById(id);
+           var GE = _eventrepository.GetByLongId(id);
             return map(GE);
         }
-        public EditViewModel Getdetail(int id)
+        public EditViewModel GetDetail(long id)
         {
-            var book = _eventrepository.GetById(id);
+            var book = _eventrepository.GetByLongId(id);
             return new EditViewModel
             {
                 Id = book.Id,
                 Picture = book.Picture,
                 EventTitle = book.EventTitle,
-                EventStartTime = book.EventStartTime,
-                EventFinishTime = book.EventFinishTime,
+                EventStartTime = book.EventStartTime.ToFarsiFull(),
+                EventFinishTime = book.EventFinishTime.ToFarsiFull(),
                 Description = book.Description,
+                Link = book.Link,
+                
             };
         }
         public void Update(EditViewModel edit)
         {
-            var EE = _eventrepository.GetById(edit.Id);
+            var EE = _eventrepository.GetByLongId(edit.Id);
 
             var picturepath=edit.Picture;
+            DateTime StartdateTime = edit.EventStartTime.ToGeorgianDateTime();
+            DateTime EnddateTime = edit.EventFinishTime.ToGeorgianDateTime();
 
             if (edit.FileName != null)
             {
@@ -75,10 +82,13 @@ namespace BlogM.Application
                 var path = "Event";
                 picturepath = _fileuploader.UploadNewSize(edit.FileName, path,720);
             }
-            EE.Edit(picturepath, edit.EventTitle, edit.Description,edit.EventStartTime,edit.EventFinishTime);
+            EE.Edit(picturepath, edit.EventTitle, edit.Description, StartdateTime, EnddateTime,edit.Link);
            
             _eventrepository.SaveChanges();
         }
+
+
+
         private EventViewModel map(Events events)
         {
             return new EventViewModel
@@ -89,6 +99,7 @@ namespace BlogM.Application
                 Description = events.Description,
                 EventStartTime = events.EventStartTime,
                 EventFinishTime = events.EventFinishTime,
+                Link = events.Link,
             };
         }
     }

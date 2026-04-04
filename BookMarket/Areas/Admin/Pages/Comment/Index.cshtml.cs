@@ -16,16 +16,17 @@ namespace BookMarket.Areas.Admin.Pages.Comment
         public List<CommentQueryViewModel> Comments { get; set; }
         public void OnGet(int isStatus)
         {
-            if(isStatus == 0)
+            if(isStatus==null||isStatus==0||isStatus==1)
             {
-               Comments = _commentQueries.CommentStatus(1).ToList();
-            }else if (isStatus == 1)
+                isStatus = 1;
+               Comments = _commentQueries.CommentStatus(1).ToList();//خوانده  نشده ها
+            }else if (isStatus == 2)
             {
-                Comments = _commentQueries.CommentStatus(2).ToList();
+                Comments = _commentQueries.CommentStatus(2).ToList();//تایید شده ها
             }
-            else if(isStatus == 2)
+            else if(isStatus == 3)
             {
-                Comments = _commentQueries.CommentStatus(3).ToList();
+                Comments = _commentQueries.CommentStatus(3).ToList();//رد شده ها
             }
         }
         public IActionResult OnGetChangeStatus(int? isStatus,int? id)
@@ -39,7 +40,14 @@ namespace BookMarket.Areas.Admin.Pages.Comment
             }
             return Redirect("./Comment/Index");
         }
-       
+        public IActionResult OnGetDelete(int id)
+        {
+            if (id != null)
+            {
+                _commentQueries.Delete(id);
+            }
+            return Page();
+        }
        
 
     }

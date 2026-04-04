@@ -1,0 +1,59 @@
+﻿@page
+@using Services.Application
+
+@model ServiceHost.Areas.Admin.Pages.Account.Role.CreateModel
+
+<div id="page-content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="breadcrumb-box shadow">
+                <ul class="breadcrumb">
+                    <li><a href="/Admin/Dashboard">پیشخوان</a></li>
+                    <li><a href="#">تنظیمات </a></li>
+                    <li class="active">   افزودن دسترسی ها  </li>
+                </ul>
+                <div class="breadcrumb-left">
+                   @DateTime.Now.ToFarsiFull()
+                    <i class="icon-calendar"></i>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-5 mx-4 m-r-70">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">ایجاد نقش جدید</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <form method="post">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label  class="control-label">نام</label>
+                                            <input type="text" class="form-control" name="RoleName">
+                                          
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label class="control-label">توضیحات</label>
+                                            <input type="text" class="form-control" name="details">
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn btn-info waves-effect waves-light">ایجاد</button>
+                                <a asp-page="./Index" class="btn btn-dark waves-effect waves-light m-b-5">بازگشت</a>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -18,6 +18,12 @@ namespace BookMarket.Pages
         {
            Books= _bookApplication.GetAll();
         }
+        public IActionResult OnPost(string title)
+        {
+            
+
+            return RedirectToPage("Search/Index",new { title=title });
+        }
 
     }
 }

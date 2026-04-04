@@ -19,7 +19,7 @@ public class RepositoryBase<T> : IRepositoryBase<T> where T : class
         _context.Set<T>().Add(entity);
     }
 
-    public T GetById(long id)
+    public T GetByLongId(long id)
     {
         return _context.Set<T>().Find(id);
     }

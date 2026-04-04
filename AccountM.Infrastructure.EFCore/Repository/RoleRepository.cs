@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AccountM.Application.Contracts.RoleApplication;
 using AccountManagement.Domain.RoleAgg;
 using Microsoft.EntityFrameworkCore;
 using Services.Application;
@@ -22,33 +23,18 @@ namespace AccountM.Infrastructure.EFCore.Repository
             _accountDbContext.SaveChanges();
         }
 
-        public List<Role> GetAll()
+       
+
+        public Role GetDetails(int id)
+        {
+            return _accountDbContext.Role.Include(x=>x.Permissions).FirstOrDefault(x => x.Id == id);
+        }
+
+       
+
+        public List<Role> list()
         {
             return _accountDbContext.Role.ToList();
-        }
-
-        public Role GetDetails(long id)
-        {
-            return _accountDbContext.Role.FirstOrDefault(x => x.Id == id);
-        }
-
-        public Role GetbyId(long id)
-        {
-            return _accountDbContext.Role.FirstOrDefault(x => x.Id == id);
-        }
-        public List<Role> list(string rolename)
-        {
-            return _accountDbContext.Role.Where(x=>x.RoleName.Contains(rolename)).ToList();//اگر بزنم xنقش هایی که داخل ان ها xدارد را می اورد....
-        }
-
-        public void Remove(long id)
-        {
-            var role = _accountDbContext.Role.FindAsync(id);
-            if (role!=null)
-            {
-                _accountDbContext.Remove(role);
-                _accountDbContext.SaveChanges();
-            }
         }
 
         public async Task updateby(Role update)
