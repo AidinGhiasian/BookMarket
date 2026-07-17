@@ -4,7 +4,6 @@ using BlogM.Application;
 using BlogM.Application.Contracts.BlogCategoryApplication;
 using BlogM.Application.Contracts.EventApplication;
 using BlogM.Application.Contracts.PostApplication;
-using BlogM.Infrastructure.EFCore.Migrations;
 using BlogM.Infrastructure.EFCore.Repository;
 using Book.Infrastructure.EFCore;
 using BookM.ClientQueries.Model.Blog.Categores;
@@ -13,11 +12,6 @@ using BookM.ClientQueries.Model.Blog.Post;
 using BookM.ClientQueries.Queries;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BlogMInfrastructureConfiguration
 {

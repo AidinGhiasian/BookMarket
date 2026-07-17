@@ -17,7 +17,7 @@ namespace BookMarket.Areas.Admin.Pages
         public List<CommentQueryViewModel> Comments { get; set; }
         public void OnGet(long? id, int? status)
         {
-            Comments = _commentQueries.CommentStatus(1).Take(4).ToList();
+            Comments = _commentQueries.GetAll().Where(x => x.IsStatus == 1).Take(4).ToList();
             if (id!=null && status!=null)
             {
                 long Id=id.Value;

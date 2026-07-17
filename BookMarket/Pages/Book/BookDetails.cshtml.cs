@@ -25,7 +25,7 @@ namespace BookMarket.Pages.Book
         public void OnGet(int id)
         {
             Book = _bookQueries.GetDetailInfo(id);
-            CommentList = _commentQueries.CommentStatus(2);
+            CommentList = _commentQueries.CommentStatus(2,id);
             BookWithCategory = _bookQueries.GetAllBookWithCategory(Book.CategoryId);
         }
 

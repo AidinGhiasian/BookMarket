@@ -18,9 +18,9 @@ namespace CommentM.Application
             _commentrepository = commentrepository;
         }
 
-        public List<CommentViewModel> CommentStatus(int status)
+        public List<CommentViewModel> CommentStatus(int status,int ownerId)
         {
-          return  _commentrepository.CommentStatus(status).Select(Map).ToList();
+          return  _commentrepository.CommentStatus(status,ownerId).Select(Map).ToList();
         }
 
         public OperationResult Create(CreateViewModel create)
@@ -53,7 +53,7 @@ namespace CommentM.Application
         {
             
             var commentViewModels = new List<CommentViewModel>();
-            var comments = _commentrepository.GetComment(ownerId);
+            var comments = _commentrepository.GetComment(ownerId,1);
             foreach (var comment in comments)
             {
                 commentViewModels.Add(Map(comment));

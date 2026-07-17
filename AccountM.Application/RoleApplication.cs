@@ -79,7 +79,6 @@ namespace AccountManagement.Application
                 Id = roles.Id,
                 RoleName = roles.RoleName,
                 Details = roles.Details,
-
             };
         }
     }

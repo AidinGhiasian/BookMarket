@@ -10,7 +10,7 @@ namespace BookM.ClientQueries.Model.Comment
         List<CommentQueryViewModel> GetComment(int ownerId);
         OperationResult ChangeStatus(long id,int status);
         OperationResult Delete(long id);
-        public List<CommentQueryViewModel> CommentStatus(int status);
+        public List<CommentQueryViewModel> CommentStatus(int status, int ownerId);
         CommentQueryViewModel Map(CommentM.Application.Contracts.CommentViewModel comment);
         List<CommentQueryViewModel> GetAll();
     }

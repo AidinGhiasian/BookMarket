@@ -19,6 +19,7 @@ namespace BookM.Application.Contracts.BooksApplication
         public string PictureFile { get; set; }
         public IFormFile? FileName { get; set; }
 
+
         [Required(ErrorMessage = "لطفا عنوان کتاب را وارد کنید...")]
         [Display(Name = "عنوان کتاب")]
         public string BookTitle { get; set; }

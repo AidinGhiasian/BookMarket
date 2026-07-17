@@ -10,7 +10,7 @@ namespace AccountM.Infrastructure.EFCore.Repository
         {
             _accountdbcontext = accountdbcontext;
         }
-        public void Craete(Account account)
+        public void Create(Account account)
         {
             _accountdbcontext.Account.Add(account);
             _accountdbcontext.SaveChanges();

@@ -10,8 +10,8 @@ namespace BlogM.Application.Contracts.PostApplication
 {
     public interface IPostApplication
     {
-      public void create(CreateViewModel create);
-        PostViewModel? GetById(int id);
+        public void create(CreateViewModel create);
+        public PostViewModel? GetById(int id);
         public void Update(EditViewModel update);
         public void Delete(int id);
         public List<PostViewModel> GetAll();

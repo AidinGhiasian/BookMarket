@@ -34,9 +34,9 @@ namespace BookM.ClientQueries.Queries
                 IsStatus = comment.IsStatus,
             };
         }
-        public List<CommentQueryViewModel> GetComment(int recordId)
+        public List<CommentQueryViewModel> GetComment(int ownerid)
         {
-            var comment = _commentApplication.GetComment(recordId);
+            var comment = _commentApplication.GetComment(ownerid);
             var newList = new List<CommentQueryViewModel>();
             foreach (var item in comment)
             {
@@ -50,9 +50,9 @@ namespace BookM.ClientQueries.Queries
             return _commentApplication.GetAll().Select(Map).ToList();
         }
 
-        public List<CommentQueryViewModel> CommentStatus(int status)
+        public List<CommentQueryViewModel> CommentStatus(int status,int ownerId)
         {
-            return _commentApplication.CommentStatus(status).Select(Map).ToList();
+            return _commentApplication.CommentStatus(status,ownerId).Select(Map).ToList();
         }
 
         public OperationResult Delete(long id)

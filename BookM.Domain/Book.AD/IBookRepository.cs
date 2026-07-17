@@ -11,9 +11,7 @@ namespace BookM.Domain.Book.AD
         Task Updateby(Books book);
         public Books Getby(string Title);
         public void Delete(int id);
-       
         public List<Books> GetBy();
-
         public List<Books> GetBy(string title);
 
     }

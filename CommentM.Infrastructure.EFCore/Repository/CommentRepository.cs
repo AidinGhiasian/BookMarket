@@ -25,8 +25,16 @@ namespace CommentM.Infrastructure.EFCore.Repository
 
         public List<Comments> CommentStatus(int status,int ownerid)
         {
-           
-                return _commentDbContext.Comments.Where(x => x.IsStatus == status).ToList();
+
+            if (status!=null)
+            {
+                if (ownerid!=null)
+                {
+                    var comments = _commentDbContext.Comments.Where(x => x.IsStatus == status && x.OwnerId == ownerid).ToList();
+                    return comments;
+                }
+            }
+            return _commentDbContext.Comments.Where(x => x.IsStatus == status && x.OwnerId == ownerid).ToList();
         }
 
         public OperationResult ChangeStatus(long id, int status)
@@ -46,13 +54,9 @@ namespace CommentM.Infrastructure.EFCore.Repository
 
         public List<Comments> GetComment(int ownerid,int status)
         {
-            Comments comment = new Comments();
-            Books book = new Books();
+           
             var comments = _commentDbContext.Comments.Where(x => x.OwnerId == ownerid).ToList();
-            if (status != null && comment.OwnerId == book.Id)
-            {
-                return _commentDbContext.Comments.Where(x => x.IsStatus == status).ToList();
-            }
+           
             return comments;
 
         }

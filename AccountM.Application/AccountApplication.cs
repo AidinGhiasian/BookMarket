@@ -43,11 +43,10 @@ namespace AccountM.Application
                 model.Email,
                 model.BirthDate,
                 model.Addres,
-               password,
-             Convert.ToInt32(Roles.User),
+               password,Convert.ToInt32(Roles.User),
              picture
             );
-            _accountRepository.Craete(acc);
+            _accountRepository.Create(acc);
         }
 
         public void Delete(int id)
@@ -78,7 +77,6 @@ namespace AccountM.Application
                 model.Addres,
                 model.RoleId,
                 model.PictureName
-
             );
 
 
@@ -114,7 +112,6 @@ namespace AccountM.Application
                 Email = model.Email,
                 BirthDate = model.BirthDate,
                 Addres = model.Addres,
-
             };
         }
         public AccountViewModel GetBy(int id)

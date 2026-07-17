@@ -19,14 +19,14 @@ namespace BookMarket.Areas.Admin.Pages.Comment
             if(isStatus==null||isStatus==0||isStatus==1)
             {
                 isStatus = 1;
-               Comments = _commentQueries.CommentStatus(1).ToList();//خوانده  نشده ها
+               Comments = _commentQueries.GetAll().Where(x=>x.IsStatus==1).ToList();//خوانده  نشده ها
             }else if (isStatus == 2)
             {
-                Comments = _commentQueries.CommentStatus(2).ToList();//تایید شده ها
+                Comments = _commentQueries.GetAll().Where(x => x.IsStatus == 2).ToList();//تایید شده ها
             }
             else if(isStatus == 3)
             {
-                Comments = _commentQueries.CommentStatus(3).ToList();//رد شده ها
+                Comments = _commentQueries.GetAll().Where(x => x.IsStatus == 3).ToList();//رد شده ها
             }
         }
         public IActionResult OnGetChangeStatus(int? isStatus,int? id)
