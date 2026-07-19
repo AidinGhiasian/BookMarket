@@ -13,7 +13,7 @@ namespace BookMarket.Pages.ViewComponents
         }
         public IViewComponentResult Invoke()
         {
-            var events = _eventQueries.Events().First();//متد Events متد getAll است
+            var events = _eventQueries.Events().FirstOrDefault();//متد Events متد getAll است
             return View(events);
         }
     }

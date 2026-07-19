@@ -71,10 +71,10 @@ namespace AccountM.Infrastructure.EFCore.Repository
                 }
                 else
                 {
-                    return result.Failed(ApplicationMessage.NotFund);
+                    return result.Failed(ApplicationMessage.NotFound);
                 }
             }
-            return result.Failed(ApplicationMessage.NotFund);
+            return result.Failed(ApplicationMessage.NotFound);
 
         }
     }

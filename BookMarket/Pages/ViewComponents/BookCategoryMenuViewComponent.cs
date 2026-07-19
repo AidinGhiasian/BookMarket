@@ -12,8 +12,12 @@ namespace BookMarket.Pages.ViewComponents
         }
         public IViewComponentResult Invoke()
         {
-            var category = _bookCategoryQuery.GetAll();
-            return View(category);
+            var categories = _bookCategoryQuery.GetAll();
+
+            if (categories == null || !categories.Any())
+                return Content("");
+
+            return View(categories);
         }
     }
 }

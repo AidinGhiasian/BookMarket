@@ -33,11 +33,13 @@
                         <div class="select-custom">
                             <select id="cat" name="cat">
                                 <option value=""> دسته بندی ها </option>
-                                @foreach (var item in Model)
+                                @if (Model != null && Model.Any())
                                 {
-                                    <option value="@item.Id">@item.CategoryName </option>
+                                    foreach (var item in Model)
+                                    {
+                                        <option value="@item.Id">@item.CategoryName</option>
+                                    }
                                 }
-
                             </select> 
                         </div>
                         <button class="btn btn-primary" type="submit"><i class="icon-search"></i></button>

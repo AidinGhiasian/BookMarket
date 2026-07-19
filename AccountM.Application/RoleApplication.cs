@@ -29,7 +29,7 @@ namespace AccountManagement.Application
             var operation = new OperationResult();
             var role = _roleRepository.GetById(command.Id);
             if (role == null)
-                return operation.Failed(ApplicationMessage.NotFund);
+                return operation.Failed(ApplicationMessage.NotFound);
 
 
             var permissions = new List<Permission>();

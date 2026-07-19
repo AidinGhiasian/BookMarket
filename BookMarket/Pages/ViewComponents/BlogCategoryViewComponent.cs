@@ -1,4 +1,5 @@
-﻿using BookM.ClientQueries.Model.Blog.Categores;
+﻿using BookM.ClientQueries.Blog.Categores;
+using BookM.ClientQueries.Model.Blog.Categores;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.SqlServer.Query.Internal;
 
@@ -6,6 +7,8 @@ namespace BookMarket.Pages.ViewComponents
 {
     public class BlogCategoryViewComponent:ViewComponent
     {
+       public BlogCategoryQueryViewModel LastCategory { get; set; }
+        
         private readonly IBlogCategoryQueries _blogCategoryQueries;
         public BlogCategoryViewComponent(IBlogCategoryQueries blogCategoryQueries)
         {
@@ -14,8 +17,14 @@ namespace BookMarket.Pages.ViewComponents
 
         public IViewComponentResult Invoke()
         {
-            var category=_blogCategoryQueries.GetAll().Take(10).ToList();
-            return View(category);
+            var categories = _blogCategoryQueries.GetAll();
+
+            if (categories == null || !categories.Any())
+                return Content("");
+
+            LastCategory = categories.LastOrDefault();
+
+            return View(LastCategory);
         }
     }
 }
