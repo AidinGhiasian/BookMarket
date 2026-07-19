@@ -47,7 +47,7 @@ namespace CommentM.Infrastructure.EFCore.Repository
                 result.IsSuccess();
                 _commentDbContext.SaveChanges();
             }
-                return result.Failed(ApplicationMessage.NotFund);
+                return result.Failed(ApplicationMessage.NotFound);
         }
 
 
@@ -73,7 +73,7 @@ namespace CommentM.Infrastructure.EFCore.Repository
                 return result.IsSuccess();
                 
             }
-             return result.Failed(ApplicationMessage.NotFund);
+             return result.Failed(ApplicationMessage.NotFound);
         }
 
     }

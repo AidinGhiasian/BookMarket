@@ -50,7 +50,7 @@ namespace BlogM.Application
 
         public EventViewModel? GetById(long id)
         {
-           var GE = _eventrepository.GetByLongId(id);
+            var GE = _eventrepository.GetByLongId(id);
             return map(GE);
         }
         public EditViewModel GetDetail(long id)

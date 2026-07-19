@@ -1,6 +1,7 @@
 ﻿using BlogM.Application;
 using BlogM.Application.Contracts.EventApplication;
 using BookM.ClientQueries.Model.Blog.Event;
+using Services.Application;
 
 namespace BookM.ClientQueries.Queries
 {
@@ -13,17 +14,17 @@ namespace BookM.ClientQueries.Queries
         }
         public List<EventQueryViewModel> Events()
         {
-            return _eventApplication.GetAll().Select(events => new EventQueryViewModel
-            {
-                Id = events.Id,
-                Picture = events.Picture,
-                EventTitle = events.EventTitle,
-                Description = events.Description,
-                EventStartTime = events.EventStartTime,
-                EventFinishTime = events.EventFinishTime,
-                Link = events.Link,
-            }).ToList();
-            
+            return _eventApplication.GetAll()
+                .Select(x => new EventQueryViewModel
+                {
+                    Id = x.Id,
+                    Picture = x.Picture,
+                    EventTitle = x.EventTitle,
+                    Description = x.Description,
+                    EventStartTime = x.EventStartTime,
+                    EventFinishTime = x.EventFinishTime,
+                    Link = x.Link
+                }).ToList();
         }
     }
 }

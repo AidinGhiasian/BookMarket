@@ -1,39 +1,48 @@
 ﻿@using BookM.ClientQueries.Blog.Categores
 @model List<BlogCategoryQueryViewModel>
-@{
-}
-<div class="megamenu megamenu-sm">
-    <div class="row no-gutters">
-        <div class="col-md-6">
-            <div class="menu-col">
-                <div class="menu-title">
-                  <a href="/Blog/Index">همه مقالات</a>
+
+@if (Model != null && Model.Any())
+{
+    <div class="megamenu megamenu-sm">
+        <div class="row no-gutters">
+            <div class="col-md-6">
+                <div class="menu-col">
+                    <div class="menu-title">
+                        <a href="/Blog/Index">همه مقالات</a>
                     </div>
-               
-                <!-- End .menu-title -->
-                <ul>
-                    @foreach (var item in Model)
-                    {
-                        <li><a href="~/Blog/index?id=@item.Id">@item.Name</a></li>
-                    }
-                    
-                </ul>
-            </div><!-- End .menu-col -->
-        </div>
 
-        <div class="col-md-6">
-            <div class="banner banner-overlay">
-                <a href="category.html">
-                    <img src="/Pictures/@Model.Last().Picture" alt="Banner">
+                    <ul>
+                        @foreach (var item in Model)
+                        {
+                            <li>
+                                <a href="~/Blog/index?id=@item.Id">
+                                    @item.Name
+                                </a>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </div>
 
-                    <div class="banner-content banner-content-bottom">
-                        <div class="banner-title text-white">
-                            محصولات
-                            جدید<br><span><strong>بهار 1401</strong></span>
+            <div class="col-md-6">
+                @{
+                    var lastCategory = Model.LastOrDefault();
+                }
+
+                <div class="banner banner-overlay">
+                    <a href="category.html">
+                        <img src="/Pictures/@Model.LastOrDefault().Picture" alt="Banner">
+
+                        <div class="banner-content banner-content-bottom">
+                            <div class="banner-title text-white">
+                                محصولات
+                                جدید<br>
+                                <span><strong>بهار 1401</strong></span>
+                            </div>
                         </div>
-                    </div>
-                </a>
+                    </a>
+                </div>
             </div>
         </div>
     </div>
-</div>
+}

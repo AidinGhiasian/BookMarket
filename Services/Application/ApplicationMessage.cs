@@ -3,7 +3,7 @@
     public static class ApplicationMessage
     {
         public static string Duplicate = "مقدار تکراری وجود دارد!!!";
-        public static string NotFund = "مقداری وجود ندارد!!!";
+        public static string NotFound = "مقداری وجود ندارد!!!";
 
     }
 }
