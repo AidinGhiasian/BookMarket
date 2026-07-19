@@ -1,160 +1,406 @@
 ﻿@page
-@model BookMarket.Pages.DashboardModel
-@{
 
+@model BookMarket.Pages.DashboardModel
+
+
+@{
+    var user = Model.CurrentUser;
 }
+
+
+
 <main class="main">
-    <div class="page-header text-center" style="background-image: url('assets/images/page-header-bg.jpg')">
+
+
+    <div class="page-header text-center"
+         style="background-image:url('/assets/images/page-header-bg.jpg')">
+
         <div class="container">
-            <h1 class="page-title">داشبورد مدیران<span>پنل ادمین</span></h1>
-        </div><!-- End .container -->
-    </div><!-- End .page-header -->
-    <nav aria-label="breadcrumb" class="breadcrumb-nav mb-3">
-        <div class="container">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="index-1.html">خانه</a></li>
-                <li class="breadcrumb-item"><a href="#">فروشگاه</a></li>
-                <li class="breadcrumb-item active" aria-current="page">داشبورد</li>
-            </ol>
-        </div><!-- End .container -->
-    </nav><!-- End .breadcrumb-nav -->
+
+            <h1 class="page-title">
+                داشبورد کاربری
+                <span>حساب من</span>
+            </h1>
+
+        </div>
+
+    </div>
+
+
 
     <div class="page-content">
-        <div class="page-content">
-            <div class="dashboard">
-                <div class="container">
-                    <div class="row">
-                        <aside class="col-md-4 col-lg-3">
 
-                            <ul class="nav nav-dashboard flex-column mb-3 mb-md-0" role="tablist">
-                                <li class="nav-item">
-                                    <a class="nav-link active" id="tab-address-link" data-toggle="tab" href="#tab-address"
-                                       role="tab" aria-controls="tab-address" aria-selected="true">اطلاعات کاربری</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" id="tab-orders-link" data-toggle="tab" href="#tab-orders"
-                                       role="tab" aria-controls="tab-orders" aria-selected="false">سفارشات</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" id="tab-downloads-link" data-toggle="tab"
-                                       href="#tab-downloads" role="tab" aria-controls="tab-downloads"
-                                       aria-selected="false">دانلود ها</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" id="tab-account-link" data-toggle="tab" href="#tab-account"
-                                       role="tab" aria-controls="tab-account" aria-selected="false">
-                                        ساخت حساب
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <form method="post" asp-page-handler="LogOut">
-                                        <button  type="submit" class="nav-link">خروج از حساب کاربری</button>
+        <div class="dashboard">
 
-                                    </form>
-                                </li>
-                            </ul>
-                        </aside><!-- End .col-lg-3 -->
+            <div class="container">
 
-                        <div class="col-md-8 col-lg-9">
-                            <div class="tab-content">
-                                <div class="tab-pane fade show active" id="tab-dashboard" role="tabpanel"
-                                     aria-labelledby="tab-dashboard-link">
-                                    <div>
-                                        @if (TempData["NotAvalable"] != null)
-                                        {
-                                            <p class="alert alert-success text-center">
-                                                @TempData["NotAvalable"]
-                                            </p>
-                                        }
-                                        else if (TempData["Avalable"] != null)
-                                        {
-                                            <p class="alert alert-danger text-center">
-                                                @TempData["Avalable"]
-                                            </p>
-                                        }
-                                        else if (TempData["success"] != null)
-                                        {
-                                            <div class="alert alert-success text-center">
-                                                @TempData["success"]
-                                            </div>
-                                        }
-                                    </div>
-                                    <p>
 
-                                        سلام <span class="font-weight-normal text-dark">کاربر</span>
-                                        <br>
-                                        شما در اینجا میتوانید <a href="#tab-orders"
-                                                                 class="tab-trigger-link link-underline">سفارشات خود را ببینید</a>، وضعیت
-                                        ارسال <a href="#tab-address" class="tab-trigger-link">
-                                            سفارشات خود را مشاهده
-                                            کنید وآدرس خود را تغییر دهید
-                                        </a>، و همچنین <a href="#tab-account"
-                                                          class="tab-trigger-link">
-                                            می توانید رمز عبور یا جزئیات حساب کاربری خود را
-                                            ویرایش کنید
-                                        </a>.
-                                    </p>
-                                </div><!-- .End .tab-pane -->
+                <div class="row">
 
-                                <div class="tab-pane fade" id="tab-orders" role="tabpanel"
-                                     aria-labelledby="tab-orders-link">
-                                    <p>سفارش جدیدی وجود ندارد</p>
-                                    <a href="category.html" class="btn btn-outline-primary-2">
-                                        <span>
-                                            رفتن به
-                                            فروشگاه
-                                        </span><i class="icon-long-arrow-left"></i>
-                                    </a>
-                                </div><!-- .End .tab-pane -->
 
-                                <div class="tab-pane fade" id="tab-downloads" role="tabpanel"
-                                     aria-labelledby="tab-downloads-link">
-                                    <p>دانلود جدیدی وجود ندارد</p>
-                                    <a href="category.html" class="btn btn-outline-primary-2">
-                                        <span>
-                                            رفتن به
-                                            فروشگاه
-                                        </span><i class="icon-long-arrow-left"></i>
-                                    </a>
-                                </div><!-- .End .tab-pane -->
+                    <!-- Sidebar -->
 
-                                <div class="tab-pane fade" id="tab-address" role="tabpanel"
-                                     aria-labelledby="tab-address-link">
-                                    <p>
+                    <aside class="col-md-4 col-lg-3">
 
-                                    </p>
-                                    <div class="row">
-                                        <div class="col-lg-12">
-                                            <div class="card card-dashboard">
-                                                <div class="card-body">
-                                                    
-                                                    @if(Model.Account != null)
-                                                    {
-                                                        <h3 class="card-title">اطلاعات کاربری</h3>
-                                                        <tr>
-                                                            <td>نام و نام خانوادگی : @Model.Account.Name
-                                                                @Model.Account.Family<br /></td>
 
-                                                            <td>شماره تلفن : @Model.Account.PhoneNumber<br /></td>
+                        <div class="card card-dashboard">
 
-                                                            <td>آدرس ایمیل : @Model.Account.Email<br /></td>
 
-                                                            <td>تاریخ تولد : @Model.Account.BirthDate<br /></td>
+                            <div class="card-body text-center">
 
-                                                            <td>آدرس : @Model.Account.Addres<br /></td>
 
-                                                            <a href="#">ویرایش <i class="icon-edit"></i></a>
-                                                        </tr>
-                                                    }
-                                                </div><!-- End .card-body -->
-                                            </div><!-- End .card-dashboard -->
-                                        </div><!-- End .col-lg-12 -->
-                                    </div><!-- End .row -->
-                                </div><!-- .End .tab-pane -->
+                                @if (!string.IsNullOrEmpty(user.ProfilePicture))
+                                {
+                                    <img src="/uploads/@user.ProfilePicture"
+                                         class="rounded-circle mb-3"
+                                         width="90"
+                                         height="90" />
+                                }
+                                else
+                                {
+                                    <img src="/assets/images/user-default.png"
+                                         class="rounded-circle mb-3"
+                                         width="90"
+                                         height="90" />
+                                }
+
+
+
+                                <h4>
+                                    @user.Fullname
+                                </h4>
+
+
+                                <p class="text-muted">
+                                    @user.Role
+                                </p>
+
+
                             </div>
-                        </div><!-- End .col-lg-9 -->
-                    </div><!-- End .row -->
-                </div><!-- End .container -->
-            </div><!-- End .dashboard -->
-        </div><!-- End .page-content -->
-</main><!-- End .main -->
+
+
+                        </div>
+
+
+
+
+                        <ul class="nav nav-dashboard flex-column">
+
+
+                            <li class="nav-item">
+
+                                <a class="nav-link active"
+                                   href="#tab-profile"
+                                   data-toggle="tab">
+
+                                    اطلاعات کاربری
+
+                                </a>
+
+                            </li>
+
+
+
+                            <li class="nav-item">
+
+                                <a class="nav-link"
+                                   href="#tab-orders"
+                                   data-toggle="tab">
+
+                                    سفارشات
+
+                                </a>
+
+                            </li>
+
+
+
+
+                            <li class="nav-item">
+
+                                <a class="nav-link"
+                                   href="#tab-password"
+                                   data-toggle="tab">
+
+                                    تغییر رمز عبور
+
+                                </a>
+
+                            </li>
+
+
+
+
+                            <li class="nav-item logout-item">
+
+
+                                <form method="post"
+                                      asp-page-handler="LogOut">
+
+
+                                    <button class="logout-link">
+
+                                        <i class="icon-exit"></i>
+
+                                        خروج از حساب
+
+                                    </button>
+
+
+                                </form>
+
+
+                            </li>
+
+
+                        </ul>
+
+
+
+                    </aside>
+
+
+
+
+
+
+                    <!-- Content -->
+
+                    <div class="col-md-8 col-lg-9">
+
+
+                        <div class="tab-content">
+
+
+
+
+
+                            <div class="tab-pane fade show active"
+                                 id="tab-profile">
+
+
+
+                                <div class="card card-dashboard">
+
+
+                                    <div class="card-body">
+
+
+                                        <h3 class="card-title">
+
+                                            اطلاعات حساب
+
+                                        </h3>
+
+
+
+                                        <div class="row">
+
+
+                                            <div class="col-md-6 mb-3">
+
+                                                <strong>
+                                                    نام:
+                                                </strong>
+
+                                                <br />
+
+                                                @Model.Account?.Name
+
+                                            </div>
+
+
+
+                                            <div class="col-md-6 mb-3">
+
+                                                <strong>
+                                                    نام خانوادگی:
+                                                </strong>
+
+                                                <br />
+
+                                                @Model.Account?.Family
+
+                                            </div>
+
+
+
+
+                                            <div class="col-md-6 mb-3">
+
+                                                <strong>
+                                                    شماره موبایل:
+                                                </strong>
+
+                                                <br />
+
+                                                @Model.Account?.PhoneNumber
+
+                                            </div>
+
+
+
+
+                                            <div class="col-md-6 mb-3">
+
+                                                <strong>
+                                                    ایمیل:
+                                                </strong>
+
+                                                <br />
+
+                                                @Model.Account?.Email
+
+                                            </div>
+
+
+
+                                            <div class="col-md-6 mb-3">
+
+                                                <strong>
+                                                    تاریخ تولد:
+                                                </strong>
+
+                                                <br />
+
+                                                @Model.Account?.BirthDate.ToShortDateString()
+
+                                            </div>
+
+
+
+
+                                            <div class="col-md-12 mb-3">
+
+                                                <strong>
+                                                    آدرس:
+                                                </strong>
+
+                                                <br />
+
+                                                @Model.Account?.Addres
+
+                                            </div>
+
+
+
+                                        </div>
+
+
+
+                                        <a href="#"
+                                           class="btn btn-outline-primary">
+
+                                            ویرایش اطلاعات
+
+                                        </a>
+
+
+                                    </div>
+
+
+                                </div>
+
+
+
+                            </div>
+
+
+
+
+
+
+
+                            <div class="tab-pane fade"
+                                 id="tab-orders">
+
+
+                                <div class="card card-dashboard">
+
+                                    <div class="card-body">
+
+
+                                        <h3>
+                                            سفارشات
+                                        </h3>
+
+
+                                        <p>
+                                            هنوز سفارشی ثبت نشده است.
+                                        </p>
+
+
+                                        <a href="/Products"
+                                           class="btn btn-primary">
+
+                                            مشاهده فروشگاه
+
+                                        </a>
+
+
+
+                                    </div>
+
+                                </div>
+
+
+                            </div>
+
+
+
+
+
+
+                            <div class="tab-pane fade"
+                                 id="tab-password">
+
+
+                                <div class="card card-dashboard">
+
+                                    <div class="card-body">
+
+
+                                        <h3>
+                                            امنیت حساب
+                                        </h3>
+
+
+                                        <p>
+                                            در این بخش می‌توانید رمز عبور خود را تغییر دهید.
+                                        </p>
+
+
+                                        <a href="#"
+                                           class="btn btn-primary">
+
+                                            تغییر رمز
+
+                                        </a>
+
+
+                                    </div>
+
+                                </div>
+
+
+                            </div>
+
+
+
+
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+</main>

@@ -87,5 +87,11 @@ namespace BookM.ClientQueries.Queries
         {
           return _accountApplication.login(phone, password);
         }
+
+        public OperationResult Register(CreateViewModel model)
+        {
+           _accountApplication.Create(model);
+            return new OperationResult().IsSuccess("ثبت نام با موفقیت انجام شد.");
+        }
     }
 }

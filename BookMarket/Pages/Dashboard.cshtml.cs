@@ -11,24 +11,48 @@ namespace BookMarket.Pages
     {
         private readonly IAccountQueries _accountQueries;
         private readonly IAuthHelper _authHelper;
-        public List<AccountViewModel> Accounts { get; set; }
+
 
         public AccountViewModel Account { get; set; }
 
-        public DashboardModel(IAccountQueries accountQueries, IAuthHelper authHelper)
+
+        public AuthViewModel CurrentUser { get; set; }
+
+
+
+        public DashboardModel(
+            IAccountQueries accountQueries,
+            IAuthHelper authHelper)
         {
             _accountQueries = accountQueries;
             _authHelper = authHelper;
         }
 
-        public void OnGet(int id)
+
+
+        public void OnGet()
         {
-            Account = _accountQueries.Account(id);
+
+            CurrentUser = _authHelper.CurrentAccountInfo();
+
+
+            if (CurrentUser.Id > 0)
+            {
+                Account = _accountQueries.Account((int)CurrentUser.Id);
+            }
+
         }
+
+
+
         public IActionResult OnPostLogOut()
         {
-           _authHelper.SignOut();
+
+            _authHelper.SignOut();
+
             return RedirectToPage("/Index");
+
         }
+
     }
 }

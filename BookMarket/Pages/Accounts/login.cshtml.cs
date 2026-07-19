@@ -16,11 +16,11 @@ namespace BookMarket.Pages.Account
 
 
         private readonly IAccountQueries _accountQueries;
-    
+
         public loginModel(IAccountQueries accountQueries)
         {
-           _accountQueries = accountQueries;
-           
+            _accountQueries = accountQueries;
+
         }
         public void OnGet()
         {
@@ -28,14 +28,25 @@ namespace BookMarket.Pages.Account
         }
 
         public IActionResult OnPostLogin(string? phone, string? password)
-        
+
         {
             _accountQueries.Login(phone, password);
-           
-           
+
+
             return RedirectToPage("/index");
 
         }
+        public IActionResult OnPostRegister(CreateViewModel model)
+        {
+            model.BirthDate = DateTime.Now;
+            model.Addres = " ";
+            model.Email=" ";
+            
+            _accountQueries.Register(model);
+            return RedirectToPage("/index");
+        }
+
+
 
 
     }

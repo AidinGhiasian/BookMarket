@@ -31,9 +31,12 @@ namespace AccountM.Application
 
         public void Create(CreateViewModel model)
         {
-            var path = "Account";
-            var picture = _fileUploder.UploadNewSize(model.FilePicture, path, 720);
-
+            string picture = "";
+            if (model.FilePicture != null)
+            {
+                var path = "Account";
+                 picture = _fileUploder.UploadNewSize(model.FilePicture, path, 720);
+            }
             var password = _PasswordHasher.Hash(model.Password);
 
             var acc = new Account(
@@ -43,7 +46,7 @@ namespace AccountM.Application
                 model.Email,
                 model.BirthDate,
                 model.Addres,
-               password,Convert.ToInt32(Roles.User),
+               password, Convert.ToInt32(Roles.User),
              picture
             );
             _accountRepository.Create(acc);
@@ -124,7 +127,7 @@ namespace AccountM.Application
         {
             var a = _accountRepository.Getby(phone);
             return Map(a);
-        }                                                           
+        }
 
         public OperationResult login(string? phone, string? password)
         {
@@ -132,16 +135,16 @@ namespace AccountM.Application
             var account = _accountRepository.Getby(phone);
 
             if (account == null)
-               return operation.Failed(ApplicationMessage.NotFund);
+                return operation.Failed(ApplicationMessage.NotFund);
 
             (bool Verified, bool NeedUpgrade) result = _PasswordHasher.Check(account.Password, password);
 
             if (!result.Verified)
-                 return  operation.Failed(ApplicationMessage.NotFund);
+                return operation.Failed(ApplicationMessage.NotFund);
 
-            var permissions = _roleRepository.GetDetails(account.RoleId).Permissions.Select(x=>x.PermissionCode).ToList();
-              
-            
+            var permissions = _roleRepository.GetDetails(account.RoleId).Permissions.Select(x => x.PermissionCode).ToList();
+
+
 
             var fulName = account.Name + " " + account.Family;
             var authViewModel = new AuthViewModel(account.Id, account.RoleId, fulName, account.PhoneNumber,

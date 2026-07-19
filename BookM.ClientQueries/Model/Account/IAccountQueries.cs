@@ -14,5 +14,6 @@ namespace BookM.ClientQueries.Model.Account
         public EditViewModel GetDetail(int id);
         public EditViewModel GetDetail(string phone);
         public OperationResult Login(string? phone, string? password);
+        OperationResult Register(AccountM.Application.Contracts.AccountApplication.CreateViewModel model);
     }
 }
