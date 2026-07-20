@@ -2,38 +2,42 @@
 @model List<BookCategoryQueryViewModel>?
 @{
 }
-<div class="megamenu megamenu-sm">
-    <div class="row no-gutters">
-        <div class="col-md-6">
-            <div class="menu-col">
-                <div class="menu-title">
-                    <a href="/Book/Index">همه کتاب ها</a>
-                </div>
-
-                <!-- End .menu-title -->
-                <ul>
-                    @foreach (var item in Model)
-                    {
-                        <li><a href="~/Book/index?id=@item.Id">@item.CategoryName</a></li>
-                    }
-
-                </ul>
-            </div><!-- End .menu-col -->
-        </div>
-
-        <div class="col-md-6">
-            <div class="banner banner-overlay">
-                <a href="category.html">
-                    <img src="/Pictures/@Model.Last().Picture" alt="Banner">
-
-                    <div class="banner-content banner-content-bottom">
-                        <div class="banner-title text-white">
-                            محصولات
-                            جدید<br><span><strong>بهار 1401</strong></span>
-                        </div>
+@if (Model!=null)
+{
+    <div class="megamenu megamenu-sm">
+        <div class="row no-gutters">
+            <div class="col-md-6">
+                <div class="menu-col">
+                    <div class="menu-title">
+                        <a href="/Book/Index">همه کتاب ها</a>
                     </div>
-                </a>
+
+                    <!-- End .menu-title -->
+                    <ul>
+                        @foreach (var item in Model)
+                        {
+                            <li><a href="~/Book/index?id=@item.Id">@item.CategoryName</a></li>
+                        }
+
+                    </ul>
+                </div><!-- End .menu-col -->
+            </div>
+
+            <div class="col-md-6">
+                <div class="banner banner-overlay">
+                    <a href="category.html">
+                        <img src="/Pictures/@Model.Last().Picture" alt="Banner">
+
+                        <div class="banner-content banner-content-bottom">
+                            <div class="banner-title text-white">
+                                محصولات
+                                جدید<br><span><strong>بهار 1401</strong></span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
             </div>
         </div>
     </div>
-</div>
+}
+

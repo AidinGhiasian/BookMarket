@@ -42,7 +42,7 @@ namespace AM.Domain.Account.AD
             Scuritycode = random.Next(100000, 999999).ToString();
             Password = password;
             IsAvalable = true;
-            RoleId = roleId;
+            RoleId = 1;
             Picture = picture;
         }
         public void Edit(string name, string family, string phoneNumber, string email, DateTime birthDate, string addres, int roleId, string? picture)
@@ -62,6 +62,9 @@ namespace AM.Domain.Account.AD
         {
             IsAvalable = isAvaleble;
         }
-
+        public void ChangePassword(string password)
+        {
+            Password = password;
+        }
     }
 }
