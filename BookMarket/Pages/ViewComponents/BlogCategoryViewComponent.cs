@@ -25,6 +25,3 @@ namespace BookMarket.Pages.ViewComponents
             LastCategory = categories.LastOrDefault();
 
             return View(LastCategory);
-        }
-    }
-}
