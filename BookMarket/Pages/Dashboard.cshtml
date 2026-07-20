@@ -1,54 +1,31 @@
 ﻿@page
-
+@using Services.Application.AuthHelper
+@inject IAuthHelper AccountInfo;
+@{
+    var account = AccountInfo.CurrentAccountInfo();
+}
 @model BookMarket.Pages.DashboardModel
-
-
 @{
     var user = Model.CurrentUser;
 }
 
-
-
 <main class="main">
-
-
     <div class="page-header text-center"
          style="background-image:url('/assets/images/page-header-bg.jpg')">
-
         <div class="container">
-
             <h1 class="page-title">
                 داشبورد کاربری
                 <span>حساب من</span>
             </h1>
-
         </div>
-
     </div>
-
-
-
     <div class="page-content">
-
         <div class="dashboard">
-
             <div class="container">
-
-
                 <div class="row">
-
-
-                    <!-- Sidebar -->
-
                     <aside class="col-md-4 col-lg-3">
-
-
                         <div class="card card-dashboard">
-
-
                             <div class="card-body text-center">
-
-
                                 @if (!string.IsNullOrEmpty(user.ProfilePicture))
                                 {
                                     <img src="/uploads/@user.ProfilePicture"
@@ -74,52 +51,29 @@
                                 <p class="text-muted">
                                     @user.Role
                                 </p>
-
-
                             </div>
-
-
                         </div>
-
-
-
-
                         <ul class="nav nav-dashboard flex-column">
-
-
                             <li class="nav-item">
 
                                 <a class="nav-link active"
                                    href="#tab-profile"
                                    data-toggle="tab">
-
                                     اطلاعات کاربری
-
                                 </a>
-
                             </li>
-
-
-
                             <li class="nav-item">
 
                                 <a class="nav-link"
                                    href="#tab-orders"
                                    data-toggle="tab">
-
                                     سفارشات
-
                                 </a>
-
                             </li>
-
-
-
-
                             <li class="nav-item">
 
                                 <a class="nav-link"
-                                   href="/Accounts/ChangePassword"
+                                   href="#"
                                    data-toggle="tab">
 
                                     تغییر رمز عبور
@@ -135,7 +89,7 @@
 
 
                                 <form method="post"
-                                      asp-page-handler="LogOut">
+                                      asp-page-handler="Logout">
 
 
                                     <button class="logout-link">
@@ -370,7 +324,7 @@
                                         </p>
 
 
-                                        <a href="#"
+                                        <a asp-page="/Accounts/ChangePassword"asp-route-Id="@account.Id"
                                            class="btn btn-primary">
 
                                             تغییر رمز
