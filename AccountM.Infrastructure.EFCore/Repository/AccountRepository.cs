@@ -1,4 +1,5 @@
 ﻿using AM.Domain.Account.AD;
+using MailChimp.Net.Core;
 using Services.Application;
 
 namespace AccountM.Infrastructure.EFCore.Repository
@@ -76,6 +77,20 @@ namespace AccountM.Infrastructure.EFCore.Repository
             }
             return result.Failed(ApplicationMessage.NotFound);
 
+        }
+
+        public OperationResult ChangePassword(string password)
+        {
+            OperationResult result = new OperationResult();
+
+            var account = _accountdbcontext.Account.FirstOrDefault(y => y.Password == password);
+            if (account == null)
+            {
+                return result.Failed(ApplicationMessage.NotFound);
+            }
+            account.ChangePassword(password);
+            _accountdbcontext.SaveChanges();
+            return result.IsSuccess();
         }
     }
 }

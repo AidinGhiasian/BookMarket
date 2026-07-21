@@ -17,5 +17,6 @@ namespace AccountM.Application.Contracts.AccountApplication
         public EditViewModel Getdetail(int id);
         public AccountViewModel GetdetailInfo(int id);
         public void Logout();
+        public OperationResult ChangePassword(PasswordViewModel command);
     }
 }

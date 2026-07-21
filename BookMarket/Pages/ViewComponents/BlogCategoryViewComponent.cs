@@ -7,7 +7,6 @@ namespace BookMarket.Pages.ViewComponents
 {
     public class BlogCategoryViewComponent:ViewComponent
     {
-       public BlogCategoryQueryViewModel LastCategory { get; set; }
         
         private readonly IBlogCategoryQueries _blogCategoryQueries;
         public BlogCategoryViewComponent(IBlogCategoryQueries blogCategoryQueries)
@@ -22,6 +21,7 @@ namespace BookMarket.Pages.ViewComponents
             if (categories == null || !categories.Any())
                 return Content("");
 
-            LastCategory = categories.LastOrDefault();
-
-            return View(LastCategory);
+            return View(categories);
+        }
+    }
+}

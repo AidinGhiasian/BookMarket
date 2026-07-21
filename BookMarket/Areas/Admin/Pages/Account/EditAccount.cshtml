@@ -37,7 +37,7 @@
                         <label class="sr-only control-label" for="addres">آدرس</label>
                         <div class="input-group">
                             <span class="input-group-addon">
-                                <i class="icon-user"></i>
+                                <i class="icon-home"></i>
                             </span>
                             <input type="text" class="form-control round" asp-for="@Model.account.Addres" name="Addres" placeholder="آدرس">
                         </div><!-- /.input-group-->
@@ -46,22 +46,19 @@
                         <label class="sr-only control-label" for="email">رایانامه</label>
                         <div class="input-group">
                             <span class="input-group-addon">
-                                <i class="icon-envelope"></i>
+                                <i class=" fas fa-at"></i>
                             </span>
-                            <input type="text" class="form-control ltr text-left" asp-for="@Model.account.Email" name="Email" placeholder="مثال:info@site.com">
+                            <input type="text" class="form-control ltr text-left" asp-for="@Model.account.Email" name="Email" placeholder="ایمیل:info@site.com">
                         </div><!-- /.input-group-->
                     </div><!-- /.form-group -->
                   
                     <div class="form-group">
-                        <label class="sr-only control-label" for="PhoneNumber">‌PhoneNumber</label>
-                        <div class="input-group has-btn-toggle-pass">
+                        <label class="sr-only control-label" for="email">رایانامه</label>
+                        <div class="input-group">
                             <span class="input-group-addon">
-                                <i class="icon-key"></i>
+                                <i class=" fas fa-mobile-screen-button"></i>
                             </span>
-                            <input type="number" class="form-control ltr text-left" asp-for="@Model.account.PhoneNumber" name="PhoneNumber" placeholder="‌شماره تلفن">
-                            <span class="btn-toggle-pass">
-                                <i class="icon-eye"></i>
-                            </span>
+                            <input type="text" class="form-control ltr text-left" asp-for="@Model.account.PhoneNumber" name="PhoneNumber" placeholder="شماره همراه">
                         </div><!-- /.input-group-->
                     </div><!-- /.form-group -->
                     <div class="form-group">
@@ -89,10 +86,6 @@
                 <a href="forget.html" class="btn btn-default btn-block m-b-10">
                     <i class="icon-refresh font-lg"></i>
                     بازیابی رمز  عبور
-                </a>
-                <a href="login.html" class="btn btn-default btn-block">
-                    <i class="icon-user-follow font-lg"></i>
-                    ثبت‌نام کرده اید؟ وارد شوید!
                 </a>
             </div><!-- /.col-md-12 -->
         </div><!-- /.row -->
