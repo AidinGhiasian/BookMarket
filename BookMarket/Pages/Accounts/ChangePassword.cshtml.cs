@@ -7,6 +7,7 @@ namespace BookMarket.Pages.Accounts
     {
         public void OnGet()
         {
+
         }
     }
 }
