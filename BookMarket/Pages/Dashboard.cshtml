@@ -70,17 +70,7 @@
                                     سفارشات
                                 </a>
                             </li>
-                            <li class="nav-item">
 
-                                <a class="nav-link"
-                                   href="#"
-                                   data-toggle="tab">
-
-                                    تغییر رمز عبور
-
-                                </a>
-
-                            </li>
 
 
 
@@ -105,6 +95,7 @@
 
 
                             </li>
+
 
 
                         </ul>
@@ -241,13 +232,23 @@
                                         </div>
 
 
+	                                    <div class="col-3">
+		                                    <a href="#"
+		                                       class="btn btn-outline-primary">
 
-                                        <a href="#"
-                                           class="btn btn-outline-primary">
+			                                    ویرایش اطلاعات
 
-                                            ویرایش اطلاعات
+		                                    </a>
+	                                    </div>
+	                                    <div class="m-r-20">
+		                                    <a href="/Accounts/ChangePassword"
+		                                       class="btn btn-outline-primary">
 
-                                        </a>
+			                                    تغییر رمز عبور
+
+		                                    </a>
+	                                    </div>
+
 
 
                                     </div>
@@ -291,45 +292,6 @@
 
                                         </a>
 
-
-
-                                    </div>
-
-                                </div>
-
-
-                            </div>
-
-
-
-
-
-
-                            <div class="tab-pane fade"
-                                 id="tab-password">
-
-
-                                <div class="card card-dashboard">
-
-                                    <div class="card-body">
-
-
-                                        <h3>
-                                            امنیت حساب
-                                        </h3>
-
-
-                                        <p>
-                                            در این بخش می‌توانید رمز عبور خود را تغییر دهید.
-                                        </p>
-
-
-                                        <a asp-page="/Accounts/ChangePassword"asp-route-Id="@account.Id"
-                                           class="btn btn-primary">
-
-                                            تغییر رمز
-
-                                        </a>
 
 
                                     </div>
