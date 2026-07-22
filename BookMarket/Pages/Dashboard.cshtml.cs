@@ -20,9 +20,7 @@ namespace BookMarket.Pages
 
 
 
-        public DashboardModel(
-            IAccountQueries accountQueries,
-            IAuthHelper authHelper)
+        public DashboardModel(IAccountQueries accountQueries, IAuthHelper authHelper)
         {
             _accountQueries = accountQueries;
             _authHelper = authHelper;
@@ -45,7 +43,7 @@ namespace BookMarket.Pages
 
 
 
-        public IActionResult OnPostLogOut()
+        public IActionResult OnPost()
         {
 
             _authHelper.SignOut();
