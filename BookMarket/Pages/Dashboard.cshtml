@@ -2,321 +2,169 @@
 @using Services.Application.AuthHelper
 @inject IAuthHelper AccountInfo;
 @{
-    var account = AccountInfo.CurrentAccountInfo();
+	var account = AccountInfo.CurrentAccountInfo();
 }
 @model BookMarket.Pages.DashboardModel
 @{
-    var user = Model.CurrentUser;
+	var user = Model.CurrentUser;
 }
 
 <main class="main">
-    <div class="page-header text-center"
-         style="background-image:url('/assets/images/page-header-bg.jpg')">
-        <div class="container">
-            <h1 class="page-title">
-                داشبورد کاربری
-                <span>حساب من</span>
-            </h1>
-        </div>
-    </div>
-    <div class="page-content">
-        <div class="dashboard">
-            <div class="container">
-                <div class="row">
-                    <aside class="col-md-4 col-lg-3">
-                        <div class="card card-dashboard">
-                            <div class="card-body text-center">
-                                @if (!string.IsNullOrEmpty(user.ProfilePicture))
-                                {
-                                    <img src="/uploads/@user.ProfilePicture"
-                                         class="rounded-circle mb-3"
-                                         width="90"
-                                         height="90" />
-                                }
-                                else
-                                {
-                                    <img src="/assets/images/user-default.png"
-                                         class="rounded-circle mb-3"
-                                         width="90"
-                                         height="90" />
-                                }
-
-
-
-                                <h4>
-                                    @user.Fullname
-                                </h4>
-
-
-                                <p class="text-muted">
-                                    @user.Role
-                                </p>
-                            </div>
-                        </div>
-                        <ul class="nav nav-dashboard flex-column">
-                            <li class="nav-item">
-
-                                <a class="nav-link active"
-                                   href="#tab-profile"
-                                   data-toggle="tab">
-                                    اطلاعات کاربری
-                                </a>
-                            </li>
-                            <li class="nav-item">
-
-                                <a class="nav-link"
-                                   href="#tab-orders"
-                                   data-toggle="tab">
-                                    سفارشات
-                                </a>
-                            </li>
-
-
-
-
-
-                            <li class="nav-item logout-item">
-
-
-                                <form method="post"
-                                      asp-page-handler="Logout">
-
-
-                                    <button class="logout-link">
-
-                                        <i class="icon-exit"></i>
-
-                                        خروج از حساب
-
-                                    </button>
-
-
-                                </form>
-
-
-                            </li>
-
-
-
-                        </ul>
-
-
-
-                    </aside>
-
-
-
-
-
-
-                    <!-- Content -->
-
-                    <div class="col-md-8 col-lg-9">
-
-
-                        <div class="tab-content">
-
-
-
-
-
-                            <div class="tab-pane fade show active"
-                                 id="tab-profile">
-
-
-
-                                <div class="card card-dashboard">
-
-
-                                    <div class="card-body">
-
-
-                                        <h3 class="card-title">
-
-                                            اطلاعات حساب
-
-                                        </h3>
-
-
-
-                                        <div class="row">
-
-
-                                            <div class="col-md-6 mb-3">
-
-                                                <strong>
-                                                    نام:
-                                                </strong>
-
-                                                <br />
-
-                                                @Model.Account?.Name
-
-                                            </div>
-
-
-
-                                            <div class="col-md-6 mb-3">
-
-                                                <strong>
-                                                    نام خانوادگی:
-                                                </strong>
-
-                                                <br />
-
-                                                @Model.Account?.Family
-
-                                            </div>
-
-
-
-
-                                            <div class="col-md-6 mb-3">
-
-                                                <strong>
-                                                    شماره موبایل:
-                                                </strong>
-
-                                                <br />
-
-                                                @Model.Account?.PhoneNumber
-
-                                            </div>
-
-
-
-
-                                            <div class="col-md-6 mb-3">
-
-                                                <strong>
-                                                    ایمیل:
-                                                </strong>
-
-                                                <br />
-
-                                                @Model.Account?.Email
-
-                                            </div>
-
-
-
-                                            <div class="col-md-6 mb-3">
-
-                                                <strong>
-                                                    تاریخ تولد:
-                                                </strong>
-
-                                                <br />
-
-                                                @Model.Account?.BirthDate.ToShortDateString()
-
-                                            </div>
-
-
-
-
-                                            <div class="col-md-12 mb-3">
-
-                                                <strong>
-                                                    آدرس:
-                                                </strong>
-
-                                                <br />
-
-                                                @Model.Account?.Addres
-
-                                            </div>
-
-
-
-                                        </div>
-
-
-	                                    <div class="col-3">
-		                                    <a href="#"
-		                                       class="btn btn-outline-primary">
-
-			                                    ویرایش اطلاعات
-
-		                                    </a>
-	                                    </div>
-	                                    <div class="m-r-20">
-		                                    <a href="/Accounts/ChangePassword"
-		                                       class="btn btn-outline-primary">
-
-			                                    تغییر رمز عبور
-
-		                                    </a>
-	                                    </div>
-
-
-
-                                    </div>
-
-
-                                </div>
-
-
-
-                            </div>
-
-
-
-
-
-
-
-                            <div class="tab-pane fade"
-                                 id="tab-orders">
-
-
-                                <div class="card card-dashboard">
-
-                                    <div class="card-body">
-
-
-                                        <h3>
-                                            سفارشات
-                                        </h3>
-
-
-                                        <p>
-                                            هنوز سفارشی ثبت نشده است.
-                                        </p>
-
-
-                                        <a href="/Products"
-                                           class="btn btn-primary">
-
-                                            مشاهده فروشگاه
-
-                                        </a>
-
-
-
-                                    </div>
-
-                                </div>
-
-
-                            </div>
-
-
-
-
-                        </div>
-
-
-                    </div>
-
-
-                </div>
-
-
-            </div>
-
-
-        </div>
-
-
+	<div class="page-header text-center"
+		 style="background-image:url('/assets/images/page-header-bg.jpg')">
+		<div class="container">
+			<h1 class="page-title">
+				داشبورد کاربری
+				<span>حساب من</span>
+			</h1>
+		</div>
+	</div>
+	<div class="page-content">
+		<div class="dashboard">
+			<div class="container">
+				<div class="row">
+					<aside class="col-md-4 col-lg-3">
+						<div class="card card-dashboard">
+							<div class="card-body text-center">
+								@if (!string.IsNullOrEmpty(user.ProfilePicture))
+								{
+									<img src="/uploads/@user.ProfilePicture"
+										 class="rounded-circle mb-3"
+										 width="90"
+										 height="90" />
+								}
+								else
+								{
+									<img src="/assets/images/user-default.png"
+										 class="rounded-circle mb-3"
+										 width="90"
+										 height="90" />
+								}
+								<h4>
+									@user.Fullname
+								</h4>
+								<p class="text-muted">
+									@user.Role
+								</p>
+							</div>
+						</div>
+						<ul class="nav nav-dashboard flex-column">
+							<li class="nav-item">
+
+								<a class="nav-link active"
+								   href="#tab-profile"
+								   data-toggle="tab">
+									اطلاعات کاربری
+								</a>
+							</li>
+							<li class="nav-item">
+
+								<a class="nav-link"
+								   href="#tab-orders"
+								   data-toggle="tab">
+									سفارشات
+								</a>
+							</li>
+						</ul>
+					</aside>
+					<!-- Content -->
+					<div class="col-md-8 col-lg-9">
+						<div class="tab-content">
+							<div class="tab-pane fade show active"
+								 id="tab-profile">
+								<div class="card card-dashboard">
+									<div class="card-body">
+										<h3 class="card-title">
+											اطلاعات حساب
+										</h3>
+										<div class="row">
+											<div class="col-md-6 mb-3">
+												<strong>
+													نام:
+												</strong>
+												<br />
+												@Model.Account?.Name
+											</div>
+											<div class="col-md-6 mb-3">
+												<strong>
+													نام خانوادگی:
+												</strong>
+												<br />
+												@Model.Account?.Family
+											</div>
+											<div class="col-md-6 mb-3">
+												<strong>
+													شماره موبایل:
+												</strong>
+												<br />
+												@Model.Account?.PhoneNumber
+											</div>
+											<div class="col-md-6 mb-3">
+												<strong>
+													ایمیل:
+												</strong>
+												<br />
+												@Model.Account?.Email
+											</div>
+											<div class="col-md-6 mb-3">
+												<strong>
+													تاریخ تولد:
+												</strong>
+												<br />
+												@Model.Account?.BirthDate.ToShortDateString()
+											</div>
+											<div class="col-md-12 mb-3">
+												<strong>
+													آدرس:
+												</strong>
+												<br />
+												@Model.Account?.Addres
+											</div>
+										</div>
+										<div class="col-md-6">
+											<a href="#"
+											   class="btn btn-outline-primary col-md-12 col-sm-12 m-r-20">
+												ویرایش اطلاعات
+											</a>
+										</div>
+										<div class="col-md-12">
+											<a href="/Accounts/ChangePassword"
+											   class="btn btn-outline-primary col-md-6 col-sm-6 m-l-20">
+												تغییر رمز عبور
+											</a>
+										</div>
+										<form method="post"asp-page-handler="Logout">
+											<div class="col-md-12">
+												<a href="/Index"
+												   class="btn btn-outline-primary col-md-6 col-sm-6">
+													خروج از حساب
+												</a>
+											</div>
+										</form>
+									</div>
+								</div>
+							</div>
+							<div class="tab-pane fade"
+								 id="tab-orders">
+								<div class="card card-dashboard">
+									<div class="card-body">
+										<h3>
+											سفارشات
+										</h3>
+										<p>
+											هنوز سفارشی ثبت نشده است.
+										</p>
+										<a href="/Products"
+										   class="btn btn-primary">
+											مشاهده فروشگاه
+										</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </main>
