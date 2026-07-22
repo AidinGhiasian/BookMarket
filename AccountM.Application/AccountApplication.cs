@@ -194,8 +194,10 @@ namespace AccountM.Application
             var operation = new OperationResult();
             var account = _accountRepository.GetbyId(command.Id);
 
-            if (account == null)
-                return operation.Failed("کاربر یافت نشد.");
+            if (account.Id == null || command.Password == null || command.RePassword == null)
+            {
+                return operation.Failed(ApplicationMessage.NotFound);
+            }
 
             if (command.Password != command.RePassword)
                 return operation.Failed("رمز عبور و تکرار آن یکسان نیست.");

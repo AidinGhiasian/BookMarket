@@ -10,7 +10,7 @@ namespace Services.Application.AuthHelper
         string CurrentAccountRole();
         AuthViewModel CurrentAccountInfo();
         List<int> GetPermissions();
-        long CurrentAccountId();
+        int CurrentAccountId();
         string CurrentAccountMobile();
     }
 }

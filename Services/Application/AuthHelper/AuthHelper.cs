@@ -44,10 +44,10 @@ namespace Services.Application.AuthHelper
             return JsonConvert.DeserializeObject<List<int>>(permissions);
         }
 
-        public long CurrentAccountId()
+        public int CurrentAccountId()
         {
             return IsAuthenticated()
-                ? long.Parse(_contextAccessor.HttpContext.User.Claims.First(x => x.Type == "AccountId")?.Value)
+                ? int.Parse(_contextAccessor.HttpContext.User.Claims.First(x => x.Type == "AccountId")?.Value)
                 : 0;
         }
 
