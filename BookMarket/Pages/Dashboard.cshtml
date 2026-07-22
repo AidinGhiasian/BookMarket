@@ -29,16 +29,16 @@
 								@if (!string.IsNullOrEmpty(user.ProfilePicture))
 								{
 									<img src="/uploads/@user.ProfilePicture"
-										 class="rounded-circle mb-3"
-										 width="90"
-										 height="90" />
+									     class="rounded-circle mb-3"
+									     width="90"
+									     height="90" />
 								}
 								else
 								{
 									<img src="/assets/images/user-default.png"
-										 class="rounded-circle mb-3"
-										 width="90"
-										 height="90" />
+									     class="rounded-circle mb-3"
+									     width="90"
+									     height="90" />
 								}
 								<h4>
 									@user.Fullname
@@ -58,6 +58,10 @@
 								</a>
 							</li>
 							<li class="nav-item">
+								<a class="nav-link" id="tab-account-link" data-toggle="tab" href="#tab-account"
+								   role="tab" aria-controls="tab-account" aria-selected="false">ویرایش اطلاعات</a>
+							</li>
+							<li class="nav-item">
 
 								<a class="nav-link"
 								   href="#tab-orders"
@@ -67,11 +71,12 @@
 							</li>
 						</ul>
 					</aside>
+				
 					<!-- Content -->
 					<div class="col-md-8 col-lg-9">
 						<div class="tab-content">
 							<div class="tab-pane fade show active"
-								 id="tab-profile">
+							     id="tab-profile">
 								<div class="card card-dashboard">
 									<div class="card-body">
 										<h3 class="card-title">
@@ -123,29 +128,30 @@
 										</div>
 										<div class="col-md-6">
 											<a href="#"
-											   class="btn btn-outline-primary col-md-12 col-sm-12 m-r-20">
+											   class="btn btn-outline-success col-md-12 col-sm-12 m-r-20">
 												ویرایش اطلاعات
 											</a>
 										</div>
 										<div class="col-md-12">
 											<a href="/Accounts/ChangePassword"
-											   class="btn btn-outline-primary col-md-6 col-sm-6 m-l-20">
+											   class="btn btn-outline-warning col-md-6 col-sm-6 m-l-20">
 												تغییر رمز عبور
 											</a>
 										</div>
-										<form method="post"asp-page-handler="Logout">
+										
+										<form method="post" asp-page-handler="Logout">
 											<div class="col-md-12">
-												<a href="/Index"
-												   class="btn btn-outline-primary col-md-6 col-sm-6">
-													خروج از حساب
-												</a>
+						
+												<button type="submit" class="btn btn-outline-danger col-md-12 col-sm-12">
+													خروج
+												</button>
 											</div>
 										</form>
 									</div>
 								</div>
 							</div>
 							<div class="tab-pane fade"
-								 id="tab-orders">
+							     id="tab-orders">
 								<div class="card card-dashboard">
 									<div class="card-body">
 										<h3>
@@ -163,6 +169,46 @@
 							</div>
 						</div>
 					</div>
+					<div class="tab-pane fade" id="tab-account" role="tabpanel"
+						 aria-labelledby="tab-account-link">
+						<form action="#">
+							<div class="row">
+								<div class="col-sm-6">
+									<label>نام *</label>
+									<input type="text" class="form-control" required>
+								</div><!-- End .col-sm-6 -->
+
+								<div class="col-sm-6">
+									<label>نام خانوادگی *</label>
+									<input type="text" class="form-control" required>
+								</div><!-- End .col-sm-6 -->
+							</div><!-- End .row -->
+
+							<label>نام نمایش *</label>
+							<input type="text" class="form-control" required>
+							<small class="form-text">
+								این نام در قسمت بازدیدها، نظرات و حساب کاربری شما
+								نمایش داده می شود.
+							</small>
+
+							<label>ایمیل *</label>
+							<input type="email" class="form-control" required>
+
+							<label>پسورد فعلی</label>
+							<input type="password" class="form-control">
+
+							<label>پسورد جدید</label>
+							<input type="password" class="form-control">
+
+							<label>تکرار پسورد جدید</label>
+							<input type="password" class="form-control mb-2">
+
+							<button type="submit" class="btn btn-outline-primary-2 float-right">
+								<span>ذخیره تغییرات</span>
+								<i class="icon-long-arrow-left"></i>
+							</button>
+						</form>
+					</div><!-- .End .tab-pane -->
 				</div>
 			</div>
 		</div>

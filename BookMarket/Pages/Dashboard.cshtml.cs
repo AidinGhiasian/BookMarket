@@ -43,7 +43,7 @@ namespace BookMarket.Pages
 
 
 
-        public IActionResult OnPost()
+        public IActionResult OnPostLogout()
         {
 
             _authHelper.SignOut();
