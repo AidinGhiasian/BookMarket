@@ -1,11 +1,11 @@
 using BlogM.Application.Contracts.BlogCategoryApplication;
-using BlogM.Application.Contracts.PostApplication;
-using BookM.Domain.Book.AD;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace BookMarket.Areas.Admin.Pages.Blog.BlogCategory
 {
+    [Authorize(Roles = "Admin")]
     public class BlogCategoryIndexModel : PageModel
     {
         private readonly IBlogCategoryApplication _blogCategoryApplication;
@@ -13,11 +13,11 @@ namespace BookMarket.Areas.Admin.Pages.Blog.BlogCategory
         {
             _blogCategoryApplication = blogCategoryApplication;
         }
-        public List<BlogCategoryViewModel> BlogCategories { get; set; }
+        public List<BlogCategoryViewModel> BlogCategories { get; set; } = new();
+
         public void OnGet()
         {
             BlogCategories = _blogCategoryApplication.GetAll();
         }
-
     }
 }

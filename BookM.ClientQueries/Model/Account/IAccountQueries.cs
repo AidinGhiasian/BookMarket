@@ -1,19 +1,14 @@
-﻿using Services.Application;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Services.Application;
 
 namespace BookM.ClientQueries.Model.Account
 {
     public interface IAccountQueries
     {
-        public AccountViewModel Account(int id);
-        public AccountViewModel Account(string phoneNumber);
-        public EditViewModel GetDetail(int id);
-        public EditViewModel GetDetail(string phone);
-        public OperationResult Login(string? phone, string? password);
-        OperationResult Register(AccountM.Application.Contracts.AccountApplication.CreateViewModel model);
+        AccountViewModel? Account(int id);
+        AccountViewModel? Account(string phoneNumber);
+        EditViewModel? GetDetail(int id);
+        EditViewModel? GetDetail(string phone);
+        Task<OperationResult> Login(string? phone, string? password);
+        Task<OperationResult> Register(AccountM.Application.Contracts.AccountApplication.CreateViewModel model);
     }
 }

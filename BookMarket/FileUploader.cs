@@ -1,113 +1,143 @@
-﻿
+using Microsoft.AspNetCore.Hosting;
 using Services.Application;
 using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.Processing;
 
-namespace Services.Model
+namespace BookMarket
 {
     public class FileUploader : IFileUploader
     {
         private readonly IWebHostEnvironment _webHostEnvironment;
 
+        private static readonly string[] AllowedImageExtensions = { ".jpg", ".jpeg", ".png", ".webp" };
+        private const long MaxFileSizeBytes = 5 * 1024 * 1024; // 5 MB
+        private const string PicturesFolder = "Pictures";
+
         public FileUploader(IWebHostEnvironment webHostEnvironment)
         {
             _webHostEnvironment = webHostEnvironment;
         }
-        public string Upload(IFormFile file, string Path)
+
+        public string Upload(IFormFile file, string path)
         {
-            if (file == null)
+            if (file == null || file.Length == 0)
                 return "";
-            var DirectoryPath = $"{_webHostEnvironment.WebRootPath}//Pictures//{Path}";
 
-            if (!Directory.Exists(DirectoryPath))
-                Directory.CreateDirectory(DirectoryPath);
+            ValidateFile(file);
 
-            var fileName = $"{DateTime.Now.ToFileName()}-{file.FileName}";
-            var filepath = $"{DirectoryPath}//{fileName}";
+            var safeFolder = SanitizeFolder(path);
+            var directoryPath = Path.Combine(_webHostEnvironment.WebRootPath, PicturesFolder, safeFolder);
+            Directory.CreateDirectory(directoryPath);
+
+            var ext = Path.GetExtension(file.FileName).ToLowerInvariant();
+            var fileName = $"{DateTime.Now.ToFileName()}-{Guid.NewGuid():N}{ext}";
+            var filepath = Path.Combine(directoryPath, fileName);
 
             using var output = File.Create(filepath);
             file.CopyTo(output);
 
-            return $"{Path}/{fileName}";
-
+            return $"{safeFolder}/{fileName}";
         }
 
-        public string UploadNewSize(IFormFile file, string Path, int wight)
+        public string UploadNewSize(IFormFile file, string path, int width)
         {
-            if (file == null)
+            if (file == null || file.Length == 0)
                 return "";
-            var size = wight;
-            var DirectoryPath = $"{_webHostEnvironment.WebRootPath}//Pictures//{Path}//{size}";
-            if (!Directory.Exists(DirectoryPath))
-                Directory.CreateDirectory(DirectoryPath);
 
-            var fileName = $"{DateTime.Now.ToFileName()}-{file.FileName}";
-            var filepath = $"{DirectoryPath}//{fileName}";
+            ValidateFile(file);
 
-            System.Drawing.Bitmap source_Bitmap = new System.Drawing.Bitmap(file.OpenReadStream());
+            var safeFolder = SanitizeFolder(path);
+            var sizeFolder = width.ToString();
+            var directoryPath = Path.Combine(_webHostEnvironment.WebRootPath, PicturesFolder, safeFolder, sizeFolder);
+            Directory.CreateDirectory(directoryPath);
 
+            var ext = Path.GetExtension(file.FileName).ToLowerInvariant();
+            var fileName = $"{DateTime.Now.ToFileName()}-{Guid.NewGuid():N}{ext}";
+            var filepath = Path.Combine(directoryPath, fileName);
 
-
-            double dblWidth_origial = source_Bitmap.Width;
-
-            double dblHeigth_origial = source_Bitmap.Height;
-
-            double relation_heigth_width = dblHeigth_origial / dblWidth_origial;
-
-            int Height = (int)(wight * relation_heigth_width);
-
-
-
-
-
-            using (Image img = Image.Load(file.OpenReadStream()))
+            using (var img = Image.Load(file.OpenReadStream()))
             {
-                img.Mutate(r => r.Resize(wight, Height));
+                img.Mutate(r => r.Resize(new ResizeOptions
+                {
+                    Size = new Size(width, 0),
+                    Mode = ResizeMode.Max
+                }));
                 img.Save(filepath);
             }
 
-            return $"{Path}/{size}/{fileName}";
-
-
+            return $"{safeFolder}/{sizeFolder}/{fileName}";
         }
 
-        public string UploadNewSizeFromWightAndHeight(IFormFile file, string Path, int wight, int Height)
+        public string UploadNewSizeFromWightAndHeight(IFormFile file, string path, int width, int height)
         {
-            if (file == null)
+            if (file == null || file.Length == 0)
                 return "";
-            var size = wight;
-            var DirectoryPath = $"{_webHostEnvironment.WebRootPath}//Pictures//{Path}//{size}";
-            if (!Directory.Exists(DirectoryPath))
-                Directory.CreateDirectory(DirectoryPath);
 
-            var fileName = $"{DateTime.Now.ToFileName()}-{file.FileName}";
-            var filepath = $"{DirectoryPath}//{fileName}";
+            ValidateFile(file);
 
-            using (Image img = Image.Load(file.OpenReadStream()))
+            var safeFolder = SanitizeFolder(path);
+            var sizeFolder = width.ToString();
+            var directoryPath = Path.Combine(_webHostEnvironment.WebRootPath, PicturesFolder, safeFolder, sizeFolder);
+            Directory.CreateDirectory(directoryPath);
+
+            var ext = Path.GetExtension(file.FileName).ToLowerInvariant();
+            var fileName = $"{DateTime.Now.ToFileName()}-{Guid.NewGuid():N}{ext}";
+            var filepath = Path.Combine(directoryPath, fileName);
+
+            using (var img = Image.Load(file.OpenReadStream()))
             {
-                img.Mutate(r => r.Resize(wight, Height));
+                img.Mutate(r => r.Resize(new ResizeOptions
+                {
+                    Size = new Size(width, height),
+                    Mode = ResizeMode.Crop
+                }));
                 img.Save(filepath);
             }
 
-            return $"{Path}/{size}/{fileName}";
-
-
+            return $"{safeFolder}/{sizeFolder}/{fileName}";
         }
+
         public void Delete(string pictureName)
         {
             if (string.IsNullOrWhiteSpace(pictureName))
-            {
                 return;
-            }
-            var DirectoryPath = $"{_webHostEnvironment.WebRootPath}//Pictures//{pictureName}";
 
-            if (File.Exists(DirectoryPath))
-                File.Delete(DirectoryPath);
+            var picturesRoot = Path.GetFullPath(Path.Combine(_webHostEnvironment.WebRootPath, PicturesFolder));
+            var fullPath = Path.GetFullPath(Path.Combine(picturesRoot, pictureName));
+
+            // guard against path traversal: only allow deleting inside wwwroot/Pictures
+            if (!fullPath.StartsWith(picturesRoot, StringComparison.OrdinalIgnoreCase))
+                return;
+
+            if (File.Exists(fullPath))
+                File.Delete(fullPath);
+
+            // try deleting the resized variant (720) if present
+            var name = Path.GetFileName(fullPath);
+            var dir = Path.GetDirectoryName(fullPath);
+            var sizedDir = Path.Combine(dir ?? picturesRoot, "720");
+            var sizedFile = Path.Combine(sizedDir, name);
+            if (File.Exists(sizedFile))
+                File.Delete(sizedFile);
+        }
+
+        private static void ValidateFile(IFormFile file)
+        {
+            if (file == null) throw new ArgumentNullException(nameof(file));
+            if (file.Length > MaxFileSizeBytes)
+                throw new InvalidOperationException($"حجم فایل بیش از حد مجاز ({MaxFileSizeBytes / 1024 / 1024} مگابایت) است.");
+
+            var ext = Path.GetExtension(file.FileName).ToLowerInvariant();
+            if (string.IsNullOrEmpty(ext) || !AllowedImageExtensions.Contains(ext))
+                throw new InvalidOperationException("نوع فایل مجاز نیست. فقط jpg, jpeg, png, webp پذیرفته می‌شود.");
+        }
+
+        private static string SanitizeFolder(string folder)
+        {
+            if (string.IsNullOrWhiteSpace(folder)) return "Misc";
+            // Only take the leaf folder name (prevents ../../)
+            var leaf = Path.GetFileName(folder.Replace("\\", "/").TrimEnd('/').TrimEnd('\\'));
+            return string.IsNullOrWhiteSpace(leaf) ? "Misc" : leaf;
         }
     }
 }
-
-
-
-
-

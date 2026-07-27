@@ -1,24 +1,19 @@
-﻿
-using BookM.ClientQueries;
 using BookM.ClientQueries.Model.Account;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Services.Application.AuthHelper;
 
 namespace BookMarket.Pages
 {
+    [Authorize]
     public class DashboardModel : PageModel
     {
         private readonly IAccountQueries _accountQueries;
         private readonly IAuthHelper _authHelper;
 
-
-        public AccountViewModel Account { get; set; }
-
-
-        public AuthViewModel CurrentUser { get; set; }
-
-
+        public AccountViewModel? Account { get; set; }
+        public AuthViewModel CurrentUser { get; set; } = new();
 
         public DashboardModel(IAccountQueries accountQueries, IAuthHelper authHelper)
         {
@@ -26,31 +21,19 @@ namespace BookMarket.Pages
             _authHelper = authHelper;
         }
 
-
-
         public void OnGet()
         {
-
             CurrentUser = _authHelper.CurrentAccountInfo();
-
-
             if (CurrentUser.Id > 0)
             {
                 Account = _accountQueries.Account((int)CurrentUser.Id);
             }
-
         }
 
-
-
-        public IActionResult OnPostLogout()
+        public async Task<IActionResult> OnPostLogoutAsync()
         {
-
-            _authHelper.SignOut();
-
+            await _authHelper.SignOutAsync();
             return RedirectToPage("/Index");
-
         }
-
     }
 }

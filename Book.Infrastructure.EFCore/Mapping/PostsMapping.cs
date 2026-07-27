@@ -1,4 +1,4 @@
-﻿using Blog.Domain.BlogAD;
+using Blog.Domain.BlogAD;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BlogM.Infrastructure.EFCore.Mapping
+namespace Book.Infrastructure.EFCore.Mapping
 {
     public class PostsMapping: IEntityTypeConfiguration<Posts>
     {
@@ -19,7 +19,7 @@ namespace BlogM.Infrastructure.EFCore.Mapping
 
             // تنظیمات ستون‌ها
             builder.Property(x => x.Picture)
-                   .IsRequired()
+                   .IsRequired(false)
                    .HasMaxLength(500);
 
             builder.Property(x => x.Title)
@@ -27,10 +27,10 @@ namespace BlogM.Infrastructure.EFCore.Mapping
                    .HasMaxLength(200);
 
             builder.Property(x => x.ShortDescription)
-                   .HasMaxLength(500);
+                   .HasMaxLength(1000);
 
             builder.Property(x => x.Description)
-                   .HasMaxLength(2000);
+                   .HasMaxLength(int.MaxValue);
 
             builder.Property(x => x.PostTime)
                    .IsRequired();

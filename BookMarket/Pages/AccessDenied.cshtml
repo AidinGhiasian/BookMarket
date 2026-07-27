@@ -1,0 +1,11 @@
+@page
+@model BookMarket.Pages.AccessDeniedModel
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "دسترسی غیرمجاز";
+}
+<div class="container py-8 text-center">
+    <h1 class="display-3 text-danger">403</h1>
+    <h3>شما به این بخش دسترسی ندارید.</h3>
+    <a asp-page="/Index" class="btn btn-outline-primary-2 mt-4">بازگشت به صفحه اصلی</a>
+</div>

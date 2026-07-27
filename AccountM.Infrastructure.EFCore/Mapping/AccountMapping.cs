@@ -1,4 +1,4 @@
-﻿using AccountManagement.Domain.RoleAgg;
+using AccountManagement.Domain.RoleAgg;
 using AM.Domain.Account.AD;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
@@ -64,6 +64,11 @@ namespace AccountM.Infrastructure.EFCore.Mapping
                    .WithMany(x => x.Accounts)
                    .HasForeignKey(x => x.RoleId)
                    .OnDelete(DeleteBehavior.Restrict);
+
+            builder.Property(x => x.Scuritycode).HasMaxLength(10);
+            builder.Property(x => x.Email).IsRequired(false).HasMaxLength(250);
+            builder.Property(x => x.Addres).HasMaxLength(500);
+            builder.Property(x => x.Picture).HasMaxLength(500);
         }
     }
 }

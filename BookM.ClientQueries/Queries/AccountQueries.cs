@@ -1,15 +1,6 @@
-﻿using AccountM.Application.Contracts.AccountApplication;
+using AccountM.Application.Contracts.AccountApplication;
 using BookM.ClientQueries.Model.Account;
-using DocumentFormat.OpenXml.Office2010.Excel;
-using FLEXYGO.GoogleResourceTypes;
 using Services.Application;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using AccountViewModel = BookM.ClientQueries.Model.Account.AccountViewModel;
-using EditViewModel = BookM.ClientQueries.Model.Account.EditViewModel;
 
 namespace BookM.ClientQueries.Queries
 {
@@ -17,14 +8,17 @@ namespace BookM.ClientQueries.Queries
     {
         private readonly IAccountApplication _accountApplication;
         private readonly IFileUploader _fileUploader;
+
         public AccountQueries(IAccountApplication accountApplication, IFileUploader fileUploader)
         {
             _accountApplication = accountApplication;
             _fileUploader = fileUploader;
         }
-        public AccountViewModel Account(int id)
+
+        public AccountViewModel? Account(int id)
         {
             var model = _accountApplication.GetBy(id);
+            if (model == null) return null;
             return new AccountViewModel
             {
                 Id = model.Id,
@@ -35,13 +29,14 @@ namespace BookM.ClientQueries.Queries
                 BirthDate = model.BirthDate,
                 cratetiondate = model.cratetiondate,
                 Addres = model.Addres,
-                  IsAvalable = model.IsAvalable,
+                IsAvalable = model.IsAvalable,
             };
         }
 
-        public AccountViewModel Account(string phoneNumber)
+        public AccountViewModel? Account(string phoneNumber)
         {
             var model = _accountApplication.GetBy(phoneNumber);
+            if (model == null) return null;
             return new AccountViewModel
             {
                 Id = model.Id,
@@ -52,14 +47,14 @@ namespace BookM.ClientQueries.Queries
                 BirthDate = model.BirthDate,
                 cratetiondate = model.cratetiondate,
                 Addres = model.Addres,
-                                IsAvalable = model.IsAvalable,
+                IsAvalable = model.IsAvalable,
             };
         }
 
-
-        public EditViewModel GetDetail(int id)
+        public EditViewModel? GetDetail(int id)
         {
             var model = _accountApplication.Getdetail(id);
+            if (model == null) return null;
             return new EditViewModel
             {
                 Id = model.Id,
@@ -68,30 +63,43 @@ namespace BookM.ClientQueries.Queries
                 Email = model.Email,
                 BirthDate = model.BirthDate,
                 Addres = model.Addres,
+                PhoneNumber = model.PhoneNumber,
+                PictureName = model.PictureName,
+                RoleId = model.RoleId,
             };
-        }
-        public EditViewModel GetDetail(string phone)
-        {
-            var model = _accountApplication.GetBy(phone);
-            return new EditViewModel
-            {
-                Id = model.Id,
-                Name = model.Name,
-                Family = model.Family,
-                Email = model.Email,
-                BirthDate = model.BirthDate,
-                Addres = model.Addres,
-            };
-        }
-        public OperationResult Login(string? phone, string? password)
-        {
-          return _accountApplication.login(phone, password);
         }
 
-        public OperationResult Register(CreateViewModel model)
+        public EditViewModel? GetDetail(string phone)
         {
-           _accountApplication.Create(model);
-            return new OperationResult().IsSuccess("ثبت نام با موفقیت انجام شد.");
+            var model = _accountApplication.GetBy(phone);
+            if (model == null) return null;
+            return new EditViewModel
+            {
+                Id = model.Id,
+                Name = model.Name,
+                Family = model.Family,
+                Email = model.Email,
+                BirthDate = model.BirthDate,
+                Addres = model.Addres,
+                PhoneNumber = model.PhoneNumber,
+                PictureName = model.Picture,
+            };
+        }
+
+        public Task<OperationResult> Login(string? phone, string? password)
+            => _accountApplication.LoginAsync(phone, password);
+
+        public Task<OperationResult> Register(CreateViewModel model)
+        {
+            try
+            {
+                _accountApplication.Create(model);
+                return Task.FromResult(new OperationResult().IsSuccess("ثبت نام با موفقیت انجام شد."));
+            }
+            catch (Exception ex)
+            {
+                return Task.FromResult(new OperationResult().Failed(ex.Message));
+            }
         }
     }
 }

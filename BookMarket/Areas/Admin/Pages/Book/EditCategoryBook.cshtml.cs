@@ -1,10 +1,11 @@
-using BookM.Application.Contracts.BooksApplication;
 using BookM.Application.Contracts.BooksCategoryApplication;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace BookMarket.Areas.Admin.Pages.Book
 {
+    [Authorize(Roles = "Admin")]
     public class EditCategoryBookModel : PageModel
     {
         private readonly IBookCategoryApplication _bookCategoryApplication;
@@ -13,17 +14,32 @@ namespace BookMarket.Areas.Admin.Pages.Book
             _bookCategoryApplication = bookCategoryApplication;
         }
 
+        public BookCategoryEditViewModel? Category { get; set; }
 
-        public BookCategoryEditViewModel category;
         public void OnGet(int id)
         {
-            category = _bookCategoryApplication.GetById(id);
+            Category = _bookCategoryApplication.GetById(id);
         }
 
         public IActionResult OnPost(BookCategoryEditViewModel command)
         {
-            _bookCategoryApplication.Edit(command);
-            return Redirect("./BookCategoryIndex");
+            if (!ModelState.IsValid)
+            {
+                Category = command;
+                return Page();
+            }
+            try
+            {
+                _bookCategoryApplication.Edit(command);
+                TempData["success"] = "دسته‌بندی ویرایش شد.";
+                return RedirectToPage("./BookCategoryIndex");
+            }
+            catch (Exception ex)
+            {
+                TempData["Error"] = ex.Message;
+                Category = command;
+                return Page();
+            }
         }
     }
 }

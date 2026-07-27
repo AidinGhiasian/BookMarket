@@ -1,28 +1,32 @@
-﻿using AccountMInfrastructureConfiguration;
+using AccountMInfrastructureConfiguration;
 using BlogMInfrastructureConfiguration;
-using BookMarket;
-using BookMInfrastucureConfigoration;
+using BookM.Infrastructure.Configuration;
 using CommentMInfrastructureConfiguration;
 
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
 using Services.Application;
 using Services.Application.AuthHelper;
-using Services.Application.Categoreis;
 using Services.Application.HashPassword;
-using Services.Model;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddHttpContextAccessor();
 
-var contectionstring = builder.Configuration.GetConnectionString("DbBookMarket");
-AccountMInfrastructureConfigurationBootstraper.Configure(builder.Services, contectionstring);
-BlogMInfrastructureConfigurationBootstraper.Configure(builder.Services, contectionstring);
-BookMInfrastructureConfigurationBootstraper.Configure(builder.Services, contectionstring);
-CommentMInfrastructureConfigurationBootstraper.Configure(builder.Services, contectionstring);
+var connectionString = builder.Configuration.GetConnectionString("DbBookMarket")
+    ?? throw new InvalidOperationException("Connection string 'DbBookMarket' not found.");
+
+AccountMInfrastructureConfigurationBootstraper.Configure(builder.Services, connectionString);
+BookMInfrastructureConfigurationBootstrapper.Configure(builder.Services, connectionString);
+CommentMInfrastructureConfigurationBootstraper.Configure(builder.Services, connectionString);
+
+// NOTE: Blog is now bootstrapped inside BookMInfrastructureConfigurationBootstrapper (shared BlogDbContext).
+// Do NOT call BlogMInfrastructureConfigurationBootstraper.Configure separately here — it will register
+// a duplicate DbContext that is incomplete.
 
 builder.Services.AddScoped<IPasswordHasher, PasswordHasher>();
+builder.Services.Configure<HashingOptions>(o => o.Iterations = 100_000);
+
 builder.Services.AddTransient<IAuthHelper, AuthHelper>();
 builder.Services.AddScoped<IFileUploader, FileUploader>();
 
@@ -32,40 +36,53 @@ builder.Services.Configure<CookiePolicyOptions>(options =>
     options.MinimumSameSitePolicy = SameSiteMode.Lax;
 });
 
-
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, o =>
     {
         o.ExpireTimeSpan = TimeSpan.FromDays(30);
         o.SlidingExpiration = true;
-        o.LoginPath = new PathString("/Account");
-        o.LogoutPath = new PathString("/Account");
+        o.LoginPath = new PathString("/Accounts/login");
+        o.LogoutPath = new PathString("/Accounts/logout");
         o.AccessDeniedPath = new PathString("/AccessDenied");
+        o.Cookie.HttpOnly = true;
+        o.Cookie.SecurePolicy = CookieSecurePolicy.SameAsRequest;
+        o.Cookie.SameSite = SameSiteMode.Lax;
     });
-builder.Services.AddCors(options =>
-{
-    options.AddPolicy("AllowAll",
-        builder => builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
-});
+
 builder.Services.AddAuthorization(options =>
 {
-    options.AddPolicy("Admin",
-        builder => builder.RequireRole(new List<string> { Roles.Admin }));
+    options.AddPolicy("Admin", policy => policy.RequireRole(Roles.Admin));
 });
 
-builder.Services.AddRazorPages().AddMvcOptions(options => options.Filters.Add<SecurityPageFilter>())
+builder.Services.AddRazorPages()
+    .AddMvcOptions(options =>
+    {
+        options.Filters.Add<SecurityPageFilter>();
+    })
     .AddRazorPagesOptions(options =>
     {
+        // Default: require authentication for everything
+        options.Conventions.AuthorizeFolder("/");
+
+        // Anonymous pages
+        options.Conventions.AllowAnonymousToPage("/Index");
+        options.Conventions.AllowAnonymousToPage("/About");
+        options.Conventions.AllowAnonymousToPage("/Privacy");
+        options.Conventions.AllowAnonymousToPage("/Error");
+        options.Conventions.AllowAnonymousToPage("/AccessDenied");
+        options.Conventions.AllowAnonymousToPage("/Book/Index");
+        options.Conventions.AllowAnonymousToPage("/Book/BookDetails");
+        options.Conventions.AllowAnonymousToPage("/Blog/Index");
+        options.Conventions.AllowAnonymousToPage("/Blog/BLogDetails");
+        options.Conventions.AllowAnonymousToPage("/Accounts/login");
+        options.Conventions.AllowAnonymousToPage("/Search/Index");
+        options.Conventions.AllowAnonymousToPage("/Product");
+        options.Conventions.AllowAnonymousToPage("/Cart");
+        options.Conventions.AllowAnonymousToPage("/WishList");
+
+        // Admin area: require Admin policy
         options.Conventions.AuthorizeAreaFolder("Admin", "/", "Admin");
-
-
     });
-
-
-
-// Add services to the container.
-builder.Services.AddRazorPages();
-
 
 var app = builder.Build();
 
@@ -75,20 +92,14 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
+app.UseHttpsRedirection();
+app.UseStaticFiles();
+app.UseCookiePolicy();
+app.UseRouting();
 
-app.UseAuthentication(); // احراز هویت (در صورتی که دارید).
-app.UseHttpsRedirection(); // اطمینان از استفاده از HTTPS.
-app.UseStaticFiles(); // برای سرویس‌دهی فایل‌های استاتیک.
+app.UseAuthentication();
+app.UseAuthorization();
 
-app.UseCookiePolicy(); // اعمال سیاست‌های مربوط به کوکی‌ها.
+app.MapRazorPages();
 
-
-
-
-app.UseRouting(); // مسیریابی درخواست‌ها.
-app.UseAuthorization(); // مجوزها و دسترسی‌ها.
-
-app.MapControllers(); // نقشه‌برداری از کنترلرها.
-app.MapRazorPages(); // نقشه‌برداری از صفحات Razor.
-
-app.Run(); // اجرای برنامه.
+app.Run();

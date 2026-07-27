@@ -1,10 +1,11 @@
 using BookM.Application.Contracts.BooksApplication;
-using BookM.Domain.Book.AD;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace BookMarket.Areas.Admin.Pages.Book
 {
+    [Authorize(Roles = "Admin")]
     public class AdminIndexModel : PageModel
     {
         private readonly IBookApplication _bookApplication;
@@ -12,17 +13,18 @@ namespace BookMarket.Areas.Admin.Pages.Book
         {
             _bookApplication = bookApplication;
         }
-        public List<BookViewModel> Books { get; set; }
+        public List<BookViewModel> Books { get; set; } = new();
+
         public void OnGet()
         {
             Books = _bookApplication.GetAll();
-          
         }
-        public IActionResult OnGetDelete(int id)
+
+        public IActionResult OnPostDelete(int id)
         {
             _bookApplication.Delete(id);
-            TempData["danger"] = "کتاب با موفقیت ثبت شد...";
-            return Redirect("./AdminIndex");
+            TempData["danger"] = "کتاب با موفقیت حذف شد.";
+            return RedirectToPage();
         }
     }
 }

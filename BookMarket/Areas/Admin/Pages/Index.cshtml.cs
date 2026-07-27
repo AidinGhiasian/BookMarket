@@ -1,9 +1,8 @@
 using BookM.ClientQueries.Model.Comment;
 using BookM.ClientQueries.Queries;
-using DocumentFormat.OpenXml.Office2010.Excel;
+using CommentM.Domain.Comment.AD;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Services.Application;
 
 namespace BookMarket.Areas.Admin.Pages
 {
@@ -14,20 +13,26 @@ namespace BookMarket.Areas.Admin.Pages
         {
             _commentQueries = commentQueries;
         }
-        public List<CommentQueryViewModel> Comments { get; set; }
-        public void OnGet(long? id, int? status)
+        public List<CommentQueryViewModel> Comments { get; set; } = new();
+
+        public void OnGet()
         {
-            Comments = _commentQueries.GetAll().Where(x => x.IsStatus == 1).Take(4).ToList();
-            if (id!=null && status!=null)
-            {
-                long Id=id.Value;
-                int Status=status.Value;
-                _commentQueries.ChangeStatus(Id, Status);
-
-            }
+            Comments = _commentQueries.GetAll()
+                .Where(x => x.IsStatus == (int)CommentStatus.Pending)
+                .Take(4).ToList();
         }
-      
 
+        public IActionResult OnPostApprove(long id)
+        {
+            _commentQueries.ChangeStatus(id, (int)CommentStatus.Approved);
+            return RedirectToPage();
+        }
+
+        public IActionResult OnPostReject(long id)
+        {
+            _commentQueries.ChangeStatus(id, (int)CommentStatus.Rejected);
+            return RedirectToPage();
+        }
     }
-
 }
+

@@ -1,16 +1,6 @@
-﻿using Blog.Domain.BlogAD;
-using BookM.Domain.Book.AD;
 using CommentM.Domain.Comment.AD;
-using CrystalDecisions.ReportAppServer;
-using DocumentFormat.OpenXml.Office2010.Excel;
-using FLEXYGO.GoogleResourceTypes;
+using Microsoft.EntityFrameworkCore;
 using Services.Application;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Security;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CommentM.Infrastructure.EFCore.Repository
 {
@@ -19,62 +9,51 @@ namespace CommentM.Infrastructure.EFCore.Repository
         private readonly CommentDbContext _commentDbContext;
         public CommentRepository(CommentDbContext commentdbcontext) : base(commentdbcontext)
         {
-            
             _commentDbContext = commentdbcontext;
         }
 
-        public List<Comments> CommentStatus(int status,int ownerid)
+        public List<Comments> CommentStatus(int? status, int? ownerid, int? type = null)
         {
-
-            if (status!=null)
-            {
-                if (ownerid!=null)
-                {
-                    var comments = _commentDbContext.Comments.Where(x => x.IsStatus == status && x.OwnerId == ownerid).ToList();
-                    return comments;
-                }
-            }
-            return _commentDbContext.Comments.Where(x => x.IsStatus == status && x.OwnerId == ownerid).ToList();
+            IQueryable<Comments> q = _commentDbContext.Comments;
+            if (status.HasValue)
+                q = q.Where(x => x.IsStatus == status.Value);
+            if (ownerid.HasValue)
+                q = q.Where(x => x.OwnerId == ownerid.Value);
+            if (type.HasValue)
+                q = q.Where(x => x.Type == type.Value);
+            return q.ToList();
         }
 
         public OperationResult ChangeStatus(long id, int status)
         {
-            OperationResult result = new OperationResult();
             var comment = _commentDbContext.Comments.FirstOrDefault(x => x.Id == id);
-            if (comment != null)
-            {
-                comment.ChangeStatus(status);
-                result.IsSuccess();
-                _commentDbContext.SaveChanges();
-            }
-                return result.Failed(ApplicationMessage.NotFound);
+            if (comment == null)
+                return new OperationResult().Failed(ApplicationMessage.NotFound);
+
+            comment.ChangeStatus(status);
+            _commentDbContext.SaveChanges();
+            return new OperationResult().IsSuccess();
         }
 
-
-
-        public List<Comments> GetComment(int ownerid,int status)
+        public List<Comments> GetComment(int ownerid, int? status, int? type = null)
         {
-           
-            var comments = _commentDbContext.Comments.Where(x => x.OwnerId == ownerid).ToList();
-           
-            return comments;
-
+            IQueryable<Comments> q = _commentDbContext.Comments.Where(x => x.OwnerId == ownerid);
+            if (status.HasValue)
+                q = q.Where(x => x.IsStatus == status.Value);
+            if (type.HasValue)
+                q = q.Where(x => x.Type == type.Value);
+            return q.ToList();
         }
 
         public OperationResult Delete(long id)
         {
-            OperationResult result = new OperationResult();
             var comment = _commentDbContext.Comments.FirstOrDefault(x => x.Id == id);
-            if (comment != null)
-            {
+            if (comment == null)
+                return new OperationResult().Failed(ApplicationMessage.NotFound);
 
-                _commentDbContext.Comments.Remove(comment);
-                _commentDbContext.SaveChanges();
-                return result.IsSuccess();
-                
-            }
-             return result.Failed(ApplicationMessage.NotFound);
+            _commentDbContext.Comments.Remove(comment);
+            _commentDbContext.SaveChanges();
+            return new OperationResult().IsSuccess();
         }
-
     }
 }

@@ -1,44 +1,44 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 namespace CommentM.Domain.Comment.AD
 {
+    public enum CommentStatus
+    {
+        Pending = 1,
+        Approved = 2,
+        Rejected = 3,
+    }
+
+    public enum CommentType
+    {
+        Book = 1,
+        Blog = 2,
+        Event = 3,
+    }
+
     public class Comments
     {
         public long Id { get; private set; }
-        public string FullName { get; private set; }//کاربر
-        public string Message { get; private set; }//کاربر
-        public int OwnerId { get; private set; }// پست یا کتابی که قراره براش نظر ثبت بشهID
-        public int Type { get; private set; }//تایپ آن چیزی که قراره براش نظر ثبت بشه :Book=>1,Blog=>2,Event=>3
+        public string FullName { get; private set; }
+        public string Message { get; private set; }
+        public int OwnerId { get; private set; }
+        public int Type { get; private set; }
         public DateTime CommentDatetime { get; private set; }
-        public int IsStatus { get; private set; }//تایید نشدن یک کامنت
-        //1=خوانده نشده,
-        //2=تایید شدهو
-        //3=رد شده
+        public int IsStatus { get; private set; }
 
-        public void Cancel() => IsStatus = 3;//در حالت عادی true باشد
+        public void Cancel() => IsStatus = (int)CommentStatus.Rejected;
+        public void Approve() => IsStatus = (int)CommentStatus.Approved;
 
-        public Comments() { }
+        private Comments() { }
 
-        public Comments(string name, string message,int ownerId)
-
+        public Comments(string name, string message, int ownerId, int type = (int)CommentType.Book)
         {
-            FullName = name;
-            Message = message;
+            FullName = string.IsNullOrWhiteSpace(name) ? throw new ArgumentNullException(nameof(name)) : name;
+            Message = string.IsNullOrWhiteSpace(message) ? throw new ArgumentNullException(nameof(message)) : message;
             OwnerId = ownerId;
-            CommentDatetime=DateTime.Now;
-            IsStatus = 1;
+            Type = type;
+            CommentDatetime = DateTime.Now;
+            IsStatus = (int)CommentStatus.Pending;
+        }
 
-        }
-        public void ChangeStatus( int isStatus)
-        {
-            IsStatus = isStatus;
-        }
+        public void ChangeStatus(int isStatus) => IsStatus = isStatus;
     }
-    
-        
-
 }

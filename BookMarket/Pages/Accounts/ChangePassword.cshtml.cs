@@ -1,38 +1,47 @@
 using AccountM.Application.Contracts.AccountApplication;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Org.BouncyCastle.Crypto.Signers;
-using Passbook.Generator;
 using Services.Application.AuthHelper;
 
 namespace BookMarket.Pages.Accounts
 {
+    [Authorize]
     public class ChangePasswordModel : PageModel
     {
-        public void OnGet()
-        {
-
-        }
-        
-        public PasswordViewModel Password { get; set; }
-
-        private readonly IAccountApplication _accountApplicaiton;
+        private readonly IAccountApplication _accountApplication;
         private readonly IAuthHelper _authHelper;
 
-        public ChangePasswordModel(IAccountApplication accountApplication,IAuthHelper authHelper)
+        public ChangePasswordModel(IAccountApplication accountApplication, IAuthHelper authHelper)
         {
-            _accountApplicaiton = accountApplication;
+            _accountApplication = accountApplication;
             _authHelper = authHelper;
         }
-        public void OnPost(string password,string rePassword)
+
+        public void OnGet() { }
+
+        public IActionResult OnPost(string password, string rePassword)
         {
-            var newPassword = new PasswordViewModel()
+            if (string.IsNullOrWhiteSpace(password) || password != rePassword)
+            {
+                TempData["Error"] = "رمز عبور و تکرار آن یکسان نیست.";
+                return Page();
+            }
+
+            var newPassword = new PasswordViewModel
             {
                 Id = _authHelper.CurrentAccountId(),
                 Password = password,
                 RePassword = rePassword,
             };
-            _accountApplicaiton.ChangePassword(newPassword);
+            var res = _accountApplication.ChangePassword(newPassword);
+            if (!res.Success)
+            {
+                TempData["Error"] = res.Message;
+                return Page();
+            }
+            TempData["Success"] = "رمز عبور با موفقیت تغییر یافت.";
+            return RedirectToPage("/Dashboard");
         }
     }
 }

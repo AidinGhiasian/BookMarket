@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -46,7 +46,7 @@ namespace BookM.Application.Contracts.BooksApplication
 
         [Required(ErrorMessage = "لطفا قیمت کتاب را وارد کنید...")]
         [Display(Name = "قیمت کتاب")]
-        public string Price { get; set; }
+        public long Price { get; set; }
         [Required(ErrorMessage = "لطفا توضیحات کوتاه را وارد کنید...")]
         [Display(Name = "توضیحات کوتاه")]
         public string ShortDescription { get; set; }

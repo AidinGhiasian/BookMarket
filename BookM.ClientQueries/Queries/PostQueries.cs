@@ -1,15 +1,5 @@
-﻿using Blog.Domain.BlogAD;
 using BlogM.Application.Contracts.PostApplication;
-using BookM.ClientQueries.Blog.Post;
 using BookM.ClientQueries.Model.Blog.Post;
-using Microsoft.EntityFrameworkCore;
-
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Web.WebPages;
 
 namespace BookM.ClientQueries.Queries
 {
@@ -21,81 +11,55 @@ namespace BookM.ClientQueries.Queries
         {
             _postApplication = postApplication;
         }
+
         public List<PostQueryViewModel> GetAll()
-        {
-            return _postApplication.GetAll()
-               .Select(x => new PostQueryViewModel
-               {
-                   Id = x.Id,
-                   Picture = x.Picture,
-                   Title = x.Title,
-                   ShortDescription = x.ShortDescription,
-                   Description = x.Description,
-                   Category = x.Category,
-                   IsAvailable = x.IsAvailable
-
-               })
-               .ToList();
-        }
-
-
+            => _postApplication.GetAll().Select(Map).ToList();
 
         public List<PostQueryViewModel> GetAllBlogWithCategory(int? categoryId)
-        {
-            return _postApplication.GetAll()
-               .Select(x => new PostQueryViewModel
-               {
-                   Id = x.Id,
-                   Picture = x.Picture,
-                   Title = x.Title,
-                   ShortDescription = x.ShortDescription,
-                   Description = x.Description,
-                   Category = x.Category,
-                   IsAvailable = x.IsAvailable,
-                   categoryId = x.BlogCategoryId,
+            => _postApplication.GetAll()
+                .Where(x => x.BlogCategoryId == categoryId)
+                .Select(Map)
+                .ToList();
 
-
-               }).Where(x => x.categoryId == categoryId)
-               .ToList();
-        }
-        public PostQueryViewModel GetDetail(int id)
+        public PostQueryViewModel? GetDetail(int id)
         {
             var post = _postApplication.GetById(id);
-
-            if (post == null)
-                return null;
-
-            return new PostQueryViewModel
-            {
-                Id = post.Id,
-                Picture = post.Picture,
-                Title = post.Title,
-                ShortDescription = post.ShortDescription,
-                Description = post.Description,
-                PostTime = post.PostTime,
-                Category = post.Category,
-                IsAvailable = post.IsAvailable,
-                categoryId = post.BlogCategoryId
-
-            };
+            return post == null ? null : Map(post);
         }
 
-        public List<PostQueryViewModel> Search(string title)
+        public List<PostQueryViewModel> Search(string? title)
         {
-            return _postApplication.Search(title).Select(x => new PostQueryViewModel
-            {
-                Id = x.Id,
-                Picture = x.Picture,
-                Title = x.Title,
-                ShortDescription = x.ShortDescription,
-                Description = x.Description,
-                IsAvailable = x.IsAvailable,
-                categoryId = x.BlogCategoryId,
+            if (string.IsNullOrWhiteSpace(title))
+                return new List<PostQueryViewModel>();
 
-
-            }).Where(x => x.Title.Contains(title))
-                .ToList(); ;
-
+            return _postApplication.Search(title)
+                .Select(x => new PostQueryViewModel
+                {
+                    Id = x.Id,
+                    Picture = x.Picture,
+                    Title = x.Title,
+                    ShortDescription = x.ShortDescription,
+                    Description = x.Description,
+                    PostTime = x.PostTime.ToFarsi(),
+                    Category = x.BlogCategory?.Name ?? "",
+                    IsAvailable = x.IsAvailable,
+                    categoryId = x.BlogCategoryId,
+                })
+                .Where(x => x.Title.Contains(title))
+                .ToList();
         }
+
+        private static PostQueryViewModel Map(PostViewModel x) => new()
+        {
+            Id = x.Id,
+            Picture = x.Picture,
+            Title = x.Title,
+            ShortDescription = x.ShortDescription,
+            Description = x.Description,
+            Category = x.Category ?? "",
+            IsAvailable = x.IsAvailable,
+            PostTime = x.PostTime,
+            categoryId = x.BlogCategoryId,
+        };
     }
 }

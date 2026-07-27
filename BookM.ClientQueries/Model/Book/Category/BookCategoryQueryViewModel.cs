@@ -1,20 +1,15 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using BookM.Domain.Book.AD;
 
-namespace BookM.Application.Contracts.BooksCategoryApplication
+namespace BookM.ClientQueries.Model.Book.Category
 {
     public class BookCategoryQueryViewModel
     {
         public int Id { get; set; }
         public string CategoryName { get; set; }
-        public string? Description { get; set; }        
+        public string? Description { get; set; }
         public DateTime CreatedAt { get; set; }
-        public string Picture { get; set; }
-        public List<Books> Books { get;  set; } = new List<Books>();
-
+        public string? Picture { get; set; }
+        public int BookCount { get; set; }
     }
 }

@@ -1,33 +1,24 @@
-
 using AccountM.Application.Contracts.RoleApplication;
-using AccountManagement.Domain.RoleAgg;
-using AccountMInfrastructureConfiguration.Permisions;
-using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Services.Infrastructure;
-using System.Collections.Generic;
-
 
 namespace BookMarket.Areas.Admin.Pages.Account.Role
 {
+    [Authorize(Roles = "Admin")]
     public class IndexModel : PageModel
     {
-        [TempData]
-        public string Message { get; set; }
-        public List<RoleViewModel> Roles;
+        [TempData] public string? Message { get; set; }
+        public List<RoleViewModel> Roles { get; set; } = new();
 
-        private readonly IRoleApplication _roleRepository;
-
+        private readonly IRoleApplication _roleApplication;
         public IndexModel(IRoleApplication roleRepository)
         {
-            _roleRepository = roleRepository;
+            _roleApplication = roleRepository;
         }
-        //[NeedsPermission(AccountPermisions.ListRoles)]
 
         public void OnGet()
         {
-            Roles = _roleRepository.List();
+            Roles = _roleApplication.List();
         }
     }
 }

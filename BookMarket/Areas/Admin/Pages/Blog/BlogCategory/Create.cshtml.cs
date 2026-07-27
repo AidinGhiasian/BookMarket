@@ -1,9 +1,11 @@
-﻿using BlogM.Application.Contracts.BlogCategoryApplication;
+using BlogM.Application.Contracts.BlogCategoryApplication;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace BookMarket.Areas.Admin.Pages.Blog.BlogCategory
 {
+    [Authorize(Roles = "Admin")]
     public class CreateModel : PageModel
     {
         private readonly IBlogCategoryApplication _blogCategoryApplication;
@@ -11,18 +13,20 @@ namespace BookMarket.Areas.Admin.Pages.Blog.BlogCategory
         {
             _blogCategoryApplication = blogCategoryApplication;
         }
-        public void OnGet()
-        {
-        }
+
+        public void OnGet() { }
+
         public IActionResult OnPost(CreateBlogCategoryViewModel command)
         {
-          var result=  _blogCategoryApplication.Create(command);
+            if (!ModelState.IsValid) return Page();
+            var result = _blogCategoryApplication.Create(command);
             if (result.Failure)
             {
                 TempData["failed"] = result.Message;
+                return Page();
             }
-            return Redirect("./BlogCategoryIndex");
-
+            TempData["success"] = "دسته‌بندی با موفقیت ایجاد شد.";
+            return RedirectToPage("./BlogCategoryIndex");
         }
     }
 }

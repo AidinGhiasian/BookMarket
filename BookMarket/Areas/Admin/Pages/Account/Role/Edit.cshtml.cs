@@ -1,16 +1,18 @@
 using AccountM.Application.Contracts.RoleApplication;
-using AccountMInfrastructureConfiguration.Permisions;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Services.Infrastructure;
 
-namespace ServiceHost.Areas.Admin.Pages.Account.Role
+namespace BookMarket.Areas.Admin.Pages.Account.Role
 {
+    [Authorize(Roles = "Admin")]
     public class EditModel : PageModel
     {
-        public EditViewModel Command;
-        public List<SelectListItem> Permissions = new List<SelectListItem>();
+        public EditViewModel Command { get; set; } = new();
+        public List<SelectListItem> Permissions { get; set; } = new();
+
         private readonly IRoleApplication _roleApplication;
         private readonly IEnumerable<IPermissionExposer> _exposers;
 
@@ -19,7 +21,6 @@ namespace ServiceHost.Areas.Admin.Pages.Account.Role
             _roleApplication = roleApplication;
             _exposers = exposers;
         }
-        //[NeedsPermission(AccountPermisions.EditRoles)]
 
         public void OnGet(int id)
         {
@@ -29,17 +30,16 @@ namespace ServiceHost.Areas.Admin.Pages.Account.Role
                 var exposedPermissions = exposer.Expose();
                 foreach (var (key, value) in exposedPermissions)
                 {
-                    var group = new SelectListGroup {Name = key};
+                    var group = new SelectListGroup { Name = key };
                     foreach (var permission in value)
                     {
                         var item = new SelectListItem(permission.Name, permission.Code.ToString())
                         {
                             Group = group
                         };
-
-                        if (Command.MappedPermissions.Any(x => x.Code == permission.Code))
+                        if (Command.MappedPermissions != null &&
+                            Command.MappedPermissions.Any(x => x.Code == permission.Code))
                             item.Selected = true;
-
                         Permissions.Add(item);
                     }
                 }
@@ -48,7 +48,14 @@ namespace ServiceHost.Areas.Admin.Pages.Account.Role
 
         public IActionResult OnPost(EditViewModel command)
         {
-            var result = _roleApplication.Edit(command);
+            if (!ModelState.IsValid)
+            {
+                Command = command;
+                OnGet(command.Id);
+                return Page();
+            }
+            _roleApplication.Edit(command);
+            TempData["success"] = "نقش ویرایش شد.";
             return RedirectToPage("Index");
         }
     }

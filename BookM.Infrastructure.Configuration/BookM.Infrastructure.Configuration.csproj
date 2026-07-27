@@ -7,11 +7,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\AccountM.Infrastructure.EFCore\AccountM.Infrastructure.EFCore.csproj" />
     <ProjectReference Include="..\Book.Infrastructure.EFCore\Book.Infrastructure.EFCore.csproj" />
+    <ProjectReference Include="..\BookM.Application.Contracts\BookM.Application.Contracts.csproj" />
+    <ProjectReference Include="..\BookM.Application\BookM.Application.csproj" />
     <ProjectReference Include="..\BookM.ClientQueries\BookM.ClientQueries.csproj" />
     <ProjectReference Include="..\BookM.Infrastructure.EFCore\BookM.Infrastructure.EFCore.csproj" />
-    <ProjectReference Include="..\CommentM.Infrastructure.EFCore\CommentM.Infrastructure.EFCore.csproj" />
+    <ProjectReference Include="..\BlogM.Application.Contracts\BlogM.Application.Contracts.csproj" />
+    <ProjectReference Include="..\BlogM.Application\BlogM.Application.csproj" />
+    <ProjectReference Include="..\Services\Services.csproj" />
   </ItemGroup>
 
 </Project>

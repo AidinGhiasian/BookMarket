@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace BookM.ClientQueries.Blog.Post
+namespace BookM.ClientQueries.Model.Blog.Post
 {
     public class PostQueryViewModel
     {
@@ -17,6 +11,5 @@ namespace BookM.ClientQueries.Blog.Post
         public string Category { get; set; }
         public bool IsAvailable { get; set; }
         public int categoryId { get; set; }
-
     }
 }

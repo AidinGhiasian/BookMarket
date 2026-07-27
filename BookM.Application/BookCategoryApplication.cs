@@ -1,4 +1,4 @@
-﻿using BookM.Application.Contracts.BooksApplication;
+using BookM.Application.Contracts.BooksApplication;
 using BookM.Application.Contracts.BooksCategoryApplication;
 using BookM.Domain.Book.AD;
 using Services.Application;
@@ -31,8 +31,10 @@ namespace BookM.Application
         public bool Delete(int id)
         {
             var category = _bookcategory.GetById(id);
+            if (category == null) return false;
 
-            _fileUploader.Delete(category.Picture);
+            if (!string.IsNullOrWhiteSpace(category.Picture))
+                _fileUploader.Delete(category.Picture);
 
             var result = _bookcategory.Deleted(id);
             return result;
@@ -46,15 +48,14 @@ namespace BookM.Application
             var category = _bookcategory.GetById(update.Id);
             if (category != null)
             {
-                var pictureName = category.Picture;
+                var pictureName = category.Picture ?? "";
                 if (update.FileName != null)
                 {
-                    _fileUploader.Delete(category.Picture);
-                    var path = "Category";
-                    pictureName = _fileUploader.UploadNewSize(update.FileName, path, 720);
+                    if (!string.IsNullOrWhiteSpace(category.Picture))
+                        _fileUploader.Delete(category.Picture);
+                    pictureName = _fileUploader.UploadNewSize(update.FileName, "Category", 720);
                 }
-                category.UpdateCategory(update.CategoryName, pictureName, update.Description);
-
+                category.UpdateCategory(update.CategoryName, pictureName, update.Description, update.IsAvailable);
                 _bookcategory.SaveChanges();
             }
         }
@@ -72,14 +73,13 @@ namespace BookM.Application
         }
         public BookCategoryEditViewModel MapforEdit(BookCategories cat)
         {
-            var categpry = new BookCategoryEditViewModel
+            return new BookCategoryEditViewModel
             {
                 Id = cat.Id,
                 CategoryName = cat.Name,
                 Description = cat.Description,
-                pictureName = cat.Picture,
+                PictureName = cat.Picture,
             };
-            return categpry;
         }
         public BookCategoryViewModel Map(BookCategories cat)
         {

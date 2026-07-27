@@ -1,12 +1,6 @@
-﻿using CommentM.Application.Contracts;
+using CommentM.Application.Contracts;
 using CommentM.Domain.Comment.AD;
 using Services.Application;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CommentM.Application
 {
@@ -18,73 +12,56 @@ namespace CommentM.Application
             _commentrepository = commentrepository;
         }
 
-        public List<CommentViewModel> CommentStatus(int status,int ownerId)
-        {
-          return  _commentrepository.CommentStatus(status,ownerId).Select(Map).ToList();
-        }
+        public List<CommentViewModel> CommentStatus(int status, int ownerId)
+            => _commentrepository.CommentStatus(status, ownerId).Select(Map).ToList();
+
+        public List<CommentViewModel> CommentStatus(int status, int ownerId, int type)
+            => _commentrepository.CommentStatus(status, ownerId, type).Select(Map).ToList();
 
         public OperationResult Create(CreateViewModel create)
         {
-            var result= new OperationResult();
-            var CC = new Comments(create.FullName, create.Message,create.OwnerId);
-            _commentrepository.Add(CC);
+            var result = new OperationResult();
+            if (string.IsNullOrWhiteSpace(create.FullName) || string.IsNullOrWhiteSpace(create.Message))
+                return result.Failed("نام و متن نظر الزامی است.");
+
+            var type = create.Type > 0 ? create.Type : 1; // default to book
+            var cc = new Comments(create.FullName, create.Message, create.OwnerId, type);
+            _commentrepository.Add(cc);
             _commentrepository.SaveChanges();
-            return result.IsSuccess();
+            return result.IsSuccess("نظر شما با موفقیت ثبت شد و پس از تایید نمایش داده می‌شود.");
         }
 
-        public OperationResult ChangeStatus(long id,int status)
+        public OperationResult ChangeStatus(long id, int status)
         {
-            var result = new OperationResult();
-            var comment=  _commentrepository.GetByLongId(id);
-            if(comment==null)
-            {
-                return result.Failed("Not Found...");
-            }
-            _commentrepository.ChangeStatus(id,status);
-            return result.IsSuccess();
+            var comment = _commentrepository.GetByLongId(id);
+            if (comment == null)
+                return new OperationResult().Failed("نظر پیدا نشد.");
+
+            _commentrepository.ChangeStatus(id, status);
+            return new OperationResult().IsSuccess();
         }
 
         public List<CommentViewModel> GetAll()
-        {
-            return _commentrepository.GetAll().Select(Map).ToList();
-        }
+            => _commentrepository.GetAll().Select(Map).ToList();
 
         public List<CommentViewModel> GetComment(int ownerId)
-        {
-            
-            var commentViewModels = new List<CommentViewModel>();
-            var comments = _commentrepository.GetComment(ownerId,1);
-            foreach (var comment in comments)
-            {
-                commentViewModels.Add(Map(comment));
-            }
-            return commentViewModels;
-        }
+            => _commentrepository.GetComment(ownerId, (int)CommentStatus.Approved).Select(Map).ToList();
 
+        public List<CommentViewModel> GetComment(int ownerId, int type)
+            => _commentrepository.GetComment(ownerId, (int)CommentStatus.Approved, type).Select(Map).ToList();
 
-        public CommentViewModel Map(Comments comments)
-        {
-            return new CommentViewModel
+        public OperationResult Delete(long id) => _commentrepository.Delete(id);
+
+        public CommentViewModel Map(Comments c)
+            => new()
             {
-                Id =comments.Id,
-                FullName = comments.FullName,
-                Message = comments.Message,
-                CommentDateTime = comments.CommentDatetime,
-                OwnerId = comments.OwnerId,
-                IsStatus=comments.IsStatus
+                Id = c.Id,
+                FullName = c.FullName,
+                Message = c.Message,
+                CommentDateTime = c.CommentDatetime.ToFarsi(),
+                OwnerId = c.OwnerId,
+                IsStatus = c.IsStatus,
+                Type = c.Type,
             };
-        }
-
-        public OperationResult Delete(long id)
-        {
-            var result = new OperationResult();
-            var comment = _commentrepository.GetByLongId(id);
-            if (comment == null)
-            {
-                return result.Failed("Not Found...");
-            }
-            _commentrepository.Delete(id);
-            return result.IsSuccess();
-        }
     }
 }

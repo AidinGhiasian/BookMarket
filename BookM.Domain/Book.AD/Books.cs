@@ -1,19 +1,12 @@
-﻿
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Numerics;
-using System.Text;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
+
 namespace BookM.Domain.Book.AD
 {
     public class Books
     {
         public int Id { get; private set; }
         public string? Picture { get; private set; }
-       
         public string BookTitle { get; private set; }
         public string Writer { get; private set; }
         public string Publisher { get; private set; }
@@ -22,23 +15,21 @@ namespace BookM.Domain.Book.AD
         public DateTime CreatetionDate { get; private set; }
         public DateTime UpdatedTime { get; private set; }
         public bool IsAvailable { get; private set; }
-        public string Price { get;private set; }
-        public BookCategories Category { get; private set; }
 
-        public Books() { }
+        public long Price { get; private set; }
 
+        public BookCategories? Category { get; private set; }
 
-        //رابطه با BookCategory با رابطه چند به چند
-       
+        private Books() { }
 
-        public Books(string picture, string booktitle, string writer, string publisher, int categoryId, string price,string shortdescription)
+        public Books(string? picture, string booktitle, string writer, string publisher,
+            int categoryId, long price, string shortdescription)
         {
             Picture = picture;
             BookTitle = booktitle;
             Writer = writer;
             Publisher = publisher;
             CategoryId = categoryId;
-
             CreatetionDate = DateTime.Now;
             UpdatedTime = DateTime.Now;
             IsAvailable = true;
@@ -46,9 +37,10 @@ namespace BookM.Domain.Book.AD
             ShortDescription = shortdescription;
         }
 
-        public void Edit(string picture,string bookTitle, string writer, string publisher, int categoryId, bool statusAvailable,string price,string shortdescription)
+        public void Edit(string? picture, string bookTitle, string writer, string publisher,
+            int categoryId, bool statusAvailable, long price, string shortdescription)
         {
-            if(picture!=null)
+            if (!string.IsNullOrWhiteSpace(picture))
                 Picture = picture;
             BookTitle = bookTitle;
             Writer = writer;
@@ -57,8 +49,7 @@ namespace BookM.Domain.Book.AD
             UpdatedTime = DateTime.Now;
             IsAvailable = statusAvailable;
             Price = price;
-            ShortDescription=shortdescription;
+            ShortDescription = shortdescription;
         }
     }
 }
-

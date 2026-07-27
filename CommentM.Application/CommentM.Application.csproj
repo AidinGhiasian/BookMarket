@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
@@ -9,6 +9,8 @@
   <ItemGroup>
     <ProjectReference Include="..\CommentM.Application.Contracts\CommentM.Application.Contracts.csproj" />
     <ProjectReference Include="..\CommentM.Domain\CommentM.Domain.csproj" />
+    <ProjectReference Include="..\CommentM.Infrastructure.EFCore\CommentM.Infrastructure.EFCore.csproj" />
+    <ProjectReference Include="..\Services\Services.csproj" />
   </ItemGroup>
 
 </Project>

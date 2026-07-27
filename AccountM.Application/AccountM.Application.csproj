@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
@@ -7,10 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-
     <ProjectReference Include="..\AccountM.Application.Contracts\AccountM.Application.Contracts.csproj" />
-
     <ProjectReference Include="..\AccountM.Domain\AccountM.Domain.csproj" />
+    <ProjectReference Include="..\AccountM.Infrastructure.EFCore\AccountM.Infrastructure.EFCore.csproj" />
+    <ProjectReference Include="..\Services\Services.csproj" />
   </ItemGroup>
 
 </Project>

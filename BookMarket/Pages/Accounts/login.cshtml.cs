@@ -1,53 +1,51 @@
-using AccountM.Infrastructure.EFCore;
-using AM.Domain.Account.AD;
-using Microsoft.AspNetCore.Mvc.RazorPages;
-using AccountM.Application;
 using Microsoft.AspNetCore.Mvc;
-using BookM.ClientQueries.Model.Account;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 using AccountM.Application.Contracts.AccountApplication;
 
 namespace BookMarket.Pages.Account
 {
-
+    [AllowAnonymous]
     public class loginModel : PageModel
     {
-        public List<BookM.ClientQueries.Model.Account.AccountViewModel> Accounts { get; set; }
-        public BookM.ClientQueries.Model.Account.AccountViewModel Account { get; set; }
+        private readonly IAccountApplication _accountApplication;
 
-
-        private readonly IAccountQueries _accountQueries;
-
-        public loginModel(IAccountQueries accountQueries)
+        public loginModel(IAccountApplication accountApplication)
         {
-            _accountQueries = accountQueries;
-
-        }
-        public void OnGet()
-        {
-
+            _accountApplication = accountApplication;
         }
 
-        public IActionResult OnPostLogin(string? phone, string? password)
+        [BindProperty] public string? LoginPhone { get; set; }
+        [BindProperty] public string? LoginPassword { get; set; }
 
+        public void OnGet() { }
+
+        public async Task<IActionResult> OnPostLoginAsync(string? phone, string? password)
         {
-            _accountQueries.Login(phone, password);
-
-
-            return RedirectToPage("/index");
-
-        }
-        public IActionResult OnPostRegister(CreateViewModel model)
-        {
-            model.BirthDate = DateTime.Now;
-            model.Addres = " ";
-            model.Email=" ";
-            
-            _accountQueries.Register(model);
-            return RedirectToPage("/index");
+            var result = await _accountApplication.LoginAsync(phone, password);
+            if (!result.Success)
+            {
+                TempData["Error"] = result.Message;
+                return Page();
+            }
+            return RedirectToPage("/Index");
         }
 
+        public async Task<IActionResult> OnPostRegisterAsync(CreateViewModel model)
+        {
+            if (!ModelState.IsValid)
+                return Page();
 
-
-
+            try
+            {
+                _accountApplication.Create(model);
+                TempData["Success"] = "ثبت‌نام با موفقیت انجام شد، اکنون وارد شوید.";
+                return RedirectToPage();
+            }
+            catch (Exception ex)
+            {
+                TempData["Error"] = ex.Message;
+                return Page();
+            }
+        }
     }
 }

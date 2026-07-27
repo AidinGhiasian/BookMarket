@@ -1,9 +1,5 @@
-﻿using Services.Application;
-using System;
+using Services.Application;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Blog.Domain.BlogCategoryAD
 {
@@ -14,8 +10,6 @@ namespace Blog.Domain.BlogCategoryAD
         List<BlogCategory> GetAvailableCategories();
         BlogCategory? GetWithPostsBySlug(string slug);
         bool Exists(string name);
-        BlogCategory GetPostsWithCategory();
-        public List<BlogCategory> GetPostWithCategories();
-
+        List<BlogCategory> GetPostWithCategories();
     }
 }

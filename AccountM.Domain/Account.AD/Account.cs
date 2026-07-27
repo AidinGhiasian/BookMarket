@@ -1,17 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using AccountManagement.Domain.RoleAgg;
+using System.ComponentModel.DataAnnotations;
 
 namespace AM.Domain.Account.AD
 {
     public class Account
     {
-
         public int Id { get; private set; }
         public string Name { get; private set; }
         public string Family { get; private set; }
@@ -25,13 +18,13 @@ namespace AM.Domain.Account.AD
         public bool IsAvalable { get; private set; }
         public int RoleId { get; private set; }
         public string? Picture { get; private set; }
-        public Role Role { get; private set; }
-        public Account() { }
+        public Role? Role { get; private set; }
 
-        public Account(string name, string family, string phoneNumber, string email, DateTime birthDate, string addres, string password, int roleId, string? picture)
+        private Account() { }
+
+        public Account(string name, string family, string phoneNumber, string email,
+            DateTime birthDate, string addres, string password, int roleId, string? picture)
         {
-            var random = new Random();
-
             Name = name;
             Family = family;
             PhoneNumber = phoneNumber;
@@ -39,32 +32,38 @@ namespace AM.Domain.Account.AD
             BirthDate = birthDate;
             CreationDate = DateTime.Now;
             Addres = addres;
-            Scuritycode = random.Next(100000, 999999).ToString();
+            Scuritycode = RandomNumberGeneratorCode();
             Password = password;
             IsAvalable = true;
-            RoleId = 1;
+            RoleId = roleId;          // ✅ Fix: respect the provided roleId
             Picture = picture;
         }
-        public void Edit(string name, string family, string phoneNumber, string email, DateTime birthDate, string addres, int roleId, string? picture)
+
+        public void Edit(string name, string family, string phoneNumber, string email,
+            DateTime birthDate, string addres, int roleId, string? picture)
         {
             Name = name;
             Family = family;
             PhoneNumber = phoneNumber;
             Email = email;
             BirthDate = birthDate;
-            CreationDate = DateTime.Now;
             Addres = addres;
             RoleId = roleId;
-            Picture = picture;
+            if (!string.IsNullOrWhiteSpace(picture))
+                Picture = picture;
+        }
 
-        }
-        public void ChangeStatus(bool isAvaleble)
+        public void ChangeStatus(bool isAvaleble) => IsAvalable = isAvaleble;
+
+        public void ChangePassword(string password) => Password = password;
+
+        private static string RandomNumberGeneratorCode()
         {
-            IsAvalable = isAvaleble;
-        }
-        public void ChangePassword(string password)
-        {
-            Password = password;
+            // cryptographically secure 6-digit code
+            Span<byte> bytes = stackalloc byte[4];
+            RandomNumberGenerator.Fill(bytes);
+            var num = BitConverter.ToUInt32(bytes) % 900000 + 100000;
+            return num.ToString();
         }
     }
 }

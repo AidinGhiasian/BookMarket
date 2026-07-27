@@ -1,4 +1,4 @@
-﻿using BookM.Domain.Book.AD;
+using BookM.Domain.Book.AD;
 using Microsoft.AspNetCore.Http;
 using System.ComponentModel.DataAnnotations;
 
@@ -38,9 +38,8 @@ namespace BookM.ClientQueries.Model.Book.Books
         [Display(Name = "فعال/غیرفعال")]
         public bool IsAvailable { get; set; }
 
-        [Required(ErrorMessage = "لطفا قیمت کتاب را وارد کنید...")]
         [Display(Name = "قیمت کتاب")]
-        public string Price { get; set; }
+        public long Price { get; set; }
         [Required(ErrorMessage = "لطفا توضیحات کوتاه را وارد کنید...")]
         [Display(Name = "توضیحات کوتاه")]
         public string ShortDescription { get; set; }

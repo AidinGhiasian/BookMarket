@@ -1,4 +1,4 @@
-﻿using AccountM.Application.Contracts.AccountApplication;
+using AccountM.Application.Contracts.AccountApplication;
 using AccountManagement.Domain.RoleAgg;
 using AM.Domain.Account.AD;
 using Services.Application;
@@ -11,21 +11,22 @@ namespace AccountM.Application
     public class AccountApplication : IAccountApplication
     {
         private readonly IAccountRepository _accountRepository;
-        public IPasswordHasher _PasswordHasher;
-        public IRoleRepository _roleRepository;
-        private readonly IFileUploader _fileUploder;
+        private readonly IPasswordHasher _passwordHasher;
+        private readonly IRoleRepository _roleRepository;
+        private readonly IFileUploader _fileUploader;
         private readonly IAuthHelper _authHelper;
 
-        public AccountApplication(IAccountRepository accountRepository
-            , IPasswordHasher passwordHasher,
-            IRoleRepository roleRepository
-            , IFileUploader fileUploader,
+        public AccountApplication(
+            IAccountRepository accountRepository,
+            IPasswordHasher passwordHasher,
+            IRoleRepository roleRepository,
+            IFileUploader fileUploader,
             IAuthHelper authHelper)
         {
             _accountRepository = accountRepository;
-            _PasswordHasher = passwordHasher;
+            _passwordHasher = passwordHasher;
             _roleRepository = roleRepository;
-            _fileUploder = fileUploader;
+            _fileUploader = fileUploader;
             _authHelper = authHelper;
         }
 
@@ -34,43 +35,41 @@ namespace AccountM.Application
             string picture = "";
             if (model.FilePicture != null)
             {
-                var path = "Account";
-                 picture = _fileUploder.UploadNewSize(model.FilePicture, path, 720);
+                picture = _fileUploader.UploadNewSize(model.FilePicture, "Account", 720);
             }
-            var password = _PasswordHasher.Hash(model.Password);
+            var password = _passwordHasher.Hash(model.Password);
 
             var acc = new Account(
                 model.Name,
                 model.Family,
                 model.PhoneNumber,
-                model.Email,
+                string.IsNullOrWhiteSpace(model.Email) ? "" : model.Email,
                 model.BirthDate,
-                model.Addres,
-               password, Convert.ToInt32(Roles.User),
-             picture
+                string.IsNullOrWhiteSpace(model.Addres) ? "" : model.Addres,
+                password,
+                Roles.UserId,
+                picture
             );
             _accountRepository.Create(acc);
         }
 
-        public void Delete(int id)
-        {
-            _accountRepository.Delete(id);
-        }
-        public void Restore(int id)
-        {
-            _accountRepository.Restore(id);
-        }
+        public void Delete(int id) => _accountRepository.Delete(id);
+        public void Restore(int id) => _accountRepository.Restore(id);
+
         public void Edit(EditViewModel model)
         {
+            var acc = _accountRepository.GetbyId(model.Id)
+                ?? throw new InvalidOperationException(ApplicationMessage.NotFound);
 
-            var acc = _accountRepository.GetById(model.Id);
+            var pictureName = acc.Picture ?? "";
             if (model.FilePicture != null)
             {
-                _fileUploder.Delete(model.PictureName);
+                if (!string.IsNullOrWhiteSpace(acc.Picture))
+                    _fileUploader.Delete(acc.Picture);
 
-                var path = "Account";
-                model.PictureName = _fileUploder.UploadNewSize(model.FilePicture, path, 720);
+                pictureName = _fileUploader.UploadNewSize(model.FilePicture, "Account", 720);
             }
+
             acc.Edit(
                 model.Name,
                 model.Family,
@@ -79,33 +78,22 @@ namespace AccountM.Application
                 model.BirthDate,
                 model.Addres,
                 model.RoleId,
-                model.PictureName
+                pictureName
             );
-
 
             _accountRepository.SaveChanges();
         }
 
         public List<AccountViewModel> GetAccounts(bool isStatus)
-        {
-            return _accountRepository.GetAccounts(isStatus).Select(Map).ToList();
+            => _accountRepository.GetAccounts(isStatus).Select(Map).ToList();
 
-        }
         public List<AccountViewModel> GetAll()
-        {
-            var accounts = _accountRepository.GetAll();
-            var list = new List<AccountViewModel>();
-
-            foreach (var account in accounts)
-            {
-                list.Add(Map(account));
-            }
-            return list;
-        }
+            => _accountRepository.GetAll().Select(Map).ToList();
 
         public EditViewModel Getdetail(int id)
         {
             var model = _accountRepository.GetbyId(id);
+            if (model == null) throw new InvalidOperationException(ApplicationMessage.NotFound);
             return new EditViewModel
             {
                 Id = model.Id,
@@ -115,42 +103,59 @@ namespace AccountM.Application
                 Email = model.Email,
                 BirthDate = model.BirthDate,
                 Addres = model.Addres,
+                PictureName = model.Picture,
+                RoleId = model.RoleId,
             };
         }
+
         public AccountViewModel GetBy(int id)
         {
             var model = _accountRepository.GetbyId(id);
-            return Map(model);
-
+            return model == null ? null : Map(model);
         }
+
         public AccountViewModel GetBy(string phone)
         {
             var a = _accountRepository.Getby(phone);
-            return Map(a);
+            return a == null ? null : Map(a);
         }
 
-        public OperationResult login(string? phone, string? password)
+        public async Task<OperationResult> LoginAsync(string? phone, string? password)
         {
             var operation = new OperationResult();
+            if (string.IsNullOrWhiteSpace(phone) || string.IsNullOrWhiteSpace(password))
+                return operation.Failed("شماره همراه یا رمز عبور وارد نشده است.");
+
             var account = _accountRepository.Getby(phone);
-
             if (account == null)
-               return operation.Failed(ApplicationMessage.NotFound);
+                return operation.Failed(ApplicationMessage.NotFound);
 
-            (bool Verified, bool NeedUpgrade) result = _PasswordHasher.Check(account.Password, password);
+            if (!account.IsAvalable)
+                return operation.Failed("حساب کاربری شما غیرفعال است.");
 
-            if (!result.Verified)
-                 return  operation.Failed(ApplicationMessage.NotFound);
+            var (verified, needsUpgrade) = _passwordHasher.Check(account.Password, password);
+            if (!verified)
+                return operation.Failed(ApplicationMessage.NotFound);
 
-            var permissions = _roleRepository.GetDetails(account.RoleId).Permissions.Select(x => x.PermissionCode).ToList();
+            var role = _roleRepository.GetDetails(account.RoleId);
+            if (role == null)
+                return operation.Failed("نقش کاربری شما یافت نشد.");
+            var permissions = role?.Permissions.Select(x => x.PermissionCode).ToList() ?? new List<int>();
 
+            var fullName = $"{account.Name} {account.Family}";
+            var authViewModel = new AuthViewModel(
+                account.Id, account.RoleId, fullName, account.PhoneNumber,
+                account.PhoneNumber, permissions, account.Picture ?? "", account.Addres ?? "", account.IsAvalable);
 
+            await _authHelper.SigninAsync(authViewModel);
 
-            var fulName = account.Name + " " + account.Family;
-            var authViewModel = new AuthViewModel(account.Id, account.RoleId, fulName, account.PhoneNumber,
-               account.PhoneNumber, permissions, account.Picture, account.Addres, account.IsAvalable);
-            _authHelper.Signin(authViewModel);
-            return operation.IsSuccess();
+            if (needsUpgrade)
+            {
+                account.ChangePassword(_passwordHasher.Hash(password));
+                _accountRepository.SaveChanges();
+            }
+
+            return operation.IsSuccess("ورود موفقیت‌آمیز.");
         }
 
         public AccountViewModel Map(Account model)
@@ -166,49 +171,38 @@ namespace AccountM.Application
                 cratetiondate = model.CreationDate,
                 Addres = model.Addres,
                 IsAvalable = model.IsAvalable,
+                Picture = model.Picture,
             };
-
         }
 
         public AccountViewModel GetdetailInfo(int id)
         {
             var model = _accountRepository.GetbyId(id);
-            return new AccountViewModel
-            {
-                Id = model.Id,
-                Name = model.Name,
-                Family = model.Family,
-                PhoneNumber = model.PhoneNumber,
-                Email = model.Email,
-                BirthDate = model.BirthDate,
-                Addres = model.Addres,
-            };
+            return model == null ? null : Map(model);
         }
-        public void Logout()
+
+        public async Task LogoutAsync()
         {
-            _authHelper.SignOut();
+            await _authHelper.SignOutAsync();
         }
 
         public OperationResult ChangePassword(PasswordViewModel command)
         {
             var operation = new OperationResult();
-            var account = _accountRepository.GetbyId(command.Id);
 
-            if (account.Id == null || command.Password == null || command.RePassword == null)
-            {
+            if (command.Id <= 0 || string.IsNullOrWhiteSpace(command.Password) || string.IsNullOrWhiteSpace(command.RePassword))
                 return operation.Failed(ApplicationMessage.NotFound);
-            }
 
             if (command.Password != command.RePassword)
                 return operation.Failed("رمز عبور و تکرار آن یکسان نیست.");
 
-            var password = _PasswordHasher.Hash(command.Password);
+            var account = _accountRepository.GetbyId(command.Id);
+            if (account == null) return operation.Failed(ApplicationMessage.NotFound);
 
-            account.ChangePassword(password);
-
+            account.ChangePassword(_passwordHasher.Hash(command.Password));
             _accountRepository.SaveChanges();
 
-            return operation.IsSuccess();
+            return operation.IsSuccess("رمز عبور با موفقیت تغییر یافت.");
         }
     }
 }

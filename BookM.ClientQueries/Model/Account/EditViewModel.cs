@@ -1,4 +1,4 @@
-﻿namespace BookM.ClientQueries.Model.Account
+namespace BookM.ClientQueries.Model.Account
 {
     public class EditViewModel
     {
@@ -9,5 +9,8 @@
         public DateTime BirthDate { get; set; }
         public string Addres { get; set; }
         public bool status { get; set; }
+        public string PhoneNumber { get; set; }
+        public string PictureName { get; set; }
+        public int RoleId { get; set; }
     }
 }

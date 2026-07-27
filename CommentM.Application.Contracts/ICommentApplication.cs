@@ -1,21 +1,16 @@
-﻿using CommentM.Domain.Comment.AD;
 using Services.Application;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CommentM.Application.Contracts
 {
     public interface ICommentApplication
     {
-        public OperationResult Create(CreateViewModel create);
-        public List<CommentViewModel> GetComment(int ownerId);
-        public List<CommentViewModel> CommentStatus(int status, int ownerId);
-        public List<CommentViewModel> GetAll();
-        public OperationResult ChangeStatus(long id, int status);
-        public OperationResult Delete(long id);
-        
+        OperationResult Create(CreateViewModel create);
+        List<CommentViewModel> GetComment(int ownerId);
+        List<CommentViewModel> GetComment(int ownerId, int type);
+        List<CommentViewModel> CommentStatus(int status, int ownerId);
+        List<CommentViewModel> CommentStatus(int status, int ownerId, int type);
+        List<CommentViewModel> GetAll();
+        OperationResult ChangeStatus(long id, int status);
+        OperationResult Delete(long id);
     }
 }

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -93,11 +93,9 @@ namespace BlogM.Application
                 IsAvailable = posts.IsAvailable,
                 PostTime = posts.PostTime.ToFarsi(),
                 UpdatedTime = posts.UpdatedTime,
-                Category = posts.BlogCategory.Name,
-                BlogCategoryId=posts.BlogCategoryId,
-                
+                Category = posts.BlogCategory?.Name ?? "",
+                BlogCategoryId = posts.BlogCategoryId,
             };
-
         }
         public List<Posts> Search(string title)
         {

@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
@@ -20,11 +20,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Book.Infrastructure.EFCore\BlogM.Infrastructure.EFCore.csproj" />
-    <ProjectReference Include="..\BookM.Application.Contracts\BookM.Application.Contracts.csproj" />
-    <ProjectReference Include="..\BookM.Application\BookM.Application.csproj" />
-    <ProjectReference Include="..\BookM.ClientQueries\BookM.ClientQueries.csproj" />
-    <ProjectReference Include="..\BookM.Infrastructure.EFCore\BookM.Infrastructure.EFCore.csproj" />
+    <ProjectReference Include="..\Blog.Domain\Blog.Domain.csproj" />
+    <ProjectReference Include="..\BlogM.Application.Contracts\BlogM.Application.Contracts.csproj" />
+    <ProjectReference Include="..\Services\Services.csproj" />
   </ItemGroup>
 
 </Project>

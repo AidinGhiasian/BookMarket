@@ -1,19 +1,7 @@
-﻿using BookM.Application.Contracts.BooksApplication;
-using BookM.Domain.Book.AD;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using BookM.Application.Contracts.BooksApplication;
-using BookM.Domain.Book.AD;
-using Microsoft.EntityFrameworkCore;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
-using System.Runtime.InteropServices;
 using BookM.Application.Contracts.BooksCategoryApplication;
-using BookM.Infrastructure.EFCore;
-using DocumentFormat.OpenXml.Spreadsheet;
-using DocumentFormat.OpenXml.Office2010.Excel;
+using BookM.Domain.Book.AD;
+using BookM.Infrastructure.EFCore.Repository;
 using Services.Application;
 
 namespace BookM.Application
@@ -23,60 +11,59 @@ namespace BookM.Application
         private readonly IBookRepository _bookRepository;
         private readonly IFileUploader _fileUploader;
         private readonly IBookCategoryRepository _bookCategoryRepository;
-        public BookApplication(IBookRepository bookRepository, IFileUploader fileUploader, IBookCategoryRepository bookCategoryRepository)
+
+        public BookApplication(IBookRepository bookRepository,
+            IFileUploader fileUploader,
+            IBookCategoryRepository bookCategoryRepository)
         {
             _bookRepository = bookRepository;
             _fileUploader = fileUploader;
             _bookCategoryRepository = bookCategoryRepository;
         }
+
         public void Create(CreateViewModel create)
         {
-            var path = "Book";
+            var pictureName = "";
+            if (create.FileName != null)
+                pictureName = _fileUploader.UploadNewSize(create.FileName, "Book", 720);
 
-            var picturename = _fileUploader.UploadNewSize(create.FileName, path, 720);
-            var npprice = create.Price;
-            var upload = new Books(picturename, create.BookTitle, create.Writer, create.Publisher, create.CategoryId, npprice, create.shortdescription);
-            _bookRepository.Create(upload);
+            if (!long.TryParse(create.Price, out var price))
+                throw new InvalidOperationException("قیمت باید یک عدد صحیح باشد.");
+
+            var book = new Books(pictureName, create.BookTitle, create.Writer, create.Publisher,
+                create.CategoryId, price, create.shortdescription);
+            _bookRepository.Create(book);
         }
 
-        public void Delete(int id)
-        {
-            _bookRepository.Delete(id);
-        }
+        public void Delete(int id) => _bookRepository.Delete(id);
 
-        public Books? GetById(int id)
-        {
-            var bookget = _bookRepository.GetById(id);
-            if (bookget != null)
-            {
-                return bookget;
-            }
-            return null;
-        }
-        public List<BookViewModel> GetAll()
-        {
-            return _bookRepository.GetBy().Select(map).ToList();
-        }
+        public Books? GetById(int id) => _bookRepository.GetById(id);
+
+        public List<BookViewModel> GetAll() => _bookRepository.GetBy().Select(Map).ToList();
 
         public void Edit(EditViewModel update)
         {
-            var upBooks = _bookRepository.GetById(update.Id);
+            var book = _bookRepository.GetById(update.Id);
+            if (book == null) throw new InvalidOperationException(ApplicationMessage.NotFound);
 
-            var PictureName = update.Picture;
-
-            var npprice = update.Price;
-
+            var pictureName = book.Picture ?? "";
             if (update.FileName != null)
             {
-                _fileUploader.Delete(update.Picture);
-                var path = "Book";
-                PictureName = _fileUploader.UploadNewSize(update.FileName, path, 720);
+                if (!string.IsNullOrWhiteSpace(book.Picture))
+                    _fileUploader.Delete(book.Picture);
+                pictureName = _fileUploader.UploadNewSize(update.FileName, "Book", 720);
             }
-            upBooks.Edit(PictureName, update.Picture, update.Writer, update.Publisher, update.CategoryId, update.status, npprice, update.shortdescription);
 
+            if (!long.TryParse(update.Price, out var price))
+                throw new InvalidOperationException("قیمت باید یک عدد صحیح باشد.");
+
+            book.Edit(pictureName, update.BookTitle, update.Writer, update.Publisher,
+                update.CategoryId, update.status, price, update.shortdescription);
+
+            _bookRepository.SaveChanges();
         }
 
-        private BookViewModel map(Books book)
+        private BookViewModel Map(Books book)
         {
             return new BookViewModel
             {
@@ -89,26 +76,15 @@ namespace BookM.Application
                 CreateDateTime = book.CreatetionDate,
                 IsAvailable = book.IsAvailable,
                 ShortDescription = book.ShortDescription,
-                Price = book.Price
-            };
-        }
-        public BookCategoryViewModel mapcategory(BookCategories category)
-        {
-            return new BookCategoryViewModel
-            {
-
-                CategoryName = category.Name,
-                Books = category.Books,
-                CreatedAt = category.CreatedAt,
-                Description = category.Description,
-                Id = category.Id,
-
+                Price = book.Price,
+                CategoryName = book.Category?.Name,
             };
         }
 
         public EditViewModel Getdetail(int id)
         {
             var book = _bookRepository.GetById(id);
+            if (book == null) throw new InvalidOperationException(ApplicationMessage.NotFound);
             return new EditViewModel
             {
                 Id = book.Id,
@@ -118,31 +94,19 @@ namespace BookM.Application
                 Publisher = book.Publisher,
                 CategoryId = book.CategoryId,
                 shortdescription = book.ShortDescription,
-                Categorey = book.Category.Name,
-                Price = book.Price
+                Categorey = book.Category?.Name ?? "",
+                Price = book.Price.ToString(),
+                status = book.IsAvailable,
             };
         }
+
         public BookViewModel GetdetailInfo(int id)
         {
             var book = _bookRepository.GetById(id);
-            return new BookViewModel
-            {
-                Id = book.Id,
-                PictureFile = book.Picture,
-                BookTitle = book.BookTitle,
-                Writer = book.Writer,
-                publisher = book.Publisher,
-                CategoryId = book.CategoryId,
-                ShortDescription = book.ShortDescription,
-                CategoryName = book.Category.Name,
-                Price = book.Price
-            };
-        }
-        public List<Books> Search(string title)
-        {
-            return _bookRepository.GetBy(title);
+            if (book == null) throw new InvalidOperationException(ApplicationMessage.NotFound);
+            return Map(book);
         }
 
-
+        public List<Books> Search(string title) => _bookRepository.GetBy(title);
     }
 }

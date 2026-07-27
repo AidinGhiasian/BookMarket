@@ -1,4 +1,4 @@
-﻿using Blog.Domain.BlogCategoryAD;
+using Blog.Domain.BlogCategoryAD;
 using Services.Application;
 using System;
 using System.Collections.Generic;
@@ -17,9 +17,8 @@ namespace BlogM.Application.Contracts.BlogCategoryApplication
         List<BlogCategory> GetAvailableCategories();
         List<BlogCategoryViewModel> GetAll();
         BlogCategory? GetWithPostsBySlug(string slug);
-        public EditBlogCategoryViewModel GetDetail(int id);
+        EditBlogCategoryViewModel GetDetail(int id);
         bool Exists(string name);
-        BlogCategory GetPostsWithCategory();
-        public List<BlogCategory> GetPostWithCategories();
+        List<BlogCategory> GetPostWithCategories();
     }
 }

@@ -1,19 +1,21 @@
-using BookM.Application.Contracts.BooksCategoryApplication;
 using BookM.ClientQueries.Model.Book.Books;
-using DocumentFormat.OpenXml.Office2010.Excel;
+using BookM.ClientQueries.Model.Book.Category;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace BookMarket.Pages.Book
 {
+    [AllowAnonymous]
     public class IndexModel : PageModel
     {
-        public List<BookQueryViewModel> Books { get; set; }
-        public List<BookQueryViewModel> BooksWithCategory { get; set; }
-        public List<BookCategoryQueryViewModel> Categories { get; set; }
+        public List<BookQueryViewModel> Books { get; set; } = new();
+        public List<BookQueryViewModel> BooksWithCategory { get; set; } = new();
+        public List<BookCategoryQueryViewModel> Categories { get; set; } = new();
 
         private readonly IBookCategoryQuery _categoryQuery;
         private readonly IBookQueries _bookQueries;
+
         public IndexModel(IBookCategoryQuery categoryQuery, IBookQueries bookQueries)
         {
             _bookQueries = bookQueries;
@@ -24,14 +26,11 @@ namespace BookMarket.Pages.Book
         {
             Categories = _categoryQuery.GetAll();
 
-            if (id != null )
-            {
+            if (id.HasValue)
                 BooksWithCategory = _bookQueries.GetAllBookWithCategory(id);
-            }
-            else if(id == null ) 
-            {
+            else
                 Books = _bookQueries.GetAll();
-            }
         }
     }
 }
+

@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using BookM.Application.Contracts.BooksApplication;
 using BookM.Domain.Book.AD;
-using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Services.Application;
 
@@ -23,13 +17,10 @@ namespace BookM.Infrastructure.EFCore.Repository
         }
 
         public List<Books> GetAllWithCategory()
-        {
-            return _bookdbcontext.Books.Include(c => c.Category).ToList();
-        }
+            => _bookdbcontext.Books.Include(c => c.Category).Where(x => x.IsAvailable).ToList();
 
         public void Create(Books books)
         {
-
             _bookdbcontext.Books.Add(books);
             _bookdbcontext.SaveChanges();
         }
@@ -37,51 +28,36 @@ namespace BookM.Infrastructure.EFCore.Repository
         public void Delete(int id)
         {
             var DB = _bookdbcontext.Books.Find(id);
-            if (DB != null)
-            {
-                _bookdbcontext.Books.Remove(DB);
-                _bookdbcontext.SaveChanges();
-            }
+            if (DB == null) return;
+            _bookdbcontext.Books.Remove(DB);
+            _bookdbcontext.SaveChanges();
         }
 
-        public Books Getby(string Title)
-        {
-            return _bookdbcontext.Books.FirstOrDefault(x => x.BookTitle == Title);
-        }
+        public Books? Getby(string Title)
+            => _bookdbcontext.Books.FirstOrDefault(x => x.BookTitle == Title);
 
         public List<Books> GetBy()
-        {
-            return _bookdbcontext.Books.Include(x=>x.Category).ToList();
-
-        }
+            => _bookdbcontext.Books.Include(x => x.Category).Where(x => x.IsAvailable).ToList();
 
         public Books? GetById(int id)
-        {
-            return _bookdbcontext.Books.Include(x=>x.Category).FirstOrDefault(x => x.Id == id);
-        }
+            => _bookdbcontext.Books.Include(x => x.Category).FirstOrDefault(x => x.Id == id);
 
         public async Task Updateby(Books book)
         {
             var EB = _bookdbcontext.Books.FirstOrDefault(x => x.Id == book.Id);
-            if (EB != null)
-            {
-                EB.Edit(book.Picture, book.BookTitle, book.Writer
-                    , book.Publisher, book.CategoryId
-                    , book.IsAvailable, book.Price, book.ShortDescription);
-                await _bookdbcontext.SaveChangesAsync();
-            }
+            if (EB == null) return;
+
+            EB.Edit(book.Picture, book.BookTitle, book.Writer, book.Publisher,
+                book.CategoryId, book.IsAvailable, book.Price, book.ShortDescription);
+            await _bookdbcontext.SaveChangesAsync();
         }
 
-        public List<Books> GetBy(string title)
+        public List<Books> GetBy(string? title)
         {
-          var Query=_bookdbcontext.Books.ToList();
-
+            IQueryable<Books> q = _bookdbcontext.Books.Include(x => x.Category).Where(x => x.IsAvailable);
             if (!string.IsNullOrWhiteSpace(title))
-            {
-                Query=Query.Where(x=>x.BookTitle.Contains(title)).ToList();
-            }
-
-            return Query.ToList();
+                q = q.Where(x => x.BookTitle.Contains(title));
+            return q.ToList();
         }
     }
 }

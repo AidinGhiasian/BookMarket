@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -53,6 +53,6 @@ namespace AccountM.Application.Contracts.AccountApplication
         public string Password { get; set; }
 
         public bool IsAvalable { get; set; }
-
+        public string? Picture { get; set; }
     }
 }

@@ -1,4 +1,4 @@
-﻿using Blog.Domain.BlogCategoryAD;
+using Blog.Domain.BlogCategoryAD;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BlogM.Infrastructure.EFCore.Mapping
+namespace Book.Infrastructure.EFCore.Mapping
 {
     public class BlogCategoryMapping : IEntityTypeConfiguration<BlogCategory>
     {
@@ -22,7 +22,7 @@ namespace BlogM.Infrastructure.EFCore.Mapping
                    .HasMaxLength(200);
 
             builder.Property(x => x.Picture)
-                   .IsRequired()
+                   .IsRequired(false)
                    .HasMaxLength(500);
 
             builder.Property(x => x.Slug)
@@ -30,22 +30,16 @@ namespace BlogM.Infrastructure.EFCore.Mapping
                    .HasMaxLength(300);
 
             builder.Property(x => x.Description)
-                   .HasMaxLength(1000);
+                   .HasMaxLength(int.MaxValue);
 
-            builder.Property(x => x.CreationDate)
-                   .IsRequired();
+            builder.Property(x => x.CreationDate).IsRequired();
+            builder.Property(x => x.UpdatedDate).IsRequired();
+            builder.Property(x => x.IsAvailable).IsRequired();
 
-            builder.Property(x => x.UpdatedDate)
-                   .IsRequired();
-
-            builder.Property(x => x.IsAvailable)
-                   .IsRequired();
-
-            // رابطه یک به چند با Posts
             builder.HasMany(x => x.Posts)
                    .WithOne(x => x.BlogCategory)
                    .HasForeignKey(x => x.BlogCategoryId)
-                   .OnDelete(DeleteBehavior.Cascade);
+                   .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

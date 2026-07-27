@@ -1,31 +1,35 @@
-
-using AccountM.Application.Contracts.AccountApplication;
 using AccountM.Application.Contracts.RoleApplication;
-
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace ServiceHost.Areas.Admin.Pages.Account.Role
+namespace BookMarket.Areas.Admin.Pages.Account.Role
 {
+    [Authorize(Roles = "Admin")]
     public class CreateModel : PageModel
     {
-       
-        private readonly IRoleApplication _roleRepository;
-
+        private readonly IRoleApplication _roleApplication;
         public CreateModel(IRoleApplication roleRepository)
         {
-           _roleRepository = roleRepository;
+            _roleApplication = roleRepository;
         }
 
-        public void OnGet()
+        public void OnGet() { }
+
+        public IActionResult OnPost(CreateViewModel command)
         {
-        }
-        
-        public IActionResult OnPost(AccountM.Application.Contracts.RoleApplication.CreateViewModel command)
-        {
-           
-            var result = _roleRepository.Create(command);
-            return RedirectToPage("Index");
+            if (!ModelState.IsValid) return Page();
+            try
+            {
+                _roleApplication.Create(command);
+                TempData["success"] = "نقش ایجاد شد.";
+                return RedirectToPage("Index");
+            }
+            catch (Exception ex)
+            {
+                TempData["Error"] = ex.Message;
+                return Page();
+            }
         }
     }
 }

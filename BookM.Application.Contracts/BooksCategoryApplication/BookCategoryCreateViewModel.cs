@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,8 +12,6 @@ namespace BookM.Application.Contracts.BooksApplication
     {
         public string CategoryName { get; set; }
         public string? Description { get; set; }
-        public IFormFile FileName { get; set; }
-
-
+        public IFormFile? FileName { get; set; }
     }
 }
