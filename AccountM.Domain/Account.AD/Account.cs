@@ -16,11 +16,10 @@ namespace AM.Domain.Account.AD
         public string Name { get; private set; }
         public string Family { get; private set; }
         public string PhoneNumber { get; private set; }
-        public string Email { get; private set; }
-        public DateTime BirthDate { get; private set; }
+        public string? Email { get; private set; }
+        public DateTime? BirthDate { get; private set; }
         public DateTime CreationDate { get; private set; } = DateTime.Now;
-        public string Addres { get; private set; }
-        public string Scuritycode { get; private set; }
+        public string? Address { get; private set; }
         public string Password { get; private set; }
         public bool IsAvalable { get; private set; }
         public int RoleId { get; private set; }
@@ -28,7 +27,7 @@ namespace AM.Domain.Account.AD
         public Role Role { get; private set; }
         public Account() { }
 
-        public Account(string name, string family, string phoneNumber, string email, DateTime birthDate, string addres, string password, int roleId, string? picture)
+        public Account(string name, string family, string phoneNumber, string? email, DateTime? birthDate, string? address, string password, int roleId, string? picture)
         {
             var random = new Random();
 
@@ -38,14 +37,13 @@ namespace AM.Domain.Account.AD
             Email = email;
             BirthDate = birthDate;
             CreationDate = DateTime.Now;
-            Addres = addres;
-            Scuritycode = random.Next(100000, 999999).ToString();
+            Address = address;
             Password = password;
             IsAvalable = true;
             RoleId = 1;
             Picture = picture;
         }
-        public void Edit(string name, string family, string phoneNumber, string email, DateTime birthDate, string addres, int roleId, string? picture)
+        public void Edit(string name, string family, string phoneNumber, string? email, DateTime? birthDate, string? address, string? picture)
         {
             Name = name;
             Family = family;
@@ -53,8 +51,7 @@ namespace AM.Domain.Account.AD
             Email = email;
             BirthDate = birthDate;
             CreationDate = DateTime.Now;
-            Addres = addres;
-            RoleId = roleId;
+            Address = address;
             Picture = picture;
 
         }

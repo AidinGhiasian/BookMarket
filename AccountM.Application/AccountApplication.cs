@@ -45,7 +45,7 @@ namespace AccountM.Application
                 model.PhoneNumber,
                 model.Email,
                 model.BirthDate,
-                model.Addres,
+                model.Address,
                password, Convert.ToInt32(Roles.User),
              picture
             );
@@ -77,8 +77,7 @@ namespace AccountM.Application
                 model.PhoneNumber,
                 model.Email,
                 model.BirthDate,
-                model.Addres,
-                model.RoleId,
+                model.Address,
                 model.PictureName
             );
 
@@ -114,7 +113,7 @@ namespace AccountM.Application
                 PhoneNumber = model.PhoneNumber,
                 Email = model.Email,
                 BirthDate = model.BirthDate,
-                Addres = model.Addres,
+                Address = model.Address,
             };
         }
         public AccountViewModel GetBy(int id)
@@ -148,7 +147,7 @@ namespace AccountM.Application
 
             var fulName = account.Name + " " + account.Family;
             var authViewModel = new AuthViewModel(account.Id, account.RoleId, fulName, account.PhoneNumber,
-               account.PhoneNumber, permissions, account.Picture, account.Addres, account.IsAvalable);
+               account.PhoneNumber, permissions, account.Picture, account.Address, account.IsAvalable);
             _authHelper.Signin(authViewModel);
             return operation.IsSuccess();
         }
@@ -164,7 +163,7 @@ namespace AccountM.Application
                 Email = model.Email,
                 BirthDate = model.BirthDate,
                 cratetiondate = model.CreationDate,
-                Addres = model.Addres,
+                Address = model.Address,
                 IsAvalable = model.IsAvalable,
             };
 
@@ -181,7 +180,7 @@ namespace AccountM.Application
                 PhoneNumber = model.PhoneNumber,
                 Email = model.Email,
                 BirthDate = model.BirthDate,
-                Addres = model.Addres,
+                Address = model.Address,
             };
         }
         public void Logout()

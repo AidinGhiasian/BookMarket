@@ -13,7 +13,6 @@ namespace BookMarket.Pages.Accounts
         {
 
         }
-        
         public PasswordViewModel Password { get; set; }
 
         private readonly IAccountApplication _accountApplicaiton;

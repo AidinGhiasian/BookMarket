@@ -39,7 +39,7 @@ namespace BookMarket.Pages.Account
         public IActionResult OnPostRegister(CreateViewModel model)
         {
             model.BirthDate = DateTime.Now;
-            model.Addres = " ";
+            model.Address = " ";
             model.Email=" ";
             
             _accountQueries.Register(model);

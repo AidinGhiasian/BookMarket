@@ -30,7 +30,7 @@ namespace Services.Application.AuthHelper
             result.Role = Roles.GetRoleBy(result.RoleId);
             result.ProfilePicture = claims.FirstOrDefault(x => x.Type == "ProfilePicture").Value;
             //result.Phone = claims.FirstOrDefault(x => x.Type == "Mobile").Value;
-            result.IsActiv=Convert.ToBoolean(claims.FirstOrDefault(x => x.Type == "IsActiv").Value);
+            result.IsActive=Convert.ToBoolean(claims.FirstOrDefault(x => x.Type == "IsActive").Value);
             return result;
         }
 
@@ -86,7 +86,7 @@ namespace Services.Application.AuthHelper
                 new Claim("Username", account.Username), // Or Use ClaimTypes.NameIdentifier
                 new Claim("permissions", permissions),
                 new Claim("ProfilePicture",account.ProfilePicture ),
-              new Claim("IsActiv",account.IsActiv.ToString()),
+              new Claim("IsActive",account.IsActive.ToString()),
 
             };
 

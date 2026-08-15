@@ -34,17 +34,17 @@ namespace BookM.ClientQueries.Model.Account
 
 
         [Display(Name = "ایمیل")]
-        public string Email { get; set; }
+        public string? Email { get; set; }
 
 
         [Display(Name = "تاریخ تولد")]
         [Required(ErrorMessage = "لطفا تاریخ تولد خود را وارد کنید...")]
-        public DateTime BirthDate { get; set; }
+        public DateTime? BirthDate { get; set; }
         public DateTime cratetiondate { get; set; }=DateTime.Now;
 
 
         [Display(Name = "آدرس")]
-        public string Addres { get; set; }
+        public string? Address { get; set; }
 
 
        

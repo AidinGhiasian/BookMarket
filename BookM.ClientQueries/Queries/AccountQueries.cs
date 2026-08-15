@@ -34,7 +34,7 @@ namespace BookM.ClientQueries.Queries
                 Email = model.Email,
                 BirthDate = model.BirthDate,
                 cratetiondate = model.cratetiondate,
-                Addres = model.Addres,
+                Address = model.Address,
                   IsAvalable = model.IsAvalable,
             };
         }
@@ -51,7 +51,7 @@ namespace BookM.ClientQueries.Queries
                 Email = model.Email,
                 BirthDate = model.BirthDate,
                 cratetiondate = model.cratetiondate,
-                Addres = model.Addres,
+                Address = model.Address,
                                 IsAvalable = model.IsAvalable,
             };
         }
@@ -67,7 +67,7 @@ namespace BookM.ClientQueries.Queries
                 Family = model.Family,
                 Email = model.Email,
                 BirthDate = model.BirthDate,
-                Addres = model.Addres,
+                Address = model.Address,
             };
         }
         public EditViewModel GetDetail(string phone)
@@ -80,7 +80,7 @@ namespace BookM.ClientQueries.Queries
                 Family = model.Family,
                 Email = model.Email,
                 BirthDate = model.BirthDate,
-                Addres = model.Addres,
+                Address = model.Address,
             };
         }
         public OperationResult Login(string? phone, string? password)

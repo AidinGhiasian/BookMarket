@@ -15,14 +15,14 @@ namespace Services.Application.AuthHelper
         public List<int> Permissions { get; set; }
         public string ProfilePicture { get; set; }
 
-        public bool IsActiv { get; set; }
+        public bool IsActive { get; set; }
 
         public AuthViewModel()
         {
         }
 
         public AuthViewModel(long id, long roleId, string fullname, string username, string phone,
-            List<int> permissions, string profilePicture, string address, bool isActiv)
+            List<int> permissions, string profilePicture, string address, bool isActive)
         {
             Id = id;
             RoleId = roleId;
@@ -33,7 +33,7 @@ namespace Services.Application.AuthHelper
             ProfilePicture = profilePicture;
             Address = address;
 
-            IsActiv = isActiv;
+            IsActive = isActive;
         }
     }
 }

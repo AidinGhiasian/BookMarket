@@ -40,11 +40,9 @@ namespace AccountM.Infrastructure.EFCore.Mapping
             builder.Property(x => x.CreationDate)
                    .IsRequired();
 
-            builder.Property(x => x.Addres)
+            builder.Property(x => x.Address)
                    .HasMaxLength(500);
 
-            builder.Property(x => x.Scuritycode)
-                   .HasMaxLength(10);
 
             builder.Property(x => x.Password)
                    .IsRequired()

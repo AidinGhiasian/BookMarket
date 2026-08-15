@@ -19,6 +19,12 @@
 			</h1>
 		</div>
 	</div>
+	@* @if (TempData["Success"] != null && (bool)TempData["Success"] == true)
+	{
+		<div class="alert alert-success">
+			
+		</div>
+	} *@
 	<div class="page-content">
 		<div class="dashboard">
 			<div class="container">
@@ -56,10 +62,6 @@
 								   data-toggle="tab">
 									اطلاعات کاربری
 								</a>
-							</li>
-							<li class="nav-item">
-								<a class="nav-link" id="tab-account-link" data-toggle="tab" href="#tab-account"
-								   role="tab" aria-controls="tab-account" aria-selected="false">ویرایش اطلاعات</a>
 							</li>
 							<li class="nav-item">
 
@@ -116,18 +118,18 @@
 													تاریخ تولد:
 												</strong>
 												<br />
-												@Model.Account?.BirthDate.ToShortDateString()
+												@Model.Account?.BirthDate?.ToShortDateString()
 											</div>
 											<div class="col-md-12 mb-3">
 												<strong>
 													آدرس:
 												</strong>
 												<br />
-												@Model.Account?.Addres
+												@Model.Account?.Address
 											</div>
 										</div>
 										<div class="col-md-6">
-											<a href="#"
+											<a href="/Accounts/EditAccount?id=@account.Id"
 											   class="btn btn-outline-success col-md-12 col-sm-12 m-r-20">
 												ویرایش اطلاعات
 											</a>
@@ -169,45 +171,6 @@
 							</div>
 						</div>
 					</div>
-					<div class="tab-pane fade" id="tab-account" role="tabpanel"
-						 aria-labelledby="tab-account-link">
-						<form action="#">
-							<div class="row">
-								<div class="col-sm-6">
-									<label>نام *</label>
-									<input type="text" class="form-control" required>
-								</div><!-- End .col-sm-6 -->
-
-								<div class="col-sm-6">
-									<label>نام خانوادگی *</label>
-									<input type="text" class="form-control" required>
-								</div><!-- End .col-sm-6 -->
-							</div><!-- End .row -->
-
-							<label>نام نمایش *</label>
-							<input type="text" class="form-control" required>
-							<small class="form-text">
-								این نام در قسمت بازدیدها، نظرات و حساب کاربری شما
-								نمایش داده می شود.
-							</small>
-
-							<label>ایمیل *</label>
-							<input type="email" class="form-control" required>
-
-							<label>پسورد فعلی</label>
-							<input type="password" class="form-control">
-
-							<label>پسورد جدید</label>
-							<input type="password" class="form-control">
-
-							<label>تکرار پسورد جدید</label>
-							<input type="password" class="form-control mb-2">
-
-							<button type="submit" class="btn btn-outline-primary-2 float-right">
-								<span>ذخیره تغییرات</span>
-								<i class="icon-long-arrow-left"></i>
-							</button>
-						</form>
 					</div><!-- .End .tab-pane -->
 				</div>
 			</div>
