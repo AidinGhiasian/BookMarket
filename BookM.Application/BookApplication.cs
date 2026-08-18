@@ -61,18 +61,21 @@ namespace BookM.Application
         public void Edit(EditViewModel update)
         {
             var upBooks = _bookRepository.GetById(update.Id);
-
-            var PictureName = update.Picture;
-
-            var npprice = update.Price;
-
-            if (update.FileName != null)
+            if (upBooks!=null)
             {
-                _fileUploader.Delete(update.Picture);
-                var path = "Book";
-                PictureName = _fileUploader.UploadNewSize(update.FileName, path, 720);
+                var PictureName = update.Picture;
+
+                var npprice = update.Price;
+
+                if (update.FileName != null)
+                {
+                    _fileUploader.Delete(update.Picture);
+                    var path = "Book";
+                    PictureName = _fileUploader.UploadNewSize(update.FileName, path, 720);
+                }
+                upBooks.Edit(PictureName,update.BookTitle, update.Writer, update.Publisher, update.CategoryId, update.status, npprice, update.shortdescription);
+                _bookRepository.SaveChanges();
             }
-            upBooks.Edit(PictureName, update.Picture, update.Writer, update.Publisher, update.CategoryId, update.status, npprice, update.shortdescription);
 
         }
 
@@ -109,7 +112,8 @@ namespace BookM.Application
         public EditViewModel Getdetail(int id)
         {
             var book = _bookRepository.GetById(id);
-            return new EditViewModel
+            var categories = _bookCategoryRepository.GetAll().Select(mapcategory).ToList();
+             return new EditViewModel
             {
                 Id = book.Id,
                 Picture = book.Picture,
@@ -119,7 +123,8 @@ namespace BookM.Application
                 CategoryId = book.CategoryId,
                 shortdescription = book.ShortDescription,
                 Categorey = book.Category.Name,
-                Price = book.Price
+                Price = book.Price,
+                BookCategories =categories
             };
         }
         public BookViewModel GetdetailInfo(int id)
@@ -142,7 +147,5 @@ namespace BookM.Application
         {
             return _bookRepository.GetBy(title);
         }
-
-
     }
 }

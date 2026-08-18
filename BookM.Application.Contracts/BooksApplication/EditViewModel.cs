@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BookM.Application.Contracts.BooksCategoryApplication;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,5 +13,6 @@ namespace BookM.Application.Contracts.BooksApplication
         public bool status {  get; set; }
         public string Picture { get; set; }
         public string Categorey { get; set; }
+        public List<BookCategoryViewModel> BookCategories { get; set; }
     }
 }

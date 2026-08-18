@@ -14,12 +14,13 @@ namespace BookMarket.Areas.Admin.Pages.Book
         public EditViewModel Book { get; set; }
          
         public void OnGet(int id)
-        {
+        
+         {
             Book = _bookApplication.Getdetail(id);
         }
         public IActionResult OnPost(EditViewModel command)
         {
-            _bookApplication.Edit(command);
+          _bookApplication.Edit(command);
             return RedirectToPage("./AdminIndex");
         }
     }
