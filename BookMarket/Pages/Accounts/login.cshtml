@@ -158,3 +158,19 @@
     </div>
 
 </div>
+
+@if (TempData["LoginError"]!=null)
+{
+    @section Scripts{
+        <script>
+                          Swal.fire({
+              title: "ای وایی اشتباه شد!",
+                      text: "@Html.Raw(TempData["LoginError"])!",
+              icon: "error",
+              TimeRanges:"3000"
+            });
+        </script>
+            
+    }
+   
+}

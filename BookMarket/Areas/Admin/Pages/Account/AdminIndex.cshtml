@@ -1,135 +1,140 @@
 ﻿@page
 @using Services.Application
+@using Services.Application.AuthHelper
+@using Services.Application.Categoreis
 @model BookMarket.Areas.Admin.Account.IndexModel
+@inject IAuthHelper _authHelper;
 @{
-	Layout = "_AdminLayout";
+    Layout = "_AdminLayout";
+    var account = _authHelper;
 }
 
 <div id="inner-content">
-	<div class="row">
-		<!-- BEGIN BREADCRUMB -->
-		<div class="col-md-12">
-			<div class="breadcrumb-box shadow">
-				<ul class="breadcrumb">
-					<li><a href="/Admin/Index">پیشخوان</a></li>
-					<li class="active">مدیریت کاربران</li>
-				</ul>
-				<div class="breadcrumb-left">
-					@ConvertDateTime.ConvertMiladiToShamsi(DateTime.Now, "HH:mm  dd MMMM yyyy")
+    <div class="row">
+        <!-- BEGIN BREADCRUMB -->
+        <div class="col-md-12">
+            <div class="breadcrumb-box shadow">
+                <ul class="breadcrumb">
+                    <li><a href="/Admin/Index">پیشخوان</a></li>
+                    <li class="active">مدیریت کاربران</li>
+                </ul>
+                <div class="breadcrumb-left">
+                    @ConvertDateTime.ConvertMiladiToShamsi(DateTime.Now, "HH:mm  dd MMMM yyyy")
 
-					<i class="icon-calendar"></i>
-				</div><!-- /.breadcrumb-left -->
-			</div><!-- /.breadcrumb-box -->
-		</div><!-- /.col-md-12 -->
-		<!-- END BREADCRUMB -->
-		@if (TempData["NotAvalable"] != null)
-		{
-			<p class="alert alert-success text-center">
-				@TempData["NotAvalable"]
-			</p>
-		}
-		else if (TempData["Avalable"] != null)
-		{
-			<p class="alert alert-danger text-center">
-				@TempData["Avalable"]
-			</p>
-		}
-		@if (TempData["success"] != null)
-		{
-			<div class="alert alert-success text-center">
-				@TempData["success"]
-			</div>
-		}
-		<div class="col-lg-12">
-			<div class="portlet box shadow">
-				<div class="portlet-heading">
-					<div class="portlet-title">
-						<h3 class="title">
-							<i class="icon-frane"></i>
-							مدیریت کاربران
-						</h3>
-					</div><!-- /.portlet-title -->
-					<div class="buttons-box">
-						<a class="btn btn-sm btn-default btn-round btn-code" rel="tooltip" title="کدها" href="#">
-							<i class="icon-arrow-left"></i><span>/</span><i class="icon-arrow-right"></i>
-						</a>
-						<a class="btn btn-sm btn-default btn-round btn-fullscreen" rel="tooltip" title="تمام صفحه" href="#">
-							<i class="icon-size-fullscreen"></i>
-						</a>
-						<a class="btn btn-sm btn-default btn-round btn-collapse" rel="tooltip" title="کوچک کردن" href="#">
-							<i class="icon-arrow-up"></i>
-						</a>
-					</div><!-- /.buttons-box -->
-				</div><!-- /.portlet-heading -->
-				<div class="portlet-body">
-					<div class="top-buttons-box mb-2">
-						<a class="btn btn-success" href="./CreateAccount">
-							<i class="icon-plus"></i>
-							افزودن
-						</a>
-						<a class="btn btn-info float-end" href="./Role/Index">
-						    نقش ها
-						</a>
-						<form method="get">
-						<div class="custom-radio rtl ">
-							<input name="isStatus" value="true" type="radio" class="control-input" >
-							<span>
-								حذف نشده
-							</span>
-							<input name="isStatus" value="false" type="radio" class="control-input" >
-							<span>
-								حذف شده
-							</span>
-							<button type="submit" asp-page="/Admin/Account/AdminIndex" class="btn btn-outline-primary-2 float-right">تایید</button>
-						</div>
-						</form>
-					</div><!-- /.top-buttons-box -->
+                    <i class="icon-calendar"></i>
+                </div><!-- /.breadcrumb-left -->
+            </div><!-- /.breadcrumb-box -->
+        </div><!-- /.col-md-12 -->
+        <!-- END BREADCRUMB -->
+        @if (TempData["NotAvalable"] != null)
+        {
+            <p class="alert alert-success text-center">
+                @TempData["NotAvalable"]
+            </p>
+        }
+        else if (TempData["Avalable"] != null)
+        {
+            <p class="alert alert-danger text-center">
+                @TempData["Avalable"]
+            </p>
+        }
+        @if (TempData["success"] != null)
+        {
+            <div class="alert alert-success text-center">
+                @TempData["success"]
+            </div>
+        }
+        <div class="col-lg-12">
+            <div class="portlet box shadow">
+                <div class="portlet-heading">
+                    <div class="portlet-title">
+                        <h3 class="title">
+                            <i class="icon-frane"></i>
+                            مدیریت کاربران
+                        </h3>
+                    </div><!-- /.portlet-title -->
+                    <div class="buttons-box">
+                        <a class="btn btn-sm btn-default btn-round btn-code" rel="tooltip" title="کدها" href="#">
+                            <i class="icon-arrow-left"></i><span>/</span><i class="icon-arrow-right"></i>
+                        </a>
+                        <a class="btn btn-sm btn-default btn-round btn-fullscreen" rel="tooltip" title="تمام صفحه" href="#">
+                            <i class="icon-size-fullscreen"></i>
+                        </a>
+                        <a class="btn btn-sm btn-default btn-round btn-collapse" rel="tooltip" title="کوچک کردن" href="#">
+                            <i class="icon-arrow-up"></i>
+                        </a>
+                    </div><!-- /.buttons-box -->
+                </div><!-- /.portlet-heading -->
+                <div class="portlet-body">
+                    <div class="top-buttons-box mb-2">
+                        <a class="btn btn-success" href="./CreateAccount">
+                            <i class="icon-plus"></i>
+                            افزودن
+                        </a>
+                        <a class="btn btn-info float-end" href="./Role/Index">
+                            نقش ها
+                        </a>
+                        <form method="get">
+                            <div class="custom-radio rtl ">
+                                <input name="isStatus" value="true" type="radio" class="control-input">
+                                <span>
+                                    حذف نشده
+                                </span>
+                                <input name="isStatus" value="false" type="radio" class="control-input">
+                                <span>
+                                    حذف شده
+                                </span>
+                                <button type="submit" asp-page="/Admin/Account/AdminIndex" class="btn btn-outline-primary-2 float-right">تایید</button>
+                            </div>
+                        </form>
+                    </div><!-- /.top-buttons-box -->
 
-					<div class="table-responsive">
-						<table class="table table-bordered table-hover table-striped" id="data-table">
-							<thead>
-								<tr>
-									<th>ردیف</th>
-									<th>نام و نام خانوادگی</th>
-									<th>شماره تلفن</th>
-									<th>ایمیل</th>
-									<th>عملیات حذف</th>
-									<th> وضعیت</th>
-								</tr>
-							</thead>
-							<tbody>
-								@foreach (var item in Model.Accounts)
-								{
-									<tr>
-										<td>@item.Id</td>
-										<td>@item.Name - @item.Family</td>
-										<td>@item.PhoneNumber</td>
-										<td>@item.Email</td>
-										<td>
-											 <a class="btn btn-info"asp-page="EditAccount" asp-route-id="@item.Id">ویرایش</a> 
-										</td>
-										<td>
-											@if (item.IsAvalable)
-											{
-												<a asp-page-handler="Restore" asp-route-id="@item.Id" class="btn btn-success">فعال </a>
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-hover table-striped" id="data-table">
+                            <thead>
+                                <tr>
+                                    <th>ردیف</th>
+                                    <th>نام و نام خانوادگی</th>
+                                    <th>شماره تلفن</th>
+                                    <th>ایمیل</th>
+                                    <th>عملیات حذف</th>
+                                    <th> وضعیت</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model.Accounts)
+                                {
+                                    <tr>
+                                        <td>@item.Id</td>
+                                        <td>@item.Name - @item.Family</td>
+                                        <td>@item.PhoneNumber</td>
+                                        <td>@item.Email</td>
+                                        <td>
+                                            <a class="btn btn-info" asp-page="EditAccount" asp-route-id="@item.Id">ویرایش</a>
+                                        </td>
+                                        <td>
+                                            @if (item.IsAvalable == false)
+                                            {
+                                                <a asp-page-handler="Restore" asp-route-id="@item.Id" class="btn btn-success">فعال </a>
+                                            }
+                                            else
+                                            {
+                                                <a asp-page-handler="Delete" asp-route-id="@item.Id" class="btn btn-danger">غیر فعال</a>
+                                                @if (item.RoleId == 2)
+                                                {
+                                                    <a asp-page-handler="ChangeRole" asp-route-id="@item.Id" asp-route-roleId="1" class="btn btn-orange">تغییر نقش به مدیر</a>
+                                                }
+                                            }
+                                        </td>
+                                    </tr>
+                                }
 
-											
-											}
-											else
-											{
-												<a asp-page-handler="Delete" asp-route-id="@item.Id" class="btn btn-danger">غیر فعال</a>
-											}
-										</td>
-									</tr>
 
-								}
-
-
-							</tbody>
-						</table>
-					</div><!-- /.table-responsive -->
-				</div><!-- /.portlet-body -->
-			</div><!-- /.portlet -->
-		</div><!-- /.col-lg-12 -->
-	</div><!-- /.row -->
+                            </tbody>
+                        </table>
+                    </div><!-- /.table-responsive -->
+                </div><!-- /.portlet-body -->
+            </div><!-- /.portlet -->
+        </div><!-- /.col-lg-12 -->
+    </div><!-- /.row -->
 </div><!-- /#inner-content -->

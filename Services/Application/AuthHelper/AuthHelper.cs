@@ -85,7 +85,7 @@ namespace Services.Application.AuthHelper
                 new Claim(ClaimTypes.Role, account.RoleId.ToString()),
                 new Claim("Username", account.Username), // Or Use ClaimTypes.NameIdentifier
                 new Claim("permissions", permissions),
-                new Claim("ProfilePicture",account.ProfilePicture ),
+                new Claim("ProfilePicture",account.ProfilePicture??"" ),
               new Claim("IsActive",account.IsActive.ToString()),
 
             };

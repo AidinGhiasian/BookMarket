@@ -15,7 +15,7 @@ namespace AM.Domain.Account.AD
         public Account Getby(string phonenumber);
         public void Delete(int id);
         public void Restore(int id);
-        public OperationResult login(string? phonNumber, string? password);
         public OperationResult ChangePassword(string password);
+
     }
 }

@@ -53,6 +53,7 @@ namespace AccountM.Application.Contracts.AccountApplication
         public string Password { get; set; }
 
         public bool IsAvalable { get; set; }
+        public int RoleId { get; set; }
 
     }
 }

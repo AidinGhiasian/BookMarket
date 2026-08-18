@@ -40,7 +40,7 @@ namespace AM.Domain.Account.AD
             Address = address;
             Password = password;
             IsAvalable = true;
-            RoleId = 1;
+            RoleId = 2;
             Picture = picture;
         }
         public void Edit(string name, string family, string phoneNumber, string? email, DateTime? birthDate, string? address, string? picture)
@@ -62,6 +62,10 @@ namespace AM.Domain.Account.AD
         public void ChangePassword(string password)
         {
             Password = password;
+        }
+        public void ChangeRole(int roleId)
+        {
+            RoleId = roleId;
         }
     }
 }

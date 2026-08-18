@@ -21,7 +21,7 @@ namespace BookMarket.Areas.Admin.Account
         {
             _accountApplication.Delete(id);
             TempData["Avalable"] = "کتابخوان غیر فعال شد...";
-           
+
             return Redirect("./AdminIndex");
         }
         public IActionResult OnGetRestore(int id)
@@ -37,10 +37,10 @@ namespace BookMarket.Areas.Admin.Account
 
         public void OnGet(bool IsStatus = true)
         {
-            if(IsStatus == true)
+            if (IsStatus == true)
             {
                 Accounts = _accountApplication.GetAccounts(true);
-            }else if (IsStatus == false)
+            } else if (IsStatus == false)
             {
                 Accounts = _accountApplication.GetAccounts(false);
             }
@@ -58,6 +58,10 @@ namespace BookMarket.Areas.Admin.Account
                 PhoneNumber = account.PhoneNumber,
             };
         }
-    }
+        public void OnGetChangeRole(int id, int roleId)
+        {
+            _accountApplication.ChangeRole(id, roleId); 
+        }
+}
 
 }

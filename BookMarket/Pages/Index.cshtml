@@ -10,14 +10,14 @@
     Layout = "Shared/_Layout";
     ViewData["Title"] = "Home page";
 }
-
+@TempData["successLogin"]
 
 <div class="intro-section pt-lg-2">
     <div class="container">
         <div class="row">
             @await Component.InvokeAsync("Event")
-            @await Component.InvokeAsync( "BookBanner")
-           @await Component.InvokeAsync("BlogBanner")
+            @await Component.InvokeAsync("BookBanner")
+            @await Component.InvokeAsync("BlogBanner")
         </div><!-- End .row -->
     </div><!-- End .container -->
 
@@ -82,7 +82,7 @@
                         </a>
                     </div>
                 </div>
-              @await Component.InvokeAsync("BookCategory")
+                @await Component.InvokeAsync("BookCategory")
             </div>
         </div>
     </div>
@@ -138,27 +138,43 @@
                 </div><!-- End .banner -->
             </div><!-- End .col-lg-4 -->
 
-<div class="block">
-    <div class="block-wrapper ">
-        <div class="container">
-            <div class="heading heading-flex">
-                <div class="heading-left">
-                    <h2 class="title">دسته بندی مقالات </h2><!-- End .title -->
-                </div><!-- End .heading-left -->
+            <div class="block">
+                <div class="block-wrapper ">
+                    <div class="container">
+                        <div class="heading heading-flex">
+                            <div class="heading-left">
+                                <h2 class="title">دسته بندی مقالات </h2><!-- End .title -->
+                            </div><!-- End .heading-left -->
 
-                <div class="heading-right">
-                    <a href="/Blog/Index" class="title-link">
-                        مشاهده  بیشتر <i class="icon-long-arrow-left"></i>
-                    </a>
-                </div><!-- End .heading-right -->
-            </div><!-- End .header-flex -->
+                            <div class="heading-right">
+                                <a href="/Blog/Index" class="title-link">
+                                    مشاهده  بیشتر <i class="icon-long-arrow-left"></i>
+                                </a>
+                            </div><!-- End .heading-right -->
+                        </div><!-- End .header-flex -->
+                        @await Component.InvokeAsync("BlogCategory")
+                    </div><!-- End .container -->
+                </div><!-- End .block-wrapper -->
+            </div><!-- End .block -->
 
-           @await Component.InvokeAsync("BlogCategory")
-        </div><!-- End .container -->
-    </div><!-- End .block-wrapper -->
-</div><!-- End .block -->
+            <div class="blog-posts bg-light pt-4 pb-4">
+                @await Component.InvokeAsync("Blog")
+            </div><!-- End .blog-posts -->
+        </div>
+    </div>
+<div/>
+@if (TempData["SwalMessage"] != null)
+{
+    @section Scripts
+    {
+            <script>
+                Swal.fire({
+                   title: "ورود موفق",
+                    text: "@Html.Raw(TempData["SwalMessage"])!",
+                   icon: "success",
+                   TimeRanges:"3000"
+                 });
+            </script>
 
-<div class="blog-posts bg-light pt-4 pb-4">
-  @await Component.InvokeAsync("Blog")
-</div><!-- End .blog-posts -->
-
+    }
+}

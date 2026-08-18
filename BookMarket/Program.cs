@@ -57,8 +57,6 @@ builder.Services.AddRazorPages().AddMvcOptions(options => options.Filters.Add<Se
     .AddRazorPagesOptions(options =>
     {
         options.Conventions.AuthorizeAreaFolder("Admin", "/", "Admin");
-
-
     });
 
 

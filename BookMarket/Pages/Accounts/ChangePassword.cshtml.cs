@@ -27,7 +27,6 @@ namespace BookMarket.Pages.Accounts
         {
             var newPassword = new PasswordViewModel()
             {
-                Id = _authHelper.CurrentAccountId(),
                 Password = password,
                 RePassword = rePassword,
             };

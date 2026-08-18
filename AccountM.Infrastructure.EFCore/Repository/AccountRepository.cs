@@ -60,24 +60,6 @@ namespace AccountM.Infrastructure.EFCore.Repository
         }
        
 
-        public OperationResult login(string? phonNumber, string? password)
-        {
-            OperationResult result = new OperationResult();
-            var account = _accountdbcontext.Account.FirstOrDefault(x => x.PhoneNumber == phonNumber);
-            if (account != null)
-            {
-                if (account.Password == password)
-                {
-                    return result.IsSuccess();
-                }
-                else
-                {
-                    return result.Failed(ApplicationMessage.NotFound);
-                }
-            }
-            return result.Failed(ApplicationMessage.NotFound);
-
-        }
 
         public OperationResult ChangePassword(string password)
         {
@@ -92,5 +74,7 @@ namespace AccountM.Infrastructure.EFCore.Repository
             _accountdbcontext.SaveChanges();
             return result.IsSuccess();
         }
+
+
     }
 }

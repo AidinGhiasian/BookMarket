@@ -1,12 +1,15 @@
 ﻿
 using BookM.ClientQueries;
 using BookM.ClientQueries.Model.Account;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Services.Application.AuthHelper;
+using Services.Application.Categoreis;
 
 namespace BookMarket.Pages
 {
+    [Authorize(Roles = Roles.User)]
     public class DashboardModel : PageModel
     {
         private readonly IAccountQueries _accountQueries;

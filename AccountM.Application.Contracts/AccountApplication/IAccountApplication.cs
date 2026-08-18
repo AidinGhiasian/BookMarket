@@ -18,5 +18,6 @@ namespace AccountM.Application.Contracts.AccountApplication
         public AccountViewModel GetdetailInfo(int id);
         public void Logout();
         public OperationResult ChangePassword(PasswordViewModel command);
+        public OperationResult ChangeRole(int id, int roleId);
     }
 }

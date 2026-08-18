@@ -165,6 +165,7 @@ namespace AccountM.Application
                 cratetiondate = model.CreationDate,
                 Address = model.Address,
                 IsAvalable = model.IsAvalable,
+                RoleId=model.RoleId,
             };
 
         }
@@ -199,7 +200,9 @@ namespace AccountM.Application
             }
 
             if (command.Password != command.RePassword)
-                return operation.Failed("رمز عبور و تکرار آن یکسان نیست.");
+            {
+                return operation.Failed(ApplicationMessage.NotMatch);
+            }
 
             var password = _PasswordHasher.Hash(command.Password);
 
@@ -208,6 +211,18 @@ namespace AccountM.Application
             _accountRepository.SaveChanges();
 
             return operation.IsSuccess();
+        }
+        public OperationResult ChangeRole(int id, int roleId)
+        {
+            OperationResult result = new OperationResult();
+            var account = _accountRepository.GetbyId(id);
+            if (account == null)
+            {
+                return result.Failed(ApplicationMessage.NotFound);
+            }
+            account.ChangeRole(roleId);
+            _accountRepository.SaveChanges();
+            return result.IsSuccess();
         }
     }
 }
