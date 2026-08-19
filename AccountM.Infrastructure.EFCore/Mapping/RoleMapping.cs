@@ -33,7 +33,7 @@ namespace AccountM.Infrastructure.EFCore.Mapping
             {
                 navigationBuilder.HasKey(x => x.Id);
                 navigationBuilder.ToTable("Permission");
-                navigationBuilder.Ignore(x => x.NamePermission);
+                navigationBuilder.Ignore(x => x.Name);
                 navigationBuilder.WithOwner(x => x.Role);
             });
         }

@@ -1,7 +1,7 @@
 ﻿using AccountM.Application.Contracts.RoleApplication;
 using AccountManagement.Domain.RoleAgg;
+using BlogMInfrastructureConfiguration.Permissions;
 using Services.Application;
-using Services.Infrastructure;
 
 namespace AccountManagement.Application
 {
@@ -39,9 +39,9 @@ namespace AccountManagement.Application
             _roleRepository.SaveChanges();
             return operation.IsSuccess();
         }
-        private static List<PermissionDto> MapPermissions(IEnumerable<Permission> permissions)
+        private static List<PermissionDTO> MapPermissions(IEnumerable<Permission> permissions)
         {
-            return permissions.Select(x => new PermissionDto(x.PermissionCode, x.NamePermission)).ToList();
+            return permissions.Select(x => new PermissionDTO(x.Code, x.Name)).ToList();
         }
         public EditViewModel GetDetails(int id)
         {

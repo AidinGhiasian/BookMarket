@@ -1,4 +1,5 @@
 ﻿using AccountMInfrastructureConfiguration.Permisions;
+using BlogMInfrastructureConfiguration.Permissions;
 using Services.Infrastructure;
 using System;
 using System.Collections.Generic;
@@ -11,26 +12,26 @@ namespace AccountManagementConfiguration.Permission
 {
     public class AccountPermissionExposer:IPermissionExposer
     {
-        public Dictionary<string, List<PermissionDto>> Expose()
+        public Dictionary<string, List<PermissionDTO>> Expose()
         {
-            return new Dictionary<string, List<PermissionDto>>
+            return new Dictionary<string, List<PermissionDTO>>
             {
                 {
-                    "حسابهای کاربری",new List<PermissionDto>
+                    "حسابهای کاربری",new List<PermissionDTO>
                     {
-                        new PermissionDto(AccountPermisions.ListAccount,"لیست  حسابهای کاربری"),
-                        new PermissionDto(AccountPermisions.CreateAccount,"افزودن  حسابهای کاربری"),
-                        new PermissionDto(AccountPermisions.EditAccount,"ویرایش  حسابهای کاربری"),
-                        new PermissionDto(AccountPermisions.SearchAccount,"جستجو  حسابهای کاربری"),
+                        new PermissionDTO(AccountPermisions.ListAccount,"لیست  حسابهای کاربری"),
+                        new PermissionDTO(AccountPermisions.CreateAccount,"افزودن  حسابهای کاربری"),
+                        new PermissionDTO(AccountPermisions.EditAccount,"ویرایش  حسابهای کاربری"),
+                        new PermissionDTO(AccountPermisions.SearchAccount,"جستجو  حسابهای کاربری"),
                     }
 
                 },
                 {
-                    "نقش ها",new List<PermissionDto>
+                    "نقش ها",new List<PermissionDTO>
                     {
-                        new PermissionDto(AccountPermisions.ListRoles,"لیست نقش ها"),
-                        new PermissionDto(AccountPermisions.CreateRoles," افزودن نقش ها"),
-                        new PermissionDto(AccountPermisions.EditRoles,"ویرایش نقش ها"),
+                        new PermissionDTO(AccountPermisions.ListRoles,"لیست نقش ها"),
+                        new PermissionDTO(AccountPermisions.CreateRoles," افزودن نقش ها"),
+                        new PermissionDTO(AccountPermisions.EditRoles,"ویرایش نقش ها"),
                     }
                 }
             };

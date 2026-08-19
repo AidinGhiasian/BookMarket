@@ -141,7 +141,7 @@ namespace AccountM.Application
             if (!result.Verified)
                  return  operation.Failed(ApplicationMessage.NotFound);
 
-            var permissions = _roleRepository.GetDetails(account.RoleId).Permissions.Select(x => x.PermissionCode).ToList();
+            var permissions = _roleRepository.GetDetails(account.RoleId).Permissions.Select(x => x.Code).ToList();
 
 
 

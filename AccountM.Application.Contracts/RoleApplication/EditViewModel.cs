@@ -1,4 +1,5 @@
-﻿using Services.Infrastructure;
+﻿using BlogMInfrastructureConfiguration.Permissions;
+using Services.Infrastructure;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +12,7 @@ namespace AccountM.Application.Contracts.RoleApplication
     {
         public int Id { get; set; }
         public bool isActive { get; set; }
-        public List<PermissionDto> MappedPermissions { get; set; }
+        public List<PermissionDTO> MappedPermissions { get; set; }
         public EditViewModel()
         {
             Permissions = new List<int>();

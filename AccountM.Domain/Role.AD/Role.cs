@@ -28,7 +28,7 @@ namespace AccountManagement.Domain.RoleAgg
 
         public void Edit(string name, List<Permission> permissions, string details, bool isActive)
         {
-            RoleName = name;
+            RoleName = name; 
             Permissions = permissions;
             Details = details;
             IsActive = isActive;
