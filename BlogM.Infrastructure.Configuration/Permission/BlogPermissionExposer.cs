@@ -13,28 +13,28 @@ namespace BlogMInfrastructureConfiguration.Permission
                 {
                     "Post",new List<PermissionDTO>
                     {
-                        new PermissionDTO(20,"CreatePost"),
-                        new PermissionDTO(21,"UpdatePost"),
-                        new PermissionDTO(22,"ListPosts"),
-                        new PermissionDTO(23,"SearchPosts"),
+                        new PermissionDTO(BlogPermission.CreatePost,"ساخت پست"),
+                        new PermissionDTO(BlogPermission.EditPost,"ویرایش پست"),
+                        new PermissionDTO(BlogPermission.ListPost,"لیست پست ها"),
+                        new PermissionDTO(BlogPermission.SearchPost,"جستجوی پست ها"),
                     }
                 },
                 {
                     "BlogCategory",new List<PermissionDTO>
                     {
-                        new PermissionDTO(30,"CreateBlogCategory"),
-                        new PermissionDTO(31,"UpdateBlogCategory"),
-                        new PermissionDTO(32,"ListBlogCategory"),
-                        new PermissionDTO(33,"SearchBlogCategory"),
+                        new PermissionDTO(BlogPermission.CreateCategoryBlog,"ساخت دسته بندی مقاله"),
+                        new PermissionDTO(BlogPermission.EditCategoryBlog,"ویرایش دسته بندی مقاله"),
+                        new PermissionDTO(BlogPermission.SearchCategoryBlog,"جستجوی دسته بندی مقاله"),
+                        new PermissionDTO(BlogPermission.ListCategoryBlog,"لیست مقالات"),
                     }
                 },
                 {
                     "Event",new List<PermissionDTO>
                     {
-                        new PermissionDTO(40,"CreateEvent"),
-                        new PermissionDTO(41,"UpdateEvent"),
-                        new PermissionDTO(42,"ListEvent"),
-                        new PermissionDTO(43,"SearchEvent"),
+                        new PermissionDTO(BlogPermission.CreateEvent,"ساخت رویداد"),
+                        new PermissionDTO(BlogPermission.EditEvent,"ویرایش رویداد"),
+                        new PermissionDTO(BlogPermission.ListEvent,"لیست رویداد ها"),
+                        new PermissionDTO(BlogPermission.SearchEvent,"جستجوی رویداد ها"),
                     }
                 }
             };

@@ -29,13 +29,20 @@ namespace AccountM.Application
             _authHelper = authHelper;
         }
 
-        public void Create(CreateViewModel model)
+        public OperationResult Create(CreateViewModel model)
         {
+            var result = new OperationResult();
             string picture = "";
+
+            if (model.PhoneNumber == null)
+            {
+                return result.Failed(ApplicationMessage.Required);
+            }
+
             if (model.FilePicture != null)
             {
                 var path = "Account";
-                 picture = _fileUploder.UploadNewSize(model.FilePicture, path, 720);
+                picture = _fileUploder.UploadNewSize(model.FilePicture, path, 720);
             }
             var password = _PasswordHasher.Hash(model.Password);
 
@@ -50,18 +57,32 @@ namespace AccountM.Application
              picture
             );
             _accountRepository.Create(acc);
+            return result.IsSuccess();
         }
 
-        public void Delete(int id)
+        public OperationResult Delete(int id)
         {
+            var result = new OperationResult();
+            if (id == 0||id==null)
+            {
+                return result.Failed(ApplicationMessage.NotFound);
+            }
             _accountRepository.Delete(id);
+            return result.IsSuccess();
         }
-        public void Restore(int id)
+        public OperationResult Restore(int id)
         {
+            var result = new OperationResult();
+            if (id == 0 || id == null)
+            {
+                return result.Failed(ApplicationMessage.NotFound);
+            }
             _accountRepository.Restore(id);
+            return result.IsSuccess();
         }
-        public void Edit(EditViewModel model)
+        public OperationResult Edit(EditViewModel model)
         {
+            var result = new OperationResult();
 
             var acc = _accountRepository.GetById(model.Id);
             if (model.FilePicture != null)
@@ -83,6 +104,7 @@ namespace AccountM.Application
 
 
             _accountRepository.SaveChanges();
+            return result.IsSuccess();
         }
 
         public List<AccountViewModel> GetAccounts(bool isStatus)
@@ -134,12 +156,12 @@ namespace AccountM.Application
             var account = _accountRepository.Getby(phone);
 
             if (account == null)
-               return operation.Failed(ApplicationMessage.NotFound);
+                return operation.Failed(ApplicationMessage.NotFound);
 
             (bool Verified, bool NeedUpgrade) result = _PasswordHasher.Check(account.Password, password);
 
             if (!result.Verified)
-                 return  operation.Failed(ApplicationMessage.NotFound);
+                return operation.Failed(ApplicationMessage.NotFound);
 
             var permissions = _roleRepository.GetDetails(account.RoleId).Permissions.Select(x => x.Code).ToList();
 
@@ -165,7 +187,7 @@ namespace AccountM.Application
                 cratetiondate = model.CreationDate,
                 Address = model.Address,
                 IsAvalable = model.IsAvalable,
-                RoleId=model.RoleId,
+                RoleId = model.RoleId,
             };
 
         }
@@ -184,9 +206,12 @@ namespace AccountM.Application
                 Address = model.Address,
             };
         }
-        public void Logout()
+        public OperationResult Logout()
         {
+            var result = new OperationResult();
+
             _authHelper.SignOut();
+            return result.IsSuccess();
         }
 
         public OperationResult ChangePassword(PasswordViewModel command)

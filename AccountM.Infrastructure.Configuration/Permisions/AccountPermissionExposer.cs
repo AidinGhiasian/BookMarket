@@ -19,19 +19,19 @@ namespace AccountManagementConfiguration.Permission
                 {
                     "حسابهای کاربری",new List<PermissionDTO>
                     {
-                        new PermissionDTO(AccountPermisions.ListAccount,"لیست  حسابهای کاربری"),
-                        new PermissionDTO(AccountPermisions.CreateAccount,"افزودن  حسابهای کاربری"),
-                        new PermissionDTO(AccountPermisions.EditAccount,"ویرایش  حسابهای کاربری"),
-                        new PermissionDTO(AccountPermisions.SearchAccount,"جستجو  حسابهای کاربری"),
+                        new PermissionDTO(AccountPermision.ListAccount,"لیست  حسابهای کاربری"),
+                        new PermissionDTO(AccountPermision.CreateAccount,"افزودن  حسابهای کاربری"),
+                        new PermissionDTO(AccountPermision.EditAccount,"ویرایش  حسابهای کاربری"),
+                        new PermissionDTO(AccountPermision.SearchAccount,"جستجو  حسابهای کاربری"),
                     }
 
                 },
                 {
                     "نقش ها",new List<PermissionDTO>
                     {
-                        new PermissionDTO(AccountPermisions.ListRoles,"لیست نقش ها"),
-                        new PermissionDTO(AccountPermisions.CreateRoles," افزودن نقش ها"),
-                        new PermissionDTO(AccountPermisions.EditRoles,"ویرایش نقش ها"),
+                        new PermissionDTO(AccountPermision.ListRoles,"لیست نقش ها"),
+                        new PermissionDTO(AccountPermision.CreateRoles," افزودن نقش ها"),
+                        new PermissionDTO(AccountPermision.EditRoles,"ویرایش نقش ها"),
                     }
                 }
             };

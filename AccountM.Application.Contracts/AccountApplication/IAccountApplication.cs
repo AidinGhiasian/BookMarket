@@ -5,18 +5,18 @@ namespace AccountM.Application.Contracts.AccountApplication
 {
     public interface IAccountApplication
     {
-        public void Create(CreateViewModel model);
-        public void Edit(EditViewModel model);
+        public OperationResult Create(CreateViewModel model);
+        public OperationResult Edit(EditViewModel model);
         public AccountViewModel GetBy(int id);
         List<AccountViewModel> GetAccounts(bool isStatus);
-        public void Delete(int id);
-        public void Restore(int id);
+        public OperationResult Delete(int id);
+        public OperationResult Restore(int id);
         public AccountViewModel GetBy(string phone);
         public OperationResult login(string? phone, string? password);
         public List<AccountViewModel> GetAll();
         public EditViewModel Getdetail(int id);
         public AccountViewModel GetdetailInfo(int id);
-        public void Logout();
+        public OperationResult Logout();
         public OperationResult ChangePassword(PasswordViewModel command);
         public OperationResult ChangeRole(int id, int roleId);
     }

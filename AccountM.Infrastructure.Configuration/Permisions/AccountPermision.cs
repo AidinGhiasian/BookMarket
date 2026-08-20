@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AccountMInfrastructureConfiguration.Permisions
 {
-    public static class AccountPermisions
+    public static class AccountPermision
     {
         //Account
         public const int ListAccount =10;

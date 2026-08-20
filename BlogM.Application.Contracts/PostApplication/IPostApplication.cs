@@ -15,6 +15,8 @@ namespace BlogM.Application.Contracts.PostApplication
         public void Update(EditViewModel update);
         public void Delete(int id);
         public List<PostViewModel> GetAll();
+
+
         public EditViewModel GetDetailes(int id);
         public List<Posts> Search(string title);
     }
