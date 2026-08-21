@@ -17,12 +17,12 @@ namespace AccountManagementConfiguration.Permission
             return new Dictionary<string, List<PermissionDTO>>
             {
                 {
-                    "حسابهای کاربری",new List<PermissionDTO>
+                    "حساب های کاربری",new List<PermissionDTO>
                     {
-                        new PermissionDTO(AccountPermision.ListAccount,"لیست  حسابهای کاربری"),
-                        new PermissionDTO(AccountPermision.CreateAccount,"افزودن  حسابهای کاربری"),
-                        new PermissionDTO(AccountPermision.EditAccount,"ویرایش  حسابهای کاربری"),
-                        new PermissionDTO(AccountPermision.SearchAccount,"جستجو  حسابهای کاربری"),
+                        new PermissionDTO(AccountPermision.ListAccount,"لیست  حساب های کاربری"),
+                        new PermissionDTO(AccountPermision.CreateAccount,"افزودن  حساب کاربری"),
+                        new PermissionDTO(AccountPermision.EditAccount,"ویرایش  حساب های کاربری"),
+                        new PermissionDTO(AccountPermision.SearchAccount,"جستجو  حساب های کاربری"),
                     }
 
                 },

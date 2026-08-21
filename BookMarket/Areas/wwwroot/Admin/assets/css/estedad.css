@@ -1,0 +1,53 @@
+/*
+@font-face {
+    font-family: estedad;
+    src: url("../fonts/estedad/estedad.woff2") format("woff2-variations");
+    font-weight: 100 900;
+    font-style: normal;
+}*/
+@font-face {
+    font-family: estedadFa;
+    src: url("../fonts/estedad/estedad-fd.woff2") format("woff2-variations");
+    font-weight: 100 900;
+    font-style: normal;
+}
+
+/* For Old Browsers */
+@supports not (font-variation-settings: normal) {
+    @font-face {
+        font-family: "estedadFa";
+        src: url("../fonts/estedad/static/fd/Estedad-FD-Light.woff2") format("woff2");
+        font-weight: 100;
+        font-style: normal;
+    }
+    @font-face {
+        font-family: "estedadFa";
+        src: url("../fonts/estedad/static/fd/Estedad-FD-Regular.woff2") format("woff2");
+        font-weight: 400;
+        font-style: normal;
+    }
+    @font-face {
+        font-family: "estedadFa";
+        src: url("../fonts/estedad/static/fd/Estedad-FD-Bold.woff2") format("woff2");
+        font-weight: 700;
+        font-style: normal;
+    }
+}
+
+
+body, input, select, .popover, .swal2-content, .swal2-buttonswrapper button, .amcharts-chart-div *, .morris-chart *, .morris-hover.morris-default-style{
+    font-family: estedadFa, Tahoma !important;
+    font-size: 12px;
+}
+h1, .h1{font: 15pt estedadFa}
+h2, .h2{font: 13pt estedadFa}
+h3, .h3{font: 12pt estedadFa}
+h4, .h4{font: 11pt estedadFa}
+h5, .h5{font: 10pt estedadFa}
+h6, .h6{font: 9pt estedadFa}
+.tooltip-inner{font: 10px estedadFa}
+
+input[type="password"]{
+    font-size: 20px !important;
+}
+

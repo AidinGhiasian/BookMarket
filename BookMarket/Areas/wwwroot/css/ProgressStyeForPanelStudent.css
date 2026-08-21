@@ -1,0 +1,201 @@
+﻿
+/* 🔹 پس‌زمینه شیشه‌ای برای مسیر */
+.progress-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(6px);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+}
+
+/* 🔹 ظرف داخلی مسیر */
+.progress-container {
+    background: radial-gradient(circle at center, #fff 30%, #f5f5f5 70%);
+    border-radius: 20px;
+    padding: 20px;
+    width: 90%;
+    max-width: 900px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 0 25px rgba(255,255,255,0.4);
+}
+
+/* 🔹 دکمه بستن */
+.close-btn {
+    position: absolute;
+    top: 10px;
+    left: 15px;
+    font-size: 28px;
+    cursor: pointer;
+    color: #333;
+}
+
+/* 🔹 عنوان بالای مسیر */
+.progress-title {
+    text-align: center;
+    margin-bottom: 15px;
+    font-weight: bold;
+    color: #333;
+}
+
+/* 🔹 مسیر افقی */
+.progress-track {
+    display: flex;
+    overflow-x: auto;
+    padding: 15px;
+    gap: 25px;
+    scroll-behavior: smooth;
+    position: relative;
+}
+
+    /* افکت مارپیچ رنگی زیر مسیر */
+    .progress-track::before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 0;
+        height: 6px;
+        width: 100%;
+        background: repeating-linear-gradient( 45deg, rgba(255, 215, 0, 0.8), rgba(255, 215, 0, 0.8) 10px, rgba(255, 255, 255, 0.6) 10px, rgba(255, 255, 255, 0.6) 20px );
+        border-radius: 3px;
+        transform: translateY(-50%);
+    }
+
+/* 🔹 هر مرحله */
+.progress-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 90px;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+}
+
+    .progress-step i {
+        font-size: 30px;
+        padding: 15px;
+        border-radius: 50%;
+        background: #ccc;
+        color: #fff;
+        box-shadow: 0 0 10px rgba(0,0,0,0.3);
+        transition: all 0.3s ease;
+    }
+
+    .progress-step.active i {
+        background: gold;
+        box-shadow: 0 0 15px gold;
+        transform: scale(1.15);
+    }
+
+    .progress-step span {
+        margin-top: 8px;
+        font-size: 13px;
+        color: #444;
+        white-space: nowrap;
+    }
+#progress-icon i {
+    font-size: 40px;
+    display: inline-block; /* اطمینان از نمایش */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+}
+
+/* افکت هاور */
+#progress-icon i:hover {
+    transform: scale(1.5);
+    box-shadow: 0 0 15px rgba(0,0,0,0.6);
+}
+.progress-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(6px);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+}
+
+.progress-container {
+    background: radial-gradient(circle at center, #fff 30%, #f5f5f5 70%);
+    border-radius: 20px;
+    padding: 20px;
+    width: 90%;
+    max-width: 900px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 0 25px rgba(255,255,255,0.4);
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    left: 15px;
+    font-size: 28px;
+    cursor: pointer;
+    color: #333;
+}
+
+.progress-title {
+    text-align: center;
+    margin-bottom: 15px;
+    font-weight: bold;
+    color: #333;
+}
+
+.progress-track {
+    display: flex;
+    overflow-x: auto;
+    padding: 15px;
+    gap: 25px;
+    scroll-behavior: smooth;
+}
+
+.progress-track::-webkit-scrollbar {
+    height: 6px;
+}
+
+.progress-track::-webkit-scrollbar-thumb {
+    background-color: #aaa;
+    border-radius: 3px;
+}
+
+.progress-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 90px;
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.progress-step i {
+    font-size: 30px;
+    padding: 15px;
+    border-radius: 50%;
+    background: #ccc;
+    color: #fff;
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    transition: all 0.3s ease;
+}
+
+.progress-step:hover i {
+    transform: scale(1.2);
+}
+
+.progress-step.active i {
+    background: gold;
+    box-shadow: 0 0 15px gold;
+}
+
+.progress-step span {
+    margin-top: 8px;
+    font-size: 13px;
+    color: #444;
+    white-space: nowrap;
+}
