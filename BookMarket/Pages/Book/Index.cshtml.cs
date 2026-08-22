@@ -1,8 +1,11 @@
+using AccountMInfrastructureConfiguration.Permisions;
 using BookM.Application.Contracts.BooksCategoryApplication;
 using BookM.ClientQueries.Model.Book.Books;
+using BookMInfrastucureConfiguration.Permission;
 using DocumentFormat.OpenXml.Office2010.Excel;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Services.Infrastructure;
 
 namespace BookMarket.Pages.Book
 {
@@ -19,7 +22,7 @@ namespace BookMarket.Pages.Book
             _bookQueries = bookQueries;
             _categoryQuery = categoryQuery;
         }
-
+        [NeedsPermission(BookPermission.ListBook)]
         public void OnGet(int? id)
         {
             Categories = _categoryQuery.GetAll();

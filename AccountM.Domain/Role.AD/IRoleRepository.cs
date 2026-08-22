@@ -13,6 +13,6 @@ namespace AccountManagement.Domain.RoleAgg
         public List<Role> list();
       
         Role GetDetails(int id);
-       
+        public OperationResult DeletePermissions(int id);
     }
 }

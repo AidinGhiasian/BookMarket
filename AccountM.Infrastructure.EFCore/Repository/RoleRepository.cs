@@ -46,5 +46,17 @@ namespace AccountM.Infrastructure.EFCore.Repository
                 _accountDbContext.SaveChanges();
             }
         }
+        public OperationResult DeletePermissions(int id)
+        {
+             var result=new OperationResult();
+            var role = _accountDbContext.Role.Include(p=>p.Permissions).FirstOrDefault(x=>x.Id==id);
+            if (role.Permissions==null)
+            {
+                return result.Failed(ApplicationMessage.NotFound);
+            }
+            role.Permissions.Clear();
+            _accountDbContext.SaveChanges();
+            return result.IsSuccess();
+        }
     }
 }

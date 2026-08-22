@@ -9,14 +9,14 @@ namespace BookMInfrastucureConfiguration.Permission
     public class BookPermission
     {
         //Book
-        public const int ListBook = 29;
-        public const int SearchBook = 30;
-        public const int CreateBook = 31;
-        public const int EditBook = 32;
+        public const int ListBook = 300;
+        public const int SearchBook = 301;
+        public const int CreateBook = 302;
+        public const int EditBook = 303;
         //BookCategory
-        public const int ListBookCategory = 33;
-        public const int SearchBookCategory = 34;
-        public const int CreateBookCategory = 35;
-        public const int EditBookCategory = 36;
+        public const int ListBookCategory = 304;
+        public const int SearchBookCategory = 305;
+        public const int CreateBookCategory = 306;
+        public const int EditBookCategory = 307;
     }
 }

@@ -36,11 +36,8 @@ namespace BookMarket
                 throw new Exception("AuthHelper is not initialized.");
             var accountPermissions = _authHelper.GetPermissions() ?? new List<int>();
 
-            //var accountPermissions = _authHelper.GetPermissions();
             if (!accountPermissions.Any(x => x == handlerPermission.Permission))
                 context.HttpContext.Response.Redirect("/AccessDenied");
-            //if (accountPermissions.All(x => x != handlerPermission.Permission))
-            //    context.HttpContext.Response.Redirect("/AccessDenied");
         }
 
         public void OnPageHandlerSelected(PageHandlerSelectedContext context)

@@ -9,9 +9,9 @@ namespace CommentMInfrastructureConfiguration.Permission
     public class CommentPermission
     {
         //Comment
-        public const int ListComment = 37;
-        public const int SearchComment = 38;
-        public const int CreateComment = 39;
-        public const int EditComment = 40;
+        public const int ListComment = 400;
+        public const int SearchComment = 401;
+        public const int CreateComment = 402;
+        public const int EditComment = 403;
     }
 }

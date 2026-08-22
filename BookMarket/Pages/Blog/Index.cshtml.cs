@@ -1,4 +1,5 @@
 ﻿
+using BlogMInfrastructureConfiguration.Permission;
 using BookM.ClientQueries.Blog.Categores;
 using BookM.ClientQueries.Blog.Post;
 using BookM.ClientQueries.Model.Blog.Categores;
@@ -6,7 +7,9 @@ using BookM.ClientQueries.Model.Blog.Post;
 using BookM.ClientQueries.Model.Book.Books;
 using BookM.ClientQueries.Queries;
 using BookM.Domain.Book.AD;
+using BookMInfrastucureConfiguration.Permission;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Services.Infrastructure;
 
 namespace BookMarket.Pages.Blog
 {
@@ -24,6 +27,8 @@ namespace BookMarket.Pages.Blog
             _postQueries = postQueries;
             _blogCategoryQueries = blogCategoryQueries;
         }
+        [NeedsPermission(BlogPermission.ListPost)]
+
         public void OnGet(int? id)
         {
             Categories = _blogCategoryQueries.GetAll();

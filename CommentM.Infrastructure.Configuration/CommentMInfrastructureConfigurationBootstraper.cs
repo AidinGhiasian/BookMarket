@@ -10,8 +10,10 @@ using CommentM.Application.Contracts;
 using CommentM.Domain.Comment.AD;
 using CommentM.Infrastructure.EFCore;
 using CommentM.Infrastructure.EFCore.Repository;
+using CommentMInfrastructureConfiguration.Permission;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using Services.Infrastructure;
 
 namespace CommentMInfrastructureConfiguration
 {
@@ -23,6 +25,8 @@ namespace CommentMInfrastructureConfiguration
             services.AddScoped<ICommentApplication, CommentApplication>();
 
             services.AddScoped<ICommentQueries,CommentQueries>();
+
+            services.AddScoped<IPermissionExposer,CommentPermissionExposer>();
 
             services.AddDbContext<CommentDbContext>(options=>options.UseSqlServer(connectionString));
         }

@@ -28,10 +28,18 @@ namespace AccountManagement.Domain.RoleAgg
 
         public void Edit(string name, List<Permission> permissions, string details, bool isActive)
         {
-            RoleName = name; 
-            Permissions = permissions;
+            RoleName = name;
+
             Details = details;
             IsActive = isActive;
+            Permissions = new List<Permission>();
+
+            Permissions.Clear();
+
+            foreach (var permission in permissions)
+            {
+                Permissions.Add(permission);
+            }
         }
         public void ChengeStatus(bool status)
         {

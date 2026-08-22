@@ -30,11 +30,11 @@ namespace AccountManagement.Application
             var role = _roleRepository.GetById(command.Id);
             if (role == null)
                 return operation.Failed(ApplicationMessage.NotFound);
-
+          
 
             var permissions = new List<Permission>();
             command.Permissions.ForEach(code => permissions.Add(new Permission(code,"")));
-
+           
             role.Edit(command.RoleName, permissions, command.details, command.isActive);
             _roleRepository.SaveChanges();
             return operation.IsSuccess();

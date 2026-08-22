@@ -1,8 +1,11 @@
-﻿using System.IO.IsolatedStorage;
-using System.Net.NetworkInformation;
-using AccountM.Application.Contracts.AccountApplication;
+﻿using AccountM.Application.Contracts.AccountApplication;
+using AccountMInfrastructureConfiguration.Permisions;
+using BlogMInfrastructureConfiguration.Permission;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Services.Infrastructure;
+using System.IO.IsolatedStorage;
+using System.Net.NetworkInformation;
 
 namespace BookMarket.Areas.Admin.Account
 {
@@ -16,7 +19,7 @@ namespace BookMarket.Areas.Admin.Account
         public List<AccountViewModel> Accounts { get; set; }
 
 
-
+        [NeedsPermission(AccountPermission.DeleteAccount)]
         public IActionResult OnGetDelete(int id)
         {
             _accountApplication.Delete(id);
@@ -24,6 +27,7 @@ namespace BookMarket.Areas.Admin.Account
 
             return Redirect("./AdminIndex");
         }
+        [NeedsPermission(AccountPermission.RestoreAccount)]
         public IActionResult OnGetRestore(int id)
         {
             _accountApplication.Restore(id);
@@ -34,7 +38,7 @@ namespace BookMarket.Areas.Admin.Account
 
 
 
-
+        [NeedsPermission(AccountPermission.ListAccount)]
         public void OnGet(bool IsStatus = true)
         {
             if (IsStatus == true)
@@ -45,6 +49,7 @@ namespace BookMarket.Areas.Admin.Account
                 Accounts = _accountApplication.GetAccounts(false);
             }
         }
+        [NeedsPermission(AccountPermission.CreateAccount)]
         public void OnPostCreateAccount(AccountViewModel account)
         {
             var createAccount = new AccountViewModel
@@ -58,6 +63,7 @@ namespace BookMarket.Areas.Admin.Account
                 PhoneNumber = account.PhoneNumber,
             };
         }
+        [NeedsPermission(AccountPermission.EditRoles)]//تغییر نقش یک فرد یا تغییر نقش در اینجا امکان این که از اتربیوت ادیت اکانت هم میتوان استفاده کرد
         public void OnGetChangeRole(int id, int roleId)
         {
             _accountApplication.ChangeRole(id, roleId); 

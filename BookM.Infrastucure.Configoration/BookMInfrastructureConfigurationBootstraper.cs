@@ -12,8 +12,10 @@ using BookM.ClientQueries.Queries;
 using BookM.Domain.Book.AD;
 using BookM.Infrastructure.EFCore;
 using BookM.Infrastructure.EFCore.Repository;
+using BookMInfrastucureConfiguration.Permission;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using Services.Infrastructure;
 
 namespace BookMInfrastucureConfigoration
 {
@@ -31,6 +33,7 @@ namespace BookMInfrastucureConfigoration
             services.AddScoped<IBookQueries, BookQueries>();
             services.AddScoped<IBookCategoryQuery,BookCategoryQuery>();
 
+            services.AddScoped<IPermissionExposer, BookPermissionExposer>();
 
             services.AddDbContext<BookDbContext>(options => 
             options.UseSqlServer(connectionString));
