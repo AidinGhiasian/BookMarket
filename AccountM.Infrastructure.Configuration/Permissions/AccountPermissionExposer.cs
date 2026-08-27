@@ -17,6 +17,15 @@ namespace AccountManagementConfiguration.Permission
             return new Dictionary<string, List<PermissionDTO>>
             {
                 {
+                     "مدیریت",new List<PermissionDTO>
+                    {
+                          new PermissionDTO(AccountPermission.ListAccount,"دسترسی مدیریتی"),
+                          new PermissionDTO(AccountPermission.UserDhaboard,"دسترسی کاربری"),
+                    }
+                },
+                {
+                   
+
                     "حساب های کاربری",new List<PermissionDTO>
                     {
                         new PermissionDTO(AccountPermission.ListAccount,"لیست  حساب های کاربری"),

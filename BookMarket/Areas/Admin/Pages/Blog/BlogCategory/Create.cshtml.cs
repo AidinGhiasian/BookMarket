@@ -1,6 +1,8 @@
 ﻿using BlogM.Application.Contracts.BlogCategoryApplication;
+using BlogMInfrastructureConfiguration.Permission;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Services.Infrastructure;
 
 namespace BookMarket.Areas.Admin.Pages.Blog.BlogCategory
 {
@@ -11,6 +13,7 @@ namespace BookMarket.Areas.Admin.Pages.Blog.BlogCategory
         {
             _blogCategoryApplication = blogCategoryApplication;
         }
+        [NeedsPermission(BlogPermission.CreateCategoryBlog)]
         public void OnGet()
         {
         }

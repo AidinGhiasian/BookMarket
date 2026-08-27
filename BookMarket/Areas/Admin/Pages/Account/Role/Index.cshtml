@@ -62,7 +62,7 @@
                                 <tr>
                                     <th>ردیف</th>
                                     <th>نام </th>
-                                    <th>تاریخ ثبت</th>
+                                    <th>توضیحات</th>
                                     <th>عملیات</th>
                                 </tr>
                             </thead>
@@ -74,7 +74,7 @@
                                         <tr>
                                             <td>@Item.Id</td>
                                             <td>@Item.RoleName</td>
-                                           
+                                           <td>@Item.Details</td>
                                             <td>
 
                                                 <a asp-page="Edit" asp-route-id="@Item.Id" class="btn btn-primary btn-round">ویرایش</a>

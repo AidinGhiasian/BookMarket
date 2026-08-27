@@ -1,6 +1,8 @@
 using BookM.Application.Contracts.BooksApplication;
+using BookMInfrastucureConfiguration.Permission;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Services.Infrastructure;
 
 namespace BookMarket.Areas.Admin.Pages.Book
 {
@@ -12,7 +14,8 @@ namespace BookMarket.Areas.Admin.Pages.Book
             _bookApplication = bookApplication;
         }
         public EditViewModel Book { get; set; }
-         
+
+        [NeedsPermission(BookPermission.EditBook)]
         public void OnGet(int id)
         
          {

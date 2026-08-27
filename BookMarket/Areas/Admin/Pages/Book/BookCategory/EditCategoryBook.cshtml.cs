@@ -1,9 +1,11 @@
 using BookM.Application.Contracts.BooksApplication;
 using BookM.Application.Contracts.BooksCategoryApplication;
+using BookMInfrastucureConfiguration.Permission;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Services.Infrastructure;
 
-namespace BookMarket.Areas.Admin.Pages.Book
+namespace BookMarket.Areas.Admin.Pages.Book.BookCategory
 {
     public class EditCategoryBookModel : PageModel
     {
@@ -15,6 +17,8 @@ namespace BookMarket.Areas.Admin.Pages.Book
 
 
         public BookCategoryEditViewModel category;
+
+        [NeedsPermission(BookPermission.EditBookCategory)]
         public void OnGet(int id)
         {
             category = _bookCategoryApplication.GetById(id);

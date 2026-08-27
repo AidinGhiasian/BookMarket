@@ -1,8 +1,11 @@
 using BookM.ClientQueries.Model.Comment;
+using BookMInfrastucureConfiguration.Permission;
+using CommentMInfrastructureConfiguration.Permission;
 using Humanizer;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Services.Application;
+using Services.Infrastructure;
 
 namespace BookMarket.Areas.Admin.Pages.Comment
 {
@@ -14,6 +17,8 @@ namespace BookMarket.Areas.Admin.Pages.Comment
             _commentQueries = commentQueries;
         }
         public List<CommentQueryViewModel> Comments { get; set; }
+
+        [NeedsPermission(CommentPermission.ListComment)]
         public void OnGet(int isStatus)
         {
             if(isStatus==null||isStatus==0||isStatus==1)
@@ -42,10 +47,7 @@ namespace BookMarket.Areas.Admin.Pages.Comment
         }
         public IActionResult OnGetDelete(int id)
         {
-            if (id != null)
-            {
-                _commentQueries.Delete(id);
-            }
+            _commentQueries.Delete(id);
             return Page();
         }
        

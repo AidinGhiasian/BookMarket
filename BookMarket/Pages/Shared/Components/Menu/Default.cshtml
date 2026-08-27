@@ -1,10 +1,17 @@
-﻿@using BookM.Application.Contracts.BooksCategoryApplication
+﻿
+@using AccountMInfrastructureConfiguration.Permisions
+@using BookM.Application.Contracts.BooksCategoryApplication
 @using Services.Application.AuthHelper
 @using Services.Application.Categoreis
+
 @model List<BookCategoryQueryViewModel>?
 @inject IAuthHelper AccountInfo;
+
 @{
     var account = AccountInfo.CurrentAccountInfo();
+    var permissions = AccountInfo.GetPermissions();
+
+
 }
 <div class="header-middle">
     <div class="container">
@@ -53,7 +60,8 @@
                 <div class="account">
                     @if (account != null && account.RoleId != 0)
                     {
-                        @if (account.RoleId == Convert.ToInt64(Roles.Admin))
+
+                        if (permissions.Contains(AccountPermission.AdminDashboard))
                         {
                             <a href="~/Admin" title="پروفایل من">
                                 <div class="icon">
@@ -61,17 +69,17 @@
                                 </div>
                                 <p>@account.Fullname </p>
                             </a>
-                        }
-                        else
+                        } 
+
+                        else if (permissions.Contains(AccountPermission.UserDhaboard))
                         {
-                            <a href="~/dashboard?id=@account.Id" title="پروفایل من">
+                            <a href="~/Dashboard" title="پروفایل من">
                                 <div class="icon">
                                     <i class="icon-user"></i>
                                 </div>
                                 <p>@account.Fullname </p>
                             </a>
                         }
-
                     }
                     else
                     {

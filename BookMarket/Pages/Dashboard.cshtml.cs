@@ -1,4 +1,5 @@
 ﻿
+using AccountMInfrastructureConfiguration.Permisions;
 using BookM.ClientQueries;
 using BookM.ClientQueries.Model.Account;
 using Microsoft.AspNetCore.Authorization;
@@ -6,10 +7,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Services.Application.AuthHelper;
 using Services.Application.Categoreis;
+using Services.Infrastructure;
 
 namespace BookMarket.Pages
 {
-    [Authorize(Roles = Roles.User)]
+    //[Authorize(Roles = Roles.User)] // کاربر باید دسترسی ورود به این صفحه را داشته  باشد و این به کاستوم کردن هر نقش کمک میکند
     public class DashboardModel : PageModel
     {
         private readonly IAccountQueries _accountQueries;
@@ -30,7 +32,7 @@ namespace BookMarket.Pages
         }
 
 
-
+        [NeedsPermission(AccountPermission.UserDhaboard)]
         public void OnGet()
         {
 

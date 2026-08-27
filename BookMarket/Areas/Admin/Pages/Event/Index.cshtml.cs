@@ -1,7 +1,10 @@
 using BlogM.Application.Contracts.EventApplication;
+using BlogMInfrastructureConfiguration.Permission;
 using BookM.ClientQueries.Model.Blog.Event;
+using BookMInfrastucureConfiguration.Permission;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Services.Infrastructure;
 
 namespace BookMarket.Areas.Admin.Pages.Event
 {
@@ -15,6 +18,8 @@ namespace BookMarket.Areas.Admin.Pages.Event
         }
         public List<EventViewModel> Events { get; set; }
         public EventQueryViewModel Event { get; set; }
+
+        [NeedsPermission(BlogPermission.ListEvent)]
         public void OnGet()
         {
             Events = _eventApplication.GetAll();

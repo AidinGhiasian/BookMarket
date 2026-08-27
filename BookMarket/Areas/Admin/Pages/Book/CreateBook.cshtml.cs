@@ -1,9 +1,11 @@
 ﻿using AccountM.Application.Contracts.AccountApplication;
+using BookM.Application.Contracts;
 using BookM.Application.Contracts.BooksApplication;
+using BookM.Application.Contracts.BooksCategoryApplication;
+using BookMInfrastucureConfiguration.Permission;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using BookM.Application.Contracts;
-using BookM.Application.Contracts.BooksCategoryApplication;
+using Services.Infrastructure;
 namespace BookMarket.Areas.Admin.Pages.Book
 {
     public class CreateBookModel : PageModel
@@ -17,6 +19,8 @@ namespace BookMarket.Areas.Admin.Pages.Book
         }
         public BookM.Application.Contracts.BooksApplication.CreateViewModel books { get; set; }
         public List<BookCategoryViewModel> BookCategories { get; set; }
+
+        [NeedsPermission(BookPermission.CreateBook)]
         public void OnGet()
         {
             BookCategories = _bookCategoryApplication.GetAll();

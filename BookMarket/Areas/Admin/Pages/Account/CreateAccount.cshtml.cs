@@ -1,6 +1,8 @@
 ﻿using AccountM.Application.Contracts.AccountApplication;
+using AccountMInfrastructureConfiguration.Permisions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Services.Infrastructure;
 
 namespace BookMarket.Areas.Admin.Account
 {
@@ -11,6 +13,7 @@ namespace BookMarket.Areas.Admin.Account
         {
             _accountApplication = accountApplication;
         }
+        [NeedsPermission(AccountPermission.CreateAccount)]
         public void OnGet()
         {
         }

@@ -1,6 +1,9 @@
-﻿using BlogM.Application.Contracts.PostApplication;
+﻿using AccountMInfrastructureConfiguration.Permisions;
+using BlogM.Application.Contracts.PostApplication;
+using BlogMInfrastructureConfiguration.Permission;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Services.Infrastructure;
 
 namespace BookMarket.Areas.Admin.Pages.Blog
 {
@@ -12,6 +15,8 @@ namespace BookMarket.Areas.Admin.Pages.Blog
             _postApplication = postApplication;
         }
         public List<PostViewModel> Blogs { get; set; }
+
+        [NeedsPermission(BlogPermission.ListPost)]
         public void OnGet()
         {
             Blogs = _postApplication.GetAll();

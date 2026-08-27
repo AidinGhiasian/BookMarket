@@ -1,9 +1,11 @@
 using BookM.Application.Contracts.BooksCategoryApplication;
+using BookMInfrastucureConfiguration.Permission;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.SqlServer.Dac.Model;
+using Services.Infrastructure;
 
-namespace BookMarket.Areas.Admin.Pages.Book
+namespace BookMarket.Areas.Admin.Pages.Book.BookCategory
 {
     public class BookCategoryIndexModel : PageModel
     {
@@ -13,6 +15,9 @@ namespace BookMarket.Areas.Admin.Pages.Book
             _bookCategoryApplication = bookCategoryApplication;
         }
         public List<BookCategoryViewModel> BookCategories { get; set; }
+
+
+        [NeedsPermission(BookPermission.ListBookCategory)]
         public void OnGet()
         {
             BookCategories = _bookCategoryApplication.GetAll(); 

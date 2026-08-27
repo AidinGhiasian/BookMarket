@@ -1,9 +1,11 @@
+using AccountMInfrastructureConfiguration.Permisions;
 using BookM.ClientQueries.Model.Comment;
 using BookM.ClientQueries.Queries;
 using DocumentFormat.OpenXml.Office2010.Excel;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Services.Application;
+using Services.Infrastructure;
 
 namespace BookMarket.Areas.Admin.Pages
 {
@@ -15,8 +17,14 @@ namespace BookMarket.Areas.Admin.Pages
             _commentQueries = commentQueries;
         }
         public List<CommentQueryViewModel> Comments { get; set; }
+
+
+        [NeedsPermission(AccountPermission.AdminDashboard)]
         public void OnGet(long? id, int? status)
         {
+
+
+
             Comments = _commentQueries.GetAll().Where(x => x.IsStatus == 1).Take(4).ToList();
             if (id!=null && status!=null)
             {

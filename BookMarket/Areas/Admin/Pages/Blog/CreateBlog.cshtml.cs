@@ -1,9 +1,11 @@
 ﻿using BlogM.Application;
 using BlogM.Application.Contracts.BlogCategoryApplication;
 using BlogM.Application.Contracts.PostApplication;
+using BlogMInfrastructureConfiguration.Permission;
 using BookM.Application.Contracts.BooksCategoryApplication;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Services.Infrastructure;
 
 namespace BookMarket.Areas.Admin.Pages.Blog
 {
@@ -18,6 +20,8 @@ namespace BookMarket.Areas.Admin.Pages.Blog
         }
         public CreateViewModel Blogs { get; set; }
         public List<BlogCategoryViewModel> BlogCategories { get; set; }
+
+        [NeedsPermission(BlogPermission.CreatePost)]
         public void OnGet()
         {
             BlogCategories = _blogCategoryApplication.GetAll();

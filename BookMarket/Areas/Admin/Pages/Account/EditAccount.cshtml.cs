@@ -1,6 +1,8 @@
 using AccountM.Application.Contracts.AccountApplication;
+using AccountMInfrastructureConfiguration.Permisions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Services.Infrastructure;
 
 namespace BookMarket.Areas.Admin.Account
 {
@@ -11,7 +13,9 @@ namespace BookMarket.Areas.Admin.Account
         {
             _accountapplication = accountapplication;
         }
-        public EditViewModel account {  get; set; } 
+        public EditViewModel account {  get; set; }
+
+        [NeedsPermission(AccountPermission.EditAccount)]
         public void OnGet(int id)
         {
             account = _accountapplication.Getdetail(id);

@@ -23,8 +23,7 @@ namespace BookMarket.Areas.Admin.Pages.Account.Role
         {
             _roleRepository = roleRepository;
         }
-        //[NeedsPermission(AccountPermisions.ListRoles)]
-
+        [NeedsPermission(AccountPermission.ListRoles)]
         public void OnGet()
         {
             Roles = _roleRepository.List();

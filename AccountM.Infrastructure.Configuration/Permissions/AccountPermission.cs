@@ -8,6 +8,8 @@ namespace AccountMInfrastructureConfiguration.Permisions
 {
     public static class AccountPermission
     {
+
+
         //Account
         public const int ListAccount =100;
         public const int SearchAccount = 101;
@@ -19,6 +21,11 @@ namespace AccountMInfrastructureConfiguration.Permisions
         public const int ListRoles = 106;
         public const int CreateRoles = 107;
         public const int EditRoles = 108;
+
+        //
+
+        public const int AdminDashboard = 109;
+        public const int UserDhaboard = 110;
 
     }
 }

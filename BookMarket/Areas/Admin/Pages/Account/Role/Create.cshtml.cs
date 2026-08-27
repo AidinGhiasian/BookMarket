@@ -1,9 +1,10 @@
 
 using AccountM.Application.Contracts.AccountApplication;
 using AccountM.Application.Contracts.RoleApplication;
-
+using AccountMInfrastructureConfiguration.Permisions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Services.Infrastructure;
 
 namespace ServiceHost.Areas.Admin.Pages.Account.Role
 {
@@ -16,7 +17,7 @@ namespace ServiceHost.Areas.Admin.Pages.Account.Role
         {
            _roleRepository = roleRepository;
         }
-
+        [NeedsPermission(AccountPermission.CreateRoles)]
         public void OnGet()
         {
         }

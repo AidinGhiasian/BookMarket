@@ -2,9 +2,10 @@
 {
     public static class Roles
     {
+        public const string Guest = "3";
         public const string User = "2";
         public const string Admin = "1";
-      
+
 
 
 
@@ -12,11 +13,15 @@
         {
             switch (id)
             {
-                case 2:
+                case 1:
                     return "مدیرسیستم";
+
+                case 2:
+                    return "کاربر معمولی";
+
                 case 3:
-                    return "کاربر معمولی  ";
-               
+                    return "کاربر مهمان";
+
                 default:
                     return "";
             }

@@ -19,21 +19,25 @@ namespace BookMarket
 
         public void OnPageHandlerExecuted(PageHandlerExecutedContext context)
         {
+          
         }
 
         public void OnPageHandlerExecuting(PageHandlerExecutingContext context)
         {
-            if (context.HandlerMethod == null)
-                return;
 
-            var handlerPermission =
-                (NeedsPermissionAttribute) context.HandlerMethod.MethodInfo.GetCustomAttribute(
-                    typeof(NeedsPermissionAttribute));
+            var handlerPermission = context.HandlerMethod.MethodInfo
+     .GetCustomAttribute<NeedsPermissionAttribute>();
+            if (context.HandlerMethod == null)
+            {
+                return;
+            }
 
             if (handlerPermission == null)
                 return;
+
             if (_authHelper == null)
                 throw new Exception("AuthHelper is not initialized.");
+
             var accountPermissions = _authHelper.GetPermissions() ?? new List<int>();
 
             if (!accountPermissions.Any(x => x == handlerPermission.Permission))

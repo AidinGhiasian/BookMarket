@@ -20,7 +20,7 @@ namespace ServiceHost.Areas.Admin.Pages.Account.Role
             _exposers = exposers;
         }
         //[NeedsPermission(AccountPermisions.EditRoles)]
-
+        [NeedsPermission(AccountPermission.EditRoles)]
         public void OnGet(int id)
         {
             Command = _roleApplication.GetDetails(id);

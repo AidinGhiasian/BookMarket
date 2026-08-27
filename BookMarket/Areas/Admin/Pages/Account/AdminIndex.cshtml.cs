@@ -1,14 +1,17 @@
 ﻿using AccountM.Application.Contracts.AccountApplication;
 using AccountMInfrastructureConfiguration.Permisions;
 using BlogMInfrastructureConfiguration.Permission;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Services.Application.Categoreis;
 using Services.Infrastructure;
 using System.IO.IsolatedStorage;
 using System.Net.NetworkInformation;
 
 namespace BookMarket.Areas.Admin.Account
 {
+    //[Authorize(Roles = Roles.Admin + "," + Roles.Guest)]
     public class IndexModel : PageModel
     {
         private readonly IAccountApplication _accountApplication;
