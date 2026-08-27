@@ -20,12 +20,10 @@ namespace AccountManagementConfiguration.Permission
                      "مدیریت",new List<PermissionDTO>
                     {
                           new PermissionDTO(AccountPermission.ListAccount,"دسترسی مدیریتی"),
-                          new PermissionDTO(AccountPermission.UserDhaboard,"دسترسی کاربری"),
+                          new PermissionDTO(AccountPermission.UserDashboard,"دسترسی کاربری"),
                     }
                 },
                 {
-                   
-
                     "حساب های کاربری",new List<PermissionDTO>
                     {
                         new PermissionDTO(AccountPermission.ListAccount,"لیست  حساب های کاربری"),

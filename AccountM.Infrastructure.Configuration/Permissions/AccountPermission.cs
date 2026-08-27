@@ -25,7 +25,7 @@ namespace AccountMInfrastructureConfiguration.Permisions
         //
 
         public const int AdminDashboard = 109;
-        public const int UserDhaboard = 110;
+        public const int UserDashboard = 110;
 
     }
 }
