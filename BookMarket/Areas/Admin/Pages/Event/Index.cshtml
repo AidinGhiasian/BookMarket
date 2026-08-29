@@ -1,4 +1,5 @@
 ﻿@page
+@using BlogMInfrastructureConfiguration.Permission
 @using Services.Application
 @model BookMarket.Areas.Admin.Pages.Event.IndexModel
 @{
@@ -47,7 +48,7 @@
 					</div><!-- /.portlet-heading -->
 					<div class="portlet-body">
 						<div class="top-buttons-box mb-2">
-							<a class="btn btn-success" asp-page="./Create">
+							<a permission="@BlogPermission.CreateEvent" class="btn btn-success" asp-page="./Create">
 								<i class="icon-plus"></i>
 								افزودن
 							</a>
@@ -63,8 +64,8 @@
 										<th>توضیحات </th>
 										<th>زمان شروع رویداد </th>
 										<th>زمان پایان رویداد </th>
-										<th>عملیات حذف</th>
-										<th>عملیات ویرایش</th>
+										<th permission="@BlogPermission.DeleteEvent">عملیات حذف</th>
+										<th permission="@BlogPermission.EditPost">عملیات ویرایش</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -82,10 +83,10 @@
 											<td>@item.EventStartTime.ToFarsi()</td>
 											<td>@item.EventFinishTime.ToFarsi()</td>
 											<td>
-												<a class="btn btn-danger" asp-page-handler="Delete" asp-route-id="@item.Id">حذف</a>
+												<a permission="@BlogPermission.DeleteEvent" class="btn btn-danger" asp-page-handler="Delete" asp-route-id="@item.Id">حذف</a>
 											</td>
 											<td>
-												<a class="btn btn-info" asp-page="/Event/Edit" asp-page-handler="Post" asp-route-id="@item.Id">ویرایش</a>
+												<a permission="@BlogPermission.EditEvent" class="btn btn-info" asp-page="/Event/Edit" asp-page-handler="Post" asp-route-id="@item.Id">ویرایش</a>
 											</td>
 										</tr>
 									}

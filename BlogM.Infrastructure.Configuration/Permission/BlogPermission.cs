@@ -23,5 +23,9 @@ namespace BlogMInfrastructureConfiguration.Permission
         public const int SearchEvent = 209;
         public const int CreateEvent = 210;
         public const int EditEvent = 211;
+        //+++
+        public const int DeleteBlog = 212;
+        public const int DeleteEvent = 213;
+        public const int DeleteBlogCategory = 214;
     }
 }

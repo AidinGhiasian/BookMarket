@@ -30,8 +30,7 @@ namespace AccountManagementConfiguration.Permission
                         new PermissionDTO(AccountPermission.CreateAccount,"افزودن  حساب کاربری"),
                         new PermissionDTO(AccountPermission.EditAccount,"ویرایش  حساب های کاربری"),
                         new PermissionDTO(AccountPermission.SearchAccount,"جستجو  حساب های کاربری"),
-                        new PermissionDTO(AccountPermission.DeleteAccount,"حذف حساب های کاربری"),
-                        new PermissionDTO(AccountPermission.RestoreAccount,"بازگردانی حساب های کاربری"),
+                        new PermissionDTO(AccountPermission.Activating,"حذف و بازگردانی حساب های کاربری"),
                     }
 
                 },

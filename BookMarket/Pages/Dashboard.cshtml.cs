@@ -32,7 +32,7 @@ namespace BookMarket.Pages
         }
 
 
-        [NeedsPermission(AccountPermission.UserDhaboard)]
+        [NeedsPermission(AccountPermission.UserDashboard)]
         public void OnGet()
         {
 

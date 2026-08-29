@@ -1,4 +1,5 @@
 ﻿@page
+@using BlogMInfrastructureConfiguration.Permission
 @using Services.Application
 @model BookMarket.Areas.Admin.Pages.Blog.IndexModel
 @{
@@ -48,11 +49,11 @@
                     </div><!-- /.portlet-heading -->
                     <div class="portlet-body">
                         <div class="top-buttons-box mb-2">
-                            <a class="btn btn-success" href="./CreateBlog">
+                            <a permission="@BlogPermission.CreatePost" class="btn btn-success" href="./CreateBlog">
                                 <i class="icon-plus"></i>
                                 افزودن
                             </a>
-                            <a class="btn btn-primary float-end" href="./BlogCategory/BlogCategoryIndex">
+                            <a permission="@BlogPermission.ListCategoryBlog" class="btn btn-primary float-end" href="./BlogCategory/BlogCategoryIndex">
                                 <i class="icon-home"></i>
                                 دسته بندی
                             </a>
@@ -67,8 +68,8 @@
                                         <th>عنوان</th>
                                         <th>دسته بندی</th>
                                         <th>توضیحات کوتاه</th>
-                                        <th>عملیات حذف</th>
-                                        <th>عملیات ویرایش</th>
+                                        <th permission="@BlogPermission.DeleteEvent">عملیات حذف</th>
+                                        <th permission ="@BlogPermission.EditPost">عملیات ویرایش</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -85,10 +86,10 @@
                                             <td>@item.Category</td>
                                             <td>@item.ShortDescription.Truncate(200)</td>
                                             <td>
-                                                <a class="btn btn-danger" asp-page-handler="delete" asp-route-id="@item.Id">حذف</a>
+                                                <a permission="@BlogPermission.DeleteBlog" class="btn btn-danger" asp-page-handler="Delete" asp-route-id="@item.Id">حذف</a>
                                             </td>
                                             <td>
-                                                <a class="btn btn-info" asp-page="/Blog/EditBlog" asp-page-handler="Edit" asp-route-id="@item.Id">ویرایش</a>
+                                                <a Permission="@BlogPermission.EditPost" class="btn btn-info" asp-page="/Blog/EditBlog" asp-page-handler="Edit" asp-route-id="@item.Id">ویرایش</a>
                                             </td>
 
                                         </tr>

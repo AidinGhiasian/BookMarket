@@ -1,4 +1,5 @@
 ﻿@page
+@using CommentMInfrastructureConfiguration.Permission
 @using Services.Application
 @model BookMarket.Areas.Admin.Pages.Comment.IndexModel
 @{
@@ -41,9 +42,6 @@
                         <a class="btn btn-sm btn-default btn-round btn-fullscreen" rel="tooltip" title="تمام صفحه" href="#">
                             <i class="icon-size-fullscreen"></i>
                         </a>
-                        <a class="btn btn-sm btn-default btn-round btn-collapse" rel="tooltip" title="کوچک کردن" href="#">
-                            <i class="icon-arrow-up"></i>
-                        </a>
                     </div><!-- /.buttons-box -->
                 </div><!-- /.portlet-heading -->
                 <div class="portlet-body">
@@ -74,8 +72,8 @@
                                     <th>نام کاربر</th>
                                     <th>دیدگاه</th>
                                     <th>تاریخ ثبت دیدگاه</th>
-                                    <th>تایید / عدم تایید</th>
-                                    <th>پاسخ</th>
+                                    <th permission="@CommentPermission.ApprovingCommnet">تایید / عدم تایید</th>
+                                    <th permission="@CommentPermission.AnswerCommnet">پاسخ</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -91,22 +89,22 @@
                                             <td>
                                                 @if (item.IsStatus == 1)
                                                 {
-                                                    <a class="btn btn-danger" asp-page="./index" asp-page-handler="ChangeStatus" asp-route-id="@item.Id" asp-route-isStatus="3">عدم تایید</a>
-                                                    <a class="btn btn-success text-center" asp-page="./index" asp-page-handler="ChangeStatus" asp-route-id="@item.Id" asp-route-isStatus="2">تایید</a>
+                                                    <a permission="@CommentPermission.ApprovingCommnet" class="btn btn-danger" asp-page="./index" asp-page-handler="ChangeStatus" asp-route-id="@item.Id" asp-route-isStatus="3">عدم تایید</a>
+                                                    <a permission="@CommentPermission.ApprovingCommnet" class="btn btn-success text-center" asp-page="./index" asp-page-handler="ChangeStatus" asp-route-id="@item.Id" asp-route-isStatus="2">تایید</a>
 
                                                 }
                                                 @if (item.IsStatus == 2)
                                                 {
-                                                    <a class="btn btn-danger" asp-page="./Index" asp-page-handler="ChangeStatus" asp-route-id="@item.Id" asp-route-isStatus="3">عدم تایید</a>
+                                                    <a permission ="@CommentPermission.ApprovingCommnet" class="btn btn-danger" asp-page="./Index" asp-page-handler="ChangeStatus" asp-route-id="@item.Id" asp-route-isStatus="3">عدم تایید</a>
                                                 }
                                                 else if(item.IsStatus==3)
                                                 {
-                                                    <a class="btn btn-success text-center" asp-page="./Index" asp-page-handler="ChangeStatus" asp-route-id="@item.Id" asp-route-isStatus="2">تایید</a>
-                                                    <a class="btn btn-danger" asp-page="./Index" asp-page-handler="Delete" asp-route-id="@item.Id">حذف کامل</a>
+                                                    <a permission="@CommentPermission.ApprovingCommnet" class="btn btn-success text-center" asp-page="./Index" asp-page-handler="ChangeStatus" asp-route-id="@item.Id" asp-route-isStatus="2">تایید</a>
+                                                    <a permission="@CommentPermission.DeleteComment" class="btn btn-danger" asp-page="./Index" asp-page-handler="Delete" asp-route-id="@item.Id">حذف کامل</a>
                                                 }
                                              </td>
                                             <td>
-                                                <a class="btn btn-warning" asp-route-id="@item.Id">پاسخ</a>
+                                                <a permission="@CommentPermission.AnswerCommnet" class="btn btn-warning" asp-route-id="@item.Id">پاسخ</a>
                                             </td>
 
                                         </tr>

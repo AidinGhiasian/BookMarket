@@ -1,4 +1,8 @@
 ﻿@page
+@using AccountMInfrastructureConfiguration.Permisions
+@using BlogMInfrastructureConfiguration.Permission
+@using BookMInfrastucureConfiguration.Permission
+@using CommentMInfrastructureConfiguration.Permission
 @using Services.Application
 @model BookMarket.Areas.Admin.Pages.IndexModel
 @{
@@ -20,9 +24,9 @@
         </div><!-- /.col-md-12 -->
         <div class="col-md-12">
             <div class="row">
-                <div class="col-lg-3 col-6">
+                <div class="col-lg-3 col-6" permission="@AccountPermission.ListAccount">
                     <div class="stat-box use-blue shadow">
-                        <a href="/Admin/Account/AdminIndex">
+                        <a  href="/Admin/Account/AdminIndex">
                             <div class="stat">
                                 <div class="h3">مدیریت کاربران</div>
                             </div><!-- /.stat -->
@@ -32,7 +36,7 @@
                         </a>
                     </div><!-- /.stat-box -->
                 </div><!-- /.col-lg-3 -->
-                <div class="col-lg-3 col-6">
+                <div class="col-lg-3 col-6" permission="@BlogPermission.ListPost">
                     <div class="stat-box use-green shadow">
                         <a href="/Admin/Blog/AdminIndex">
                             <div class="stat">
@@ -44,7 +48,7 @@
                         </a>
                     </div><!-- /.stat-box -->
                 </div><!-- /.col-lg-3 -->
-                <div class="col-lg-3 col-6">
+                <div class="col-lg-3 col-6" permission="@BookPermission.ListBook">
                     <div class="stat-box use-red shadow">
                         <a href="/Admin/Book/AdminIndex">
                             <div class="stat">
@@ -56,7 +60,7 @@
                         </a>
                     </div><!-- /.stat-box -->
                 </div><!-- /.col-lg-3 -->
-                <div class="col-lg-3 col-6">
+                <div class="col-lg-3 col-6" permission="@BlogPermission.ListEvent">
                     <div class="stat-box use-orange shadow">
                         <a href="/Admin/Event/Index">
                             <div class="stat">
@@ -68,7 +72,7 @@
                         </a>
                     </div><!-- /.stat-box -->
                 </div><!-- /.col-lg-3 -->
-                <div class="col-lg-3 col-6">
+                <div class="col-lg-3 col-6" permission="@CommentPermission.ListComment">
                     <div class="stat-box use-darkblue shadow">
                         <a href="/Admin/Comment/Index">
                             <div class="stat">
@@ -85,7 +89,7 @@
 
 
         <div class="row">
-            <div class="col-md-12 col-xs-12">
+            <div class="col-md-12 col-xs-12" permission="@CommentPermission.ListComment">
                 <div class="portlet box shadow min-height-600">
                     <div class="portlet-heading">
                         <div class="portlet-title">

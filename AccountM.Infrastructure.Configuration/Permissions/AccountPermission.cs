@@ -15,8 +15,7 @@ namespace AccountMInfrastructureConfiguration.Permisions
         public const int SearchAccount = 101;
         public const int CreateAccount = 102;
         public const int EditAccount = 103;
-        public const int DeleteAccount = 104;
-        public const int RestoreAccount = 105;
+        public const int Activating = 105;
         //Roles
         public const int ListRoles = 106;
         public const int CreateRoles = 107;

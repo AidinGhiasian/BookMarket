@@ -22,7 +22,7 @@ namespace BookMarket.Areas.Admin.Account
         public List<AccountViewModel> Accounts { get; set; }
 
 
-        [NeedsPermission(AccountPermission.DeleteAccount)]
+        [NeedsPermission(AccountPermission.Activating)]
         public IActionResult OnGetDelete(int id)
         {
             _accountApplication.Delete(id);
@@ -30,7 +30,7 @@ namespace BookMarket.Areas.Admin.Account
 
             return Redirect("./AdminIndex");
         }
-        [NeedsPermission(AccountPermission.RestoreAccount)]
+        [NeedsPermission(AccountPermission.Activating)]
         public IActionResult OnGetRestore(int id)
         {
             _accountApplication.Restore(id);
@@ -66,7 +66,7 @@ namespace BookMarket.Areas.Admin.Account
                 PhoneNumber = account.PhoneNumber,
             };
         }
-        [NeedsPermission(AccountPermission.EditRoles)]//تغییر نقش یک فرد یا تغییر نقش در اینجا امکان این که از اتربیوت ادیت اکانت هم میتوان استفاده کرد
+        [NeedsPermission(AccountPermission.EditRoles)]// تغییر نقش یک فرد یا تغییر نقش در اینجا امکان این که از اتربیوت ادیت اکانت هم میتوان استفاده کرد هست
         public void OnGetChangeRole(int id, int roleId)
         {
             _accountApplication.ChangeRole(id, roleId); 

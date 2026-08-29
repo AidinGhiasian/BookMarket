@@ -11,30 +11,33 @@ namespace BlogMInfrastructureConfiguration.Permission
             return new Dictionary<string, List<PermissionDTO>>
             {
                 {
-                    "Post",new List<PermissionDTO>
+                    "پست",new List<PermissionDTO>
                     {
                         new PermissionDTO(BlogPermission.CreatePost,"ساخت پست"),
                         new PermissionDTO(BlogPermission.EditPost,"ویرایش پست"),
                         new PermissionDTO(BlogPermission.ListPost,"لیست پست ها"),
                         new PermissionDTO(BlogPermission.SearchPost,"جستجوی پست ها"),
+                        new PermissionDTO(BlogPermission.DeleteBlog,"حذف پست ها"),
                     }
                 },
                 {
-                    "BlogCategory",new List<PermissionDTO>
+                    "دسته بندی مقالات",new List<PermissionDTO>
                     {
                         new PermissionDTO(BlogPermission.CreateCategoryBlog,"ساخت دسته بندی مقاله"),
                         new PermissionDTO(BlogPermission.EditCategoryBlog,"ویرایش دسته بندی مقاله"),
                         new PermissionDTO(BlogPermission.SearchCategoryBlog,"جستجوی دسته بندی مقاله"),
                         new PermissionDTO(BlogPermission.ListCategoryBlog,"لیست مقالات"),
+                        new PermissionDTO(BlogPermission.DeleteBlogCategory,"حذف دسته بندی مقالات"),
                     }
                 },
                 {
-                    "Event",new List<PermissionDTO>
+                    "رویداد",new List<PermissionDTO>
                     {
                         new PermissionDTO(BlogPermission.CreateEvent,"ساخت رویداد"),
                         new PermissionDTO(BlogPermission.EditEvent,"ویرایش رویداد"),
                         new PermissionDTO(BlogPermission.ListEvent,"لیست رویداد ها"),
                         new PermissionDTO(BlogPermission.SearchEvent,"جستجوی رویداد ها"),
+                        new PermissionDTO(BlogPermission.DeleteEvent,"حذف رویداد ها"),
                     }
                 }
             };
