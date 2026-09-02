@@ -57,7 +57,7 @@ namespace BookM.Infrastructure.EFCore.Repository
 
         public Books? GetById(int id)
         {
-            return _bookdbcontext.Books.Include(x=>x.Category).FirstOrDefault(x => x.Id == id);
+            return _bookdbcontext.Books.Include(x => x.Category).FirstOrDefault(x => x.Id == id);
         }
 
         public async Task Updateby(Books book)

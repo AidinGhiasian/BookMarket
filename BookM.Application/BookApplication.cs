@@ -111,9 +111,19 @@ namespace BookM.Application
 
         public EditViewModel Getdetail(int id)
         {
+
             var book = _bookRepository.GetById(id);
-            var categories = _bookCategoryRepository.GetAll().Select(mapcategory).ToList();
-             return new EditViewModel
+
+            if (book == null)
+            {
+                return null;
+            }
+
+            var categories = _bookCategoryRepository.GetAll()
+                .Select(mapcategory)
+                .ToList();
+
+            return new EditViewModel
             {
                 Id = book.Id,
                 Picture = book.Picture,
@@ -124,12 +134,16 @@ namespace BookM.Application
                 shortdescription = book.ShortDescription,
                 Categorey = book.Category.Name,
                 Price = book.Price,
-                BookCategories =categories
+                BookCategories = categories
             };
         }
         public BookViewModel GetdetailInfo(int id)
         {
             var book = _bookRepository.GetById(id);
+
+            if (book == null)
+                return null;
+
             return new BookViewModel
             {
                 Id = book.Id,
@@ -143,6 +157,7 @@ namespace BookM.Application
                 Price = book.Price
             };
         }
+        
         public List<Books> Search(string title)
         {
             return _bookRepository.GetBy(title);

@@ -1,5 +1,6 @@
 ﻿@page
 @using Services.Application
+@using Services.Application.AuthHelper
 @model BookMarket.Pages.Book.BookDetailsModel
 @{
 }
@@ -67,13 +68,20 @@
 
 								<div class="product-details-action">
 									<div class="details-action-col text-right">
-										<label for="qty">تعداد : </label>
+										<label>تعداد : </label>
 										<div class="product-details-quantity">
-											<input type="number" id="qty" class="form-control" value="1"
-												   min="1" max="10" step="1" data-decimals="0" required>
-										</div><!-- End .product-details-quantity -->
+											<input type="number"
+												   id="prudoctCount"
+												   class="form-control"
+												   value="1"
+												   min="1"
+												   max="10"
+												   step="1"
+												   data-decimals="0"
+												   required>
+										</div>
 
-										<a href="#" class="btn-product btn-cart">
+										<a asp-page="/Book/BookDetails"asp-route-id="@Model.Book.Id" class="btn-product btn-cart" onclick="addToCart('@Model.Book.Id','@Model.Book.BookTitle','@Model.Book.Price','@Model.Book.PictureFile')">
 											<span>
 												افزودن به سبد
 												خرید
@@ -82,18 +90,10 @@
 									</div><!-- End .details-action-col -->
 
 									<div class="details-action-wrapper">
-										<a href="#" class="btn-product btn-wishlist"
-										   title="لیست علاقه مندی">
+										<a href="#" class="btn-product btn-wishlist"title="لیست علاقه مندی"
 											<span>
 												افزودن به علاقه
 												مندی
-											</span>
-										</a>
-										<a href="#" class="btn-product btn-compare"
-										   title="مقایسه">
-											<span>
-												افزودن
-												به لیست مقایسه
 											</span>
 										</a>
 									</div><!-- End .details-action-wrapper -->
@@ -318,8 +318,10 @@
 
 						</div><!-- End .products -->
 
-						<a href="/Book/Index" class="btn btn-outline-dark-3">
-							<span>
+						<a href="/Book/Index" class="btn btn-outline-dark-3"
+						   onclick="addToCart('@Model.Book.Id', '@Model.Book.BookTitle', '@Model.Book.Price', '@Model.Book.PictureFile');">
+							>
+							<span >
 								مشاهده محصولات
 								بیشتر
 							</span><i class="icon-long-arrow-left"></i>
