@@ -71,7 +71,7 @@
 										<label>تعداد : </label>
 										<div class="product-details-quantity">
 											<input type="number"
-												   id="prudoctCount"
+												   id="productCount"
 												   class="form-control"
 												   value="1"
 												   min="1"
@@ -81,7 +81,7 @@
 												   required>
 										</div>
 
-										<a asp-page="/Book/BookDetails"asp-route-id="@Model.Book.Id" class="btn-product btn-cart" onclick="addToCart('@Model.Book.Id','@Model.Book.BookTitle','@Model.Book.Price','@Model.Book.PictureFile')">
+										<a asp-page="/Book/BookDetails"asp-route-id="@Model.Book.Id" class="btn-product btn-cart" onclick="return addToCart('@Model.Book.Id','@Model.Book.BookTitle','@Model.Book.Price','@Model.Book.PictureFile')">
 											<span>
 												افزودن به سبد
 												خرید
@@ -90,7 +90,7 @@
 									</div><!-- End .details-action-col -->
 
 									<div class="details-action-wrapper">
-										<a href="#" class="btn-product btn-wishlist"title="لیست علاقه مندی"
+										<a href="#" class="btn-product btn-wishlist"title="لیست علاقه مندی">
 											<span>
 												افزودن به علاقه
 												مندی
@@ -318,9 +318,7 @@
 
 						</div><!-- End .products -->
 
-						<a href="/Book/Index" class="btn btn-outline-dark-3"
-						   onclick="addToCart('@Model.Book.Id', '@Model.Book.BookTitle', '@Model.Book.Price', '@Model.Book.PictureFile');">
-							>
+						<a href="/Book/Index" class="btn btn-outline-dark-3">
 							<span >
 								مشاهده محصولات
 								بیشتر
