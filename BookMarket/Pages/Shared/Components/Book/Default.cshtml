@@ -82,17 +82,10 @@
 												<span class="ratings-text">( 5 دیدگاه )</span>
 											</div><!-- End .rating-container -->
 											<div class="product-action">
-												<a href="#" class="btn-product btn-cart">
-													<span>
-														افزودن به سبد
-														خرید
-													</span>
-												</a>
-												<a href="#" class="btn-product btn-wishlist">
-													<span>
-														افزودن به لیست علاقه
-														مندی
-													</span>
+												<a type="button"
+														class="btn-product btn-cart"
+														onclick="addToCart('@item.Id', '@item.BookTitle', '@item.Price', '@item.PictureFile')">
+													<span>افزودن به سبد خرید</span>
 												</a>
 											</div><!-- End .product-action -->
 										</div><!-- End .product-footer -->

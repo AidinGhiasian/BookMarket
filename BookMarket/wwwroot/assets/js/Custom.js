@@ -11,13 +11,13 @@ function addToCart(id, bookTitle, price, pictureFile) {
         products = JSON.parse(products);
     }
 
-    const count = $("#productCount").val();
+    const count = parseInt($("#productCount").val()) || 1;
 
     const currentProduct = products.find(x => x.id == id);
 
     if (currentProduct !== undefined) {
-        products.find(x => x.id == id).count =
-            parseInt(currentProduct.count) + parseInt(count);
+        currentProduct.count =
+            parseInt(currentProduct.count) + count;
     }
     else {
         const product = {
@@ -42,7 +42,7 @@ function addToCart(id, bookTitle, price, pictureFile) {
 
 function updateCart() {
 
-    let products = $.cookie(cookieName); 
+    let products = $.cookie(cookieName);
 
     if (products === undefined) {
         products = [];
@@ -85,6 +85,7 @@ function updateCart() {
         cartItemsWrapper.append(product);
     });
 }
+
 function removeFromCart(id) {
     let products = $.cookie(cookieName);
 
@@ -94,12 +95,17 @@ function removeFromCart(id) {
     else {
         products = JSON.parse(products);
     }
-    let itemToRemove = products.findIndex(x => x.id === id);
-    products.splice(itemToRemove, 1);
 
+    let itemToRemove = products.findIndex(x => String(x.id) === String(id));
+
+    if (itemToRemove !== -1) {
+        products.splice(itemToRemove, 1);
+    }
+    
     $.cookie(cookieName, JSON.stringify(products), {
         expires: 2,
         path: "/"
     });
+
     updateCart();
 }

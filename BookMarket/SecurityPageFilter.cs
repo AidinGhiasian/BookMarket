@@ -26,7 +26,7 @@ namespace BookMarket
         {
 
             var handlerPermission = context.HandlerMethod.MethodInfo
-     .GetCustomAttribute<NeedsPermissionAttribute>();
+            .GetCustomAttribute<NeedsPermissionAttribute>();
             if (context.HandlerMethod == null)
             {
                 return;

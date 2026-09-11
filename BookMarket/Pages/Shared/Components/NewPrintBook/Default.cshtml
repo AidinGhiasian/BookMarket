@@ -34,9 +34,11 @@
                             @item.Price تومان
                         </div><!-- End .product-price -->
 
-                        <div class="product-action">
-                            <a href="#" class="btn-product btn-cart"><span>افزودن به سبد خرید</span></a>
-                        </div><!-- End .product-action -->
+                        <a type="button"
+                                class="btn-product btn-cart"
+                                onclick="addToCart('@item.Id', '@item.BookTitle', '@item.Price', '@item.PictureFile')">
+                            <span>افزودن به سبد خرید</span>
+                        </a>
                     </div><!-- End .product-body -->
                 </div><!-- End .product-wrap -->
             </div>
