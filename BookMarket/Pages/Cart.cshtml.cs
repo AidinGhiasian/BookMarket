@@ -1,8 +1,8 @@
 using BookM.Application.Contracts.Order;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.Extensions.WebEncoders.Testing;
 using Nancy.Json;
-using System.Xml.Linq;
 
 namespace BookMarket.Pages
 {
@@ -11,45 +11,75 @@ namespace BookMarket.Pages
         public List<CartItem>? CartItems { get; set; }
 
         public const string CookieName = "cart-items";
-
+        private readonly JavaScriptSerializer _serializer = new();
         public void OnGet()
         {
-            var serializer = new JavaScriptSerializer();
-            var value = Request.Cookies[CookieName];
 
-            CartItems = serializer.Deserialize<List<CartItem>>(value) ?? new List<CartItem>();
+          
+            CartItems = ReadCartItems();
 
             foreach (var item in CartItems)
             {
                 item.TotalPrice = item.Price * item.Count;
             }
+          
         }
-
-        public IActionResult OnGetRemoveFromCart(long id)
+        // حذف یک محصول از سبد خرید
+        [ValidateAntiForgeryToken]
+        public IActionResult OnPostRemoveitemFromCart(long id)
         {
-            var serializer = new JavaScriptSerializer();
-            var value = Request.Cookies[CookieName];
+            var cartItems = ReadCartItems();
 
-            var cartItems = serializer.Deserialize<List<CartItem>>(value);
+            // فقط محصول موردنظر حذف می‌شود
+            cartItems.RemoveAll(item => item.Id == id);
 
-            var itemToRemove = cartItems.FirstOrDefault(x => x.Id == id);
-
-            cartItems.Remove(itemToRemove);
-
-            var newValue = serializer.Serialize(cartItems);
-
-            Response.Cookies.Delete(CookieName, new CookieOptions
-            {
-                Path = "/"
-            });
-
-            Response.Cookies.Append(CookieName, newValue, new CookieOptions
-            {
-                Expires = DateTime.Now.AddDays(2),
-                Path = "/"
-        });
+            // کوکی با لیست جدید ذخیره می‌شود
+            SaveCartItems(cartItems);
 
             return RedirectToPage();
         }
+        private List<CartItem> ReadCartItems()
+        {
+            var cookieValue = Request.Cookies[CookieName];
+
+            if (string.IsNullOrWhiteSpace(cookieValue))
+            {
+                return new List<CartItem>();
+            }
+
+            try
+            {
+                return _serializer.Deserialize<List<CartItem>>(cookieValue)
+                       ?? new List<CartItem>();
+            }
+            catch
+            {
+                // اگر کوکی خراب یا نامعتبر بود
+                return new List<CartItem>();
+            }
+        }
+
+        private void SaveCartItems(List<CartItem> cartItems)
+        {
+            var cookieOptions = new CookieOptions
+            {
+                Expires = DateTimeOffset.UtcNow.AddDays(2),
+                Path = "/",
+
+                // چون JavaScript هم باید کوکی را بخواند، HttpOnly نباشد
+                HttpOnly = false,
+
+                SameSite = SameSiteMode.Lax,
+                Secure = Request.IsHttps,
+                IsEssential = true
+            };
+
+            Response.Cookies.Append(
+                CookieName,
+                _serializer.Serialize(cartItems),
+                cookieOptions
+            );
+        }
+
     }
 }

@@ -12,6 +12,8 @@ namespace Services.Application
         public bool Success { get; set; }
         public bool Failure { get; set; }
 
+
+
         public string Message { get; set; }
 
         public OperationResult()
@@ -31,7 +33,5 @@ namespace Services.Application
             Failure = true; 
             return this;
         }
-
-
     }
 }

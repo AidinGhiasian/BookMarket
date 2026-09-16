@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace BookM.Application.Contracts.Order
+﻿namespace BookM.Application.Contracts.Order
 {
     public class CartItem
     {

@@ -2,6 +2,9 @@
 @using Services.Application
 @model BookMarket.Pages.CartModel
 @{
+    
+    var cartTotal = Model.CartItems.Sum(x => x.TotalPrice);
+
 }
 <div class="page-header text-center" style="background-image: url('assets/images/page-header-bg.jpg')">
     <div class="container">
@@ -71,9 +74,19 @@
                                     </td>
                                     <td class="total-col">@item.TotalPrice.ToMoney()</td>
                                     <td class="remove-col">
-                                        <a class="btn-remove" asp-page-handler="RemoveFromCart"asp-route-id="@item.Id">
-                                            <i class="icon-close"></i>
-                                        </a>
+                                        <form method="post"
+                                              asp-page-handler="RemoveItemFromCart"
+                                              asp-route-id="@item.Id"
+                                              class="d-inline">
+
+                                            <button type="submit"
+                                                    class="btn-remove border-0 bg-transparent p-0"
+                                                    title="حذف محصول"
+                                                    aria-label="حذف محصول">
+
+                                                <i class="icon-close"></i>
+                                            </button>
+                                        </form>
                                     </td>
                                 </tr>
                             }
@@ -172,7 +185,7 @@
                                     <tbody>
                                         <tr class="summary-subtotal">
                                             <td class="border-bottom-0">جمع کل سبد خرید : </td>
-                                            <td class="text-left border-bottom-0">236,000 تومان</td>
+                                            <td class="text-left border-bottom-0"> @cartTotal.ToMoney() تومان</td>
                                         </tr><!-- End .summary-subtotal -->
 
                                         <tr class="summary-subtotal">
@@ -219,3 +232,4 @@
         border: none;
     }
 </style>
+
