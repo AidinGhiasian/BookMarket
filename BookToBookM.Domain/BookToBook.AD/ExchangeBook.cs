@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BookToBookM.Domain.BookToBook.AD
 {
-    public class ExchangeBook
+    public class ExchangeBook //نماینده‌ی خود معامله/مبادله بین دو طرف است.
     {
         public long Id { get; set; }
 

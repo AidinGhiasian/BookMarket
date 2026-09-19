@@ -1,5 +1,4 @@
-﻿using BlogMInfrastructureConfiguration.Permissions;
-using Services.Infrastructure;
+﻿using Services.Infrastructure;
 
 namespace BlogMInfrastructureConfiguration.Permission
 {

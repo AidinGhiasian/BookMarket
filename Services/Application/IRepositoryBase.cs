@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -14,6 +15,7 @@ namespace Services.Application
         T GetById(int id);
         public List<T> GetAll();
         void SaveChanges();
+        bool Exists(Expression<Func<T, bool>> expression);
     }
 }
 //در واقعrepositorybase

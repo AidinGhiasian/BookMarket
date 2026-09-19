@@ -2,7 +2,7 @@
 
 namespace BookToBook.AD
 {
-    public class BookToBookItem
+    public class BookToBookItem//نماینده‌ی یک کتاب در سیستم مبادله است.
     {
         public long Id { get; set; }
 

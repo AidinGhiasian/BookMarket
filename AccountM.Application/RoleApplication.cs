@@ -1,7 +1,7 @@
 ﻿using AccountM.Application.Contracts.RoleApplication;
 using AccountManagement.Domain.RoleAgg;
-using BlogMInfrastructureConfiguration.Permissions;
 using Services.Application;
+using Services.Infrastructure;
 
 namespace AccountManagement.Application
 {

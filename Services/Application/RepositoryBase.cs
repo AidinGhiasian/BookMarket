@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System.Linq.Expressions;
 
 namespace Services.Application;
 
@@ -12,6 +13,10 @@ public class RepositoryBase<T> : IRepositoryBase<T> where T : class
     public RepositoryBase(DbContext context)
     {
         _context = context;
+    }
+    public bool Exists(Expression<Func<T, bool>> expression)
+    {
+        return _context.Set<T>().Any(expression);
     }
 
     public void Add(T entity)
@@ -35,6 +40,8 @@ public class RepositoryBase<T> : IRepositoryBase<T> where T : class
     {
         _context.SaveChanges();
     }
+
+
 }
 //این کار ها معمولا کار هایی هستند که در تمام ریپازیتوری های موجود در پروژه استفاده میشوند
 //و یا باید به طور منطقی در هر ریپازیتوری وجود داشته باشند ....
