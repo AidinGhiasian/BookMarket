@@ -249,10 +249,5 @@ namespace AccountM.Application
             _accountRepository.SaveChanges();
             return result.IsSuccess();
         }
-
-        public OperationResult Creaste(CreateViewModel model)
-        {
-            throw new NotImplementedException();
-        }
     }
 }
